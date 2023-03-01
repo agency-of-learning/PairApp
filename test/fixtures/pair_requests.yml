@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: pair_requests
+#
+#  id          :bigint           not null, primary key
+#  duration    :float
+#  when        :datetime
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  acceptor_id :integer
+#  author_id   :integer
+#
+
+one:
+  author_id: 1
+  acceptor_id: 1
+  when: 2023-02-28 16:37:25
+  duration: 1.5
+
+two:
+  author_id: 1
+  acceptor_id: 1
+  when: 2023-02-28 16:37:25
+  duration: 1.5

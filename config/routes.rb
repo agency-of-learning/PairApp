@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pair_requests
   # Shortcuts
   get 'landing/index'
   get '/auth/auth0/callback' => 'auth0#callback'

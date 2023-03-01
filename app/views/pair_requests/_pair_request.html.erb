@@ -1,0 +1,26 @@
+<div id="<%= dom_id pair_request %>">
+  <p>
+    <strong>Author:</strong>
+    <%= pair_request.author.email %>
+  </p>
+
+  <p>
+    <strong>Acceptor:</strong>
+    <% if pair_request.acceptor.present? %>
+      <%= pair_request.acceptor.email %>
+    <% else %>
+      No acceptor yet
+    <% end %>
+  </p>
+
+  <p>
+    <strong>When:</strong>
+    <%= pretty_datetime(pair_request.when) %>
+  </p>
+
+  <p>
+    <strong>Duration:</strong>
+    <%= pluralize(number_to_human(pair_request.duration), "hour") %>
+  </p>
+
+</div>
