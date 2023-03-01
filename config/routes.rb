@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :users, skip: [:registrations]
+  as :user do
+    get 'users/edit' => 'devise/registrations#edit', as: 'edit_user_registration'
+    put 'users' => 'devise/registrations#update', as: 'user_registration'
+  end
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  # Root
+  root to: 'landing#index'
+  # Shortcuts
+  get 'landing/index'
+
+  # Alphabetized Routes
+  # resources :pair_requests do
+  #   resources :acceptances, only: [:create, :destroy]
+  # end
 end

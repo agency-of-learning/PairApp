@@ -1,0 +1,34 @@
+<div id="<%= dom_id pair_request %>">
+  <p>
+    <strong>Author:</strong>
+    <%= pair_request.author.email %>
+  </p>
+
+  <p>
+    <strong>Acceptor:</strong>
+    <% if pair_request.acceptor.present? %>
+      <% if pair_request.acceptor == current_user %>
+        <%= link_to "Unaccept", pair_request_acceptance_path(@pair_request), data: { turbo_method: :delete }, class: "btn btn-danger" %>
+      <% else %>
+        <%= pair_request.acceptor.email %>
+      <% end %>
+    <% else %>
+      <% if pair_request.author == current_user %>
+        Not yet accepted
+      <% else %>
+        <%= link_to "Accept this request", pair_request_acceptances_path(pair_request), data: { turbo_method: :post }, class: "btn btn-success" %>
+      <% end %>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>When:</strong>
+    <%= pretty_datetime(pair_request.when) %>
+  </p>
+
+  <p>
+    <strong>Duration:</strong>
+    <%= pluralize(number_to_human(pair_request.duration), "hour") %>
+  </p>
+
+</div>

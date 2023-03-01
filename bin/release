@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if ! (bin/rails db:migrate:status | awk '$1 == "down" {print "Pending migration(s) found."; exit 1;}') then
+  bin/rails db:migrate
+else
+  echo "No pending migrations found."
+fi

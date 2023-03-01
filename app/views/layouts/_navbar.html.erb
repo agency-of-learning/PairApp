@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Agency of Learning</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to "Home", root_path, class: "nav-link" %>
+        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'My Account', edit_user_registration_url(current_user), class: 'nav-link'  %>
+          </li>
+          <li class="nav-item">
+            <%= button_to 'Logout', destroy_user_session_url , method: :delete, data: { turbo: false }, class: "btn btn-outline-primary" %>
+          </li>
+        <% else %>
+          <li class="nav=item">
+            <%= button_to 'Login', new_user_session_url, method: :get, data: { turbo: false }, class: "btn btn-outline-primary" %>
+          </li>
+        <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
