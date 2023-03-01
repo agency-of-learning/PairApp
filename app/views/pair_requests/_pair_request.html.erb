@@ -7,9 +7,17 @@
   <p>
     <strong>Acceptor:</strong>
     <% if pair_request.acceptor.present? %>
-      <%= pair_request.acceptor.email %>
+      <% if pair_request.acceptor == current_user %>
+        <%= link_to "Unaccept", pair_request_acceptance_path(@pair_request), data: { turbo_method: :delete }, class: "btn btn-danger" %>
+      <% else %>
+        <%= pair_request.acceptor.email %>
+      <% end %>
     <% else %>
-      No acceptor yet
+      <% if pair_request.author == current_user %>
+        Not yet accepted
+      <% else %>
+        <%= link_to "Accept this request", pair_request_acceptances_path(pair_request), data: { turbo_method: :post }, class: "btn btn-success" %>
+      <% end %>
     <% end %>
   </p>
 
