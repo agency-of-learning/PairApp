@@ -9,12 +9,18 @@
         <li class="nav-item">
           <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <% if @user.present? %>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'My Account', user_path(current_user), class: 'nav-link'  %>
+          </li>
+          <li class="nav-item">
             <%= button_to 'Logout', 'auth/logout', method: :get, data: { turbo: false }, class: "btn btn-outline-primary" %>
-          <% else %>
+          </li>
+        <% else %>
+          <li class="nav=item">
             <%= button_to 'Login', '/auth/auth0', method: :post, data: { turbo: false }, class: "btn btn-outline-primary" %>
-          <% end %>
+          </li>
+        <% end %>
         </li>
       </ul>
     </div>

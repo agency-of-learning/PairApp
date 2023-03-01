@@ -6,6 +6,8 @@ class Auth0Controller < ApplicationController
     auth_info = request.env['omniauth.auth']
     session[:userinfo] = auth_info['extra']['raw_info']
 
+    @user = session[:userinfo]
+    session[:user_id] = User.find_or_create_by(email: @user['name']).id
     # Redirect to the URL you want after successful auth
     redirect_to root_path
   end
@@ -17,6 +19,7 @@ class Auth0Controller < ApplicationController
 
   def logout
     reset_session
+    @current_user = nil
     redirect_to logout_url, allow_other_host: true
   end
   
