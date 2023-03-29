@@ -13,4 +13,6 @@
 class PairRequest < ApplicationRecord
   belongs_to :author, class_name: "User"
   belongs_to :acceptor, class_name: "User", optional: true
+
+  validates :when, presence: true
 end
