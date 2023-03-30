@@ -8,7 +8,9 @@
     <strong>Acceptor:</strong>
     <% if pair_request.acceptor.present? %>
       <% if pair_request.acceptor == current_user %>
-        <%= link_to "Unaccept", pair_request_acceptance_path(@pair_request), data: { turbo_method: :delete }, class: "btn btn-danger" %>
+        <%#= link_to "Unaccept", pair_request_acceptance_path(@pair_request), data: { turbo_method: :delete }, class: "btn btn-danger" %>
+        <%= link_to "Unaccept", pair_request_acceptances_destroy_path(pair_request) , data: { turbo_method: :delete }, class: "btn btn-danger" %> 
+        
       <% else %>
         <%= pair_request.acceptor.email %>
       <% end %>

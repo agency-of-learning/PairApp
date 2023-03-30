@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   
   # Alphabetized Routes
   resources :pair_requests do
-    resources :acceptances, only: [:create, :destroy]
+    delete '/acceptances', to: 'acceptances#destroy', as: 'acceptances_destroy'
+    resources :acceptances, only: [:create]
   end
   resources :users, only: [:show, :edit, :update]
 
