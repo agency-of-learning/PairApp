@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_01_003725) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_30_184133) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_01_003725) do
     t.float "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "author_overall_rating"
+    t.integer "acceptor_overall_rating"
+    t.integer "author_partner_rating"
+    t.integer "acceptor_partner_rating"
+    t.text "author_feedback_for_partner"
+    t.text "acceptor_feedback_for_partner"
   end
 
   create_table "users", force: :cascade do |t|
