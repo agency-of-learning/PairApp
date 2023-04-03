@@ -14,12 +14,16 @@ class User < ApplicationRecord
 
 
   def pair_request_pending_feedback
+    pending_pair_requests = []
+    
     self.pair_requests_as_author.each do |r|
-      r.feedback_nedeed_by_user(self)
+      r.feedback_nedeed_by_user(self) ? pending_pair_requests << r.id : nil
     end
 
     self.pair_requests_as_acceptor.each do |r|
-      r.feedback_nedeed_by_user(self)
+      r.feedback_nedeed_by_user(self) ? pending_pair_requests << r.id : nil
     end
+
+    pending_pair_requests
   end
 end
