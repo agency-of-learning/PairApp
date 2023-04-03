@@ -11,4 +11,15 @@
 class User < ApplicationRecord
   has_many :pair_requests_as_author, class_name: "PairRequest", foreign_key: "author_id"
   has_many :pair_requests_as_acceptor, class_name: "PairRequest", foreign_key: "acceptor_id"
+
+
+  def pair_request_pending_feedback
+    self.pair_requests_as_author.each do |r|
+      r.feedback_nedeed_by_user(self)
+    end
+
+    self.pair_requests_as_acceptor.each do |r|
+      r.feedback_nedeed_by_user(self)
+    end
+  end
 end
