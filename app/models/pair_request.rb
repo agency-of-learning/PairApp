@@ -22,36 +22,33 @@ class PairRequest < ApplicationRecord
 
   validates :when, presence: true
 
-
-
   def feed_back_needed?
     if author_overall_rating.nil? && author_feedback_for_partner.nil? && author_partner_rating.nil? && acceptor_overall_rating.nil? && acceptor_feedback_for_partner.nil? && acceptor_partner_rating.nil?
-      p "Feedback needed by both parties"
+      # p "Feedback needed by both parties"
       return "author and acceptor"
    
     elsif author_overall_rating.nil? && author_feedback_for_partner.nil? && author_partner_rating.nil?
-      p "Feedback needed by auhtor"
+      # p "Feedback needed by auhtor"
       return "author"
     
     elsif acceptor_overall_rating.nil? && acceptor_feedback_for_partner.nil? && acceptor_partner_rating.nil?
-      p "Feedback needed by acceptor"
+      # p "Feedback needed by acceptor"
       return "acceptor"
     end
 
   end
 
   def feedback_nedeed_by_user(user)
-   
     if user == self.author
    
       if self.feed_back_needed? == "author" || self.feed_back_needed? == "author and acceptor"
-        p 'true'
+        # p 'true'
         return true
       end
     elsif user == self.acceptor
    
       if self.feed_back_needed? == "acceptor" || self.feed_back_needed? == "author and acceptor"
-        p 'true'
+        # p 'true'
         return true
       end
     end

@@ -4,5 +4,16 @@
   <%= link_to "Edit this pair request", edit_pair_request_path(@pair_request) %> |
   <%= link_to "Back to pair requests", pair_requests_path %>
 
-  <%= button_to "Destroy this pair request", @pair_request, method: :delete %>
-</div>
+  <%= button_to "Destroy this pair request", @pair_request, method: :delete %>  <br>
+</div> 
+
+
+<% if @pair_request.feedback_nedeed_by_user(current_user) %>
+  <% if @pair_request.acceptor == current_user  %>
+    <%= render 'acceptor_feedback' %>
+  <% elsif   @pair_request.author == current_user%>
+    <%= render 'author_feedback' %>
+  <% end %>
+<% end %>
+
+

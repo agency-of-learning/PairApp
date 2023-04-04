@@ -13,18 +13,19 @@
 
   <div>
     <%= form.label :author_overall_rating, style: "display: block" %>
-    <%= form.text_field :author_overall_rating %>
+    <%= form.select :author_overall_rating, ["1", "2", "3", "4", "5" ] %>
   </div>
 
   <div>
     <%= form.label :author_partner_rating, style: "display: block" %>
-    <%= form.text_field :author_partner_rating %>
+    <%= form.select :author_partner_rating, ["1", "2", "3", "4", "5" ]  %>
   </div>
 
   <div>
     <%= form.label :author_feedback_for_partner, style: "display: block" %>
-    <%= form.text_field :author_feedback_for_partner %>
+    <%= form.text_area :author_feedback_for_partner %>
   </div>
+
 
   <div>
     <%= form.submit %>

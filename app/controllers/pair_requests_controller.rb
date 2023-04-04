@@ -1,5 +1,5 @@
 class PairRequestsController < ApplicationController
-  before_action :set_pair_request, only: %i[ show edit update destroy ]
+  before_action :set_pair_request, only: %i[ show edit update destroy add_feedback]
 
   # GET /pair_requests or /pair_requests.json
   def index
@@ -55,6 +55,15 @@ class PairRequestsController < ApplicationController
       format.html { redirect_to pair_requests_url, notice: "Pair request was successfully destroyed." }
       format.json { head :no_content }
     end
+  end 
+
+  
+  def add_feedback
+    render :feedback_form
+  end
+
+  def feedback_by_author
+    rendr :feedback_form
   end
 
   private
@@ -65,6 +74,6 @@ class PairRequestsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pair_request_params
-      params.require(:pair_request).permit(:when, :duration)
+      params.require(:pair_request).permit(:when, :duration, :author_overall_rating, :acceptor_overall_rating, :author_partner_rating, :acceptor_partner_rating, :author_comment, :acceptor_comment, :author_id, :acceptor_id )
     end
 end

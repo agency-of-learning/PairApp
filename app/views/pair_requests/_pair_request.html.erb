@@ -8,7 +8,7 @@
     <strong>Acceptor:</strong>
     <% if pair_request.acceptor.present? %>
       <% if pair_request.acceptor == current_user %>
-        <%= link_to "Unaccept", pair_request_acceptance_path(@pair_request), data: { turbo_method: :delete }, class: "btn btn-danger" %>
+        <%= link_to "Unaccept", pair_request_acceptances_destroy_path(pair_request), data: { turbo_method: :delete }, class: "btn btn-danger" %>
       <% else %>
         <%= pair_request.acceptor.email %>
       <% end %>
@@ -21,6 +21,13 @@
     <% end %>
   </p>
 
+
+  <p>
+    <% if  pair_request.feedback_nedeed_by_user(current_user) %>
+     <button type="button" class="btn btn-danger">Pending Feedback</button>
+    <% end %>
+  </p>
+
   <p>
     <strong>When:</strong>
     <%= pretty_datetime(pair_request.when) %>
@@ -30,5 +37,38 @@
     <strong>Duration:</strong>
     <%= pluralize(number_to_human(pair_request.duration), "hour") %>
   </p>
+
+
+  <div>
+    <br>
+    <h5>Feedback/rating</h5>
+    <p>
+      <strong>author_overall_rating:</strong>
+      <%= pair_request.author_overall_rating %>
+    </p> 
+    <p>
+      <strong>Acceptor_overall_rating:</strong>
+      <%= pair_request.acceptor_overall_rating %>
+    </p> 
+
+    <p>
+      <strong>author_partner_rating:</strong>
+      <%= pair_request.author_partner_rating %>
+    </p> 
+    <p>
+      <strong>Acceptor_overall_rating:</strong>
+      <%= pair_request.acceptor_partner_rating %>
+    </p> 
+
+      <p>
+      <strong>author_feedback_for_partner:</strong>
+      <%= pair_request.author_feedback_for_partner %>
+    </p> 
+    <p>
+      <strong>Acceptor_overall_rating:</strong>
+      <%= pair_request.acceptor_feedback_for_partner %>
+    </p> 
+  </div>
+
 
 </div>
