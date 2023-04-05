@@ -23,7 +23,7 @@
 
 
   <p>
-    <% if  pair_request.feedback_nedeed_by_user(current_user) %>
+    <% if  pair_request.feedback_needed?(current_user) %>
      <button type="button" class="btn btn-danger">Pending Feedback</button>
     <% end %>
   </p>
@@ -56,19 +56,17 @@
       <%= pair_request.author_partner_rating %>
     </p> 
     <p>
-      <strong>Acceptor_overall_rating:</strong>
-      <%= pair_request.acceptor_partner_rating %>
+      <strong>acceptor_feedback_for_partner:</strong>
+      <%= pair_request.acceptor_feedback_for_partner %>
     </p> 
 
       <p>
+      <strong> acceptor_partner_rating:</strong>
+      <%= pair_request.acceptor_partner_rating %>
+    </p> 
+    <p>
       <strong>author_feedback_for_partner:</strong>
       <%= pair_request.author_feedback_for_partner %>
     </p> 
-    <p>
-      <strong>Acceptor_overall_rating:</strong>
-      <%= pair_request.acceptor_feedback_for_partner %>
-    </p> 
   </div>
-
-
 </div>

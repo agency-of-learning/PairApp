@@ -22,37 +22,48 @@ class PairRequest < ApplicationRecord
 
   validates :when, presence: true
 
-  def feed_back_needed?
-    if author_overall_rating.nil? && author_feedback_for_partner.nil? && author_partner_rating.nil? && acceptor_overall_rating.nil? && acceptor_feedback_for_partner.nil? && acceptor_partner_rating.nil?
-      # p "Feedback needed by both parties"
-      return "author and acceptor"
+  def feedback_needed?(user)
+    if user == self.author && author_overall_rating.nil? || author_feedback_for_partner.nil? || author_partner_rating.nil?
+      true
+    elsif user == self.acceptor && acceptor_overall_rating.nil? || acceptor_feedback_for_partner.nil? || acceptor_partner_rating.nil?
+      true
+    else
+      false
+    end
+  end
+
+
+  # def feed_back_needed?
+  #   if author_overall_rating.nil? && author_feedback_for_partner.nil? && author_partner_rating.nil? && acceptor_overall_rating.nil? && acceptor_feedback_for_partner.nil? && acceptor_partner_rating.nil?
+  #     # p "Feedback needed by both parties"
+  #     return "author and acceptor"
    
-    elsif author_overall_rating.nil? && author_feedback_for_partner.nil? && author_partner_rating.nil?
-      # p "Feedback needed by auhtor"
-      return "author"
+  #   elsif author_overall_rating.nil? && author_feedback_for_partner.nil? && author_partner_rating.nil?
+  #     # p "Feedback needed by auhtor"
+  #     return "author"
     
-    elsif acceptor_overall_rating.nil? && acceptor_feedback_for_partner.nil? && acceptor_partner_rating.nil?
-      # p "Feedback needed by acceptor"
-      return "acceptor"
-    end
+  #   elsif acceptor_overall_rating.nil? && acceptor_feedback_for_partner.nil? && acceptor_partner_rating.nil?
+  #     # p "Feedback needed by acceptor"
+  #     return "acceptor"
+  #   end
 
-  end
+  # end
 
-  def feedback_nedeed_by_user(user)
-    if user == self.author
+  # def feedback_nedeed_by_user(user)
+  #   if user == self.author
    
-      if self.feed_back_needed? == "author" || self.feed_back_needed? == "author and acceptor"
-        # p 'true'
-        return true
-      end
-    elsif user == self.acceptor
+  #     if self.feed_back_needed? == "author" || self.feed_back_needed? == "author and acceptor"
+  #       # p 'true'
+  #       return true
+  #     end
+  #   elsif user == self.acceptor
    
-      if self.feed_back_needed? == "acceptor" || self.feed_back_needed? == "author and acceptor"
-        # p 'true'
-        return true
-      end
-    end
-  end
+  #     if self.feed_back_needed? == "acceptor" || self.feed_back_needed? == "author and acceptor"
+  #       # p 'true'
+  #       return true
+  #     end
+  #   end
+  # end
 
 
 

@@ -8,10 +8,10 @@
 </div> 
 
 
-<% if @pair_request.feedback_nedeed_by_user(current_user) %>
+<% if @pair_request.feedback_needed?(current_user) %>
   <% if @pair_request.acceptor == current_user  %>
     <%= render 'acceptor_feedback' %>
-  <% elsif   @pair_request.author == current_user%>
+  <% elsif @pair_request.author == current_user%>
     <%= render 'author_feedback' %>
   <% end %>
 <% end %>

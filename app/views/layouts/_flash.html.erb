@@ -10,7 +10,7 @@
   
 <% elsif current_user.pair_request_pending_feedback.any? %>
   <% current_user.pair_request_pending_feedback.each do |i| %>
-    <h5><%= link_to 'feedbacks neeeded', pair_request_path(i) , class:'' %></h5>
+    <h5><%= link_to 'feedback neeeded', pair_request_path(i) , class:'' %></h5>
   <% end %>
   
 <% end %>
