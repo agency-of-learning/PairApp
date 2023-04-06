@@ -8,6 +8,6 @@
     <%= notice %>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   
-<% elsif current_user.pair_request_pending_feedback.any? %>
+<% elsif current_user && current_user.pair_request_pending_feedback.any?  %>
   <h5><%= link_to 'Feedback Needed', pair_requests_path, class:'' %></h5>
 <% end %>
