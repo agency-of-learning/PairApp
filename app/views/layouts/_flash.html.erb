@@ -9,8 +9,5 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   
 <% elsif current_user.pair_request_pending_feedback.any? %>
-  <% current_user.pair_request_pending_feedback.each do |i| %>
-    <h5><%= link_to 'feedback neeeded', pair_request_path(i) , class:'' %></h5>
-  <% end %>
-  
+  <h5><%= link_to 'Feedback Needed', pair_requests_path, class:'' %></h5>
 <% end %>

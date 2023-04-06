@@ -8,6 +8,8 @@ class PairRequestsController < ApplicationController
 
   # GET /pair_requests/1 or /pair_requests/1.json
   def show
+    @author = @pair_request.author
+    @acceptor = @pair_request.acceptor
   end
 
   # GET /pair_requests/new
