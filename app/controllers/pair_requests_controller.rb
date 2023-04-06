@@ -76,6 +76,16 @@ class PairRequestsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pair_request_params
-      params.require(:pair_request).permit(:when, :duration, :author_overall_rating, :acceptor_overall_rating, :author_partner_rating, :acceptor_partner_rating, :author_comment, :acceptor_comment, :author_id, :acceptor_id )
+      params.require(:pair_request).permit(:when,
+                                           :duration,
+                                           :author_overall_rating,
+                                           :acceptor_overall_rating, 
+                                           :author_partner_rating, 
+                                           :acceptor_partner_rating,
+                                           :author_feedback_for_partner,
+                                           :acceptor_feedback_for_partner,
+                                           :author_id,
+                                           :acceptor_id
+                                          )
     end
 end
