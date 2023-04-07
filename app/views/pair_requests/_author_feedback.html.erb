@@ -1,11 +1,11 @@
-<%= form_with(model: @pair_request) do |form| %>
-  <% if @pair_request.errors.any? %>
+<%= form_with(model: pair_request) do |form| %>
+  <% if pair_request.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(@pair_request.errors.count, "error") %> 
-        prohibited this @pair_request from being saved:</h2>
+      <h2><%= pluralize(pair_request.errors.count, "error") %> 
+        prohibited this pair_request from being saved:</h2>
 
       <ul>
-        <% @pair_request.errors.each do |error| %>
+        <% pair_request.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

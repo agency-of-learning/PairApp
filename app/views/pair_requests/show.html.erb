@@ -42,9 +42,9 @@
 
 <% if @pair_request.feedback_needed?(current_user) %>
   <% if @pair_request.acceptor == current_user  %>
-    <%= render 'acceptor_feedback' %>
+    <%= render 'acceptor_feedback', pair_request: @pair_request %>
   <% elsif @pair_request.author == current_user%>
-    <%= render 'author_feedback' %>
+    <%= render 'author_feedback', pair_request: @pair_request %>
   <% end %>
 <% end %>
 
