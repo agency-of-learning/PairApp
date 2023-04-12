@@ -23,6 +23,7 @@ class PairRequest < ApplicationRecord
   validates :when, presence: true
 
   def feedback_needed?(user)
+    # binding.break
     if user == self.author && author_overall_rating.nil? || author_feedback_for_partner.nil? || author_partner_rating.nil?
       true
     elsif user == self.acceptor && acceptor_overall_rating.nil? || acceptor_feedback_for_partner.nil? || acceptor_partner_rating.nil?
@@ -32,7 +33,7 @@ class PairRequest < ApplicationRecord
     end
   end
 
-  def session_status 
+  def session_status
     session_ending_time = self.when + self.duration.hours
     session_in_progress = self.when < Time.now && session_ending_time > Time.now
 
