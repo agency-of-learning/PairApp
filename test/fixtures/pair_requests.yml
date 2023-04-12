@@ -19,12 +19,14 @@
 
 one:
   author_id: 1
-  acceptor_id: 1
+  acceptor_id: 2
+  email: "one@email.com"
   when: 2023-02-28 16:37:25
   duration: 1.5
 
 two:
-  author_id: 1
+  author_id: 2
   acceptor_id: 1
+  email: "two@email.com"
   when: 2023-02-28 16:37:25
   duration: 1.5
