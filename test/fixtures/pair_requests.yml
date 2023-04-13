@@ -20,13 +20,35 @@
 one:
   author_id: 1
   acceptor_id: 2
-  email: "one@email.com"
   when: 2023-02-28 16:37:25
   duration: 1.5
 
 two:
   author_id: 2
   acceptor_id: 1
-  email: "two@email.com"
+  when: 2023-02-28 16:37:25
+  duration: 1.5 
+
+with_pending_feedback_by_author:
+  author_id: 4
+  acceptor_id: 3
   when: 2023-02-28 16:37:25
   duration: 1.5
+  acceptor_feedback_for_partner: nil
+  acceptor_overall_rating: nil
+  acceptor_partner_rating: nil
+  author_feedback_for_partner: nil
+  author_overall_rating: nil
+  author_partner_rating: nil
+
+with_pending_feedback_by_acceptor:
+  author_id: 4
+  acceptor_id: 3
+  when: 2023-02-28 16:37:25
+  duration: 1.5
+  acceptor_feedback_for_partner: nil
+  acceptor_overall_rating: nil      
+  acceptor_partner_rating: nil       
+  author_feedback_for_partner: nil
+  author_overall_rating: nil         
+  author_partner_rating: nil

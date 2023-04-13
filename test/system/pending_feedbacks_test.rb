@@ -10,17 +10,19 @@ class PendingFeedbacksTest < ApplicationSystemTestCase
     #step 1: set up a pair request with no feedback
   
     setup do
-      # binding.b
-      @user = users(:one)
+      @user = users(:user_with_pending_feedback_as_author)
       # pair_requests method is calling the variable :one from the fixtures file pair_requests.yml
-      @pair_request = pair_requests(:one)
-      # @pair_request.update(author_overall_rating: nil, acceptor_overall_rating: nil)
+      @pair_request = pair_requests(:with_pending_feedback_by_author)
+      mock_auth0(@user)
     end
   
     # setp 2: visit the index page
     test "visiting the root route" do
-      visit root_url
-      assert_selector "h1", text: "Pair requests"
+      # visit auth_user_path(@user)
+      visit root_path
+      click_button "Login"
+      assert_selector :link, text: "Feedback Needed"
+
     end
   
     # step 3: click on the add feedback button, link

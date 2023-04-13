@@ -12,7 +12,20 @@
 one:
   email: MyString
   time_zone: MyString
+  id: 1
 
 two:
   email: MyString
   time_zone: MyString
+  id: 2
+
+
+user_with_pending_feedback_as_author:
+  email: MyString
+  time_zone: MyString
+  id: 3
+
+user_with_pending_feedback_as_acceptor:
+  email: MyString
+  time_zone: MyString
+  id: 4
