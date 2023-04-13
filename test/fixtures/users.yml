@@ -11,21 +11,17 @@
 
 one:
   email: MyString
-  time_zone: MyString
-  id: 1
+  time_zone: America/New_York
 
 two:
   email: MyString
-  time_zone: MyString
-  id: 2
+  time_zone: America/New_York
 
 
 user_with_pending_feedback_as_author:
   email: MyString
-  time_zone: MyString
-  id: 3
+  time_zone: America/New_York
 
 user_with_pending_feedback_as_acceptor:
   email: MyString
-  time_zone: MyString
-  id: 4
+  time_zone: America/New_York
