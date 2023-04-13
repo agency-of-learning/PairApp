@@ -10,6 +10,13 @@ module Auth0Helper
       },
       credentials: {
         token: 'fake_auth0_token'
+      },
+      extra: {
+        raw_info: {
+          uid: user.id,
+          email: user.email,
+          time_zone: user.time_zone,
+        }
       }
     })
   end
