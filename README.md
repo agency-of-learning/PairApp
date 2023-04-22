@@ -118,6 +118,3 @@ git push origin your-feature-branch-name
 
 6. Create a new pull request on the original repository and wait for the maintainer to review and merge your changes.
 
-## License
-
-This project is licensed under the MIT License.
