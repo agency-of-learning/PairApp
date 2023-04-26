@@ -1,4 +1,8 @@
 # ./config/auth0.yml
+test:
+  auth0_domain: dev-w32ag8yvc11fbtpi.us.auth0.com
+  auth0_client_id: 8PMoO844UpDRofwsVl574CvpzO5C3Cu8
+  auth0_client_secret: <%= ENV['AUTH0_SECRET'] %>
 development:
   auth0_domain: dev-w32ag8yvc11fbtpi.us.auth0.com
   auth0_client_id: 8PMoO844UpDRofwsVl574CvpzO5C3Cu8

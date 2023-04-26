@@ -16,10 +16,8 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  # NOTE: we will want to add confirmable later on. Will require sendgrid setup (or w/e client we use.)
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+FactoryBot.define do
+  factory :user do
+    
+  end
 end
