@@ -1,8 +1,0 @@
-<%= form_with(model: @user) do |f| %>
-  <div class="form-group">
-    <%= f.label :time_zone %>
-    <%= f.time_zone_select :time_zone %>
-  </div>
-
-  <%= f.submit "Update", class: "btn btn-primary" %>
-<% end %>

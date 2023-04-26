@@ -11,17 +11,14 @@
         </li>
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to "Pair Requests", pair_requests_path, class: "nav-link" %>
+            <%= link_to 'My Account', edit_user_registration_url(current_user), class: 'nav-link'  %>
           </li>
           <li class="nav-item">
-            <%= link_to 'My Account', user_path(current_user), class: 'nav-link'  %>
-          </li>
-          <li class="nav-item">
-            <%= button_to 'Logout', 'auth/logout', method: :get, data: { turbo: false }, class: "btn btn-outline-primary" %>
+            <%= button_to 'Logout', destroy_user_session_url , method: :delete, data: { turbo: false }, class: "btn btn-outline-primary" %>
           </li>
         <% else %>
           <li class="nav=item">
-            <%= button_to 'Login', '/auth/auth0', method: :post, data: { turbo: false }, class: "btn btn-outline-primary" %>
+            <%= button_to 'Login', new_user_session_url, method: :get, data: { turbo: false }, class: "btn btn-outline-primary" %>
           </li>
         <% end %>
         </li>
