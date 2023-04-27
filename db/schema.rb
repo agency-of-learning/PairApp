@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_26_011733) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_27_204831) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "pair_requests", force: :cascade do |t|
+    t.integer "author_id", null: false
+    t.integer "invitee_id", null: false
+    t.datetime "when", null: false
+    t.float "duration", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
