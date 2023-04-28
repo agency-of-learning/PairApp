@@ -25,23 +25,36 @@
 require 'rails_helper'
 
 RSpec.describe PairRequest do
-  it "is valid with a duration longer than 15 minutes" do
-    request = build(:pair_request, duration: 20.minutes)
-    expect(request).to be_valid
+  subject { build(:pair_request, duration:, when: when_date) }
+
+  let(:duration) { 20.minutes }
+  let(:when_date) { Date.today + 2.weeks }
+
+  describe '#duration' do
+    it 'is valid' do
+      expect(subject).to be_valid
+    end
+
+    context 'when duration is less than 15 minutes' do
+      let(:duration) { 10.minutes }
+
+      it 'is invalid' do
+        expect(subject).not_to be_valid
+      end
+    end
   end
 
-  it "is invalid with a duration lower than 15 minutes" do
-    request = build(:pair_request, duration: 10.minutes)
-    expect(request).not_to be_valid
-  end
+  describe '#when' do
+    it 'is valid' do
+      expect(subject).to be_valid
+    end
 
-  it "is invalid with a 'when' more than a month into the future" do
-    request = build(:pair_request, when: Date.today + 2.months)
-    expect(request).not_to be_valid
-  end
+    context 'when date is more than a month into the future' do
+      let(:when_date) { Date.today + 2.months }
 
-  it "is valid with a 'when' less than a month into the future" do
-    request = build(:pair_request, when: Date.today + 2.weeks)
-    expect(request).to be_valid
+      it 'is invalid' do
+        expect(subject).not_to be_valid
+      end
+    end
   end
 end
