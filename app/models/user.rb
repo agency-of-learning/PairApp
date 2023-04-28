@@ -23,6 +23,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable
 
-  has_many :authored_pair_requests, class_name: 'PairRequest', foreign_key: 'author_id'
-  has_many :received_pair_requests, class_name: 'PairRequest', foreign_key: 'invitee_id'
+  has_many :authored_pair_requests,
+    class_name: 'PairRequest',
+    foreign_key: 'author_id',
+    dependent: :destroy,
+    inverse_of: 'author'
+  has_many :received_pair_requests,
+    class_name: 'PairRequest',
+    foreign_key: 'invitee_id',
+    dependent: :destroy,
+    inverse_of: 'invitee'
 end
