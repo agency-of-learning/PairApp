@@ -25,7 +25,7 @@ FactoryBot.define do
   factory :pair_request do
     association :author, factory: :user
     association :invitee, factory: :user
-    duration { 900.0 }
+    duration { 15.minutes }
     add_attribute(:when) { DateTime.now }
   end
 end

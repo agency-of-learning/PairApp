@@ -28,7 +28,7 @@ class PairRequest < ApplicationRecord
   validates :when,
     presence: true,
     inclusion: { in: (Date.today..(Date.today + 1.month)) }
-  validates :duration, presence: true, numericality: { greater_than_or_equal_to: 900.0 }
+  validates :duration, presence: true, numericality: { greater_than_or_equal_to: 15.minutes }
   validates :status, presence: true
 
   enum status: {
