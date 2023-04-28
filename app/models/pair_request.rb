@@ -4,12 +4,22 @@
 #
 #  id         :bigint           not null, primary key
 #  duration   :float            not null
-#  status     :integer          default(0), not null
+#  status     :integer          default("pending"), not null
 #  when       :datetime         not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  author_id  :integer          not null
-#  invitee_id :integer          not null
+#  author_id  :bigint           not null
+#  invitee_id :bigint           not null
+#
+# Indexes
+#
+#  index_pair_requests_on_author_id   (author_id)
+#  index_pair_requests_on_invitee_id  (invitee_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (author_id => users.id)
+#  fk_rails_...  (invitee_id => users.id)
 #
 class PairRequest < ApplicationRecord
   belongs_to :author, class_name: "User"
