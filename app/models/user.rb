@@ -21,8 +21,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   # NOTE: we will want to add confirmable later on. Will require sendgrid setup (or w/e client we use.)
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+    :recoverable, :rememberable, :validatable
 
-  has_many :authored_pair_requests, class_name: "PairRequest", foreign_key: "author_id"
-  has_many :received_pair_requests, class_name: "PairRequest", foreign_key: "invitee_id"
+  has_many :authored_pair_requests, class_name: 'PairRequest', foreign_key: 'author_id'
+  has_many :received_pair_requests, class_name: 'PairRequest', foreign_key: 'invitee_id'
 end
