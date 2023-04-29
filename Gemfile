@@ -8,7 +8,6 @@ gem 'devise'
 gem 'image_processing', '~> 1.2'
 gem 'importmap-rails'
 gem 'jbuilder'
-gem 'omniauth-rails_csrf_protection', '~> 1.0' # prevents forged authentication requests
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.4', '>= 7.0.4.2'
