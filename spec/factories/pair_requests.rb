@@ -3,7 +3,7 @@
 # Table name: pair_requests
 #
 #  id         :bigint           not null, primary key
-#  duration   :float            not null
+#  duration   :integer          not null
 #  status     :integer          default("pending"), not null
 #  when       :datetime         not null
 #  created_at :datetime         not null
