@@ -25,8 +25,6 @@ class PairRequest < ApplicationRecord
   belongs_to :author, class_name: 'User'
   belongs_to :invitee, class_name: 'User'
 
-  before_create { pending! }
-
   validates :when,
     presence: true,
     inclusion: { in: (Date.today..(Date.today + 1.month)) }
