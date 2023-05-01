@@ -12,7 +12,9 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.4', '>= 7.0.4.2'
 gem 'redis', '~> 4.0'
+gem 'rufus-scheduler'
 gem 'sassc-rails'
+gem 'sidekiq'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
@@ -40,6 +42,7 @@ end
 group :test do
   gem 'capybara'
   gem 'faker' # Fake data
+  gem 'rspec-sidekiq'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
