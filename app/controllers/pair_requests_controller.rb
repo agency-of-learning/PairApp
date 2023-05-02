@@ -19,7 +19,7 @@ class PairRequestsController < ApplicationController
 
   # POST /pair_requests or /pair_requests.json
   def create
-    @pair_request = current_user.pair_requests_as_author.new(pair_request_params)
+    @pair_request = current_user.authored_pair_requests.new(pair_request_params)
 
     respond_to do |format|
       if @pair_request.save
@@ -72,6 +72,6 @@ class PairRequestsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def pair_request_params
-    params.require(:pair_request).permit(:when, :duration)
+    params.require(:pair_request).permit(:invitee_id, :when, :duration)
   end
 end

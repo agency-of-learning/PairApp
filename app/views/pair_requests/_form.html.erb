@@ -12,13 +12,18 @@
   <% end %>
 
   <div>
+    <%= form.label :invitee_id, style: "display: block" %>
+    <%= form.select :invitee_id, User.invitee_select_for(current_user) %>
+  </div>
+
+  <div>
     <%= form.label :when, style: "display: block" %>
     <%= form.datetime_field :when %>
   </div>
 
   <div>
     <%= form.label :duration, style: "display: block" %>
-    <%= form.text_field :duration %>
+    <%= form.select :duration, (15..180).step(15).map { |minutes| ["#{minutes} minutes", minutes * 60] } %>
   </div>
 
   <div>
