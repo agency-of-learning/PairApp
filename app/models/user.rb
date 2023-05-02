@@ -33,4 +33,6 @@ class User < ApplicationRecord
     foreign_key: 'invitee_id',
     dependent: :destroy,
     inverse_of: 'invitee'
+
+  scope :invitee_select_for, ->(user) { User.excluding(user).pluck(:email, :id) }
 end
