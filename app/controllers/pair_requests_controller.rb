@@ -1,5 +1,5 @@
 class PairRequestsController < ApplicationController
-  before_action :set_pair_request, only: %i[show edit update destroy]
+  before_action :set_pair_request, only: %i[show destroy]
 
   # GET /pair_requests or /pair_requests.json
   def index
@@ -14,9 +14,6 @@ class PairRequestsController < ApplicationController
     @pair_request = PairRequest.new
   end
 
-  # GET /pair_requests/1/edit
-  def edit; end
-
   # POST /pair_requests or /pair_requests.json
   def create
     @pair_request = current_user.authored_pair_requests.new(pair_request_params)
@@ -30,22 +27,6 @@ class PairRequestsController < ApplicationController
         format.json { render :show, status: :created, location: @pair_request }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @pair_request.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /pair_requests/1 or /pair_requests/1.json
-  def update
-    respond_to do |format|
-      if @pair_request.update(pair_request_params)
-        format.html do
-          redirect_to pair_request_url(@pair_request),
-            notice: 'Pair request was successfully updated.'
-        end
-        format.json { render :show, status: :ok, location: @pair_request }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @pair_request.errors, status: :unprocessable_entity }
       end
     end
