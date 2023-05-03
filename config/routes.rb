@@ -9,8 +9,11 @@ Rails.application.routes.draw do
   root to: 'landing#index'
   # Shortcuts
   get 'landing/index'
-  # Alphabetized Routes
-  resources :pair_requests do
-    resources :acceptances, only: %i[create destroy]
+
+  resources :pair_requests, except: %i[edit update]
+
+  namespace :pair_requests do
+    resources :acceptances, only: :create
+    resources :rejections, only: :create
   end
 end
