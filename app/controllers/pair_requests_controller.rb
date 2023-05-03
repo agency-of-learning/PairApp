@@ -3,7 +3,7 @@ class PairRequestsController < ApplicationController
 
   # GET /pair_requests or /pair_requests.json
   def index
-    @pair_requests = PairRequest.all
+    @pair_requests = current_user.all_pair_requests
   end
 
   # GET /pair_requests/1 or /pair_requests/1.json
