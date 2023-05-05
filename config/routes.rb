@@ -1,4 +1,11 @@
+require 'sidekiq/web'
+require 'admin_constraint'
+
 Rails.application.routes.draw do
+  constraints(AdminConstraint) do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   devise_for :users, skip: [:registrations]
   as :user do
     get 'users/edit' => 'devise/registrations#edit', as: 'edit_user_registration'
