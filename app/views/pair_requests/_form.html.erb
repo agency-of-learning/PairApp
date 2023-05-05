@@ -23,7 +23,7 @@
 
   <div>
     <%= form.label :duration, style: "display: block" %>
-    <%= form.select :duration, (15..180).step(15).map { |minutes| ["#{minutes} minutes", minutes * 60] } %>
+    <%= form.number_field :duration, in: 15..180, step: 15 %> minutes
   </div>
 
   <div>
