@@ -35,8 +35,8 @@ RSpec.describe PairRequest do
       expect(subject).to be_valid
     end
 
-    context 'when duration is less than 15 minutes' do
-      let(:duration) { 10.minutes }
+    context 'when duration is less than 5 minutes' do
+      let(:duration) { 4.minutes }
 
       it 'is invalid' do
         expect(subject).not_to be_valid

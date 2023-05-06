@@ -26,6 +26,7 @@ FactoryBot.define do
     association :author, factory: :user
     association :invitee, factory: :user
     duration { 15.minutes }
-    add_attribute(:when) { DateTime.now }
+
+    add_attribute(:when) { 1.day.from_now }
   end
 end
