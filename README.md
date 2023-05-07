@@ -9,6 +9,7 @@ To set up this project, you need to have the following software installed on you
 - Ruby 3.1.0
 - Rails 7.0.0 or higher
 - PostgreSQL 9.5 or higher
+- Redis 7.0 or later
 - [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) (Follow the link for installation instructions)
 
 ## 12factor Approach
@@ -65,25 +66,13 @@ AUTH0_SECRET=your-auth0-secret
 
 Replace `your-auth0-secret` with the actual secret for your Auth0 application. If you are working with Agency of Learning, you can reach out to Dave and he will provide you with those credentials.
 
-6.Start the development server:
+6. To start the project locally, run: 
 
 ```bash
-heroku local
+bin/dev
 ```
 
-Open your web browser and go to http://localhost:5000 to see the application running.
-
-**NOTE** When you run the server using `heroku local`, you may encounter the following error:
-
-```bash
-Address already in use - bind(2) for "0.0.0.0" port 5000 (Errno::EADDRINUSE)
-```
-
-If you do, you may add the following to your `.env` file and retry by visiting http://localhost:3000. It should work!
-
-```
-PORT=3000
-```
+This will start the development server and background worker. Open your web browser and go to http://localhost:3000 to see the application running.
 
 ## Contributing
 

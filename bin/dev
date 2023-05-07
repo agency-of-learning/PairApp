@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if ! command -v heroku &> /dev/null
+then
+	echo "Missing Heroku CLI. You need to install it to run this project locally."
+	exit 1
+fi
+
+heroku local -f Procfile.dev "$@"
