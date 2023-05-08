@@ -46,3 +46,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+gem "pundit", "~> 2.3"

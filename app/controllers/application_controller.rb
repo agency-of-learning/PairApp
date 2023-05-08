@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
   include ApplicationHelper
 
   # around_action :set_time_zone, if: :current_user
