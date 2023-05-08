@@ -17,6 +17,7 @@ class PairRequestsController < ApplicationController
   # POST /pair_requests or /pair_requests.json
   def create
     @pair_request = current_user.authored_pair_requests.new(pair_request_params)
+    @pair_request.duration = @pair_request.duration.minutes
 
     respond_to do |format|
       if @pair_request.save
