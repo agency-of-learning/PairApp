@@ -2,15 +2,21 @@ class PairRequestPolicy < ApplicationPolicy
   alias_method :pair_request, :record
 
   def index?
-    (pair_request.author == user || pair_request.invitee == user) || super
+    user_is_owner? || user.admin?
   end
 
   def show?
-    (pair_request.author == user || pair_request.invitee == user) || super
+    user_is_owner? || user.admin?
   end
 
   def create?
     true
+  end
+
+  private
+
+  def user_is_owner?
+    pair_request.author == user || pair_request.invitee == user
   end
 
   class Scope
