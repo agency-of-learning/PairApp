@@ -302,6 +302,8 @@ Rails/HasAndBelongsToMany:
   Enabled: false
 Rails/TimeZone:
   Enabled: false
+RSpec/NamedSubject:
+  Enabled: false
 RSpec/ExampleLength:
   Max: 20
 Rails/UnknownEnv:
