@@ -1,6 +1,7 @@
 class PairRequests::AcceptancesController < ApplicationController
   def create
     @pair_request = PairRequest.find(params[:pair_request_id])
+    authorize @pair_request, policy_class: AcceptancePolicy
     @pair_request.accepted!
 
     flash[:notice] = 'You have accepted this pair request.'

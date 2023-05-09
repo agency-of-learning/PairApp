@@ -7,7 +7,9 @@ class PairRequestsController < ApplicationController
   end
 
   # GET /pair_requests/1 or /pair_requests/1.json
-  def show; end
+  def show
+    authorize @pair_request
+  end
 
   # GET /pair_requests/new
   def new
@@ -35,6 +37,7 @@ class PairRequestsController < ApplicationController
 
   # DELETE /pair_requests/1 or /pair_requests/1.json
   def destroy
+    authorize @pair_request
     @pair_request.destroy
 
     respond_to do |format|
