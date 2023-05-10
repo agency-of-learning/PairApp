@@ -1,3 +1,4 @@
+require 'rails_helper'
 RSpec.describe PairRequestPolicy do
   subject { described_class }
 
@@ -10,7 +11,9 @@ RSpec.describe PairRequestPolicy do
   let(:invited_expired_request) { build(:pair_request, invitee: user, status: :expired) }
 
   permissions :index?, :show? do
+   
     it 'denies access if the user is not the author, invitee, or an admin account' do
+      binding.b
       expect(subject).not_to permit(user, not_owned_request)
     end
 
