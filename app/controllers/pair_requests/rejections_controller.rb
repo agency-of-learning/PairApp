@@ -1,7 +1,7 @@
 class PairRequests::RejectionsController < ApplicationController
   def create
     @pair_request = PairRequest.find(params[:pair_request_id])
-    authorize @pair_request, :reject?
+    authorize @pair_request, policy_class: RejectionPolicy
     @pair_request.rejected!
 
     flash[:notice] = 'You have rejected this pair request.'
