@@ -37,7 +37,7 @@ class PairRequestPolicy < ApplicationPolicy
       if user.admin?
         scope.all
       else
-        user.all_pair_requests
+        user.my_pair_requests
       end
     end
 

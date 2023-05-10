@@ -37,7 +37,7 @@ class User < ApplicationRecord
 
   scope :invitee_select_for, ->(user) { User.excluding(user).pluck(:email, :id) }
 
-  def all_pair_requests
+  def my_pair_requests
     authored_pair_requests.or(received_pair_requests)
   end
 
