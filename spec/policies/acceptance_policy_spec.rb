@@ -1,12 +1,12 @@
 require 'rails_helper'
-RSpec.describe AcceptancePolicy do
+RSpec.describe PairRequest::AcceptancePolicy do
   subject { described_class }
 
   let(:user) { build(:user) }
   let(:invitee) { build(:user) }
   let(:pending_pair_request) { build(:pair_request, invitee: invitee) }
   let(:expired_pair_request) { build(:pair_request, status: :expired, invitee:)}
-
+  let(:accepted_pair_request) { build(:pair_request, status: :accepted, invitee: invitee) }
 
   permissions :create? do
     it 'grants access if the user is the invitee' do

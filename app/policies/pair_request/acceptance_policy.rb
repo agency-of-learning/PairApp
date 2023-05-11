@@ -1,4 +1,4 @@
-class RejectionPolicy < ApplicationPolicy
+class PairRequest::AcceptancePolicy < ApplicationPolicy
   attr_reader :user, :pair_request
 
   def initialize(user, pair_request)
@@ -7,7 +7,7 @@ class RejectionPolicy < ApplicationPolicy
   end
 
   def create?
-    user_is_owner? && (pair_request.pending? || pair_request.accepted?)
+    user_is_owner? && (pair_request.pending?)
   end
 
   private

@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe RejectionPolicy do
+RSpec.describe PairRequest::RejectionPolicy do
   subject { described_class }
 
   let(:user) { build(:user) }

@@ -13,14 +13,6 @@ class PairRequestPolicy < ApplicationPolicy
     true
   end
 
-  def accept?
-    pair_request.pending? && user == pair_request.invitee
-  end
-
-  def reject?
-    user_is_owner? && (pair_request.pending? || pair_request.accepted?)
-  end
-
   private
 
   def user_is_owner?

@@ -12,7 +12,6 @@ RSpec.describe PairRequestPolicy do
 
   permissions :index?, :show? do
     it 'denies access if the user is not the author, invitee, or an admin account' do
-
       expect(subject).not_to permit(user, not_owned_request)
     end
 

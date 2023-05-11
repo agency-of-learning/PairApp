@@ -10,11 +10,11 @@
 
   <p>
     <strong>Status: <%= pair_request.status %></strong>
-    <% if  AcceptancePolicy.new(current_user, pair_request).create? %>
+    <% if  PairRequest::AcceptancePolicy.new(current_user, pair_request).create? %>
       <%= button_to "Accept this request", pair_requests_acceptances_path(pair_request_id: pair_request), class: "btn btn-success" %>
     <% end %>
 
-    <% if  RejectionPolicy.new(current_user, pair_request).create? %> 
+    <% if  PairRequest::RejectionPolicy.new(current_user, pair_request).create? %> 
       <%= button_to "Reject this request", pair_requests_rejections_path(pair_request_id: pair_request), class: "btn btn-danger" %>
     <% end %>
   </p>
