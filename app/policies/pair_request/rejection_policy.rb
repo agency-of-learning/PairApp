@@ -1,10 +1,5 @@
 class PairRequest::RejectionPolicy < ApplicationPolicy
-  attr_reader :user, :pair_request
-
-  def initialize(user, pair_request)
-    @user = user
-    @pair_request = pair_request
-  end
+  alias_method :pair_request, :record
 
   def create?
     user_is_owner? && (pair_request.pending? || pair_request.accepted?)
@@ -15,5 +10,4 @@ class PairRequest::RejectionPolicy < ApplicationPolicy
   def user_is_owner?
     pair_request.author == user || pair_request.invitee == user
   end
-
 end
