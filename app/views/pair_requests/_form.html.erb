@@ -1,6 +1,6 @@
 <%= form_with(model: pair_request) do |form| %>
   <% if pair_request.errors.any? %>
-    <div style="color: red">
+    <div class="text-error">
       <h2><%= pluralize(pair_request.errors.count, "error") %> prohibited this pair_request from being saved:</h2>
 
       <ul>
@@ -12,17 +12,17 @@
   <% end %>
 
   <div>
-    <%= form.label :invitee_id, style: "display: block" %>
+    <%= form.label :invitee_id, class: "block label label-text" %>
     <%= form.select :invitee_id, User.invitee_select_for(current_user) %>
   </div>
 
   <div>
-    <%= form.label :when, style: "display: block" %>
+    <%= form.label :when, class: "block label label-text" %>
     <%= form.datetime_field :when %>
   </div>
 
   <div>
-    <%= form.label :duration, style: "display: block" %>
+    <%= form.label :duration, class: "block label label-text"  %>
     <%= form.number_field :duration, in: 15..180, step: 15 %> minutes
   </div>
 
