@@ -1,12 +1,13 @@
 <h1>Pair requests</h1>
 
+<%= link_to "New pair request", new_pair_request_path %>
+
 <div id="pair_requests">
   <% @pair_requests.each do |pair_request| %>
     <%= render pair_request %>
     <p>
       <%= link_to "Show this pair request", pair_request %>
     </p>
+    <hr>
   <% end %>
 </div>
-
-<%= link_to "New pair request", new_pair_request_path %>

@@ -235,7 +235,7 @@ Style/RescueModifier:
 Style/SelfAssignment:
   Enabled: true
 Style/ClassAndModuleChildren:
-  Enabled: true
+  Enabled: false
 Style/HashEachMethods:
   Enabled: true
 Style/HashTransformKeys:
@@ -301,6 +301,8 @@ Lint/UselessSetterCall:
 Rails/HasAndBelongsToMany:
   Enabled: false
 Rails/TimeZone:
+  Enabled: false
+RSpec/NamedSubject:
   Enabled: false
 RSpec/ExampleLength:
   Max: 20

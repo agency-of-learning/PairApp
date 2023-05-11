@@ -1,25 +1,25 @@
 class PairRequestsController < ApplicationController
-  before_action :set_pair_request, only: %i[show edit update destroy]
+  before_action :set_pair_request, only: %i[show destroy]
 
   # GET /pair_requests or /pair_requests.json
   def index
-    @pair_requests = PairRequest.all
+    @pair_requests = policy_scope(PairRequest)
   end
 
   # GET /pair_requests/1 or /pair_requests/1.json
-  def show; end
+  def show
+    authorize @pair_request
+  end
 
   # GET /pair_requests/new
   def new
     @pair_request = PairRequest.new
   end
 
-  # GET /pair_requests/1/edit
-  def edit; end
-
   # POST /pair_requests or /pair_requests.json
   def create
-    @pair_request = current_user.pair_requests_as_author.new(pair_request_params)
+    @pair_request = current_user.authored_pair_requests.new(pair_request_params)
+    @pair_request.duration = @pair_request.duration.minutes
 
     respond_to do |format|
       if @pair_request.save
@@ -35,24 +35,9 @@ class PairRequestsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /pair_requests/1 or /pair_requests/1.json
-  def update
-    respond_to do |format|
-      if @pair_request.update(pair_request_params)
-        format.html do
-          redirect_to pair_request_url(@pair_request),
-            notice: 'Pair request was successfully updated.'
-        end
-        format.json { render :show, status: :ok, location: @pair_request }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @pair_request.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /pair_requests/1 or /pair_requests/1.json
   def destroy
+    authorize @pair_request
     @pair_request.destroy
 
     respond_to do |format|
@@ -72,6 +57,6 @@ class PairRequestsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def pair_request_params
-    params.require(:pair_request).permit(:when, :duration)
+    params.require(:pair_request).permit(:invitee_id, :when, :duration)
   end
 end

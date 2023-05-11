@@ -35,6 +35,12 @@ class User < ApplicationRecord
     dependent: :destroy,
     inverse_of: 'invitee'
 
+  scope :invitee_select_for, ->(user) { User.excluding(user).pluck(:email, :id) }
+
+  def my_pair_requests
+    authored_pair_requests.or(received_pair_requests)
+  end
+
   enum role: {
     member: 0,
     admin: 1
