@@ -3,4 +3,10 @@ updates:
   - package-ecosystem: "bundler"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: weekly
+      day: friday
+      time: "17:00"
+      timezone: America/Los_Angeles
+    versioning-strategy: lockfile-only
+    reviewers:
+      - "toyhammered"
