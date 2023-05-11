@@ -27,10 +27,8 @@ class PairRequestsController < ApplicationController
           redirect_to pair_request_url(@pair_request),
             notice: 'Pair request was successfully created.'
         end
-        format.json { render :show, status: :created, location: @pair_request }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @pair_request.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,7 +42,6 @@ class PairRequestsController < ApplicationController
       format.html do
         redirect_to pair_requests_url, notice: 'Pair request was successfully destroyed.'
       end
-      format.json { head :no_content }
     end
   end
 
