@@ -312,3 +312,5 @@ Rails/UnknownEnv:
     - staging
     - development
     - test
+Rails/I18nLocaleTexts:
+  Enabled: false

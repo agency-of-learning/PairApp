@@ -28,5 +28,6 @@ FactoryBot.define do
     duration { 15.minutes }
 
     add_attribute(:when) { 1.day.from_now }
+    status { PairRequest.statuses[:pending] }
   end
 end
