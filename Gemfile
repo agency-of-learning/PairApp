@@ -5,6 +5,7 @@ ruby '3.1.0'
 
 gem 'annotate'
 gem 'devise'
+gem 'devise_invitable'
 gem 'image_processing', '~> 1.2'
 gem 'importmap-rails'
 gem 'jbuilder'
@@ -49,6 +50,6 @@ group :test do
   gem 'webdrivers'
 end
 
-gem "pundit", "~> 2.3"
+gem 'pundit', '~> 2.3'
 
-gem "tailwindcss-rails", "~> 2.0"
+gem 'tailwindcss-rails', '~> 2.0'
