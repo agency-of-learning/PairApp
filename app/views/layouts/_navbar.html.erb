@@ -17,7 +17,7 @@
         </li>
         <% if policy(:invitation).new? %>
           <li>
-            <%= link_to 'Send Invite', new_user_invitation_path %>
+            <%= link_to 'Invite New User', new_user_invitation_path %>
           </li>
         <% end %>
         <li>
@@ -48,7 +48,7 @@
           </li>
           <% if policy(:invitation).new? %>
             <li>
-              <%= link_to 'Send Invite', new_user_invitation_path %>
+              <%= link_to 'Invite New User', new_user_invitation_path %>
             </li>
           <% end %>
           <li class="nav-item">
