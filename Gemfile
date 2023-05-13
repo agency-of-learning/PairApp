@@ -9,9 +9,9 @@ gem 'devise_invitable'
 gem 'image_processing', '~> 1.2'
 gem 'importmap-rails'
 gem 'jbuilder'
+gem 'paper_trail'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
-gem 'paper_trail'
 gem 'rails', '~> 7.0.4', '>= 7.0.4.2'
 gem 'redis', '~> 4.0'
 gem 'rufus-scheduler'
@@ -39,6 +39,7 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'letter_opener'
   gem 'web-console'
 end
 
