@@ -28,7 +28,6 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
   config.assets.css_compressor = nil
 
-
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
@@ -94,6 +93,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Sendgrid + Heroku Stuff
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: 'pair.agencyoflearning.com',
 protocol: 'https' }
