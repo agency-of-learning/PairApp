@@ -11,4 +11,7 @@ class AddColumnTimeZoneToUsers < ActiveRecord::Migration[7.0]
    def down
     remove_column :users, :time_zone
    end
+  def change
+    add_column :users, :time_zone, :string, default: 'UTC', null: false
+  end
 end
