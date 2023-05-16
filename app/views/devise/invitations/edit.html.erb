@@ -21,6 +21,12 @@
   </div>
 
   <div class="form-control">
+    <%= f.label :time_zone, class: 'label label-text' %>
+    <%= f.time_zone_select :time_zone  %>
+  </div>
+
+
+  <div class="form-control">
     <%= f.submit t("devise.invitations.edit.submit_button"), class: 'btn btn-primary' %>
   </div>
 <% end %>
