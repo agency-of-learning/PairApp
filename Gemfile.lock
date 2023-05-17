@@ -140,6 +140,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jsbundling-rails (1.1.1)
+      railties (>= 6.0.0)
     json (2.6.3)
     launchy (2.5.2)
       addressable (~> 2.8)
@@ -376,6 +378,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
+  jsbundling-rails (~> 1.1)
   letter_opener
   paper_trail
   pg (~> 1.1)
