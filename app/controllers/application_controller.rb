@@ -18,5 +18,6 @@ class ApplicationController < ActionController::Base
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:accept_invitation, keys: [:time_zone])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:time_zone])
   end
 end
