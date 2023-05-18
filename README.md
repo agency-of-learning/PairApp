@@ -10,6 +10,7 @@ To set up this project, you need to have the following software installed on you
 - Rails 7.0.0 or higher
 - PostgreSQL 9.5 or higher
 - Redis 7.0 or later
+- Yarn or Npm
 - [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) (Follow the link for installation instructions)
 
 ## 12factor Approach
@@ -45,10 +46,12 @@ git clone git@github.com:[YOUR-USERNAME]/PairApp.git
 cd PairApp
 ```
 
-3. Install the required gems:
+3. Install the required dependencies:
 
-```
+```bash
 bundle install
+# if you use npm, then run npm install
+yarn install
 ```
 
 4. Create the database and run migrations:
@@ -66,7 +69,7 @@ AUTH0_SECRET=your-auth0-secret
 
 Replace `your-auth0-secret` with the actual secret for your Auth0 application. If you are working with Agency of Learning, you can reach out to Dave and he will provide you with those credentials.
 
-6. To start the project locally, run: 
+6. To start the project locally, run:
 
 ```bash
 bin/dev
@@ -106,4 +109,3 @@ git push origin your-feature-branch-name
 ```
 
 6. Create a new pull request on the original repository and wait for the maintainer to review and merge your changes.
-
