@@ -14,7 +14,6 @@ gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.4', '>= 7.0.4.2'
 gem 'redis', '~> 4.0'
 gem 'rufus-scheduler'
-gem 'sassc-rails'
 gem 'sendgrid-ruby'
 gem 'sidekiq'
 gem 'sprockets-rails'
@@ -39,6 +38,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'letter_opener'
+  gem 'sassc-rails'
   gem 'web-console'
 end
 
