@@ -1,3 +1,4 @@
 web: unset PORT && bin/rails server
 worker: bundle exec sidekiq -C config/sidekiq.yml
 css: bin/rails tailwindcss:watch
+js: yarn build --watch
