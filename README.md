@@ -77,6 +77,27 @@ bin/dev
 
 This will start the development server and background worker. Open your web browser and go to http://localhost:3000 to see the application running.
 
+##Working with Devise Invitable
+If you need to work with the user registration/invitation process, follow these steps:
+
+1. Make sure you are logged out of the application.
+
+2. Open a Rails console session:
+```bash
+rails console
+```
+3. In the console, run the following command to invite a user:
+```bash 
+User.invite!(email: <some_test_email>)
+```
+This will send an invitation email with an invite link.
+
+4. Check your browser, and a new tab should open with the invite link.
+
+5. Click the invite link to access the sign-up page and set a password. This will create a fully active account with the provided email and password.
+
+Note: If you only need to create users without the invitation process, you can use the regular method User.create(**attrs).
+
 ## Contributing
 
 If you want to contribute to this project, please follow these steps:
