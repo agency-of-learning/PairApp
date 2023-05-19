@@ -10,14 +10,15 @@ class ApplicationController < ActionController::Base
 
   around_action :set_time_zone, if: :current_user
 
-  private
-  def set_time_zone(&)
-    Time.use_zone(current_user.time_zone, &)
-  end
 
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:accept_invitation, keys: [:time_zone])
     devise_parameter_sanitizer.permit(:account_update, keys: [:time_zone])
+  end
+  
+  private
+  def set_time_zone(&)
+    Time.use_zone(current_user.time_zone, &)
   end
 end
