@@ -26,6 +26,11 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input input-bordered' %>
     </div>
 
+    <div class=" mb-8">
+      <%= f.label :time_zone, class: 'label label-text' %>
+      <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.country_zones('US'), {}, {class:"select select-bordered w-full max-w-xs"}) %>
+    </div>
+
     <div class="form-control">
       <%= f.label :current_password, "Current password <span class='italic'>(we need your current password to confirm your changes)</span>".html_safe, class: 'label label-text' %>
       <%= f.password_field :current_password, autocomplete: "current-password", class: 'input input-bordered' %>
