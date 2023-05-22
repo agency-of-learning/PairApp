@@ -29,6 +29,9 @@ class PairRequest < ApplicationRecord
   belongs_to :author, class_name: 'User'
   belongs_to :invitee, class_name: 'User'
 
+  has_many :references, as: :referenceable, dependent: :destroy, class_name: 'Feedback'
+
+
   validates :when,
     presence: true,
     inclusion: { in: (Date.current..(Date.current + 1.month)),

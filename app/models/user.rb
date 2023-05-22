@@ -47,6 +47,20 @@ class User < ApplicationRecord
     dependent: :destroy,
     inverse_of: 'invitee'
 
+  has_many :authored_feedbacks,
+    class_name: 'Feedback',
+    foreign_key: 'author_id',
+    dependent: :destroy,
+    inverse_of: 'author'
+
+  has_many :received_feedbacks,
+    class_name: 'Feedback',
+    foreign_key: 'receiver_id',
+    dependent: :destroy,
+    inverse_of: 'receiver'
+  
+  has_many :references, as: :referenceable, dependent: :destroy, class_name: 'Feedback'
+
   scope :invitee_select_for, ->(user) { User.excluding(user).pluck(:email, :id) }
 
   def my_pair_requests

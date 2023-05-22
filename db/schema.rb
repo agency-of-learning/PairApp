@@ -10,9 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_16_173259) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_22_205955) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.bigint "author_id", null: false
+    t.bigint "receiver_id", null: false
+    t.string "referenceable_type", null: false
+    t.bigint "referenceable_id", null: false
+    t.integer "overall_rating", default: 0, null: false
+    t.integer "status", default: 0, null: false
+    t.jsonb "data"
+    t.datetime "locked_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_feedbacks_on_author_id"
+    t.index ["receiver_id"], name: "index_feedbacks_on_receiver_id"
+    t.index ["referenceable_type", "referenceable_id"], name: "index_feedbacks_on_referenceable"
+  end
 
   create_table "pair_requests", force: :cascade do |t|
     t.bigint "author_id", null: false
@@ -62,6 +78,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_173259) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
+  add_foreign_key "feedbacks", "users", column: "author_id"
+  add_foreign_key "feedbacks", "users", column: "receiver_id"
   add_foreign_key "pair_requests", "users", column: "author_id"
   add_foreign_key "pair_requests", "users", column: "invitee_id"
 end
