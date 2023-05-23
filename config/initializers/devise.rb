@@ -353,6 +353,9 @@ Devise.setup do |config|
   # Note: These might become the new default in future versions of Devise.
   config.responder.error_status = :unprocessable_entity
   config.responder.redirect_status = :see_other
+  # HACK: strange behvaior with devise + link_to (and button_to).
+  # We need to always use `link_to` for devise sign_in/sign_out for now.
+  config.sign_out_via = :get
 
   # ==> Configuration for :registerable
 
