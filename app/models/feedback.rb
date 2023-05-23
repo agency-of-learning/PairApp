@@ -3,7 +3,7 @@
 # Table name: feedbacks
 #
 #  id                 :bigint           not null, primary key
-#  data               :jsonb
+#  data               :jsonb            not null
 #  locked_at          :datetime
 #  overall_rating     :integer          default(0), not null
 #  referenceable_type :string           not null
@@ -29,4 +29,9 @@ class Feedback < ApplicationRecord
   belongs_to :author, class_name: "User"
   belongs_to :receiver, class_name: "User"
   belongs_to :referenceable, polymorphic: true
+
+  enum status: {
+    draft: 0,
+    complete: 1
+  }
 end

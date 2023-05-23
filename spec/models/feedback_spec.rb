@@ -3,7 +3,7 @@
 # Table name: feedbacks
 #
 #  id                 :bigint           not null, primary key
-#  data               :jsonb
+#  data               :jsonb            not null
 #  locked_at          :datetime
 #  overall_rating     :integer          default(0), not null
 #  referenceable_type :string           not null

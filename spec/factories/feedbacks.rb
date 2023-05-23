@@ -27,13 +27,12 @@
 #
 FactoryBot.define do
   factory :feedback do
-    author { nil }
-    receiver { nil }
-    referenceable { nil }
+    association :author, factory: :user
+    association :receiver, factory: :user
+    association :referenceable, factory: :pair_request
     overall_rating { 1 }
     status { 1 }
-    data { "" }
+    data { {} }
     locked_at { "MyString" }
-    datatime { "MyString" }
   end
 end

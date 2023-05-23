@@ -6,7 +6,7 @@ class CreateFeedbacks < ActiveRecord::Migration[7.0]
       t.references :referenceable, polymorphic: true, null: false
       t.integer :overall_rating, default: 0, null: false
       t.integer :status, default: 0, null: false
-      t.jsonb :data
+      t.jsonb :data, default: {}, null: false
       t.datetime :locked_at
 
       t.timestamps
