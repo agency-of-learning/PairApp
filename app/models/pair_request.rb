@@ -43,6 +43,11 @@ class PairRequest < ApplicationRecord
     pending: 0,
     rejected: 1,
     accepted: 2,
-    expired: 3
+    expired: 3,
+    completed: 4
   }
+
+  def started?
+    self.when <= Time.current
+  end
 end

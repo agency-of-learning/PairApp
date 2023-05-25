@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   namespace :pair_requests do
     resources :acceptances, only: :create
+    resources :completions, only: :create
     resources :rejections, only: :create
   end
 end
