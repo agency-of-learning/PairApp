@@ -58,7 +58,7 @@ bin/setup
 bin/dev
 ```
 
-This will start the development server and background worker. Open your web browser and go to http://localhost:3000 to see the application running.
+This will start the development server, the asset compiling for CSS and JS, and background worker. Open your web browser and go to http://localhost:3000 to see the application running.
 
 ## Working with Devise Invitable
 If you need to work with the user registration/invitation process, follow these steps:
