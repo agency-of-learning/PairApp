@@ -108,4 +108,22 @@ RSpec.describe PairRequest do
       end
     end
   end
+
+  describe '#started?' do
+    context "when the request hasn't started" do
+      let(:when_date) { Date.tomorrow }
+
+      it 'returns false' do
+        expect(subject).not_to be_started
+      end
+    end
+
+    context "when the request has started" do
+      let(:when_date) { Time.current }
+
+      it 'returns true' do
+      expect(subject).to be_started
+      end
+    end
+  end
 end
