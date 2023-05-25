@@ -34,4 +34,34 @@ class Feedback < ApplicationRecord
     draft: 0,
     complete: 1
   }
+
+  DATA_OBJECT = {
+    feedback: [
+      {
+        question: 'Question 1',
+        answer: '',
+        type: 'long_text',
+        required: true
+      },
+      {
+        question: 'Question 2',
+        answer: '',
+        type: 'long_text',
+        required: true
+      },
+      {
+        question: 'Question 3',
+        answer: '',
+        type: 'long_text',
+        required: true
+      }
+    ]
+  }.freeze
+
+  def self.create_feedback_records(pair_request)
+    Feedback.create(author_id: pair_request.author_id, receiver_id: pair_request.invitee_id, referenceable: pair_request, data: DATA_OBJECT )
+    Feedback.create(author_id: pair_request.invitee_id, receiver_id: pair_request.author_id, referenceable: pair_request, data: DATA_OBJECT )
+  end
+
+
 end
