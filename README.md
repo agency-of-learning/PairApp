@@ -34,10 +34,10 @@ This project follows the [12factor methodology](https://12factor.net/) for build
 
 To get started with this project, follow these steps:
 
-1.Clone the forked repository to your local machine:
+1. Clone this repository to your local machine:
 
 ```bash
-git clone git@github.com:[YOUR-USERNAME]/PairApp.git
+git clone git@github.com:agency-of-learning/PairApp.git
 ```
 
 2. Navigate to the project directory:
@@ -46,38 +46,21 @@ git clone git@github.com:[YOUR-USERNAME]/PairApp.git
 cd PairApp
 ```
 
-3. Install the required dependencies:
+3. Run the setup script. This will install dependencies and create, migrate, and seed the database.
 
 ```bash
-bundle install
-# if you use npm, then run npm install
-yarn install
+bin/setup
 ```
 
-4. Create the database and run migrations:
-
-```bash
-rails db:create
-rails db:migrate
-```
-
-5. Create a .env file in the root directory of the project with the following content:
-
-```bash
-AUTH0_SECRET=your-auth0-secret
-```
-
-Replace `your-auth0-secret` with the actual secret for your Auth0 application. If you are working with Agency of Learning, you can reach out to Dave and he will provide you with those credentials.
-
-6. To start the project locally, run:
+4. To start the project locally, run:
 
 ```bash
 bin/dev
 ```
 
-This will start the development server and background worker. Open your web browser and go to http://localhost:3000 to see the application running.
+This will start the development server, the asset compiling for CSS and JS, and background worker. Open your web browser and go to http://localhost:3000 to see the application running.
 
-##Working with Devise Invitable
+## Working with Devise Invitable
 If you need to work with the user registration/invitation process, follow these steps:
 
 1. Make sure you are logged out of the application.
@@ -100,31 +83,23 @@ Note: This flow is only necessary if you're building something around the user r
 
 If you want to contribute to this project, please follow these steps:
 
-1. Fork this repository to your own GitHub account.
-
-2. Clone the forked repository to your local machine:
-
-```bash
-git clone https://github.com/your-username/PairApp.git
-```
-
-3. Create a new branch for your changes:
+1. From your local clone, create a new branch for your changes:
 
 ```bash
 git checkout -b your-feature-branch-name
 ```
 
-4. Make your changes and commit them:
+2. Make your changes and commit them:
 
 ```bash
 git add .
 git commit -m "Add your commit message here"
 ```
 
-5. Push your changes to your forked repository:
+3. Push your changes to origin:
 
 ```bash
 git push origin your-feature-branch-name
 ```
 
-6. Create a new pull request on the original repository and wait for the maintainer to review and merge your changes.
+4. Create a new pull request on the original repository and wait for the maintainer to review and merge your changes.
