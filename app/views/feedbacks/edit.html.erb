@@ -1,21 +1,13 @@
-<div>
-  <h1 class="font-bold text-4xl">Feedbacks#edit</h1>
-  <%= form_with(model: @feedback) do |form| %>
-      <div class="question">
-        <%= form.label :overall_rating %>
-        <%= form.number_field :overall_rating, class: 'form-control' %>
-      </div>
-    <% @feedback.data['feedback'].each_with_index do |question, index| %>
 
-      <div class="question">
-        <%# form.label @feedback.data['feedback'][index]['question'] %>
-        <%= label_tag "feedback[data][][feedback][question]", question['question'] %>
-        <%# form.text_area @feedback.data['feedback'][index]['answer'], class: 'form-control' %>
-        <%= text_field_tag "feedback[data][][feedback][answer]", question['answer'] %>
-      </div>
-    <% end %>
-    <%= form.submit 'Submit', class: 'btn btn-primary' %>
+<%= form_with model: @feedback, local: true do |form| %>
+  <% @feedback.data['feedback'].each_with_index do |object, index| %>
+    <div class="field">
+      <%= form.label "data[feedback][#{index}][answer]", object['question'] %> <br>
+      <%= form.text_field "data[feedback][#{index}][answer]", value: object['answer'], required: object['required'] %>
+    </div>
   <% end %>
-</div>
- 
 
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
