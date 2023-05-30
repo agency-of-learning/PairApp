@@ -12,6 +12,7 @@
 #
 class StandupMeetingGroup < ApplicationRecord
   has_many :standup_meetings, inverse_of: :standup_meeting_group, dependent: :destroy
+  has_many :users, through: :standup_meeting_groups_users
 
   enum frequency: {
     daily: 0

@@ -58,8 +58,10 @@ class User < ApplicationRecord
     foreign_key: 'receiver_id',
     dependent: :destroy,
     inverse_of: 'receiver'
-  
+
   has_many :references, as: :referenceable, dependent: :destroy, class_name: 'Feedback'
+
+  has_many :standup_meeting_groups, through: :standup_meeting_groups_users
 
   scope :invitee_select_for, ->(user) { User.excluding(user).pluck(:email, :id) }
 
