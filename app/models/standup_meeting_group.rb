@@ -11,6 +11,8 @@
 #  updated_at :datetime         not null
 #
 class StandupMeetingGroup < ApplicationRecord
+  has_many :standup_meetings, inverse_of: :standup_meeting_group, dependent: :destroy
+
   enum frequency: {
     daily: 0
   }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_30_024810) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_30_025604) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,6 +49,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_024810) do
     t.integer "frequency", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "standup_meetings", force: :cascade do |t|
+    t.bigint "standup_meeting_group_id", null: false
+    t.bigint "user_id", null: false
+    t.text "yesterday_work_description", null: false
+    t.text "today_work_description", null: false
+    t.text "blockers_description", null: false
+    t.date "meeting_date", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["standup_meeting_group_id"], name: "index_standup_meetings_on_standup_meeting_group_id"
+    t.index ["user_id"], name: "index_standup_meetings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -91,4 +105,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_024810) do
   add_foreign_key "feedbacks", "users", column: "receiver_id"
   add_foreign_key "pair_requests", "users", column: "author_id"
   add_foreign_key "pair_requests", "users", column: "invitee_id"
+  add_foreign_key "standup_meetings", "standup_meeting_groups"
+  add_foreign_key "standup_meetings", "users"
 end
