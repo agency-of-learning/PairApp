@@ -6,7 +6,7 @@ class CreateStandupMeetings < ActiveRecord::Migration[7.0]
 
       t.text :yesterday_work_description, null: false
       t.text :today_work_description, null: false
-      t.text :blockers_description, null: false
+      t.text :blockers_description, null: true
 
       t.date :meeting_date, null: false
       t.integer :status, default: 0, null: false

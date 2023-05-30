@@ -65,7 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_031659) do
     t.bigint "user_id", null: false
     t.text "yesterday_work_description", null: false
     t.text "today_work_description", null: false
-    t.text "blockers_description", null: false
+    t.text "blockers_description"
     t.date "meeting_date", null: false
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false

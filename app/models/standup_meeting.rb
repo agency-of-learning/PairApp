@@ -3,7 +3,7 @@
 # Table name: standup_meetings
 #
 #  id                         :bigint           not null, primary key
-#  blockers_description       :text             not null
+#  blockers_description       :text
 #  meeting_date               :date             not null
 #  status                     :integer          default("attended"), not null
 #  today_work_description     :text             not null
