@@ -28,5 +28,21 @@
 require 'rails_helper'
 
 RSpec.describe Feedback, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#create_feedback_records' do
+    let(:pair_request) { create(:pair_request) }
+
+    it 'creates two feedback records' do
+      expect {
+        Feedback.create_feedback_records(pair_request)
+      }.to change(Feedback, :count).by(2)
+    end
+
+    it 'associates the feedback with the pair request' do
+      feedback = Feedback.create_feedback_records(pair_request)
+      expect(feedback.referenceable).to eq(pair_request)
+    end
+  end
 end
+
+
+
