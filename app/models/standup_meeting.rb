@@ -5,9 +5,9 @@
 #  id                         :bigint           not null, primary key
 #  blockers_description       :text
 #  meeting_date               :date             not null
-#  status                     :integer          default("attended"), not null
-#  today_work_description     :text             not null
-#  yesterday_work_description :text             not null
+#  status                     :integer          default("draft"), not null
+#  today_work_description     :text
+#  yesterday_work_description :text
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  standup_meeting_group_id   :bigint           not null
