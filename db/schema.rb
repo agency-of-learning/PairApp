@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_30_031659) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_31_034926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,8 +63,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_031659) do
   create_table "standup_meetings", force: :cascade do |t|
     t.bigint "standup_meeting_group_id", null: false
     t.bigint "user_id", null: false
-    t.text "yesterday_work_description", null: false
-    t.text "today_work_description", null: false
+    t.text "yesterday_work_description"
+    t.text "today_work_description"
     t.text "blockers_description"
     t.date "meeting_date", null: false
     t.integer "status", default: 0, null: false
