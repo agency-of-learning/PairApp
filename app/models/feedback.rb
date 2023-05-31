@@ -32,7 +32,7 @@ class Feedback < ApplicationRecord
 
   enum status: {
     draft: 0,
-    complete: 1
+    completed: 1
   }
 
   DATA_OBJECT = {
