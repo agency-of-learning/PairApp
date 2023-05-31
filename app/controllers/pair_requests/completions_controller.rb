@@ -7,6 +7,6 @@ class PairRequests::CompletionsController < ApplicationController
     @feedback = Feedback.create_feedback_records(@pair_request)
     flash[:notice] = 'You have completed this pair request.'
     
-    redirect_to edit_feedback_path(@feed_back)
+    redirect_to edit_feedback_path(@feedback)
   end
 end
