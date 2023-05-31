@@ -35,30 +35,26 @@ class Feedback < ApplicationRecord
     complete: 1
   }
 
-  # DATA_OBJECT = {
-  #   feedback: [
-  #     {
-  #       question: 'Question 1',
-  #       answer: '',
-  #       type: 'long_text',
-  #       required: true
-  #     },
-  #     {
-  #       question: 'Question 2',
-  #       answer: '',
-  #       type: 'long_text',
-  #       required: true
-  #     },
-  #     {
-  #       question: 'Question 3',
-  #       answer: '',
-  #       type: 'long_text',
-  #       required: true
-  #     }
-  #   ]
-  # }.freeze
-
-  DATA_OBJECT = {"feedback"=>[{"type"=>"long_text", "answer"=>"", "question"=>"Question 1", "required"=>true}, {"type"=>"long_text", "answer"=>"", "question"=>"Question 2", "required"=>true}, {"type"=>"long_text", "answer"=>"", "question"=>"Question 3", "required"=>true}]}.freeze
+  DATA_OBJECT = {
+    "feedback"=>[
+      {
+        "type"=>"long_text",
+        "answer"=>"", "question"=>"Question 1", 
+        "required"=>true
+      },
+      {
+        "type"=>"long_text",
+        "answer"=>"",
+        "question"=>"Question 2",
+        "required"=>true
+      },
+      {
+        "type"=>"long_text", 
+        "answer"=>"", 
+        "question"=>"Question 3", 
+        "required"=>true
+      }
+    ]}.freeze
 
   def self.create_feedback_records(pair_request)
     Feedback.create(author_id: pair_request.author_id, receiver_id: pair_request.invitee_id, referenceable: pair_request, data: DATA_OBJECT )
