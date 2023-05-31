@@ -15,8 +15,6 @@ class FeedbacksController < ApplicationController
   end
 
   def update
-    @feedback = Feedback.find(params[:id])
-
     @merged_answers = []
     Feedback::DATA_OBJECT["feedback"].each_with_index do |question, index|
       answer = params["feedback"]["data"]["feedback"][index.to_s]["answer"]
