@@ -1,0 +1,2 @@
+class PairRequestFeedback < Feedback
+end
