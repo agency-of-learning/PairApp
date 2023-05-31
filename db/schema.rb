@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_22_205955) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_31_034926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,38 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_22_205955) do
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_pair_requests_on_author_id"
     t.index ["invitee_id"], name: "index_pair_requests_on_invitee_id"
+  end
+
+  create_table "standup_meeting_groups", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "active", default: true, null: false
+    t.time "start_time", null: false
+    t.integer "frequency", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "standup_meeting_groups_users", force: :cascade do |t|
+    t.bigint "standup_meeting_group_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["standup_meeting_group_id", "user_id"], name: "index_smg_users_on_smg_id_and_user_id"
+    t.index ["user_id", "standup_meeting_group_id"], name: "index_smg_users_on_user_id_and_smg_id"
+  end
+
+  create_table "standup_meetings", force: :cascade do |t|
+    t.bigint "standup_meeting_group_id", null: false
+    t.bigint "user_id", null: false
+    t.text "yesterday_work_description"
+    t.text "today_work_description"
+    t.text "blockers_description"
+    t.date "meeting_date", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["standup_meeting_group_id"], name: "index_standup_meetings_on_standup_meeting_group_id"
+    t.index ["user_id"], name: "index_standup_meetings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -82,4 +114,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_22_205955) do
   add_foreign_key "feedbacks", "users", column: "receiver_id"
   add_foreign_key "pair_requests", "users", column: "author_id"
   add_foreign_key "pair_requests", "users", column: "invitee_id"
+  add_foreign_key "standup_meetings", "standup_meeting_groups"
+  add_foreign_key "standup_meetings", "users"
 end
