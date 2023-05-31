@@ -4,8 +4,9 @@ class PairRequests::CompletionsController < ApplicationController
     authorize @pair_request, policy_class: PairRequest::CompletionPolicy
     @pair_request.completed!
     
-    @feed_back = Feedback.create_feedback_records(@pair_request)
+    @feedback = Feedback.create_feedback_records(@pair_request)
     flash[:notice] = 'You have completed this pair request.'
+    
     redirect_to edit_feedback_path(@feed_back)
   end
 end

@@ -21,7 +21,14 @@
     <% if PairRequest::CompletionPolicy.new(current_user, pair_request).create? %>
       <%= button_to "Mark request as complete", pair_requests_completions_path(pair_request_id: pair_request), class: "btn btn-success" %>
     <% end %>
+
+
+    
   </p>
+
+   <p>
+  <%= feedback_link_for_current_user(current_user) %>
+   </p>
 
   <p>
     <strong>When:</strong>
