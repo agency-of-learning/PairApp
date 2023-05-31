@@ -33,6 +33,6 @@ FactoryBot.define do
     blockers_description { Faker::Lorem.paragraph }
 
     meeting_date { Date.current }
-    status { StandupMeeting.statuses[:attended] }
+    status { StandupMeeting.statuses[:draft] }
   end
 end

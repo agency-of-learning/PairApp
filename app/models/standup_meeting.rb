@@ -28,7 +28,9 @@ class StandupMeeting < ApplicationRecord
   belongs_to :user
 
   enum status: {
-    attended: 0,
-    skipped: 1
+    draft: 0,
+    completed: 1,
+    skipped: 2,
+    missed: 3
   }
 end
