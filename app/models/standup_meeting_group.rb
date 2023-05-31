@@ -15,6 +15,9 @@ class StandupMeetingGroup < ApplicationRecord
   has_many :standup_meeting_groups_users, dependent: :destroy, class_name: 'StandupMeetingGroupUser'
   has_many :users, through: :standup_meeting_groups_users
 
+  validates :name, presence: true
+  validates :start_time, presence: true
+
   enum frequency: {
     daily: 0
   }

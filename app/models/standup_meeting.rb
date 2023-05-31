@@ -27,6 +27,8 @@ class StandupMeeting < ApplicationRecord
   belongs_to :standup_meeting_group, inverse_of: :standup_meetings
   belongs_to :user
 
+  validates :meeting_date, presence: true
+
   enum status: {
     draft: 0,
     completed: 1,
