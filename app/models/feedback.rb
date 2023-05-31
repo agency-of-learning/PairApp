@@ -57,7 +57,8 @@ class Feedback < ApplicationRecord
     ]}.freeze
 
   def self.create_feedback_records(pair_request)
-    Feedback.create(author_id: pair_request.author_id, receiver_id: pair_request.invitee_id, referenceable: pair_request, data: DATA_OBJECT )
+    # The two lines below need to be kept in this order. The second line creates the feedback record for the author and that's what we want to return.
     Feedback.create(author_id: pair_request.invitee_id, receiver_id: pair_request.author_id, referenceable: pair_request, data: DATA_OBJECT )
+    Feedback.create(author_id: pair_request.author_id, receiver_id: pair_request.invitee_id, referenceable: pair_request, data: DATA_OBJECT )
   end
 end
