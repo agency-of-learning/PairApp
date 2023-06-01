@@ -142,4 +142,20 @@ RSpec.describe PairRequest do
       expect(Feedback.exists?(author: subject.invitee)).to be true
     end
   end
+
+  describe '#author_feedback' do
+    context 'when a feedback exists where the author is the pair request author' do
+      let!(:feedback) { create(:feedback, author: subject.author, referenceable: subject) }
+
+      it 'returns the feedback' do
+        expect(subject.author_feedback).to eq feedback
+      end
+    end
+
+    context 'when a feedback does not exist where the author is the pair request author' do
+      it 'returns nil' do
+        expect(subject.author_feedback).to be_nil
+      end
+    end
+  end
 end

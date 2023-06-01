@@ -64,4 +64,8 @@ class PairRequest < ApplicationRecord
 
     save!
   end
+
+  def author_feedback
+    references.find_by(author:)
+  end
 end
