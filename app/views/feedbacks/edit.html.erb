@@ -1,5 +1,10 @@
 
 <%= form_with model: @feedback, local: true do |form| %>
+  <div class="field">
+    <%= form.label "overall_rating" %>
+    <%= form.number_field :overall_rating %>
+  </div>
+
   <% @feedback.data['feedback'].each_with_index do |object, index| %>
     <div class="field">
       <%= form.label "data[feedback][#{index}][answer]", object['question'] %> <br>
