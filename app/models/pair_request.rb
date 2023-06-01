@@ -31,7 +31,6 @@ class PairRequest < ApplicationRecord
 
   has_many :references, as: :referenceable, dependent: :destroy, class_name: 'Feedback'
 
-
   validates :when,
     presence: true,
     inclusion: { in: (Date.current..(Date.current + 1.month)),
@@ -54,5 +53,15 @@ class PairRequest < ApplicationRecord
   def current_user_has_pending_feedback?(current_user)
     feedback = references.find_by(author: current_user, status: 'draft')
     feedback&.id
+  end
+
+  def create_draft_feedback!
+    data = Feedback::DATA_OBJECT
+    references.build([
+      { author:, receiver: invitee, data: },
+      { author: invitee, receiver: author, data: }
+    ])
+
+    save!
   end
 end
