@@ -31,7 +31,7 @@ FactoryBot.define do
     association :receiver, factory: :user
     association :referenceable, factory: :pair_request
     overall_rating { 1 }
-    status { 1 }
+    status { 0 }
     data { {} }
     locked_at { "MyString" }
   end

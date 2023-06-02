@@ -29,11 +29,5 @@ FactoryBot.define do
 
     add_attribute(:when) { 1.day.from_now }
     status { PairRequest.statuses[:pending] }
-
-    after(:create) do |pair_request|
-      if pair_request.status == 'completed'
-        create_list(:feedback, 2, referenceable: pair_request)
-      end
-    end
   end
 end

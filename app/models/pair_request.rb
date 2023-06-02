@@ -50,7 +50,7 @@ class PairRequest < ApplicationRecord
     self.when <= Time.current
   end
 
-  def current_user_has_pending_feedback?(current_user)
+  def pending_feedback?(current_user)
     feedback = references.find_by(author: current_user, status: 'draft')
     feedback&.id
   end
