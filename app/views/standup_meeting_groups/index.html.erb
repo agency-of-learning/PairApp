@@ -1,0 +1,25 @@
+<h1>Standup Meeting Groups</h1>
+
+<%= link_to "New Standup Meeting Group", new_standup_meeting_group_path %>
+
+<div id="standup_meeting_group">
+  <% @standup_meeting_groups.each do |standup_meeting_group| %>
+    <div id="<%= dom_id standup_meeting_group %>">
+      <h2><%= standup_meeting_group.name %></h2>
+
+      <p>
+        <%= link_to "Show this standup meeting group", standup_meeting_group %>
+      </p>
+
+      <p>
+        <%= link_to "Edit this standup meeting group", edit_standup_meeting_group_path(standup_meeting_group) %>
+      </p>
+
+      <p>
+        <%= link_to "Delete this standup meeting group", standup_meeting_group, method: :delete, data: { confirm: "Are you sure?" } %>
+      </p>
+
+      <hr>
+    </div>
+  <% end %>
+</div>
