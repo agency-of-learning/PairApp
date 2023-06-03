@@ -35,6 +35,8 @@ class Feedback < ApplicationRecord
     completed: 1
   }
 
+  validates :overall_rating, inclusion: { in: 0..100, message: 'must be in range 0-100' }
+
   DATA_OBJECT = {
     'feedback' => [
       {
