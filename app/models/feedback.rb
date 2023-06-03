@@ -57,7 +57,7 @@ class Feedback < ApplicationRecord
     ]
   }.freeze
 
-  def update_with_json_answers!(params)
+  def update_with_json_answers(params)
     merged_answers = []
     DATA_OBJECT['feedback'].each_with_index do |question, index|
       answer = params.dig('feedback', 'data', 'feedback', index.to_s, 'answer') || ''
@@ -66,6 +66,6 @@ class Feedback < ApplicationRecord
 
     self.data = { feedback: merged_answers }
     self.overall_rating = params.dig(:feedback, :overall_rating) || 0
-    save!
+    save
   end
 end

@@ -12,10 +12,12 @@ class FeedbacksController < ApplicationController
   def edit; end
 
   def update
-    @feedback.update_with_json_answers!(params)
-
-    flash[:notice] = 'Feedback was successfully submited.'
-    redirect_to feedback_path(@feedback)
+    if @feedback.update_with_json_answers(params)
+      flash[:notice] = 'Feedback was successfully submitted.'
+      redirect_to feedback_path(@feedback)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
