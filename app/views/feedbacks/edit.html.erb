@@ -1,5 +1,5 @@
 
-<%= form_with model: @feedback, local: true do |form| %>
+<%= form_with model: @feedback, local: true, html: { class: 'max-w-prose mx-auto px-4' } do |form| %>
   <% if @feedback.errors.any? %>
 
     <div class="mb-4">
@@ -15,19 +15,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label "overall_rating" %>
-    <%= form.number_field :overall_rating %>
+  <div>
+    <%= form.label "overall_rating", class: "label label-text text-lg " %>
+    <%= form.number_field :overall_rating, class: "input input-bordered input-sm" %>
   </div>
 
   <% @feedback.data['feedback'].each_with_index do |object, index| %>
-    <div class="field">
-      <%= form.label "data[feedback][#{index}][answer]", object['question'] %> <br>
-      <%= form.text_field "data[feedback][#{index}][answer]", value: object['answer'], required: object['required'] %>
+    <div class="form-control mb-4">
+      <%= form.label "data[feedback][#{index}][answer]", object['question'], class: "label label-text text-lg" %>
+      <%= form.text_area "data[feedback][#{index}][answer]", value: object['answer'], required: object['required'], class: "textarea textarea-bordered" %>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-control">
+    <%= form.submit "Update Feedback", class: "btn btn-primary btn-wide mx-auto" %>
   </div>
 <% end %>
