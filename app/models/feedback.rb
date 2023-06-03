@@ -37,27 +37,36 @@ class Feedback < ApplicationRecord
 
   validates :overall_rating, inclusion: { in: 0..100, message: 'must be in range 0-100' }
 
+  # rubocop:disable Layout/LineLength
   DATA_OBJECT = {
     'feedback' => [
       {
         'type' => 'long_text',
-        'answer' => '', 'question' => 'Question 1',
+        'answer' => '',
+        'question' => 'What did they do really well at? (i.e: explaining the problem, breaking down problem, clean code, etc…)',
         'required' => true
       },
       {
         'type' => 'long_text',
         'answer' => '',
-        'question' => 'Question 2',
+        'question' => 'Was there anything they could improve on? (like learning new concepts, design patterns, books, etc..)',
         'required' => true
       },
       {
         'type' => 'long_text',
         'answer' => '',
-        'question' => 'Question 3',
+        'question' => 'How was your overall experience pairing with this person?',
         'required' => true
+      },
+      {
+        'type' => 'long_text',
+        'answer' => '',
+        'question' => 'Any additional notes/comments you’d like to leave?',
+        'required' => false
       }
     ]
   }.freeze
+  # rubocop:enable Layout/LineLength
 
   def update_with_json_answers(params)
     merged_answers = []
