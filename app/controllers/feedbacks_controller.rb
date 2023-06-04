@@ -31,6 +31,14 @@ class FeedbacksController < ApplicationController
   end
 
   def feedback_params
-    params.require(:feedback).permit!
+    params
+      .require(:feedback)
+      .permit(
+        :author,
+        :overall_rating,
+        data: {
+          feedback: [:answer]
+        }
+      )
   end
 end
