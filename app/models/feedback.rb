@@ -77,6 +77,7 @@ class Feedback < ApplicationRecord
 
     self.data = { feedback: merged_answers }
     self.overall_rating = params.dig(:feedback, :overall_rating) || 0
+    self.locked_at ||= 7.days.from_now
     save
   end
 

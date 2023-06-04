@@ -56,6 +56,11 @@ RSpec.describe Feedback do
         expect(subject.overall_rating).to eq 50
       end
 
+      it 'sets the lock date to 7 days from now' do
+        subject.update_with_json_answers(params)
+        expect(subject.locked_at.to_date).to eq(7.days.from_now.to_date)
+      end
+
       it 'has no errors' do
         subject.update_with_json_answers(params)
         expect(subject.errors).to be_empty
