@@ -79,4 +79,10 @@ class Feedback < ApplicationRecord
     self.overall_rating = params.dig(:feedback, :overall_rating) || 0
     save
   end
+
+  def locked?
+    return false if locked_at.blank?
+
+    Time.current.after?(locked_at)
+  end
 end

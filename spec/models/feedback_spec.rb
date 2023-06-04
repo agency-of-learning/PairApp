@@ -28,7 +28,9 @@
 require 'rails_helper'
 
 RSpec.describe Feedback do
-  subject { build(:feedback) }
+  subject { build(:feedback, locked_at:) }
+
+  let(:locked_at) { nil }
 
   describe '#update_with_json_answers' do
     let(:params) do
@@ -74,6 +76,30 @@ RSpec.describe Feedback do
 
       it 'returns false' do
         expect(subject.update_with_json_answers(params)).to be false
+      end
+    end
+  end
+
+  describe '#locked?' do
+    context "when locked_at hasn't been set" do
+      it 'returns false' do
+        expect(subject).not_to be_locked
+      end
+    end
+
+    context "when the locked_at date hasn't passed" do
+      let(:locked_at) { Date.tomorrow }
+
+      it 'returns false' do
+        expect(subject).not_to be_locked
+      end
+    end
+
+    context 'when the locked_at date has passed' do
+      let(:locked_at) { Date.yesterday }
+
+      it 'returns true' do
+        expect(subject).to be_locked
       end
     end
   end

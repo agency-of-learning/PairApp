@@ -57,7 +57,7 @@ RSpec.describe User do
         expect(user.my_pair_requests).to include(authored_request, received_request)
       end
 
-      it "doesn't return include user's requests" do
+      it "doesn't fetch other users' requests" do
         other_request = create(:pair_request)
         expect(user.my_pair_requests).not_to include(other_request)
       end
@@ -76,6 +76,25 @@ RSpec.describe User do
 
       it 'responds to member? properly' do
         expect(user.member?).to be(true)
+      end
+    end
+
+    describe '#my_feedback' do
+      let(:user) { create(:user) }
+      let!(:authored_feedback) { create(:feedback, author: user) }
+      let!(:received_feedback) { create(:feedback, receiver: user) }
+
+      it "fetches a user's received and authored feedback" do
+        expect(user.my_feedback).to include(authored_feedback, received_feedback)
+      end
+
+      it "doesn't return other users' feedback" do
+        other_feedback = create(:feedback)
+        expect(user.my_feedback).not_to include(other_feedback)
+      end
+
+      it 'returns an ActiveRecord Relation' do
+        expect(user.my_pair_requests).to be_a ActiveRecord::Relation
       end
     end
   end
