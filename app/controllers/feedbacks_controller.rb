@@ -4,14 +4,18 @@ class FeedbacksController < ApplicationController
   def index; end
 
   def show
-    @feedback = Feedback.find(params[:id])
+    authorize @feedback
   end
 
   def new; end
 
-  def edit; end
+  def edit
+    authorize @feedback
+  end
 
   def update
+    authorize @feedback
+
     if @feedback.update_with_json_answers(params)
       flash[:notice] = 'Feedback was successfully submitted.'
       redirect_to feedback_path(@feedback)
