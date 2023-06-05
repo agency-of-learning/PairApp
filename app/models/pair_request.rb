@@ -50,11 +50,6 @@ class PairRequest < ApplicationRecord
     self.when <= Time.current
   end
 
-  def pending_feedback?(current_user)
-    feedback = references.find_by(author: current_user, status: 'draft')
-    feedback&.id
-  end
-
   def create_draft_feedback!
     data = Feedback::DATA_OBJECT
     references.build([
