@@ -68,4 +68,8 @@ class PairRequest < ApplicationRecord
   def author_feedback
     references.find_by(author:)
   end
+
+  def invitee_feedback
+    references.find_by(author: invitee)
+  end
 end
