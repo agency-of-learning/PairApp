@@ -34,10 +34,7 @@ FactoryBot.define do
       status { PairRequest.statuses[:completed] }
 
       after(:create) do |pair_request|
-        create(:feedback, :completed, referenceable: pair_request, author: pair_request.author,
-          receiver: pair_request.invitee)
-        create(:feedback, :completed, referenceable: pair_request, author: pair_request.invitee,
-          receiver: pair_request.author)
+        pair_request.create_draft_feedback!
       end
     end
   end
