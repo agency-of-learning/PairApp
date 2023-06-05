@@ -17,6 +17,7 @@ class FeedbacksController < ApplicationController
     authorize @feedback
 
     if @feedback.update_with_json_answers(params)
+      @feedback.completed!
       flash[:notice] = 'Feedback was successfully submitted.'
       redirect_to feedback_path(@feedback)
     else
