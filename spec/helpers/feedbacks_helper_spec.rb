@@ -5,14 +5,17 @@ RSpec.describe FeedbacksHelper, type: :helper do
     let(:pair_request_invitee) { create(:user) }
     let(:random_user) { create(:user) }
     
-    let(:pair_request) { create(:pair_request, author: pair_request_author, invitee: pair_request_invitee, status: :completed) }
+    let(:pair_request) { create(:pair_request, :completed_with_feedback, author_id: pair_request_author.id, invitee_id: pair_request_invitee.id)}
+    # let(:pair_request) { create(:pair_request, author: pair_request_author, invitee: pair_request_invitee, status: :completed) }
     
-    let!(:author_feedback) { create(:feedback, author_id: pair_request_author.id, receiver_id: pair_request_invitee.id, referenceable: pair_request) }
-    let!(:invitee_feedback) { create(:feedback, author_id: pair_request_invitee.id, receiver_id: pair_request_author.id, referenceable: pair_request) }
+    # let!(:author_feedback) { create(:feedback, author_id: pair_request_author.id, receiver_id: pair_request_invitee.id, referenceable: pair_request) }
+    # let!(:invitee_feedback) { create(:feedback, author_id: pair_request_invitee.id, receiver_id: pair_request_author.id, referenceable: pair_request) }
     
  
     context "when current_user == feedback.author and pair_request status: :draft" do
+   
       it 'it renders a submit feedback link to the right feedback form ' do
+        binding.pry
         link = helper.pending_feedback_link(pair_request, pair_request_author)
         expect(link).to eq("<a class=\"btn bg-red-500\" href=\"/feedbacks/#{author_feedback.id}/edit\">Submit Feedback</a>")
       end
