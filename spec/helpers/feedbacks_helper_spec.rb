@@ -10,9 +10,9 @@ RSpec.describe FeedbacksHelper, type: :helper do
     let(:author_feedback) { pair_request.author_feedback }
     let(:invitee_feedback) { pair_request.invitee_feedback }
  
-    context "when current_user == feedback.author and pair_request status: :draft" do
+    context "when current_user is the author and the pair_request is a draft" do
    
-      it 'it renders a submit feedback link to the right feedback form ' do
+      it "it renders a submit feedback link to the correct feedback form" do
         link = helper.pending_feedback_link(pair_request, pair_request_author)
         expect(link).to eq("<a class=\"btn bg-red-500\" href=\"/feedbacks/#{author_feedback.id}/edit\">Submit Feedback</a>")
       end

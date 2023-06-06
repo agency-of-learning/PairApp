@@ -40,7 +40,7 @@ RSpec.describe Feedback do
     end
     let(:data) do
       {
-        'feedback' => {
+        feedback: {
           '0' => { 'answer' => 'Answer0' },
           '1' => { 'answer' => 'Answer1' },
           '2' => { 'answer' => 'Answer2' }
