@@ -39,38 +39,42 @@ class Feedback < ApplicationRecord
 
   # rubocop:disable Layout/LineLength
   DATA_OBJECT = {
-    'feedback' => [
-      strengths: {
-        'type' => 'long_text',
-        'answer' => '',
-        'question' => 'What did they do really well at? (i.e: explaining the problem, breaking down problem, clean code, etc…)',
-        'required' => true
+    feedback: [
+      {
+        slug: 'strengths',
+        type: 'long_text',
+        answer: '',
+        question: 'What did they do really well at? (i.e: explaining the problem, breaking down problem, clean code, etc…)',
+        required: true
       },
-      improvements: {
-        'type' => 'long_text',
-        'answer' => '',
-        'question' => 'Was there anything they could improve on? (like learning new concepts, design patterns, books, etc..)',
-        'required' => true
-       },
-      experience: {
-        'type' => 'long_text',
-        'answer' => '',
-        'question' => 'How was your overall experience pairing with this person?',
-        'required' => true
-       },
-      additional_notes: {
-        'type' => 'long_text',
-        'answer' => '',
-        'question' => 'Any additional notes/comments you’d like to leave?',
-        'required' => false
-       }
+      {
+        slug: 'improvements',
+        type: 'long_text',
+        answer: '',
+        question: 'Was there anything they could improve on? (like learning new concepts, design patterns, books, etc..)',
+        required: true
+      },
+      {
+        slug: 'experiences',
+        type: 'long_text',
+        answer: '',
+        question: 'How was your overall experience pairing with this person?',
+        required: true
+      },
+      {
+        slug: 'additional_notes',
+        type: 'long_text',
+        answer: '',
+        question: 'Any additional notes/comments you’d like to leave?',
+        required: false
+      }
     ]
   }.freeze
   # rubocop:enable Layout/LineLength
 
   def update_with_json_answers(params)
     merged_answers = []
-    DATA_OBJECT['feedback'].each_with_index do |question, index|
+    DATA_OBJECT[:feedback].each_with_index do |question, index|
       answer = params.dig('feedback', 'data', 'feedback', index.to_s, 'answer') || ''
       merged_answers << question.merge('answer' => answer)
     end
