@@ -28,6 +28,11 @@ begin
     { status: "pending", author: users[2], invitee: users[3], when: 1.day.from_now, duration: 45.minutes },
     { status: "rejected", author: users[1], invitee: users[2], when: 1.day.from_now, duration: 30.minutes },
     { status: "accepted", author: users[1], invitee: users[2], when: 5.day.from_now, duration: 60.minutes },
+    { status: "accepted", author: users[2], invitee: users[3], when: Time.now, duration: 60.minutes },
+    { status: "accepted", author: users[2], invitee: users[3], when: Time.now, duration: 60.minutes },
+    { status: "accepted", author: users[2], invitee: users[3], when: Time.now, duration: 60.minutes },
+    { status: "accepted", author: users[3], invitee: users[2], when: Time.now, duration: 60.minutes },
+    { status: "accepted", author: users[3], invitee: users[2], when: Time.now, duration: 60.minutes },
     { status: "rejected", author: users[3], invitee: users[1], when: 20.days.from_now, duration: 15.minutes },
   ]
 

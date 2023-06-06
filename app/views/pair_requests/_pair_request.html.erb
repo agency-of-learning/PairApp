@@ -24,6 +24,10 @@
   </p>
 
   <p>
+    <%= pending_feedback_link(pair_request, current_user) %>
+  </p>
+
+  <p>
     <strong>When:</strong>
     <%= pretty_datetime(pair_request.when) %>
   </p>

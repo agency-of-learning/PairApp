@@ -42,3 +42,6 @@
 # node_modules
 node_modules/
 /node_modules
+
+# ignore byebug history
+.byebug_history

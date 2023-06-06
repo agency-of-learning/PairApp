@@ -1,0 +1,13 @@
+<h1 class="font-bold text-4xl mb-2">Feedback</h1>
+
+<div class="mb-4">
+  <p><strong>Author:</strong> <%= @feedback.author.email %></p>
+  <p><strong>Receiver:</strong> <%= @feedback.receiver.email %></p>
+</div>
+
+<% @feedback.data["feedback"].each do |question_object| %>
+  <div class="mb-2">
+    <p class="font-bold"><%= question_object['question'] %></p>
+    <p><%= question_object['answer'].presence || 'No Response' %></p>
+  </div>
+<% end %>

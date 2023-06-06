@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  resources :feedbacks, only: %i[edit update show]
+
   devise_for :users, skip: [:registrations], controllers: { invitations: 'invitations' }
   as :user do
     get 'users/edit' => 'devise/registrations#edit', as: 'edit_user_registration'

@@ -1,0 +1,33 @@
+
+<%= form_with model: @feedback, local: true, html: { class: 'max-w-prose mx-auto px-4' } do |form| %>
+  <% if @feedback.errors.any? %>
+
+    <div class="mb-4">
+      <h2 class="text-red-700 text-lg">
+        Please fix <%= pluralize(@feedback.errors.count, "error") %>
+      </h2>
+
+      <ul>
+        <% @feedback.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label "overall_rating", class: "label label-text text-lg " %>
+    <%= form.number_field :overall_rating, class: "input input-bordered input-sm" %>
+  </div>
+
+  <% @feedback.data['feedback'].each_with_index do |object, index| %>
+    <div class="form-control mb-4">
+      <%= form.label "data[feedback][#{index}][answer]", object['question'], class: "label label-text text-lg" %>
+      <%= form.text_area "data[feedback][#{index}][answer]", value: object['answer'], required: object['required'], class: "textarea textarea-bordered" %>
+    </div>
+  <% end %>
+
+  <div class="form-control">
+    <%= form.submit "Update Feedback", class: "btn btn-primary btn-wide mx-auto" %>
+  </div>
+<% end %>

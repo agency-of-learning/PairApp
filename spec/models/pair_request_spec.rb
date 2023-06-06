@@ -7,8 +7,7 @@
 #  status     :integer          default("pending"), not null
 #  when       :datetime         not null
 #  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  author_id  :bigint           not null
+#  updated_at :datetime         not null author_id  :bigint           not null
 #  invitee_id :bigint           not null
 #
 # Indexes
@@ -118,11 +117,44 @@ RSpec.describe PairRequest do
       end
     end
 
-    context "when the request has started" do
+    context 'when the request has started' do
       let(:when_date) { Time.current }
 
       it 'returns true' do
-      expect(subject).to be_started
+        expect(subject).to be_started
+      end
+    end
+  end
+
+  describe '#create_draft_feedback!' do
+    it 'creates two feedback records' do
+      expect { subject.create_draft_feedback! }
+        .to change(Feedback, :count).by(2)
+    end
+
+    it 'creates a feedback record with the pair request author as the author' do
+      subject.create_draft_feedback!
+      expect(Feedback.exists?(author: subject.author)).to be true
+    end
+
+    it 'creates a feedback record with the pair request invitee as the author' do
+      subject.create_draft_feedback!
+      expect(Feedback.exists?(author: subject.invitee)).to be true
+    end
+  end
+
+  describe '#author_feedback' do
+    context 'when a feedback exists where the author is the pair request author' do
+      let!(:feedback) { create(:feedback, author: subject.author, referenceable: subject) }
+
+      it 'returns the feedback' do
+        expect(subject.author_feedback).to eq feedback
+      end
+    end
+
+    context 'when a feedback does not exist where the author is the pair request author' do
+      it 'returns nil' do
+        expect(subject.author_feedback).to be_nil
       end
     end
   end

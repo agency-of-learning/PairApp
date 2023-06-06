@@ -71,6 +71,10 @@ class User < ApplicationRecord
     authored_pair_requests.or(received_pair_requests)
   end
 
+  def my_feedback
+    authored_feedbacks.or(received_feedbacks)
+  end
+
   enum role: {
     member: 0,
     admin: 1
