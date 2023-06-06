@@ -15,7 +15,6 @@ class FeedbacksController < ApplicationController
 
   def update
     authorize @feedback
-    @feedback.completed!
     
     if @feedback.update_with_json_answers(params)
       flash[:notice] = 'Feedback was successfully submitted.'
