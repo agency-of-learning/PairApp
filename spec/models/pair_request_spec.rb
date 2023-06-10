@@ -158,4 +158,29 @@ RSpec.describe PairRequest do
       end
     end
   end
+
+  describe '#partner_for' do
+    let(:pair_request) { build(:pair_request, author:, invitee:) }
+    let(:author) { build(:user) }
+    let(:invitee) { build(:user) }
+    let(:random_user) { build(:user) }
+
+    context 'when method is passed the authoring user' do
+      it 'returns the invitee' do
+        expect(pair_request.partner_for(author)).to eq invitee
+      end
+    end
+
+    context 'when the method is passed the invitee user' do
+      it 'returns the author' do
+        expect(pair_request.partner_for(invitee)).to eq author
+      end
+    end
+
+    context 'when the method is passed a user that does not own the request' do
+      it 'returns nil' do
+        expect(pair_request.partner_for(random_user)).to be_nil
+      end
+    end
+  end
 end

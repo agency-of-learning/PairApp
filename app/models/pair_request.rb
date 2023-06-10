@@ -67,4 +67,12 @@ class PairRequest < ApplicationRecord
   def invitee_feedback
     references.find_by(author: invitee)
   end
+
+  def partner_for(user)
+    if author == user
+      invitee
+    elsif invitee == user
+      author
+    end
+  end
 end
