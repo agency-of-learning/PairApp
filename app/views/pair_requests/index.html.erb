@@ -24,24 +24,3 @@
     </div>
   </div>
 </div>
-<br>
-<br>
-<br>
-<div class="table">
-  <div class="row header">
-    <div class="cell py-3">Partner</div>
-    <div class="cell">When</div>
-    <div class="cell">Status</div>
-    <div class="cell">Action</div>
-  </div>
-
-  <% @pair_requests.each do |pair_request| %>
-    <div class="row">
-      <div class="cell py-3"><%= pair_request.partner_for(current_user).email %></div>
-      <div class="cell"><%= format_request_date(pair_request) %></div>
-      <div class="cell"><%= pair_request.status.capitalize %></div>
-      <div class="cell">Lorem Ipsum</div>
-    </div>
-  <% end %>
-</div>
-
