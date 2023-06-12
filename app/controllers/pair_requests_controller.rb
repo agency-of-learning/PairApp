@@ -1,4 +1,5 @@
 class PairRequestsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_pair_request, only: %i[show destroy]
 
   # GET /pair_requests or /pair_requests.json
