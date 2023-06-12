@@ -1,13 +1,26 @@
-<h1>Pair requests</h1>
-
 <%= link_to "New pair request", new_pair_request_path %>
 
-<div id="pair_requests">
-  <% @pair_requests.each do |pair_request| %>
-    <%= render pair_request %>
-    <p>
-      <%= link_to "Show this pair request", pair_request %>
-    </p>
-    <hr>
-  <% end %>
+<h1 class="text-2xl font-bold mb-4 text-center">My Requests</h1>
+
+<div class="mx-auto px-2">
+  <table class="w-full bg-white rounded-lg shadow-lg table-auto table-zebra text-xs sm:text-sm md:text-base border">
+    <thead>
+      <tr class="text-left bg-neutral-300">
+        <th class="px-4 py-2">Partner</th>
+        <th class="px-4 py-2">When</th>
+        <th class="px-4 py-2">Status</th>
+        <th class="px-4 py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pair_requests.each do |pair_request| %>
+        <tr>
+          <td class="border px-4 py-2"><%= pair_request.partner_for(current_user).email %></td>
+          <td class="border px-4 py-2"><%= format_request_date(pair_request) %></td>
+          <td class="border px-4 py-2"><%= pair_request.status.capitalize %></td>
+          <td class="border px-4 py-2">Lorem Ipsum</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
