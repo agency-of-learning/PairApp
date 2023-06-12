@@ -55,8 +55,8 @@ class StandupMeetingGroupsController < ApplicationController
     respond_to do |format|
       if @standup_meeting_group.destroy
         format.html do
-          redirect_to standup_meeting_group_url(@standup_meeting_group),
-            notice: 'Standup meeting group was successfully created.'
+          redirect_to standup_meeting_groups_url,
+            notice: 'Standup meeting group was successfully deleeted.'
         end
       else
         format.html { render :show, status: :unprocessable_entity }

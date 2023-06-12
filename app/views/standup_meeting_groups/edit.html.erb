@@ -1,4 +1,10 @@
+<h1>Editing pair request</h1>
+
+<%= render "form", standup_meeting_group: @standup_meeting_group %>
+
+<br>
+
 <div>
-  <h1 class="font-bold text-4xl">StandupMeetingGroups#edit</h1>
-  <p>Find me in app/views/standup_meeting_groups/edit.html.erb</p>
+  <%= link_to "Show this pair request", @standup_meeting_group %> |
+  <%= link_to "Back to pair requests", standup_meeting_groups_path %>
 </div>

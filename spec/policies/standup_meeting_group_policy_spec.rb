@@ -13,7 +13,7 @@ RSpec.describe StandupMeetingGroupPolicy, type: :policy do
     create(:standup_meeting_group_user, user:, standup_meeting_group:)
   end
 
-  permissions :index?, :create?, :update?, :destroy? do
+  permissions :create?, :update?, :destroy? do
     it 'denies access if the user is not an admin' do
       expect(subject).not_to permit(user, standup_meeting_group)
     end
