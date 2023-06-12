@@ -13,3 +13,67 @@
  *= require_tree .
  *= require_self
  */
+.table {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); 
+  border-radius: 4px; 
+  overflow: hidden;
+  border: #e5e7eb;
+}
+
+.row {
+  display: table-row;
+}
+
+.header {
+  font-weight: bold;
+  background-color: rgb(212,212,212)
+}
+
+.cell {
+  display: table-cell;
+  border: 1px solid black;
+  padding-left: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  border: 1px solid #e5e7eb;
+  border: 1px solid #e5e7eb;
+}
+
+.header .cell {
+  /* Remove borders for header cells */
+  border: none; 
+}
+
+.row:not(.header):nth-child(odd) {
+  background-color: rgb(242,242,242);
+}
+
+.cell:first-child {
+  /* Remove left border for first cell */
+  border-left: none; 
+}
+
+.cell:last-child {
+   /* Remove right border for last cell */
+  border-right: none;
+}
+
+
+@media (max-width: 768px) {
+  .table {
+
+  }
+
+  .row {
+
+  }
+
+  .cell {
+  }
+}
