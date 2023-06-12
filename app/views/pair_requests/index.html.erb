@@ -2,25 +2,25 @@
 
 <h1 class="text-2xl font-bold mb-4 text-center">My Requests</h1>
 
-<div class="mx-auto px-2">
-  <table class="w-full bg-white rounded-lg shadow-lg table-auto table-zebra text-xs sm:text-sm md:text-base border">
-    <thead>
-      <tr class="text-left bg-neutral-300">
-        <th class="px-4 py-2">Partner</th>
-        <th class="px-4 py-2">When</th>
-        <th class="px-4 py-2">Status</th>
-        <th class="px-4 py-2">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
+<div class="p-2">
+  <div class="table w-full border-2 border-black text-xs sm:text-sm md:text-base">
+    <div class="table-header-group">
+      <div class="table-row font-bold bg-neutral-400">
+        <div class="table-cell text-left border-r-2 border-black p-1">Partner</div>
+        <div class="table-cell text-left border-r-2 border-black p-1">When</div>
+        <div class="table-cell text-left border-r-2 border-black p-1">Status</div>
+        <div class="table-cell text-left p-1">Actions</div>
+      </div>
+    </div>
+    <div class="table-row-group">
       <% @pair_requests.each do |pair_request| %>
-        <tr>
-          <td class="border px-4 py-2"><%= pair_request.partner_for(current_user).email %></td>
-          <td class="border px-4 py-2"><%= format_request_date(pair_request) %></td>
-          <td class="border px-4 py-2"><%= pair_request.status.capitalize %></td>
-          <td class="border px-4 py-2">Lorem Ipsum</td>
-        </tr>
+        <div class="table-row odd:bg-white even:bg-neutral-100">
+          <div class="table-cell text-left border-r-2 border-black p-2 ">Daniel<br>Rassiner</div>
+          <div class="table-cell text-left border-r-2 border-black p-2"><%= format_request_date(pair_request) %></div>
+          <div class="table-cell text-left border-r-2 border-black p-2"><%= pair_request.status.capitalize %></div>
+          <div class="table-cell text-left p-2">Lorem<br>Ipsum</div>
+        </div>
       <% end %>
-    </tbody>
-  </table>
+    </div>
+  </div>
 </div>
