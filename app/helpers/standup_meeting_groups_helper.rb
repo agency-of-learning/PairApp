@@ -1,0 +1,2 @@
+module StandupMeetingGroupsHelper
+end

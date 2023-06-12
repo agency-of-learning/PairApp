@@ -1,0 +1,13 @@
+<h1>Standup Meeting Groups</h1>
+
+<%= link_to "New Standup Meeting Group", new_standup_meeting_group_path %>
+
+<div id="standup_meeting_group">
+  <% @standup_meeting_groups.each do |standup_meeting_group| %>
+    <%= render standup_meeting_group %>
+
+    <p>
+      <%= link_to "Show this standup meeting group", standup_meeting_group %>
+    </p>
+  <% end %>
+</div>

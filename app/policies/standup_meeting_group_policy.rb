@@ -1,10 +1,6 @@
 class StandupMeetingGroupPolicy < ApplicationPolicy
   alias_method :standup_meeting_group, :record
 
-  def index?
-    user.admin?
-  end
-
   def show?
     return true if user.admin?
     # NOTE: Might need to think of a way to optimize this later on.
