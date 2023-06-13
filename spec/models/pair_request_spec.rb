@@ -80,6 +80,37 @@ RSpec.describe PairRequest do
     end
   end
 
+  describe '#scopes' do
+    describe '.order_by_status' do
+      before do
+        create_list(:pair_request, 5) do |request, i|
+          request.status = described_class.statuses.keys[i]
+          request.save!
+        end
+      end
+
+      it 'has the pending request in the first position' do
+        expect(described_class.order_by_status.first).to be_pending
+      end
+
+      it 'has the accepted request in the second position' do
+        expect(described_class.order_by_status.second).to be_accepted
+      end
+
+      it 'has the completed request in the third position' do
+        expect(described_class.order_by_status.third).to be_completed
+      end
+
+      it 'has the expired request in the fourth position' do
+        expect(described_class.order_by_status.fourth).to be_expired
+      end
+
+      it 'has the rejected request in the fifth position' do
+        expect(described_class.order_by_status.fifth).to be_rejected
+      end
+    end
+  end
+
   describe '#duration' do
     it 'is valid' do
       expect(subject).to be_valid
