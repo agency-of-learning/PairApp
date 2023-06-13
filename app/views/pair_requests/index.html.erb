@@ -14,12 +14,12 @@
     </div>
     <div class="table-row-group">
       <% @pair_requests.each do |pair_request| %>
-        <div class="table-row odd:bg-white even:bg-neutral-100">
+        <%= link_to pair_request, class: "table-row odd:bg-white even:bg-neutral-100 hover:bg-neutral-200" do %>
           <div class="table-cell text-left border-r-2 border-black p-2 ">John<br>Doe</div>
           <div class="table-cell text-left border-r-2 border-black p-2"><%= format_request_date(pair_request) %></div>
           <div class="table-cell text-left border-r-2 border-black p-2"><%= pair_request.status.capitalize %></div>
           <div class="table-cell text-left p-2">Lorem<br>Ipsum</div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>
