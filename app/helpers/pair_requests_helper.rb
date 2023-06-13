@@ -7,6 +7,6 @@ module PairRequestsHelper
     format_time = start_time.to_fs(:hour_min_period)
     time_range = "#{format_time} - #{end_time.to_fs(:hour_min_period)}"
 
-    content_tag(:span, format_date) + tag.br + content_tag(:span, time_range)
+    content_tag(:p, format_date) + content_tag(:p, time_range)
   end
 end
