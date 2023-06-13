@@ -80,6 +80,37 @@ RSpec.describe PairRequest do
     end
   end
 
+  describe '#scopes' do
+    describe '.order_by_status' do
+      before do
+        create_list(:pair_request, 5) do |request, i|
+          request.status = described_class.statuses.keys[i]
+          request.save!
+        end
+      end
+
+      it 'has the pending request in the first position' do
+        expect(described_class.order_by_status.first).to be_pending
+      end
+
+      it 'has the accepted request in the second position' do
+        expect(described_class.order_by_status.second).to be_accepted
+      end
+
+      it 'has the completed request in the third position' do
+        expect(described_class.order_by_status.third).to be_completed
+      end
+
+      it 'has the expired request in the fourth position' do
+        expect(described_class.order_by_status.fourth).to be_expired
+      end
+
+      it 'has the rejected request in the fifth position' do
+        expect(described_class.order_by_status.fifth).to be_rejected
+      end
+    end
+  end
+
   describe '#duration' do
     it 'is valid' do
       expect(subject).to be_valid
@@ -155,6 +186,31 @@ RSpec.describe PairRequest do
     context 'when a feedback does not exist where the author is the pair request author' do
       it 'returns nil' do
         expect(subject.author_feedback).to be_nil
+      end
+    end
+  end
+
+  describe '#partner_for' do
+    let(:pair_request) { build(:pair_request, author:, invitee:) }
+    let(:author) { build(:user) }
+    let(:invitee) { build(:user) }
+    let(:random_user) { build(:user) }
+
+    context 'when method is passed the authoring user' do
+      it 'returns the invitee' do
+        expect(pair_request.partner_for(author)).to eq invitee
+      end
+    end
+
+    context 'when the method is passed the invitee user' do
+      it 'returns the author' do
+        expect(pair_request.partner_for(invitee)).to eq author
+      end
+    end
+
+    context 'when the method is passed a user that does not own the request' do
+      it 'returns nil' do
+        expect(pair_request.partner_for(random_user)).to be_nil
       end
     end
   end

@@ -45,6 +45,10 @@ class PairRequest < ApplicationRecord
     expired: 3,
     completed: 4
   }
+  STATUS_PRIORITIES = %i[pending accepted completed expired rejected].freeze
+
+  scope :order_by_date, -> { order(:when) }
+  scope :order_by_status, -> { in_order_of(:status, STATUS_PRIORITIES) }
 
   def started?
     self.when <= Time.current
@@ -66,5 +70,13 @@ class PairRequest < ApplicationRecord
 
   def invitee_feedback
     references.find_by(author: invitee)
+  end
+
+  def partner_for(user)
+    if author == user
+      invitee
+    elsif invitee == user
+      author
+    end
   end
 end
