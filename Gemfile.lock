@@ -294,7 +294,7 @@ GEM
       ffi (~> 1.12)
     ruby_http_client (3.5.5)
     rubyzip (2.3.2)
-    rufus-scheduler (3.8.2)
+    rufus-scheduler (3.9.1)
       fugit (~> 1.1, >= 1.1.6)
     sassc (2.4.0)
       ffi (~> 1.9)
