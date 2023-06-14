@@ -1,0 +1,17 @@
+<%= tag.li(id: dom_id(standup_meeting_group), class: "flex flex-row p-4 border-black border-2") do %>
+  <h1 class="basis-2/3"><%= standup_meeting_group.name %></h1>
+
+  <div class="flex justify-end basis-1/3 gap-x-5">
+    <%= turbo_frame_tag 'join_or_leave_standup_meeting_group' do %>
+      <%= button_to joined_text?(standup_meeting_group), standup_meeting_group_joins_path(standup_meeting_group), class: 'btn btn-success' %>
+    <% end %>
+
+    <% if policy(standup_meeting_group).edit? %>
+      <%= button_to "Edit", class: 'btn' %>
+    <% end %>
+
+    <% if policy(standup_meeting_group).destroy? %>
+      <%= button_to "Delete", class: 'btn btn-danger' %>
+    <% end %>
+  </div>
+<% end %>

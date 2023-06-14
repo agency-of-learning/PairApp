@@ -2,12 +2,8 @@
 
 <%= link_to "New Standup Meeting Group", new_standup_meeting_group_path %>
 
-<div id="standup_meeting_group">
-  <% @standup_meeting_groups.each do |standup_meeting_group| %>
-    <%= render standup_meeting_group %>
+<ul role="list" class="divide-y divide-gray-100">
+  <%= render partial: 'standup_meeting_group_list_item', collection: @standup_meeting_groups, as: :standup_meeting_group %>
+</ul>
 
-    <p>
-      <%= link_to "Show this standup meeting group", standup_meeting_group %>
-    </p>
-  <% end %>
-</div>
+

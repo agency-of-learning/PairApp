@@ -21,4 +21,8 @@ class StandupMeetingGroup < ApplicationRecord
   enum frequency: {
     daily: 0
   }
+
+  def joined?(user_id)
+    standup_meeting_groups_users.exists?(user_id:)
+  end
 end
