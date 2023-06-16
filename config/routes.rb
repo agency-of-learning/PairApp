@@ -19,12 +19,12 @@ Rails.application.routes.draw do
   # Shortcuts
   get 'landing/index'
 
-  resources :pair_requests, except: %i[edit update]
-
-  namespace :pair_requests do
-    resources :acceptances, only: :create
-    resources :completions, only: :create
-    resources :rejections, only: :create
+  resources :pair_requests, except: %i[edit update] do
+    scope module: :pair_requests do
+      resources :acceptances, only: :create
+      resources :completions, only: :create
+      resources :rejections, only: :create
+    end
   end
 
   resources :standup_meeting_groups
