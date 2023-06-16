@@ -1,0 +1,23 @@
+<%= turbo_stream.replace "pair_requests"  do%>
+  <div class="table w-full border-2 border-black text-xs sm:text-sm md:text-base">
+    <div class="table-header-group">
+      <div class="table-row font-bold bg-neutral-400 divide-x-2 divide-black">
+        <div class="table-cell text-left p-1">Partner</div>
+        <div class="table-cell text-left p-1">When</div>
+        <div class="table-cell text-left p-1">Status</div>
+        <div class="table-cell text-left p-1">Actions</div>
+      </div>
+    </div>
+    <% @pair_requests.each do |pair_request| %>
+      <%= link_to(
+        pair_request,
+        class: "table-row odd:bg-white even:bg-neutral-100 hover:bg-neutral-200 divide-x-2 divide-black"
+      ) do %>
+        <div class="table-cell text-left p-2 align-middle"><p>John</p><p>Doe</p></div>
+        <div class="table-cell text-left p-2 align-middle"><%= format_request_date(pair_request) %></div>
+        <div class="table-cell text-left p-2 align-middle"><p><%= pair_request.status.capitalize %></p></div>
+        <div class="table-cell text-left p-2 align-middle"><p>Lorem</p><p>Ipsum</p></div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
