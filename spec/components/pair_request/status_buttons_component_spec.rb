@@ -14,8 +14,8 @@ RSpec.describe PairRequest::StatusButtonsComponent, type: :component do
     it 'renders an Accept button and a Reject button' do
       render_inline(described_class.new(pair_request: pending_request, current_user:))
 
-      expect(page).to have_content('Accept')
-      expect(page).to have_content('Reject')
+      expect(page).to have_button('Accept')
+      expect(page).to have_button('Reject')
     end
   end
 
@@ -31,7 +31,7 @@ RSpec.describe PairRequest::StatusButtonsComponent, type: :component do
     it 'renders a Complete button' do
       render_inline(described_class.new(pair_request: request_awaiting_completion, current_user:))
 
-      expect(page).to have_content('Complete')
+      expect(page).to have_button('Complete')
     end
   end
 end
