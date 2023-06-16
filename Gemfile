@@ -19,6 +19,7 @@ gem 'sidekiq'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
+gem 'view_component'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
@@ -54,4 +55,4 @@ gem 'pundit', '~> 2.3'
 
 gem 'tailwindcss-rails', '~> 2.0'
 
-gem "jsbundling-rails", "~> 1.1"
+gem 'jsbundling-rails', '~> 1.1'

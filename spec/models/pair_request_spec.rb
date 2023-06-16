@@ -190,6 +190,42 @@ RSpec.describe PairRequest do
     end
   end
 
+  describe '#authored_feedback_for' do
+    context 'when called with the author user and a feedback exists' do
+      let!(:feedback) { create(:feedback, author: subject.author, referenceable: subject) }
+
+      it 'returns the feedback' do
+        expect(subject.authored_feedback_for(subject.author)).to eq feedback
+      end
+    end
+
+    context 'when called with the invitee user and a feedback exists' do
+      let!(:feedback) { create(:feedback, author: subject.invitee, referenceable: subject) }
+
+      it 'returns the feedback' do
+        expect(subject.authored_feedback_for(subject.invitee)).to eq feedback
+      end
+    end
+
+    context 'when a feedback does not exist for the user' do
+      it 'returns nil' do
+        expect(subject.authored_feedback_for(subject.invitee)).to be_nil
+      end
+    end
+
+    context 'when the user is neither the author or the invitee' do
+      let(:random_user) { build(:user) }
+
+      before do
+        create(:feedback, referenceable: subject)
+      end
+
+      it 'returns nil' do
+        expect(subject.authored_feedback_for(random_user)).to be_nil
+      end
+    end
+  end
+
   describe '#partner_for' do
     let(:pair_request) { build(:pair_request, author:, invitee:) }
     let(:author) { build(:user) }

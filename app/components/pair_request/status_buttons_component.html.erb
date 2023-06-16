@@ -1,0 +1,26 @@
+<% if policy(:accept).create? %>
+  <%= button_to(
+    "Accept",
+    pair_request_acceptances_path(pair_request),
+    class: "btn btn-link btn-xs sm:btn-sm capitalize hover:no-underline",
+    form_class: "w-fit"
+  ) %>
+<% end %>
+
+<% if policy(:complete).create? %>
+  <%= button_to(
+    "Complete",
+    pair_request_completions_path(pair_request),
+    class: "btn btn-link btn-xs sm:btn-sm capitalize hover:no-underline",
+    form_class: "w-fit"
+  ) %>
+<% end %>
+
+<% if policy(:reject).create? %>
+  <%= button_to(
+    "Reject",
+    pair_request_rejections_path(pair_request),
+    class: "btn btn-link btn-xs sm:btn-sm capitalize hover:no-underline",
+    form_class: "w-fit"
+  ) %>
+<% end %>

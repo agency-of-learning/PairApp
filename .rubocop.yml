@@ -290,6 +290,9 @@ Lint/LiteralInInterpolation:
   Enabled: true
 Lint/Loop:
   Enabled: true
+Lint/MissingSuper:
+  Exclude:
+    - 'app/components/**/*'
 Lint/ParenthesesAsGroupedExpression:
   Enabled: true
 Lint/RequireParentheses:
@@ -302,6 +305,9 @@ Rails/HasAndBelongsToMany:
   Enabled: false
 Rails/TimeZone:
   Enabled: false
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/components/**/*'
 RSpec/NamedSubject:
   Enabled: false
 RSpec/ExampleLength:
