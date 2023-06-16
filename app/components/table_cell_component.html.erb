@@ -1,0 +1,12 @@
+<% if container_link.present? %>
+  <%= link_to(
+    container_link,
+    class: "table-cell text-left p-2 align-middle"
+  ) do %>
+    <%= content %>
+  <% end %>
+<% else %>
+  <div class="table-cell text-left p-2 align-middle">
+    <%= content %>
+  </div>
+<% end %>
