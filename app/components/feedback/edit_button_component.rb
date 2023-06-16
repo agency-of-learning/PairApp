@@ -11,7 +11,6 @@ class Feedback::EditButtonComponent < ViewComponent::Base
   attr_reader :feedback, :current_user
 
   def render?
-    # feedback.present? && FeedbackPolicy.new(current_user, feedback).edit?
     feedback.present? && Pundit.policy(current_user, feedback).edit?
   end
 end
