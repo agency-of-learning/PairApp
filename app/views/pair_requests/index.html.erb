@@ -14,15 +14,28 @@
     </div>
     <div class="table-row-group">
       <% @pair_requests.each do |pair_request| %>
-        <%= link_to(
-          pair_request,
-          class: "table-row odd:bg-white even:bg-neutral-100 hover:bg-neutral-200 divide-x-2 divide-black"
-        ) do %>
-          <div class="table-cell text-left p-2 align-middle"><p>John</p><p>Doe</p></div>
-          <div class="table-cell text-left p-2 align-middle"><%= format_request_date(pair_request) %></div>
-          <div class="table-cell text-left p-2 align-middle"><p><%= pair_request.status.capitalize %></p></div>
-          <div class="table-cell text-left p-2 align-middle"><p>Lorem</p><p>Ipsum</p></div>
-        <% end %>
+        <div class="table-row odd:bg-white even:bg-neutral-100 hover:bg-neutral-200 divide-x-2 divide-black">
+
+          <%= render TableCellComponent.new(container_link: pair_request) do %>
+            <p>John</p><p>Doe</p>
+          <% end %>
+
+          <%= render TableCellComponent.new(container_link: pair_request) do %>
+            <%= format_request_date(pair_request) %>
+          <% end %>
+
+          <%= render TableCellComponent.new(container_link: pair_request) do %>
+            <%= pair_request.status.capitalize %>
+          <% end %>
+
+          <%= render(TableCellComponent.new) do %>
+            <%= render PairRequest::StatusButtonsComponent.new(pair_request:, current_user:) %>
+            <%= render Feedback::EditButtonComponent.new(
+              feedback: pair_request.authored_feedback_for(current_user),
+              current_user:
+            ) %>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
