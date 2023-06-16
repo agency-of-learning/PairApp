@@ -83,4 +83,8 @@ class PairRequest < ApplicationRecord
       author
     end
   end
+
+  scope :past, -> { where('status = ?', 1) }
+
+  scope :upcoming, -> { where('status = ?', 2) }
 end

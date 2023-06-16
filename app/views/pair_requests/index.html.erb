@@ -3,36 +3,36 @@
 <h1 class="text-2xl font-bold mb-4 text-center">My Requests</h1>
 
 <div class="p-2">
-  <div class="flex">
-    <div class="relative">
-      <div for="" class="p-2 border-2 pr-2 mr-1 rounded-tr-lg border-black"><%= link_to 'Upcoming','#' , class:'cursor-pointer' %></div>
-    </div>
-    <div class="relative">
-      <div for="tab2" class="p-2 border-2 border-b-1 rounded-tr-lg border-black"><%= link_to 'Past','#' , class:'cursor-pointer' %></div>
-    </div>
-  </div>
 
-  <div class="table w-full border-2 border-black text-xs sm:text-sm md:text-base">
-    <div class="table-header-group">
-      <div class="table-row font-bold bg-neutral-400 divide-x-2 divide-black">
-        <div class="table-cell text-left p-1">Partner</div>
-        <div class="table-cell text-left p-1">When</div>
-        <div class="table-cell text-left p-1">Status</div>
-        <div class="table-cell text-left p-1">Actions</div>
-      </div>
+  <%=  turbo_frame_tag "pair_requests" do %>
+
+    <div class="tabs">
+      <%= link_to 'Upcoming', pair_requests_path() , method: :get, class:'tab tab-bordered', data:{turbo_action: "advance"}  %>
+      <%= link_to 'Past', pair_requests_path(past: true) , class:'tab tab-bordered', data:{turbo_stream: true}  %> 
     </div>
-    <% @pair_requests.each do |pair_request| %>
-      <%= link_to(
-        pair_request,
-        class: "table-row odd:bg-white even:bg-neutral-100 hover:bg-neutral-200 divide-x-2 divide-black"
-      ) do %>
-        <div class="table-cell text-left p-2 align-middle"><p>John</p><p>Doe</p></div>
-        <div class="table-cell text-left p-2 align-middle"><%= format_request_date(pair_request) %></div>
-        <div class="table-cell text-left p-2 align-middle"><p><%= pair_request.status.capitalize %></p></div>
-        <div class="table-cell text-left p-2 align-middle"><p>Lorem</p><p>Ipsum</p></div>
+
+    <div class="table w-full border-2 border-black text-xs sm:text-sm md:text-base">
+      <div class="table-header-group">
+        <div class="table-row font-bold bg-neutral-400 divide-x-2 divide-black">
+          <div class="table-cell text-left p-1">Partner</div>
+          <div class="table-cell text-left p-1">When</div>
+          <div class="table-cell text-left p-1">Status</div>
+          <div class="table-cell text-left p-1">Actions</div>
+        </div>
+      </div>
+      <% @pair_requests.each do |pair_request| %>
+        <%= link_to(
+          pair_request,
+          class: "table-row odd:bg-white even:bg-neutral-100 hover:bg-neutral-200 divide-x-2 divide-black"
+        ) do %>
+          <div class="table-cell text-left p-2 align-middle"><p>John</p><p>Doe</p></div>
+          <div class="table-cell text-left p-2 align-middle"><%= format_request_date(pair_request) %></div>
+          <div class="table-cell text-left p-2 align-middle"><p><%= pair_request.status.capitalize %></p></div>
+          <div class="table-cell text-left p-2 align-middle"><p>Lorem</p><p>Ipsum</p></div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
 
 
