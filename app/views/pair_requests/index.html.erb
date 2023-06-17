@@ -1,14 +1,19 @@
 <%= link_to "New pair request", new_pair_request_path %>
+<div data-controller="hello"></div>
 
 <h1 class="text-2xl font-bold mb-4 text-center">My Requests</h1>
 
 <div class="p-2">
+ <%#= link_to 'upcoming', pair_requests_path, data: { turbo_action: 'replace', turbo_frame: 'pair_requests' } %> <br>
+
+
 
   <%=  turbo_frame_tag "pair_requests" do %>
-
+    <%= link_to 'Past', pair_requests_path(filter: 'past'), data: { turbo_action: 'replace', turbo_frame: 'pair_requests' } %>
+  
+  <%= link_to 'Upcoming', pair_requests_path(filter: 'upcoming'), data: { turbo_action: 'replace', turbo_frame: 'pair_requests' } %>
     <div class="tabs">
-      <%= link_to 'Upcoming', pair_requests_path() , method: :get, class:'tab tab-bordered', data:{turbo_action: "advance"}  %>
-      <%= link_to 'Past', pair_requests_path(past: true) , class:'tab tab-bordered', data:{turbo_stream: true}  %> 
+      <%#= link_to 'Past', pair_requests_path(past: true) , class:'tab tab-bordered', data:{turbo_stream: true}  %> 
     </div>
 
     <div class="table w-full border-2 border-black text-xs sm:text-sm md:text-base">
@@ -34,5 +39,7 @@
     </div>
   <% end %>
 </div>
+
+
 
 
