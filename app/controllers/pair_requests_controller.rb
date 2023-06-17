@@ -12,8 +12,7 @@ class PairRequestsController < ApplicationController
     when 'upcoming'
       @pair_requests = policy_scope(PairRequest).upcoming.order_by_status.order_by_date
     end
-
-    @pair_requests = policy_scope(PairRequest).order_by_status.order_by_date.past
+    @pair_requests = policy_scope(PairRequest).order_by_status.order_by_date
 
    respond_to do |format|
     format.html
@@ -23,11 +22,6 @@ class PairRequestsController < ApplicationController
       end
     }
    end
-    
-    # if params[:past]
-    #   @pair_requests = policy_scope(PairRequest).past.order_by_status.order_by_date.past
-    # end
-    # @pair_requests ||= policy_scope(PairRequest).upcoming.order_by_status.order_by_date
   end
 
   # GET /pair_requests/1 or /pair_requests/1.json
