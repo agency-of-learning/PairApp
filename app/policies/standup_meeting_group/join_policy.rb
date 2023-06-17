@@ -6,6 +6,6 @@ class StandupMeetingGroup::JoinPolicy < ApplicationPolicy
   end
 
   def destroy?
-    true
+    user.admin? || record.user == user
   end
 end
