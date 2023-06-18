@@ -1,3 +1,3 @@
-<%# <%= helpers.turbo_frame_tag dom_id(@standup_meeting_group, :join_or_leave) do %>
+<%#= turbo_frame_tag dom_id(@standup_meeting_group, :join_or_leave) do %>
   <%= button_to 'Leave', standup_meeting_group_join_path(@standup_meeting_group, @standup_meeting_group_user), method: :delete, class: 'btn btn-danger' %>
-<%# <% end %>
+<%# end %>
