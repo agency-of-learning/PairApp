@@ -1,5 +1,15 @@
-<%= render @pair_request %>
+<h1 class="text-3xl font-bold mb-8 text-center">Pair Request</h1>
 
-<div>
-  <%= link_to "Back to pair requests", pair_requests_path %>
+<div class="flex justify-center items-center flex-col gap-y-6">
+  <div class="grid grid-cols-2 gap-y-4">
+    <div>Partner</div>
+    <div class="font-bold">John Doe</div>
+    <div>When</div>
+    <div class="font-bold"><%= format_request_date(@pair_request) %></div>
+    <div>Duration</div>
+    <div class="font-bold"><%= pluralize(ActiveSupport::Duration.seconds(@pair_request.duration).in_minutes.to_i, "minutes") %></div>
+  </div>
+  <div class="flex gap-16">
+    <%= render PairRequest::StatusButtonsComponent.new(pair_request: @pair_request, current_user:) %>
+  </div>
 </div>

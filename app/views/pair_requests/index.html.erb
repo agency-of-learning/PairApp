@@ -29,7 +29,7 @@
           <% end %>
 
           <%= render(TableCellComponent.new) do %>
-            <%= render PairRequest::StatusButtonsComponent.new(pair_request:, current_user:) %>
+            <%= render PairRequest::StatusButtonsComponent.new(pair_request:, current_user:, style: :link) %>
             <%= render Feedback::EditButtonComponent.new(
               feedback: pair_request.authored_feedback_for(current_user),
               current_user:
