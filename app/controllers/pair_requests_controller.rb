@@ -3,25 +3,11 @@ class PairRequestsController < ApplicationController
 
   # GET /pair_requests or /pair_requests.json
   def index
-    Rails.logger.info "Turbo-Frame: #{request.headers['Turbo-Frame']}"
-
-    case params[:filter]
-    when 'past'
+    if params[:filter] == 'past'
       @pair_requests = policy_scope(PairRequest).past.order_by_status.order_by_date
       render "index", locals: { pair_requests: @pair_requests }
-    when 'upcoming'
-      @pair_requests = policy_scope(PairRequest).upcoming.order_by_status.order_by_date
     end
-    @pair_requests = policy_scope(PairRequest).order_by_status.order_by_date
-
-   respond_to do |format|
-    format.html
-    format.turbo_stream {
-      if request.headers["Turbo-Frame"]
-        render partial: "pair_requests_table", locals: { pair_requests: @pair_requests }
-      end
-    }
-   end
+    @pair_requests = policy_scope(PairRequest).upcoming.order_by_status.order_by_date
   end
 
   # GET /pair_requests/1 or /pair_requests/1.json
