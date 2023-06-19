@@ -6,10 +6,12 @@
   <div class="table w-full border-2 border-black text-md md:text-base">
     <div class="table-header-group">
       <div class="table-row font-bold bg-neutral-400 divide-x-2 divide-black">
-        <div class="table-cell text-left p-1">Partner</div>
-        <div class="table-cell text-left p-1">When</div>
-        <div class="table-cell text-left p-1">Status</div>
-        <div class="text-left p-1 hidden sm:table-cell">Actions</div>
+        <%= render TableCellComponent.new do %>Partner<% end %>
+        <%= render TableCellComponent.new do %>When<% end %>
+        <%= render TableCellComponent.new do %>Status<% end %>
+        <%= render TableCellComponent.new(classes: 'hidden sm:table-cell') do %>
+          Actions
+        <% end %>
       </div>
     </div>
     <div class="table-row-group">
