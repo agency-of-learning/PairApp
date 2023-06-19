@@ -13,3 +13,7 @@
     <%= render PairRequest::StatusButtonsComponent.new(pair_request: @pair_request, current_user:) %>
   </div>
 </div>
+<div class="flex flex-col p-2 gap-8 lg:flex-row lg:justify-center max-w-6xl mx-auto">
+  <%= render Feedback::ContainerComponent.new(feedback: @pair_request.invitee_feedback, current_user:) %>
+  <%= render Feedback::ContainerComponent.new(feedback: @pair_request.author_feedback, current_user:) %>
+</div>
