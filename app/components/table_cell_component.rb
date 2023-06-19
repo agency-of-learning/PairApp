@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TableCellComponent < ViewComponent::Base
-  def initialize(container_link: nil, classes: nil)
+  def initialize(container_link: nil, classes: 'table-cell')
     @container_link = container_link
     @classes = classes
   end
