@@ -3,32 +3,32 @@
 <h1 class="text-2xl font-bold mb-4 text-center">My Requests</h1>
 
 <div class="p-2">
-  <div class="table w-full border-2 border-black text-xs sm:text-sm md:text-base">
+  <div class="table w-full border-2 border-black text-md md:text-base">
     <div class="table-header-group">
       <div class="table-row font-bold bg-neutral-400 divide-x-2 divide-black">
         <div class="table-cell text-left p-1">Partner</div>
         <div class="table-cell text-left p-1">When</div>
         <div class="table-cell text-left p-1">Status</div>
-        <div class="text-left p-1 hidden md:table-cell">Actions</div>
+        <div class="text-left p-1 hidden sm:table-cell">Actions</div>
       </div>
     </div>
     <div class="table-row-group">
       <% @pair_requests.each do |pair_request| %>
         <div class="table-row odd:bg-white even:bg-neutral-100 hover:bg-neutral-200 divide-x-2 divide-black">
 
-          <%= render TableCellComponent.new(container_link: pair_request) do %>
+          <%= render TableCellComponent.new(container_link: pair_request, classes: 'table-cell') do %>
             <p>John</p><p>Doe</p>
           <% end %>
 
-          <%= render TableCellComponent.new(container_link: pair_request) do %>
+          <%= render TableCellComponent.new(container_link: pair_request, classes: 'table-cell') do %>
             <%= format_request_date(pair_request) %>
           <% end %>
 
-          <%= render TableCellComponent.new(container_link: pair_request) do %>
+          <%= render TableCellComponent.new(container_link: pair_request, classes: 'table-cell') do %>
             <%= pair_request.status.capitalize %>
           <% end %>
 
-          <%= render(TableCellComponent.new(hidden_on_mobile: true)) do %>
+          <%= render(TableCellComponent.new(classes: 'hidden sm:table-cell')) do %>
             <%= render PairRequest::StatusButtonsComponent.new(pair_request:, current_user:) %>
             <%= render Feedback::EditButtonComponent.new(
               feedback: pair_request.authored_feedback_for(current_user),

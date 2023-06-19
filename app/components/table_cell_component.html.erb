@@ -1,12 +1,12 @@
 <% if container_link.present? %>
   <%= link_to(
     container_link,
-    class: "#{hidden_on_mobile ? "hidden sm:table-cell" : "table-cell"} text-left p-2 align-middle"
+    class: "#{classes} text-left p-2 align-middle"
   ) do %>
     <%= content %>
   <% end %>
 <% else %>
-  <div class="text-left p-2 align-middle <%= hidden_on_mobile ? "hidden sm:table-cell" : "table-cell" %>">
+  <div class="text-left p-2 align-middle <%= classes %>">
     <%= content %>
   </div>
 <% end %>
