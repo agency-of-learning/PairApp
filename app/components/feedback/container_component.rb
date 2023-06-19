@@ -12,9 +12,9 @@ class Feedback::ContainerComponent < ViewComponent::Base
     feedback.present?
   end
 
-  def heading
+  def heading(class:)
     text = feedback.author == user ? 'Given Feedback' : 'Received Feedback'
-    content_tag(:h2, text)
+    content_tag(:h2, text, class:)
   end
 
   def questions

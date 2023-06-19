@@ -1,6 +1,6 @@
 <div class="p-2 border shadow-lg rounded-lg max-w-prose mx-auto flex-1">
   <div class="flex justify-between items-center">
-    <%= heading %>
+    <%= heading(class: "text-lg") %>
     <% if Pundit.policy(user, feedback).edit? %>
       <%= link_to "Edit", edit_feedback_path(feedback), class: 'btn btn-primary btn-sm capitalize' %>
     <% end %>
