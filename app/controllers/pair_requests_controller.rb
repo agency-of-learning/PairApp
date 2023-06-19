@@ -12,11 +12,6 @@ class PairRequestsController < ApplicationController
     authorize @pair_request
   end
 
-  # GET /pair_requests/new
-  def new
-    @pair_request = PairRequest.new
-  end
-
   # POST /pair_requests or /pair_requests.json
   def create
     @pair_request = current_user.authored_pair_requests.new(pair_request_params)
