@@ -28,7 +28,7 @@
 
       <div class="flex justify-between space-x-4 align-middle">
         <%= form.label :duration, 'Duration (minutes)', class: "label label-text"  %>
-        <%= form.number_field :duration, in: 15..180, step: 15, required: true, class: 'input input-primary input-md w-36' %>
+        <%= form.number_field :duration, value: 15, in: 15..180, step: 15, required: true, class: 'input input-primary input-md w-36' %>
       </div>
 
       <div class='ml-auto'>
