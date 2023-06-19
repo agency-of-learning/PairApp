@@ -3,6 +3,7 @@ class PairRequestsController < ApplicationController
 
   # GET /pair_requests or /pair_requests.json
   def index
+    @pair_request = PairRequest.new
     @pair_requests = policy_scope(PairRequest).order_by_status.order_by_date
   end
 
