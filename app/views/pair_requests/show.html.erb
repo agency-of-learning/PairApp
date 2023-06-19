@@ -5,7 +5,7 @@
     <div class="flex flex-col justify-center items-center gap-y-6 lg:flex-row lg:justify-between lg:shadow-lg lg:border lg:rounded-md lg:py-2 lg:px-4">
       <div class="grid grid-cols-2 gap-y-4 items-center lg:flex">
         <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6">Partner</div>
-        <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6">John Doe</div>
+        <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6"><%= @pair_request.partner_for(current_user).email %></div>
         <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6">When</div>
         <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6"><%= format_request_date(@pair_request) %></div>
         <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6">Duration</div>
