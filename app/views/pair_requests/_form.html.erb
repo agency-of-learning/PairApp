@@ -24,10 +24,9 @@
     <%= form.datetime_field :when %>
   </div>
 
-  <div class="flex justify-between space-x-4 align-middle relative">
-    <%= form.label :duration, 'Duration', class: "label label-text"  %>
-    <%= form.number_field :duration, in: 15..180, step: 15, class: 'input input-md input-primary' %>
-    <span class="absolute top-3 right-12"> minutes</span>
+  <div class="flex justify-between space-x-4 align-middle">
+    <%= form.label :duration, 'Duration (minutes)', class: "label label-text"  %>
+    <%= form.number_field :duration, in: 15..180, step: 15, class: 'input input-primary input-md w-36' %>
   </div>
 
   <div class='btn btn-primary ml-auto'>
