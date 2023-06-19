@@ -6,10 +6,16 @@
   <div class="table w-full border-2 border-black text-md md:text-base">
     <div class="table-header-group">
       <div class="table-row font-bold bg-neutral-400 divide-x-2 divide-black">
-        <%= render TableCellComponent.new do %>Partner<% end %>
-        <%= render TableCellComponent.new do %>When<% end %>
-        <%= render TableCellComponent.new do %>Status<% end %>
-        <%= render TableCellComponent.new(classes: 'hidden sm:table-cell') do %>
+        <%= render TableCellComponent.new(classes: 'table-cell text-center') do %>
+          Partner
+        <% end %>
+        <%= render TableCellComponent.new(classes: 'table-cell text-center') do %>
+          When
+        <% end %>
+        <%= render TableCellComponent.new(classes: 'table-cell text-center') do %>
+          Status
+        <% end %>
+        <%= render TableCellComponent.new(classes: 'hidden sm:table-cell text-center') do %>
           Actions
         <% end %>
       </div>
