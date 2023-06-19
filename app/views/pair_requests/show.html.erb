@@ -1,7 +1,7 @@
 <div class="p-4 mx-auto max-w-6xl">
-  <h1 class="text-3xl font-bold mb-8 text-center lg:text-left">Pair Request</h1>
+  <h1 class="text-3xl font-bold mb-4 text-center lg:text-left lg:mb-2">Pair Request</h1>
 
-  <div class="py-4">
+  <div class="py-4 lg:mb-2">
     <div class="flex flex-col justify-center items-center gap-y-6 lg:flex-row lg:justify-between lg:shadow-lg lg:border lg:rounded-md lg:py-2 lg:px-4">
       <div class="grid grid-cols-2 gap-y-4 items-center lg:flex">
         <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6">Partner</div>
@@ -16,7 +16,7 @@
       </div>
     </div>
   </div>
-  <div class="flex flex-col p-2 gap-8 lg:flex-row lg:justify-center">
+  <div class="flex flex-col gap-8 lg:flex-row lg:justify-center">
     <%= render Feedback::ContainerComponent.new(feedback: @pair_request.invitee_feedback, current_user:) %>
     <%= render Feedback::ContainerComponent.new(feedback: @pair_request.author_feedback, current_user:) %>
   </div>
