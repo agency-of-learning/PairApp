@@ -23,16 +23,16 @@
 
       <div class="flex justify-between space-x-4 align-middle">
         <%= form.label :when, class: "label label-text" %>
-        <%= form.datetime_field :when %>
+        <%= form.datetime_field :when, required: true %>
       </div>
 
       <div class="flex justify-between space-x-4 align-middle">
         <%= form.label :duration, 'Duration (minutes)', class: "label label-text"  %>
-        <%= form.number_field :duration, in: 15..180, step: 15, class: 'input input-primary input-md w-36' %>
+        <%= form.number_field :duration, in: 15..180, step: 15, required: true, class: 'input input-primary input-md w-36' %>
       </div>
 
-      <div class='btn btn-primary ml-auto'>
-        <%= form.submit %>
+      <div class='ml-auto'>
+        <%= form.submit "Create Pair Request", class: 'btn btn-primary' %>
       </div>
     </div>
   <% end %>

@@ -28,7 +28,8 @@ class PairRequestsController < ApplicationController
           redirect_to pair_request_url(@pair_request),
             notice: 'Pair request was successfully created.'
         end
-        format.turbo_stream do 
+        format.turbo_stream do
+          @new_pair_request = @pair_request
           @pair_request = PairRequest.new
           render :create
         end
