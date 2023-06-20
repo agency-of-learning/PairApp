@@ -3,17 +3,13 @@ class PairRequestsController < ApplicationController
 
   # GET /pair_requests or /pair_requests.json
   def index
+    @pair_request = PairRequest.new
     @pair_requests = policy_scope(PairRequest).order_by_status.order_by_date
   end
 
   # GET /pair_requests/1 or /pair_requests/1.json
   def show
     authorize @pair_request
-  end
-
-  # GET /pair_requests/new
-  def new
-    @pair_request = PairRequest.new
   end
 
   # POST /pair_requests or /pair_requests.json
@@ -27,8 +23,14 @@ class PairRequestsController < ApplicationController
           redirect_to pair_request_url(@pair_request),
             notice: 'Pair request was successfully created.'
         end
+        format.turbo_stream do
+          @persisted_pair_request = @pair_request
+          @pair_request = PairRequest.new
+          render :create
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream { render :create }
       end
     end
   end
