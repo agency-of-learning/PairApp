@@ -24,7 +24,7 @@ class PairRequestsController < ApplicationController
             notice: 'Pair request was successfully created.'
         end
         format.turbo_stream do
-          @new_pair_request = @pair_request
+          @persisted_pair_request = @pair_request
           @pair_request = PairRequest.new
           render :create
         end
