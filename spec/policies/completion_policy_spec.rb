@@ -4,12 +4,16 @@ RSpec.describe PairRequest::CompletionPolicy do
 
   let(:author) { build(:user) }
   let(:invitee) { build(:user) }
-  let(:future_pair_request) { build(:pair_request, author:, status: :accepted, when: Date.tomorrow) }
+  let(:future_pair_request) do
+    build(:pair_request, author:, status: :accepted, when: Date.tomorrow)
+  end
   let(:pending_pair_request) { build(:pair_request, author:, when: Date.yesterday) }
-  let(:started_pair_request) { build(:pair_request, author:, invitee:, status: :accepted, when: Date.yesterday) }
+  let(:started_pair_request) do
+    build(:pair_request, author:, invitee:, status: :accepted, when: Date.yesterday)
+  end
 
   permissions :create? do
-    context "when the user is the author" do
+    context 'when the user is the author' do
       it 'grants permission if the request is accepted and in the past' do
         expect(subject).to permit(author, started_pair_request)
       end
@@ -23,7 +27,7 @@ RSpec.describe PairRequest::CompletionPolicy do
       end
     end
 
-    context "when the user is the invitee" do
+    context 'when the user is the invitee' do
       it 'denies permission' do
         expect(subject).not_to permit(invitee, started_pair_request)
       end

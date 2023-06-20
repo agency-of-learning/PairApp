@@ -1,18 +1,20 @@
 require 'rails_helper'
-RSpec.describe FeedbacksHelper, type: :helper do
+RSpec.describe FeedbacksHelper do
   describe 'pending_feedback_link' do
     let(:pair_request_author) { create(:user) }
     let(:pair_request_invitee) { create(:user) }
     let(:random_user) { create(:user) }
-    
-    let(:pair_request) { create(:pair_request, :completed_with_feedback, author_id: pair_request_author.id, invitee_id: pair_request_invitee.id)}
+
+    let(:pair_request) do
+      create(:pair_request, :completed_with_feedback, author_id: pair_request_author.id,
+        invitee_id: pair_request_invitee.id)
+    end
 
     let(:author_feedback) { pair_request.author_feedback }
     let(:invitee_feedback) { pair_request.invitee_feedback }
- 
-    context "when current_user is the author and the pair_request is a draft" do
-   
-      it "it renders a submit feedback link to the correct feedback form" do
+
+    context 'when current_user is the author and the pair_request is a draft' do
+      it 'renders a submit feedback link to the correct feedback form' do
         link = helper.pending_feedback_link(pair_request, pair_request_author)
         expect(link).to eq("<a class=\"btn bg-red-500\" href=\"/feedbacks/#{author_feedback.id}/edit\">Submit Feedback</a>")
       end
@@ -24,7 +26,7 @@ RSpec.describe FeedbacksHelper, type: :helper do
 
       it "Doesn't render a submit feedback link if current_user doesn't have a pending feedback" do
         link = helper.pending_feedback_link(pair_request, random_user)
-        expect(link).to eq(nil)
+        expect(link).to be_nil
       end
     end
   end

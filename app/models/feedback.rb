@@ -96,4 +96,3 @@ class Feedback < ApplicationRecord
     Time.current.after?(locked_at)
   end
 end
-
