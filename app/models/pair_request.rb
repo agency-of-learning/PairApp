@@ -43,9 +43,10 @@ class PairRequest < ApplicationRecord
     rejected: 1,
     accepted: 2,
     expired: 3,
-    completed: 4
+    completed: 4,
+    cancelled: 5
   }
-  STATUS_PRIORITIES = %i[pending accepted completed expired rejected].freeze
+  STATUS_PRIORITIES = %i[pending accepted completed cancelled expired rejected].freeze
 
   scope :order_by_date, -> { order(:when) }
   scope :order_by_status, -> { in_order_of(:status, STATUS_PRIORITIES) }
