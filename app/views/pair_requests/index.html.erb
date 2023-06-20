@@ -19,9 +19,9 @@
         <% @pair_requests.each do |pair_request| %>
           <div class="table-row odd:bg-white even:bg-neutral-100 hover:bg-neutral-200 divide-x-2 divide-black">
 
-            <%= render TableCellComponent.new(container_link: pair_request) do %>
-              <p>John</p><p>Doe</p>
-            <% end %>
+          <%= render TableCellComponent.new(container_link: pair_request) do %>
+            <%= pair_request.partner_for(current_user).email %>
+          <% end %>
 
             <%= render TableCellComponent.new(container_link: pair_request) do %>
               <%= format_request_date(pair_request) %>
