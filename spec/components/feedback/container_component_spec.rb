@@ -4,8 +4,9 @@ require 'rails_helper'
 
 RSpec.describe Feedback::ContainerComponent, type: :component do
   let(:current_user) { create(:user) }
-  let(:authored_feedback) { create(:feedback, author: current_user) }
-  let(:received_feedback) { create(:feedback, receiver: current_user) }
+  let(:authored_feedback) { create(:feedback, author: current_user, status:) }
+  let(:received_feedback) { create(:feedback, receiver: current_user, status:) }
+  let(:status) { :draft }
 
   context 'when no feedback is passed in' do
     it 'renders nothing' do
@@ -40,6 +41,25 @@ RSpec.describe Feedback::ContainerComponent, type: :component do
       render_inline(described_class.new(feedback: received_feedback, current_user:))
 
       expect(page).not_to have_link('Edit')
+    end
+  end
+
+  context 'when the feedback is not completed' do
+    it "renders 'Awaiting completion of feedback.'" do
+      render_inline(described_class.new(feedback: authored_feedback, current_user:))
+
+      expect(page).to have_content('Awaiting completion of feedback.')
+    end
+  end
+
+  context 'when the feedback is completed' do
+    let(:status) { :completed }
+
+    it 'renders the feedback rating out of 10' do
+      render_inline(described_class.new(feedback: authored_feedback, current_user:))
+
+      expected_rating = authored_feedback.overall_rating
+      expect(page).to have_content("#{expected_rating}/10")
     end
   end
 end

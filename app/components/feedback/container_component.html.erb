@@ -5,8 +5,14 @@
       <%= link_to "Edit", edit_feedback_path(feedback), class: 'btn btn-primary btn-sm capitalize' %>
     <% end %>
   </div>
-  <div class="p-2">
-    <p><span class="font-bold">Rating:</span> <%= feedback.overall_rating %>/10</p>
+  <div>
+    <% if feedback.completed? %>
+      <div class="p-2">
+        <p><span class="font-bold">Rating:</span> <%= feedback.overall_rating %>/10</p>
+      </div>
+      <%= render Feedback::QuestionComponent.with_collection(questions) %>
+    <% else %>
+      <p class="p-4">Awaiting completion of feedback.</p>
+    <% end %>
   </div>
-  <%= render Feedback::QuestionComponent.with_collection(questions) %>
 </div>
