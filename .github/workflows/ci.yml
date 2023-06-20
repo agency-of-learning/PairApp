@@ -44,7 +44,7 @@ jobs:
           yarn install --frozen-lockfile
 
       - name: Linter Check
-        run: bundle exec rubocop --lint
+        run: rubocop --lint
 
       - name: Run tests
         env:
