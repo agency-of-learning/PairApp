@@ -17,7 +17,7 @@
 
   <div>
     <%= form.label "overall_rating", class: "label label-text text-lg " %>
-    <%= form.number_field :overall_rating, class: "input input-bordered input-sm" %>
+    <%= form.number_field :overall_rating, class: "input input-bordered input-sm", min: 0, max: 10 %>
   </div>
 
   <% @feedback.data['feedback'].each_with_index do |object, index| %>
