@@ -35,7 +35,7 @@ class Feedback < ApplicationRecord
     completed: 1
   }
 
-  validates :overall_rating, inclusion: { in: 0..100, message: 'must be in range 0-100' }
+  validates :overall_rating, inclusion: { in: 0..100, message: 'must be in range 0-10' }
 
   # rubocop:disable Layout/LineLength
   DATA_OBJECT = {
@@ -72,6 +72,10 @@ class Feedback < ApplicationRecord
   }.freeze
   # rubocop:enable Layout/LineLength
 
+  def overall_rating
+    super / 10
+  end
+
   def update_with_json_answers(params)
     merged_answers = []
     DATA_OBJECT[:feedback].each_with_index do |question, index|
@@ -80,7 +84,7 @@ class Feedback < ApplicationRecord
     end
 
     self.data = { feedback: merged_answers }
-    self.overall_rating = params.dig(:feedback, :overall_rating) || 0
+    self.overall_rating = (params.dig(:feedback, :overall_rating).to_i * 10) || 0
     self.locked_at ||= 7.days.from_now
     self.status = :completed
     save
@@ -92,3 +96,4 @@ class Feedback < ApplicationRecord
     Time.current.after?(locked_at)
   end
 end
+

@@ -9,4 +9,9 @@ module PairRequestsHelper
 
     content_tag(:p, format_date) + content_tag(:p, time_range)
   end
+
+  def format_duration_minutes(pair_request)
+    duration = ActiveSupport::Duration.seconds(pair_request.duration).in_minutes.to_i
+    pluralize(duration, 'minutes')
+  end
 end
