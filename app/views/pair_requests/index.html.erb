@@ -6,16 +6,16 @@
   <div class="table w-full border-2 border-black text-md md:text-base">
     <div class="table-header-group">
       <div class="table-row font-bold bg-primary divide-x-2 divide-black text-white">
-        <%= render TableCellComponent.new(classes: 'table-cell text-center') do %>
+        <%= render TableCellComponent.new(class_names: 'table-cell text-center') do %>
           Partner
         <% end %>
-        <%= render TableCellComponent.new(classes: 'table-cell text-center') do %>
+        <%= render TableCellComponent.new(class_names: 'table-cell text-center') do %>
           When
         <% end %>
-        <%= render TableCellComponent.new(classes: 'table-cell text-center') do %>
+        <%= render TableCellComponent.new(class_names: 'table-cell text-center') do %>
           Status
         <% end %>
-        <%= render TableCellComponent.new(classes: 'hidden sm:table-cell text-center') do %>
+        <%= render TableCellComponent.new(class_names: 'hidden sm:table-cell text-center') do %>
           Actions
         <% end %>
       </div>
@@ -36,7 +36,7 @@
             <%= pair_request.status.capitalize %>
           <% end %>
 
-          <%= render(TableCellComponent.new(classes: 'hidden sm:table-cell')) do %>
+          <%= render(TableCellComponent.new(class_names: 'hidden sm:table-cell')) do %>
             <%= render PairRequest::StatusButtonsComponent.new(pair_request:, current_user:) %>
             <%= render Feedback::EditButtonComponent.new(
               feedback: pair_request.authored_feedback_for(current_user),
