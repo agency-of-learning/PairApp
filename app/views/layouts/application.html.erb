@@ -14,7 +14,9 @@
     <div class="min-h-full">
       <%= render "layouts/navbar" %>
       <div class="container mx-auto">
-        <%= render "layouts/flash" %>
+        <div id="flash">
+          <%= render "layouts/flash" %>
+        </div>
         <%= yield %>
       </div>
     </div>

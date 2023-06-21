@@ -26,11 +26,16 @@ class PairRequestsController < ApplicationController
         format.turbo_stream do
           @persisted_pair_request = @pair_request
           @pair_request = PairRequest.new
+          flash.now[:notice] = 'Pair request was successfully created.'
           render :create
         end
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.turbo_stream { render :create }
+        # format.turbo_stream { render :create }
+        format.turbo_stream do
+          flash.now[:form_errors] = @pair_request.errors.full_messages
+          render :create
+        end
       end
     end
   end

@@ -1,7 +1,8 @@
+<%= turbo_stream.update "flash", partial: "layouts/flash" %>
+
 <%= turbo_stream.update 'new_request_form' do %>
   <%= render 'form', pair_request: @pair_request %>
 <% end %>
-
 
 <% if @persisted_pair_request %>
   <%= turbo_stream.prepend 'my-pair-requests' do %>
