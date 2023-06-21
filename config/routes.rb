@@ -25,6 +25,9 @@ Rails.application.routes.draw do
       resources :completions, only: :create
       resources :rejections, only: :create
     end
+    collection do 
+      get :invitee 
+    end 
   end
 
   resources :standup_meeting_groups
