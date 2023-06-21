@@ -3,3 +3,6 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
+
+import PairRequestsFormController from "./pair_requests_form_controller"
+application.register("pair-requests-form", PairRequestsFormController)
