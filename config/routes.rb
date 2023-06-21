@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       resources :acceptances, only: :create
       resources :completions, only: :create
       resources :rejections, only: :create
+      resources :cancellations, only: :create
     end
   end
 
