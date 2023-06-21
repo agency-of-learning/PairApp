@@ -1,17 +1,29 @@
 <%= turbo_frame_tag "new_request_form" do %>
   <%= form_with(model: pair_request, class: 'p-4 w-full mx-auto border-2 border-primary rounded-md flex flex-col') do |form| %>
-    <div id="form-container" class='flex flex-col space-y-4 xl:space-y-0 xl:max-w-full xl:inline-flex xl:justify-around xl:space-x-8 xl:flex-row'>
+    <div id="form-container" class='flex flex-col space-y-4 xl:space-y-0 xl:max-w-full xl:inline-flex xl:justify-around xl:space-x-8 xl:flex-row' data-controller="pair-requests-form">
       <div class="flex justify-between space-x-4 align-middle">
         <%= form.label :invitee_id, class: "label label-text" %>
         <%= form.select :invitee_id, 
                         User.invitee_select_for(current_user), 
-                        {}, 
-                        { class: 'select select-primary' } %>
-      </div>
+                        {prompt: "Select User"}, 
+                        { class: 'select select-primary',
+                          data: {action: "change->pair-requests-form#change"} } %>
+      </div> 
 
       <div class="flex justify-between space-x-4 align-middle">
         <%= form.label :when, class: "label label-text" %>
         <%= form.datetime_field :when, required: true, class: "input input-primary input-md" %>
+      </div>
+
+      <div>
+      
+          Your Time Zone: <%= current_user.time_zone %>
+       
+      
+        <p data-pair-requests-form-target="invitee">
+          HEllo
+         </p>
+
       </div>
 
       <div class="flex justify-between space-x-4 align-middle">
