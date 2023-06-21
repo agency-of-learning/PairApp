@@ -30,11 +30,7 @@ class StandupMeetingPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      if user.admin?
-        scope.all
-      else
-        user.standup_meetings
-      end
+      user.standup_meetings
     end
   end
 end
