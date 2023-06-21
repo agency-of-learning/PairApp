@@ -26,11 +26,7 @@ class PairRequestPolicy < ApplicationPolicy
     end
 
     def resolve
-      if user.admin?
-        scope.all
-      else
-        user.my_pair_requests
-      end
+      user.my_pair_requests
     end
 
     private
