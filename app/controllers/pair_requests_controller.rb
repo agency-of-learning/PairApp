@@ -47,6 +47,14 @@ class PairRequestsController < ApplicationController
     end
   end
 
+  def invitee 
+    @target = params[:target]
+    @invitee = User.find_by_id(params[:invitee_id])
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end 
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -56,6 +64,6 @@ class PairRequestsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def pair_request_params
-    params.require(:pair_request).permit(:invitee_id, :when, :duration)
+    params.require(:pair_request).permit(:invitee_id, :when, :duration, :target)
   end
 end
