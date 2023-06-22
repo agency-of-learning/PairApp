@@ -2,33 +2,46 @@ require 'rails_helper'
 RSpec.describe PairRequest::RejectionPolicy do
   subject { described_class }
 
-  let(:user) { build(:user) }
   let(:author) { build(:user) }
   let(:invitee) { build(:user) }
-  let(:pending_pair_request) { build(:pair_request, author: author, invitee: invitee) }
-  let(:accepted_pair_request) { build(:pair_request, status: :accepted, author: author, invitee: invitee) }
-  let(:rejected_pair_request) { build(:pair_request, status: :rejected, author: author, invitee: invitee) }
-  let(:expired_pair_request) { build(:pair_request, status: :expired, author: author, invitee: invitee) }
+  let(:pending_pair_request) { build(:pair_request, author:, invitee:) }
 
   permissions :create? do
-    it 'grants access if the user is the author' do
-      expect(subject).to permit(author, build(:pair_request, author: author))
+    context 'the user is not the invitee' do
+      it 'denies access, regardless of request status' do
+        expect(subject).not_to permit(author, pending_pair_request)
+      end
     end
 
-    it 'grants access if the user is the invitee' do
-      expect(subject).to permit(invitee, build(:pair_request, invitee: invitee))
-    end
+    context 'the user is the invitee' do
+      it 'grants access if the request is pending' do
+        expect(subject).to permit(invitee, pending_pair_request)
+      end
 
-    it 'denies access if the user is not the author or invitee' do
-      expect(subject).not_to permit(user, build(:pair_request, author: author, invitee: invitee))
-    end
+      it 'grants access if the request is accepted' do
+        accepted_pair_request = build(:pair_request, status: :accepted, invitee:)
+        expect(subject).to permit(invitee, accepted_pair_request)
+      end
 
-    it 'denies access if the pair_request is rejected' do
-      expect(subject).not_to permit(author, rejected_pair_request)
-    end
+      it 'denies access if the request is rejected' do
+        rejected_pair_request = build(:pair_request, status: :rejected, invitee:)
+        expect(subject).not_to permit(invitee, rejected_pair_request)
+      end
 
-    it 'denies access if the pair request is expired' do 
-      expect(subject).not_to permit(author, expired_pair_request)
+      it 'denies access if the request is expired' do
+        expired_pair_request = build(:pair_request, status: :expired, invitee:)
+        expect(subject).not_to permit(invitee, expired_pair_request)
+      end
+
+      it 'denies access if the request is completed' do
+        completed_pair_request = build(:pair_request, status: :completed, invitee:)
+        expect(subject).not_to permit(invitee, completed_pair_request)
+      end
+
+      it 'denies access if the request is cancelled' do
+        cancelled_pair_request = build(:pair_request, status: :cancelled, invitee:)
+        expect(subject).not_to permit(invitee, cancelled_pair_request)
+      end
     end
   end
 end

@@ -24,3 +24,12 @@
     form_class: "w-fit"
   ) %>
 <% end %>
+
+<% if policy(:cancel).create? %>
+  <%= button_to(
+    "Cancel",
+    pair_request_cancellations_path(pair_request),
+    class: "btn btn-error capitalize #{STYLES[style]}",
+    form_class: "w-fit"
+  ) %>
+<% end %>

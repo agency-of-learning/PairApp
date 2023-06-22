@@ -4,7 +4,8 @@ class PairRequest::StatusButtonsComponent < ViewComponent::Base
   STATUS_POLICIES = {
     accept: PairRequest::AcceptancePolicy,
     reject: PairRequest::RejectionPolicy,
-    complete: PairRequest::CompletionPolicy
+    complete: PairRequest::CompletionPolicy,
+    cancel: PairRequest::CancellationPolicy
   }.freeze
 
   STYLES = {

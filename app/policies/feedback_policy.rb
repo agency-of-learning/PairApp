@@ -28,11 +28,7 @@ class FeedbackPolicy < ApplicationPolicy
     end
 
     def resolve
-      if user.admin?
-        scope.all
-      else
-        user.my_feedback
-      end
+      user.my_feedback
     end
   end
 
