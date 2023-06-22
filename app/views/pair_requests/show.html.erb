@@ -1,5 +1,23 @@
-<%= render @pair_request %>
+<div class="p-4 mx-auto max-w-6xl">
+  <h1 class="text-3xl font-bold mb-4 text-center lg:text-left lg:mb-2">Pair Request</h1>
 
-<div>
-  <%= link_to "Back to pair requests", pair_requests_path %>
+  <div class="py-4 lg:mb-2">
+    <div class="flex flex-col justify-center items-center gap-y-6 lg:flex-row lg:justify-between lg:shadow-lg lg:border lg:rounded-md lg:py-2 lg:px-4">
+      <div class="grid grid-cols-2 gap-y-4 items-center lg:flex">
+        <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6">Partner</div>
+        <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6"><%= @pair_request.partner_for(current_user).email %></div>
+        <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6">When</div>
+        <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6"><%= format_request_date(@pair_request) %></div>
+        <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6">Duration</div>
+        <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6"><%= format_duration_minutes(@pair_request) %></div>
+      </div>
+      <div class="flex gap-16 lg:gap-4">
+        <%= render PairRequest::StatusButtonsComponent.new(pair_request: @pair_request, current_user:) %>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col gap-8 lg:flex-row lg:justify-center">
+    <%= render Feedback::ContainerComponent.new(feedback: @pair_request.invitee_feedback, current_user:) %>
+    <%= render Feedback::ContainerComponent.new(feedback: @pair_request.author_feedback, current_user:) %>
+  </div>
 </div>
