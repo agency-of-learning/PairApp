@@ -22,5 +22,11 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
     require("daisyui"),
-  ]
+  ],
+  purge: {
+    safelist: [
+      'alert-error',
+      'alert-success',
+    ]
+  }
 }
