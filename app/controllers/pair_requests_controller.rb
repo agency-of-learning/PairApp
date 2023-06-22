@@ -4,7 +4,11 @@ class PairRequestsController < ApplicationController
   # GET /pair_requests or /pair_requests.json
   def index
     @pair_request = PairRequest.new
-    @pair_requests = policy_scope(PairRequest).order_by_status.order_by_date
+    if params[:filter] == 'past'
+      @pair_requests = policy_scope(PairRequest).past.order_by_status.order_by_date
+      render "index", locals: { pair_requests: @pair_requests }
+    end
+    @pair_requests = policy_scope(PairRequest).upcoming.order_by_status.order_by_date
   end
 
   # GET /pair_requests/1 or /pair_requests/1.json

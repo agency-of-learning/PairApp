@@ -30,23 +30,24 @@
             <%= pair_request.partner_for(current_user).email %>
           <% end %>
 
-          <%= render TableCellComponent.new(container_link: pair_request) do %>
-            <%= format_request_date(pair_request) %>
-          <% end %>
+            <%= render TableCellComponent.new(container_link: pair_request) do %>
+              <%= format_request_date(pair_request) %>
+            <% end %>
 
-          <%= render TableCellComponent.new(container_link: pair_request) do %>
-            <%= pair_request.status.capitalize %>
-          <% end %>
+            <%= render TableCellComponent.new(container_link: pair_request) do %>
+              <%= pair_request.status.capitalize %>
+            <% end %>
 
-          <%= render(TableCellComponent.new(class_names: 'hidden sm:table-cell')) do %>
-            <%= render PairRequest::StatusButtonsComponent.new(pair_request:, current_user:, style: :link) %>
-            <%= render Feedback::EditButtonComponent.new(
-              feedback: pair_request.authored_feedback_for(current_user),
-              current_user:
-            ) %>
-          <% end %>
-        </div>
-      <% end %>
+            <%= render(TableCellComponent.new(class_names: 'hidden sm:table-cell')) do %>
+              <%= render PairRequest::StatusButtonsComponent.new(pair_request:, current_user:, style: :link) %>
+              <%= render Feedback::EditButtonComponent.new(
+                feedback: pair_request.authored_feedback_for(current_user),
+                current_user:
+              ) %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
