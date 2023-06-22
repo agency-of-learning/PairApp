@@ -19,23 +19,15 @@ class PairRequestsController < ApplicationController
 
     respond_to do |format|
       if @pair_request.save
-        format.html do
-          redirect_to pair_request_url(@pair_request),
-            notice: 'Pair request was successfully created.'
-        end
+        format.html { redirect_to @pair_request, notice: 'Pair request was successfully created.' }
         format.turbo_stream do
           @persisted_pair_request = @pair_request
           @pair_request = PairRequest.new
           flash.now[:notice] = 'Pair request was successfully created.'
-          render :create
         end
       else
         format.html { render :new, status: :unprocessable_entity }
-        # format.turbo_stream { render :create }
-        format.turbo_stream do
-          flash.now[:form_errors] = @pair_request.errors.full_messages
-          render :create
-        end
+        format.turbo_stream { flash.now[:form_errors] = @pair_request.errors.full_messages }
       end
     end
   end
