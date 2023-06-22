@@ -43,6 +43,16 @@ begin
   end
 
   puts "Pair requests seeded successfully!"
+
+  puts "Seeding a Standup Meeting Group"
+  standup_group = StandupMeetingGroup.create!(
+    name: 'PairApp',
+    start_time: Time.new(2023,1,1,9,0,0)
+  )
+  users.each do |user|
+    standup_group.users << user
+  end
+  puts "Completed seeding standup meeting group!"
   
 rescue StandardError => e
   puts "Error occurred while seeding: #{e.message}"
