@@ -6,27 +6,7 @@
 
 <% if @persisted_pair_request %>
   <%= turbo_stream.prepend 'my-pair-requests' do %>
-    <div class="table-row odd:bg-white even:bg-neutral-100 hover:bg-neutral-200 divide-x-2 divide-black">
-        <%= render TableCellComponent.new(container_link: @persisted_pair_request) do %>
-          <%= @persisted_pair_request.partner_for(current_user).email %>
-        <% end %>
-
-        <%= render TableCellComponent.new(container_link: @persisted_pair_request) do %>
-          <%= format_request_date(@persisted_pair_request) %>
-        <% end %>
-
-        <%= render TableCellComponent.new(container_link: @persisted_pair_request) do %>
-          <%= @persisted_pair_request.status.capitalize %>
-        <% end %>
-
-        <%= render(TableCellComponent.new) do %>
-          <%= render PairRequest::StatusButtonsComponent.new(pair_request: @persisted_pair_request, current_user:) %>
-          <%= render Feedback::EditButtonComponent.new(
-            feedback: @persisted_pair_request.authored_feedback_for(current_user),
-            current_user:
-          ) %>
-        <% end %>
-      </div>
+    <%= render 'table_row', pair_request: @persisted_pair_request %>
   <% end %>
 <% end %>
 
