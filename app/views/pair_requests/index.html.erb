@@ -3,32 +3,36 @@
 <div class="p-4">
   <%= render 'form', pair_request: @pair_request  %>
 </div>
-
-<div class="p-2">
-  <div class="table w-full border-2 border-black text-md md:text-base">
-    <div class="table-header-group">
-      <div class="table-row font-bold bg-primary divide-x-2 divide-black text-white">
-        <%= render TableCellComponent.new(class_names: 'table-cell text-center') do %>
-          Partner
-        <% end %>
-        <%= render TableCellComponent.new(class_names: 'table-cell text-center') do %>
-          When
-        <% end %>
-        <%= render TableCellComponent.new(class_names: 'table-cell text-center') do %>
-          Status
-        <% end %>
-        <%= render TableCellComponent.new(class_names: 'hidden sm:table-cell text-center') do %>
-          Actions
-        <% end %>
-      </div>
+<%=  turbo_frame_tag "pair_requests" do %>
+  <div class="p-2">
+    <div class="tabs">
+      <%= link_to 'Past', pair_requests_path(filter: 'past'), data: { turbo_action: 'advance' }, class:'tab tab-bordered'  %>
+      <%= link_to 'Upcoming', pair_requests_path(filter: 'upcoming'), data: { turbo_action: 'advance' }, class:'tab tab-bordered' %>
     </div>
-    <div class="table-row-group" id='my-pair-requests'>
-      <% @pair_requests.each do |pair_request| %>
-        <div class="table-row odd:bg-white even:bg-neutral-100 hover:bg-neutral-200 divide-x-2 divide-black">
-
-          <%= render TableCellComponent.new(container_link: pair_request) do %>
-            <%= pair_request.partner_for(current_user).email %>
+    <div class="table w-full border-2 border-black text-md md:text-base">
+      <div class="table-header-group">
+        <div class="table-row font-bold bg-primary divide-x-2 divide-black text-white">
+          <%= render TableCellComponent.new(class_names: 'table-cell text-center') do %>
+            Partner
           <% end %>
+          <%= render TableCellComponent.new(class_names: 'table-cell text-center') do %>
+            When
+          <% end %>
+          <%= render TableCellComponent.new(class_names: 'table-cell text-center') do %>
+            Status
+          <% end %>
+          <%= render TableCellComponent.new(class_names: 'hidden sm:table-cell text-center') do %>
+            Actions
+          <% end %>
+        </div>
+      </div>
+      <div class="table-row-group" id='my-pair-requests'>
+        <% @pair_requests.each do |pair_request| %>
+          <div class="table-row odd:bg-white even:bg-neutral-100 hover:bg-neutral-200 divide-x-2 divide-black">
+
+            <%= render TableCellComponent.new(container_link: pair_request) do %>
+              <%= pair_request.partner_for(current_user).email %>
+            <% end %>
 
             <%= render TableCellComponent.new(container_link: pair_request) do %>
               <%= format_request_date(pair_request) %>
@@ -50,4 +54,5 @@
       </div>
     </div>
   </div>
+
 <% end %>
