@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :standup_meetings, only: %i[edit update] do
       scope module: :standup_meetings do
         resources :skips, only: :create
+        resources :completions, only: :create
       end
     end
   end
