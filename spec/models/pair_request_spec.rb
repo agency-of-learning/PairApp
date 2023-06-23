@@ -7,7 +7,8 @@
 #  status     :integer          default("pending"), not null
 #  when       :datetime         not null
 #  created_at :datetime         not null
-#  updated_at :datetime         not null author_id  :bigint           not null
+#  updated_at :datetime         not null
+#  author_id  :bigint           not null
 #  invitee_id :bigint           not null
 #
 # Indexes
