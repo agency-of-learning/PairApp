@@ -12,22 +12,28 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, class: "block label label-text" %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="flex flex-col justify-between md:flex-row">
+    <div class="flex flex-col md:flex-row gap-y-2">
+      <div class="flex gap-x-2">
+        <%= form.label :name, class: "label label-text" %>
+        <%= form.text_field :name %>
+      </div>
 
-  <div>
-    <%= form.label :frequency, class: "block label label-text" %>
-    <%= form.select :frequency, options_for_select(StandupMeetingGroup.frequencies.map { |k, v| [k.humanize, k] }, standup_meeting_group.frequency) %>
-  </div>
+      <div class="flex gap-x-2">
+        <%= form.label :frequency, class: "label label-text" %>
+        <%= form.select :frequency, options_for_select(StandupMeetingGroup.frequencies.map { |k, v| [k.humanize, k] }, standup_meeting_group.frequency) %>
+      </div>
 
-  <div>
-    <%= form.label :start_time, class: "block label label-text" %>
-    <%= form.time_field :start_time %>
-  </div>
+      <div class="flex gap-x-2">
+        <%= form.label :start_time, class: "label label-text" %>
+        <%= form.time_field :start_time %>
+      </div>
+    </div>
 
-  <div>
-    <%= form.submit %>
+    <div>
+      <div class="form-control">
+        <%= form.submit "Create", class: "btn btn-primary" %>
+      </div>
+    </div>
   </div>
 <% end %>
