@@ -13,8 +13,14 @@ application.register('popover', Popover);
 application.register('toggle', Toggle);
 application.register('slideover', Slideover);
 
+
 // Configure Stimulus development experience;
 application.debug = true;
 window.Stimulus   = application;
 
+// import Flatpickr
+import Flatpickr from 'stimulus-flatpickr';
+import "flatpickr/dist/flatpickr.css";
+// Manually register Flatpickr as a stimulus controller
+application.register('flatpickr', Flatpickr);
 export { application }

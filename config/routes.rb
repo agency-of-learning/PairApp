@@ -28,5 +28,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :standup_meeting_groups
+  resources :standup_meeting_groups do
+    resources :standup_meetings, only: [:edit, :update]
+  end
 end

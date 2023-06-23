@@ -1,0 +1,32 @@
+<%= form_with(model: [standup_meeting_group, standup_meeting]) do |form| %>
+  <div class='space-y-4 form-control p-8'>
+    <div class="flex flex-col md:flex-row justify-between">
+      <%= form.label :meeting_date, class: 'w-36 mb-4 md:mb-0' %>
+      <%= form.text_field :meeting_date,
+        class: 'select select-bordered select-primary', 
+        data: {
+          controller: "flatpickr",
+          flatpickr_date_format: "Y-m-d",
+          flatpickr_enable: date_range
+        } %>
+    </div>
+    <div class="flex flex-col justify-between space-y-2">
+      <%= form.label :yesterday_work_description, '1. What did you work on yesterday? (or last working day)', class: 'mb-4 md:mb-0' %>
+      <%= form.text_area :yesterday_work_description, required: true, class: 'textarea-lg textarea-primary textarea', placeholder: 'e.g., Got the first version of feature X up in a draft PR' %>
+    </div>
+    <div class="flex flex-col justify-between space-y-2">
+      <%= form.label :today_work_description, '2. What do you plan on working on today?', class: 'mb-4 md:mb-0' %>
+      <%= form.text_area :today_work_description, required: true, class: 'textarea-lg textarea-primary textarea', placeholder: "e.g., 1. Review some outstanding PRs\n2. Push forward on second feature" %>
+    </div>
+    <div class="flex flex-col justify-between space-y-2">
+      <%= form.label :blockers_description, '3. Do you have any blockers?', class: 'mb-4 md:mb-0'%>
+      <%= form.text_area :blockers_description, class: 'textarea-lg textarea-primary textarea', placeholder: 'e.g., Wireframes for third feature are still not complete' %>
+    </div>
+    <div class="flex flex-row-reverse space-x-4">
+      <%= form.hidden_field :status, value: :completed %>
+      <%= form.submit "Check-in", class: 'btn btn-primary' %>
+
+      <%= link_to  "Dismiss", edit_standup_meeting_group_standup_meeting_path(standup_meeting_group, standup_meeting), class: 'link text-secondary mt-3' %>
+    </div>
+  </div>
+<% end %>
