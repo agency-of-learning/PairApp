@@ -1,7 +1,7 @@
 <h1 class="text-2xl font-bold mb-4 text-center">My Requests</h1>
 
 <div class="p-4">
-  <%= render 'form', pair_request: @pair_request  %>
+  <%= render 'form', pair_request: @pair_request %>
 </div>
 <%=  turbo_frame_tag "pair_requests" do %>
   <div class="p-2">
@@ -27,32 +27,12 @@
         </div>
       </div>
       <div class="table-row-group" id='my-pair-requests'>
-        <% @pair_requests.each do |pair_request| %>
-          <div class="table-row odd:bg-white even:bg-neutral-100 hover:bg-neutral-200 divide-x-2 divide-black">
-
-            <%= render TableCellComponent.new(container_link: pair_request) do %>
-              <%= pair_request.partner_for(current_user).email %>
-            <% end %>
-
-            <%= render TableCellComponent.new(container_link: pair_request) do %>
-              <%= format_request_date(pair_request) %>
-            <% end %>
-
-            <%= render TableCellComponent.new(container_link: pair_request) do %>
-              <%= pair_request.status.capitalize %>
-            <% end %>
-
-            <%= render(TableCellComponent.new(class_names: 'hidden sm:table-cell')) do %>
-              <%= render PairRequest::StatusButtonsComponent.new(pair_request:, current_user:, style: :link) %>
-              <%= render Feedback::EditButtonComponent.new(
-                feedback: pair_request.authored_feedback_for(current_user),
-                current_user:
-              ) %>
-            <% end %>
-          </div>
-        <% end %>
+      <% @pair_requests.each do |pair_request| %>
+        <%= render "table_row", pair_request: %>
+      <% end %>
       </div>
     </div>
+
   </div>
 
 <% end %>
