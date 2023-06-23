@@ -85,9 +85,6 @@ class PairRequest < ApplicationRecord
     end
   end
 
-
-  scope :past, -> { where(status: 4) }
-  scope :upcoming, -> { where(status: 2) }
-
-  # scope :upcoming, -> { where(status: 4).where('request_date > ?', Time.now) }
+  scope :past, -> { where(when: ..Time.now) }
+  scope :upcoming, -> { where(when: Time.now..) }
 end
