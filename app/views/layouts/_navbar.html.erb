@@ -16,7 +16,7 @@
           <%= link_to 'Pair Requests', pair_requests_path %>
         </li>
         <li>
-          <%= link_to 'Standup Meeting Groups', standup_meeting_groups_path %>
+          <%= link_to 'Standups', standup_meeting_groups_path %>
         </li>
         <% if policy(:invitation).new? %>
           <li>
@@ -44,7 +44,7 @@
         </li>
         <% if user_signed_in? %>
           <li>
-            <%= link_to 'Standup Meeting Groups', standup_meeting_groups_path %>
+            <%= link_to 'Standups', standup_meeting_groups_path %>
           </li>
           <li>
             <%= link_to 'My Account', edit_user_registration_url(current_user) %>
