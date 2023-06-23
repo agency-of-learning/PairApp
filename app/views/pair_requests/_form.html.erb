@@ -4,7 +4,7 @@
       <div class="flex justify-between space-x-4 align-middle">
         <%= form.label :invitee_id, class: "label label-text" %>
         <%= form.select :invitee_id, 
-                        User.invitee_select_for(current_user), 
+                        User.invitee_select_for(current_user).map{|array| [ array[0], {'value' => array[1], 'data-email' => array[0], "data-id"=> array[1], "data-timezone" => array[2]}]}, #order is hardcoded here, not great
                         {prompt: "Select User"}, 
                         { class: 'select select-primary',
                           data: {action: "change->pair-requests-form#change"} } %>
@@ -12,17 +12,19 @@
 
       <div class="flex justify-between space-x-4 align-middle">
         <%= form.label :when, class: "label label-text" %>
-        <%= form.datetime_field :when, required: true, class: "input input-primary input-md" %>
+        <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#time", user: "#{current_user.time_zone}"}, class: "input input-primary input-md" %>
+    
       </div>
 
       <div>
-      
-          Your Time Zone: <%= current_user.time_zone %>
-       
-      
-        <p data-pair-requests-form-target="invitee">
-          HEllo
-         </p>
+        <em>Your TimeZone:</em>
+        <strong data-pair-requests-form-target="userTime">
+          ?
+        </strong>
+        <em>Your Partner's TimeZone:</em>
+        <strong data-pair-requests-form-target="invitee">
+          ?
+         </strong>
 
       </div>
 
