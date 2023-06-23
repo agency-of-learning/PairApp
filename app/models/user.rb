@@ -65,7 +65,7 @@ class User < ApplicationRecord
   has_many :standup_meetings, dependent: :destroy
   has_many :standup_meeting_groups, through: :standup_meeting_groups_users
 
-  scope :invitee_select_for, ->(user) { User.excluding(user).pluck(:email, :id) }
+  scope :invitee_select_for, ->(user) { User.excluding(user).pluck(:email, :id, :time_zone) }
 
   def my_pair_requests
     authored_pair_requests.or(received_pair_requests)
