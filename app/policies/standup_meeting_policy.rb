@@ -2,24 +2,11 @@ class StandupMeetingPolicy < ApplicationPolicy
   alias_method :standup_meeting, :record
 
   def index?
-    user.admin?
-  end
-
-  def show?
     user.admin? || matching_user?
   end
 
-  def create?
-    # NOTE: Might need to think of a way to optimize this later on.
-    user.standup_meeting_groups.exists?(id: standup_meeting.standup_meeting_group_id)
-  end
-
-  def update?
-    user.admin? || matching_user?
-  end
-
-  def destroy?
-    user.admin? || matching_user?
+  def edit?
+    matching_user?
   end
 
   private

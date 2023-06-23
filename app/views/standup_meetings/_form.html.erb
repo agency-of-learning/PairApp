@@ -25,8 +25,9 @@
     <div class="flex flex-row-reverse space-x-4">
       <%= form.hidden_field :status, value: :completed %>
       <%= form.submit "Check-in", class: 'btn btn-primary' %>
-
-      <%= link_to  "Dismiss", edit_standup_meeting_group_standup_meeting_path(standup_meeting_group, standup_meeting), class: 'link text-secondary mt-3' %>
+      
+    <% end %>
+      
+      <%= render StandupMeeting::ActionButtonComponent.new(standup_meeting_group:, standup_meeting:, current_user:) %>
     </div>
   </div>
-<% end %>

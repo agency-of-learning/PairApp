@@ -3,7 +3,7 @@ class StandupMeetingsController < ApplicationController
 
   def edit
     @standup_meeting = StandupMeeting.find(params[:id])
-    # TODO: A naïve date range with a single min and max is probably fine for now, 
+    # TODO: A naïve date range with a single min and max is probably fine for now,
     # but there is an islands and gaps problem that should be handled to address
     # issues when a user joins a group, leaves the group, and rejoins.
     @date_range = [{
@@ -13,6 +13,7 @@ class StandupMeetingsController < ApplicationController
   end
 
   private
+
   def set_standup_meeting_group
     @standup_meeting_group = StandupMeetingGroup.find(params[:standup_meeting_group_id])
   end
