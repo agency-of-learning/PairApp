@@ -25,6 +25,6 @@
 #
 require 'rails_helper'
 
-RSpec.describe StandupMeeting, type: :model do
+RSpec.describe StandupMeeting do
   pending "add some examples to (or delete) #{__FILE__}"
 end

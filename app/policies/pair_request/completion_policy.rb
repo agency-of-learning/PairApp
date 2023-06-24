@@ -5,4 +5,3 @@ class PairRequest::CompletionPolicy < ApplicationPolicy
     user == pair_request.author && pair_request.accepted? && pair_request.started?
   end
 end
-
