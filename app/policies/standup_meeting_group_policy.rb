@@ -11,7 +11,7 @@ class StandupMeetingGroupPolicy < ApplicationPolicy
     user.admin?
   end
 
-  def edit?
+  def new?
     user.admin?
   end
 
