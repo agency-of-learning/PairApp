@@ -5,7 +5,7 @@ class StandupMeetingPolicy < ApplicationPolicy
     user.admin? || matching_user?
   end
 
-  def edit?
+  def update?
     matching_user?
   end
 
