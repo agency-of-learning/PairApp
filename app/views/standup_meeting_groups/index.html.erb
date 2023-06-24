@@ -1,13 +1,14 @@
 <h1>Standup Meeting Groups</h1>
 
-<%= link_to "New Standup Meeting Group", new_standup_meeting_group_path %>
-
-<div id="standup_meeting_group">
-  <% @standup_meeting_groups.each do |standup_meeting_group| %>
-    <%= render standup_meeting_group %>
-
-    <p>
-      <%= link_to "Show this standup meeting group", standup_meeting_group %>
-    </p>
-  <% end %>
+<div class="p-2 border-black border-2" id="new_standup_meeting_group">
+  <%= render 'form', standup_meeting_group: StandupMeetingGroup.new %>
 </div>
+
+<hr class="mb-5 mt-5 border-b-2">
+
+
+<ul role="list" id="standup_meeting_group_list">
+  <%= render partial: 'standup_meeting_group_list_item', collection: @standup_meeting_groups, as: :standup_meeting_group %>
+</ul>
+
+

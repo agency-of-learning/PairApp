@@ -29,6 +29,10 @@ Rails.application.routes.draw do
   end
 
   resources :standup_meeting_groups do
+    scope module: :standup_meeting_groups do
+      resources :joins, only: %i[create destroy]
+    end
+    
     resources :standup_meetings, only: %i[edit update] do
       scope module: :standup_meetings do
         resources :skips, only: :create
