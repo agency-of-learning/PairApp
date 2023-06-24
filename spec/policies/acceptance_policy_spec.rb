@@ -10,7 +10,7 @@ RSpec.describe PairRequest::AcceptancePolicy do
   let(:cancelled_pair_request) { build(:pair_request, status: :cancelled, invitee:) }
 
   permissions :create? do
-    context 'user is the invitee' do
+    context 'when user is the invitee' do
       it 'grants access if the request is pending' do
         expect(subject).to permit(invitee, pending_pair_request)
       end
