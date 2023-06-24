@@ -12,6 +12,9 @@ class StandupMeetingGroupsController < ApplicationController
 
   def new
     @standup_meeting_group = StandupMeetingGroup.new
+    authorize(@standup_meeting_group)
+  rescue Pundit::NotAuthorizedError
+    redirect_to standup_meeting_groups_url, notice: 'Must be an admin to create a new standup meeting group'
   end
 
   def edit; end
