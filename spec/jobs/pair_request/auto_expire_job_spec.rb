@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PairRequest::AutoExpireJob, type: :job do
+RSpec.describe PairRequest::AutoExpireJob do
   let!(:expired_pair_request) do
     create(:pair_request, :skip_validation, status: :pending, when: 1.day.ago)
   end

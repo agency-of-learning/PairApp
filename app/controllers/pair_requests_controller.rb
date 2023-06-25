@@ -13,6 +13,7 @@ class PairRequestsController < ApplicationController
   end
 
   # POST /pair_requests or /pair_requests.json
+  # rubocop:disable Metrics/AbcSize
   def create
     @pair_request = current_user.authored_pair_requests.new(pair_request_params)
     @pair_request.duration = @pair_request.duration.minutes
@@ -31,6 +32,7 @@ class PairRequestsController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   # DELETE /pair_requests/1 or /pair_requests/1.json
   def destroy

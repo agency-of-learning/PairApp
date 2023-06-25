@@ -1,14 +1,13 @@
 <h1>Standup Meeting Groups</h1>
 
-<div class="p-2 border-black border-2" id="new_standup_meeting_group">
-  <%= render 'form', standup_meeting_group: StandupMeetingGroup.new %>
-</div>
+<% if policy(:standup_meeting_group).new? %>
+  <div class="p-2 border-black border-2" id="new_standup_meeting_group">
+    <%= render 'form', standup_meeting_group: StandupMeetingGroup.new %>
+  </div>
+<% end %>
 
 <hr class="mb-5 mt-5 border-b-2">
-
 
 <ul role="list" id="standup_meeting_group_list">
   <%= render partial: 'standup_meeting_group_list_item', collection: @standup_meeting_groups, as: :standup_meeting_group %>
 </ul>
-
-
