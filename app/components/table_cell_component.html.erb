@@ -1,7 +1,8 @@
 <% if container_link.present? %>
   <%= link_to(
     container_link,
-    class: "#{class_names} text-left p-2 align-middle"
+    class: "#{class_names} text-left p-2 align-middle",
+    data: { turbo_frame: "_top" }
   ) do %>
     <%= content %>
   <% end %>

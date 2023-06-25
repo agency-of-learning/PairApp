@@ -3,7 +3,8 @@
     "Accept",
     pair_request_acceptances_path(pair_request),
     class: "btn btn-link btn-xs sm:btn-sm capitalize hover:no-underline",
-    form_class: "w-fit"
+    form_class: "w-fit",
+    data: { turbo_frame: "_top" }
   ) %>
 <% end %>
 
@@ -12,7 +13,9 @@
     "Complete",
     pair_request_completions_path(pair_request),
     class: "btn btn-primary capitalize #{STYLES[style]}",
-    form_class: "w-fit"
+    form_class: "w-fit",
+    data: { turbo_frame: "_top" }
+
   ) %>
 <% end %>
 
@@ -21,7 +24,8 @@
     "Reject",
     pair_request_rejections_path(pair_request),
     class: "btn btn-error capitalize #{STYLES[style]}",
-    form_class: "w-fit"
+    form_class: "w-fit",
+    data: { turbo_frame: "_top" }
   ) %>
 <% end %>
 
@@ -30,6 +34,7 @@
     "Cancel",
     pair_request_cancellations_path(pair_request),
     class: "btn btn-error capitalize #{STYLES[style]}",
-    form_class: "w-fit"
+    form_class: "w-fit",
+    data: { turbo_frame: "_top" }
   ) %>
 <% end %>
