@@ -7,7 +7,7 @@
   <div class="p-2">
     <div class="tabs">
       <%= link_to 'Past', pair_requests_path(filter: 'past'), data: { turbo_action: 'advance' }, class:"tab tab-lifted #{'tab-active' if params[:filter] == 'past'}"  %>
-      <%= link_to 'Upcoming', pair_requests_path(filter: 'upcoming'), data: { turbo_action: 'advance' }, class:"tab tab-lifted #{'tab-active' if params[:filter] == 'upcoming'}" %>
+      <%= link_to 'Upcoming', pair_requests_path(filter: 'upcoming'), data: { turbo_action: 'advance' }, class:"tab tab-lifted #{'tab-active' if params[:filter] == 'upcoming' || params[:filter].nil? }" %>
     </div>
     <div class="table w-full border-2 border-black text-md md:text-base">
       <div class="table-header-group">
