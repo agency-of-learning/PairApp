@@ -88,6 +88,3 @@ class PairRequest < ApplicationRecord
   scope :upcoming, -> { where(when: Time.now..) }
   scope :past, -> { where(when: ..Time.now).order(when: :desc) }
 end
-
-
-
