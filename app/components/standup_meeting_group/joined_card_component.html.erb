@@ -1,0 +1,10 @@
+<%= tag.div(id: dom_id(standup_meeting_group), class: card_class_names) do %>
+  <div class="card-body">
+    <h2 class="card-title"><%= link_to standup_meeting_group.name, standup_meeting_group_path(standup_meeting_group.id) %></h2>
+    <p id="my-standup-meeting-group-checkin-status">Will make dynamic</p>
+    <div class="card-actions">
+      <button class="btn">Check In</button>
+      <button class="btn">Dismiss</button>
+    </div>
+  </div>
+<% end %>
