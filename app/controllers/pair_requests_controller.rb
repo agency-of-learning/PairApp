@@ -6,7 +6,6 @@ class PairRequestsController < ApplicationController
     @pair_request = PairRequest.new
     filter = params[:filter] == 'past' ? :past : :upcoming
     @pair_requests = policy_scope(PairRequest).public_send(filter).order_by_status.order_by_date
-    render 'index', locals: { pair_requests: @pair_requests }
   end
 
   # GET /pair_requests/1 or /pair_requests/1.json
