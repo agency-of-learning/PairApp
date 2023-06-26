@@ -94,12 +94,21 @@ git checkout -b your-feature-branch-name
 ```bash
 git add .
 git commit -m "Add your commit message here"
+``` 
+3. Running Test
+```bash
+  bundle exec rspec
 ```
 
-3. Push your changes to origin:
+4. Cleaning up before pushing
+```bash
+  bundle exec rubocop -A
+```
+
+5. Push your changes to origin:
 
 ```bash
 git push origin your-feature-branch-name
 ```
 
-4. Create a new pull request on the original repository and wait for the maintainer to review and merge your changes.
+6. Create a new pull request on the original repository and wait for the maintainer to review and merge your changes.
