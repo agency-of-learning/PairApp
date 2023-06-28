@@ -1,8 +1,8 @@
 class StandupMeetings::CompletionsController < ApplicationController
   def create
-    @standup_meeting = StandupMeeting.find(params[:standup_meeting_id])
+    @standup_meeting = StandupMeeting.includes(:standup_meeting_group).find(params[:standup_meeting_id])
     authorize @standup_meeting, policy_class: StandupMeeting::CompletionPolicy
-    @standup_meeting_group = StandupMeetingGroup.find(params[:standup_meeting_group_id])
+    @standup_meeting_group = @standup_meeting.standup_meeting_group
 
     if @standup_meeting.update(standup_meeting_params)
       flash[:notice] = "You completed the standup for #{@standup_meeting.meeting_date}"
