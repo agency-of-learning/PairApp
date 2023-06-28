@@ -9,6 +9,10 @@ class StandupMeeting::ActionButtonComponent < ViewComponent::Base
     @user = current_user
   end
 
+  def render?
+    !(standup_meeting.skipped? || standup_meeting.completed?)
+  end
+
   private
 
   attr_reader :user, :standup_meeting, :standup_meeting_group
