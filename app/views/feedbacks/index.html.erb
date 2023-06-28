@@ -1,4 +1,27 @@
-<div>
-  <h1 class="font-bold text-4xl">Feedbacks#index</h1>
-  <p>Find me in app/views/feedbacks/index.html.erb</p>
-</div>
+<h1 class="font-bold text-3xl text-center">My Feedback</h1>
+
+<%=  turbo_frame_tag "feedback" do %>
+  <div class="max-w-4xl mx-auto">
+    <div class="tabs">
+      <%= link_to(
+        'Given',
+        feedbacks_path(filter: 'given'),
+        data: { turbo_action: 'advance' },
+        class: "tab tab-lifted #{'tab-active' if params[:filter] == 'given' || params[:filter].nil?}",
+      ) %>
+      <%= link_to(
+        'Received',
+        feedbacks_path(filter: 'received'),
+        data: { turbo_action: 'advance' },
+        class: "tab tab-lifted #{'tab-active' if params[:filter] == 'received'}",
+      ) %>
+      <span class="grow border-b border-base-300 rounded-md"></span>  
+    </div>
+
+    <div class="flex flex-col gap-4 p-4 border border-t-0 rounded-b-md">
+      <% @feedback.each do |item| %>
+        <%= render Feedback::ItemComponent.new(feedback: item, current_user:) %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
