@@ -12,7 +12,7 @@ RSpec.describe PairRequest::CancellationPolicy do
   let(:cancelled_pair_request) { build(:pair_request, status: :cancelled, author:) }
 
   permissions :create? do
-    context 'user is the author' do
+    context 'when user is the author' do
       it 'grants access if the request is pending' do
         expect(subject).to permit(author, pending_pair_request)
       end

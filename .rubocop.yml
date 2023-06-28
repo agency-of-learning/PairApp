@@ -67,15 +67,15 @@ Style/NumericLiterals:
 Style/PercentLiteralDelimiters:
   Enabled: true
   PreferredDelimiters:
-    '%': '[]'
-    '%i': '[]'
-    '%q': '[]'
-    '%Q': '[]'
-    '%r': '{}'
-    '%s': '()'
-    '%w': '[]'
-    '%W': '[]'
-    '%x': '[]'
+    "%": "[]"
+    "%i": "[]"
+    "%q": "[]"
+    "%Q": "[]"
+    "%r": "{}"
+    "%s": "()"
+    "%w": "[]"
+    "%W": "[]"
+    "%x": "[]"
 Naming/PredicateName:
   Enabled: true
   NamePrefix:
@@ -153,11 +153,12 @@ Metrics/CyclomaticComplexity:
   Max: 10
 Layout/LineLength:
   Enabled: true
-  Max: 100
+  Max: 120
   AllowURI: true
   IgnoreCopDirectives: true
   Exclude:
     - config/routes.rb
+    - config/initializers/*
 Metrics/MethodLength:
   Enabled: true
   CountComments: false
@@ -293,7 +294,7 @@ Lint/Loop:
   Enabled: true
 Lint/MissingSuper:
   Exclude:
-    - 'app/components/**/*'
+    - "app/components/**/*"
 Lint/ParenthesesAsGroupedExpression:
   Enabled: true
 Lint/RequireParentheses:
@@ -307,12 +308,20 @@ Rails/HasAndBelongsToMany:
 Rails/TimeZone:
   Enabled: false
 RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/RepeatedExample:
+  Enabled: false
+RSpec/FilePath:
+  Enabled: false
+RSpec/RepeatedDescription:
   Exclude:
-    - 'spec/components/**/*'
+    - "spec/policies/*"
 RSpec/NamedSubject:
   Enabled: false
 RSpec/ExampleLength:
   Max: 20
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
 Rails/UnknownEnv:
   Environments:
     - production
