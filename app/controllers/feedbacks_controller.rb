@@ -1,13 +1,14 @@
 class FeedbacksController < ApplicationController
   before_action :set_feedback, only: %i[show edit update]
 
-  def index; end
+  def index
+    filter = params[:filter] == 'received' ? :received_feedbacks : :authored_feedbacks
+    @feedback = current_user.public_send(filter)
+  end
 
   def show
     authorize @feedback
   end
-
-  def new; end
 
   def edit
     authorize @feedback
