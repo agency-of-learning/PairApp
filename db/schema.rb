@@ -92,8 +92,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_21_003955) do
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
     t.string "time_zone", default: "UTC", null: false
-    t.string "first_name", default: "first_name", null: false
-    t.string "last_name", default: "last_name", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
