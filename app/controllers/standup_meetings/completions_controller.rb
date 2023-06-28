@@ -16,6 +16,7 @@ class StandupMeetings::CompletionsController < ApplicationController
   private
 
   def standup_meeting_params
-    params.require(:standup_meeting).permit(:meeting_date, :yesterday_work_description, :today_work_description, :blockers_description, :status)
+    params.require(:standup_meeting).permit(:meeting_date, :yesterday_work_description, :today_work_description,
+      :blockers_description, :status)
   end
 end
