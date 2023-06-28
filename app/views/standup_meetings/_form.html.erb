@@ -1,14 +1,14 @@
 <%= form_with url: standup_meeting_group_standup_meeting_completions_path(standup_meeting_group, standup_meeting), scope: :standup_meeting do |form| %>
   <div class='space-y-4 form-control p-8'>
     <div class="flex flex-col md:flex-row justify-between">
+      <%= form.label :group_name, class: 'w-36 mb-4 md:mb-0' %>
+      <span class='font-bold'><%= standup_meeting_group.name %></span>
+    </div>
+    <div class="flex flex-col md:flex-row justify-between">
       <%= form.label :meeting_date, class: 'w-36 mb-4 md:mb-0' %>
-      <%= form.text_field :meeting_date,
-        class: 'select select-bordered select-primary', 
-        data: {
-          controller: "flatpickr",
-          flatpickr_date_format: "Y-m-d",
-          flatpickr_enable: date_range
-        } %>
+      <span class="font-bold">
+        <%= standup_meeting.meeting_date %>
+      </span>
     </div>
     <div class="flex flex-col justify-between space-y-2">
       <%= form.label :yesterday_work_description, '1. What did you work on yesterday? (or last working day)', class: 'mb-4 md:mb-0' %>
