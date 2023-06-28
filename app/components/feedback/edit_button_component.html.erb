@@ -1,6 +1,7 @@
 <%= link_to(
   edit_feedback_path(feedback),
   class: "btn btn-link btn-xs sm:btn-sm capitalize hover:no-underline text-left flex flex-col flex-nowrap gap-y-0.5 items-start",
+  data: { turbo_frame: "_top" }
 ) do %>
   <p>Edit</p>
   <p>Feedback</p>
