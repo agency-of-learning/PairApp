@@ -42,20 +42,20 @@ begin
   end
 
   completed_pair_request_data =[
-  { status: "accepted", author: users[1], invitee: users[2], when: Time.now - 1.day,  duration: 30.minutes },
-  { status: "accepted", author: users[1], invitee: users[2], when: Time.now - 2.day,  duration: 30.minutes },
-  { status: "accepted", author: users[1], invitee: users[3], when: Time.now - 3.day,  duration: 30.minutes },
-  { status: "accepted", author: users[3], invitee: users[1], when: Time.now - 4.day,  duration: 30.minutes },
-  { status: "accepted", author: users[2], invitee: users[1], when: Time.now - 5.day,  duration: 30.minutes },
+  { status: "accepted", author: users[1], invitee: users[2], when: Time.current - 30.minutes,  duration: 30.minutes },
+  { status: "accepted", author: users[1], invitee: users[2], when: Time.current - 60.minutes,  duration: 30.minutes },
+  { status: "accepted", author: users[1], invitee: users[3], when: Time.current - 45.minutes,  duration: 30.minutes },
+  { status: "accepted", author: users[3], invitee: users[1], when: Time.current - 60.minutes,  duration: 30.minutes },
+  { status: "accepted", author: users[2], invitee: users[1], when: Time.current - 50.minutes,  duration: 30.minutes },
   ]
   
-  completed_pair_requests = []
   PairRequest.transaction do
     completed_pair_request_data.each do |data|
-      pair_request = PairRequest.new(data)
-      pair_request.save(validate: false)
-      # pair_request.create_draft_feedback!
-      completed_pair_requests << pair_request
+      PairRequest.create!(data)
+      # data.create_draft_feedback!
+      # pair_request = PairRequest.new(data)
+      # pair_request.save(validate: false)
+      # completed_pair_requests << pair_request
     end
   end
 
@@ -80,16 +80,4 @@ begin
 rescue StandardError => e
   puts "Error occurred while seeding: #{e.message}"
   puts e.backtrace.join("\n")
-end
-
-private
-
-def create_draft_feedback!
-  data = Feedback::DATA_OBJECT
-  references.build([
-    { author:, receiver: invitee, data: },
-    { author: invitee, receiver: author, data: }
-  ])
-
-  save(validate: false)
 end
