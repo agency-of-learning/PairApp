@@ -5,4 +5,3 @@ class PairRequest::AcceptancePolicy < ApplicationPolicy
     user == pair_request.invitee && pair_request.pending?
   end
 end
-

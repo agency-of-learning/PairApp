@@ -4,7 +4,8 @@ class PairRequestsController < ApplicationController
   # GET /pair_requests or /pair_requests.json
   def index
     @pair_request = PairRequest.new
-    @pair_requests = policy_scope(PairRequest).order_by_status.order_by_date
+    filter = params[:filter] == 'past' ? :past : :upcoming
+    @pair_requests = policy_scope(PairRequest).public_send(filter).order_by_status.order_by_date
   end
 
   # GET /pair_requests/1 or /pair_requests/1.json
@@ -13,27 +14,26 @@ class PairRequestsController < ApplicationController
   end
 
   # POST /pair_requests or /pair_requests.json
+  # rubocop:disable Metrics/AbcSize
   def create
     @pair_request = current_user.authored_pair_requests.new(pair_request_params)
     @pair_request.duration = @pair_request.duration.minutes
 
     respond_to do |format|
       if @pair_request.save
-        format.html do
-          redirect_to pair_request_url(@pair_request),
-            notice: 'Pair request was successfully created.'
-        end
+        format.html { redirect_to @pair_request, notice: 'Pair request was successfully created.' }
         format.turbo_stream do
           @persisted_pair_request = @pair_request
           @pair_request = PairRequest.new
-          render :create
+          flash.now[:notice] = 'Pair request was successfully created.'
         end
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.turbo_stream { render :create }
+        format.turbo_stream { flash.now[:form_errors] = @pair_request.errors.full_messages }
       end
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   # DELETE /pair_requests/1 or /pair_requests/1.json
   def destroy

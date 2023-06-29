@@ -21,11 +21,7 @@ class StandupMeetingGroupPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      if user.admin?
-        scope.all
-      else
-        user.standup_meeting_groups
-      end
+      user.standup_meeting_groups
     end
   end
 end

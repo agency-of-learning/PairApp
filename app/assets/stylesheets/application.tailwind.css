@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
+.field_with_errors {
+  @apply flex [&>input]:input-error;
 }
-
-*/
