@@ -17,10 +17,10 @@ begin
       puts "User #{user.email} created"
     end
   end
-
   puts "Users seeded successfully!"
 
   puts "Seeding pair requests..."
+
   pair_request_data = [
     { status: "pending", author: users[1], invitee: users[2], when: 1.day.from_now, duration: 30.minutes },
     { status: "pending", author: users[1], invitee: users[3], when: 1.day.from_now, duration: 30.minutes },
@@ -40,42 +40,24 @@ begin
       PairRequest.create!(data)
     end
   end
+  puts "Pair requests seeded successfully!"
 
+  puts "Seeding completed pair requests with feedback drafts..."
   completed_pair_request_data =[
-  { status: "accepted", author: users[1], invitee: users[2], when: Time.current - 30.minutes,  duration: 30.minutes },
-  { status: "accepted", author: users[1], invitee: users[2], when: Time.current - 60.minutes,  duration: 30.minutes },
-  { status: "accepted", author: users[1], invitee: users[3], when: Time.current - 45.minutes,  duration: 30.minutes },
-  { status: "accepted", author: users[3], invitee: users[1], when: Time.current - 60.minutes,  duration: 30.minutes },
-  { status: "accepted", author: users[2], invitee: users[1], when: Time.current - 50.minutes,  duration: 30.minutes },
+  { status: "completed", author: users[1], invitee: users[2], when: Time.current - 30.minutes,  duration: 30.minutes },
+  { status: "completed", author: users[1], invitee: users[2], when: Time.current - 60.minutes,  duration: 30.minutes },
+  { status: "completed", author: users[1], invitee: users[3], when: Time.current - 45.minutes,  duration: 30.minutes },
+  { status: "completed", author: users[3], invitee: users[1], when: Time.current - 60.minutes,  duration: 30.minutes },
+  { status: "completed", author: users[2], invitee: users[1], when: Time.current - 50.minutes,  duration: 30.minutes },
   ]
   
   PairRequest.transaction do
     completed_pair_request_data.each do |data|
-      PairRequest.create!(data)
-      # data.create_draft_feedback!
-      # pair_request = PairRequest.new(data)
-      # pair_request.save(validate: false)
-      # completed_pair_requests << pair_request
+      PairRequest.create!(data).create_draft_feedback!
     end
   end
 
-  puts "Pair requests seeded successfully!"
-
-  puts "Seeding feedbacks..."
-  completed_pair_requests.each do |pair_request|
-    pair_request.update(status: 'completed')
-  
-    data = Feedback::DATA_OBJECT
-    pair_request.references.build([
-      { author: pair_request.author, receiver: pair_request.invitee, data: data },
-      { author: pair_request.invitee, receiver: pair_request.author, data: data }
-    ])
-  
-    pair_request.save(validate: false)
-  end
-  puts "Feedbacks seeded successfully"
-
-
+  puts "Seeding completed pair requests with feedbacks..."
 
 rescue StandardError => e
   puts "Error occurred while seeding: #{e.message}"
