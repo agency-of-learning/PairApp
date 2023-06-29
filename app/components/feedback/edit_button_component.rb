@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Feedback::EditButtonComponent < ViewComponent::Base
-  STYLES = {
+  VARIANTS = {
     button: 'btn-primary',
     link: 'btn-link btn-xs sm:btn-sm hover:no-underline'
   }.freeze
@@ -14,11 +14,11 @@ class Feedback::EditButtonComponent < ViewComponent::Base
   end
 
   def call
-    style_archetype = STYLES.fetch(style)
+    variant = VARIANTS.fetch(style)
 
     link_to(
       edit_feedback_path(feedback),
-      class: "btn btn-sm capitalize #{style_archetype} #{classes}"
+      class: "btn btn-sm capitalize #{variant} #{classes}"
     ) do
       content || 'Edit'
     end
