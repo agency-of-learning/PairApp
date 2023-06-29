@@ -1,6 +1,16 @@
 class StandupMeetingsController < ApplicationController
   before_action :set_standup_meeting_group
 
+  def index
+    @meeting_date = params[:date] || Date.current
+    @standup_meetings = StandupMeeting.includes(:user)
+                                      .completed
+                                      .where(
+                                        meeting_date: @meeting_date,
+                                        standup_meeting_group: @standup_meeting_group
+                                      )
+  end
+
   def edit
     @standup_meeting = StandupMeeting.find(params[:id])
     authorize @standup_meeting
