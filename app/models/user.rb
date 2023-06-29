@@ -68,7 +68,11 @@ class User < ApplicationRecord
   has_many :standup_meeting_groups, through: :standup_meeting_groups_users
 
   scope :invitee_select_for, ->(user) { User.excluding(user).pluck(:email, :id) }
-
+  
+  def self.invite!(attributes = {}, invited_by = nil, options = {}, &block)
+    default_name = {first_name: 'First', last_name: 'Last'}
+    super(attributes.merge(default_name))
+  end
   def my_pair_requests
     authored_pair_requests.or(received_pair_requests)
   end

@@ -2,10 +2,10 @@ begin
   puts "Seeding users..."
 
   user_data = [
-    { email: "admin@user.com", password: "password", role: "admin" },
-    { email: "user1@user.com", password: "password", role: "member" },
-    { email: "user2@user.com", password: "password", role: "member" },
-    { email: "user3@user.com", password: "password", role: "member" }
+    { first_name: "First", last_name: "Last", email: "admin@user.com", password: "password", role: "admin" },
+    { first_name: "First", last_name: "Last", email: "user1@user.com", password: "password", role: "member" },
+    { first_name: "First", last_name: "Last", email: "user2@user.com", password: "password", role: "member" },
+    { first_name: "First", last_name: "Last", email: "user3@user.com", password: "password", role: "member" }
   ]
 
   users = []
