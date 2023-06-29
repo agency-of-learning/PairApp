@@ -1,0 +1,6 @@
+<div class="border p-4 flex flex-col lg:flex-row justify-between mt-4">
+  <span class="flex flex-col justify-center mr-4 font-bold"><%= user.email %></span>
+  <span class="grow">
+    <%= standup_meeting.send(content_type) %>
+  </span>
+</div>

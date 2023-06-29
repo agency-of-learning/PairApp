@@ -1,4 +1,4 @@
-<div class="max-w-4xl mx-auto p-4">
+<div class="max-w-6xl mx-auto p-4">
   <div class="text-sm breadcrumbs max-w-xs">
     <ul>
       <li><%= link_to "Standup Groups", standup_meeting_groups_path %></li> 
@@ -11,7 +11,16 @@
     <%= link_to 'Back', :back, class: 'link text-primary text-lg mt-2' %>
   </div>
   <div class="divider"></div>
-  <% @standup_meetings.each do |standup_meeting| %>
-    <%= render StandupMeeting::MeetingRowComponent.new(standup_meeting:) %>
-  <% end %>
+  <div class="flex flex-col lg:flex-row justify-evenly">
+    <%= render StandupMeeting::MeetingColumnComponent.new(title: "Previous Work Day") do |component| %>
+      <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@standup_meetings, content_type: :yesterday_work_description) %>
+    <% end %>
+    <%= render StandupMeeting::MeetingColumnComponent.new(title: "Today's Work Day") do |component| %>
+      <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@standup_meetings, content_type: :today_work_description) %>
+    <% end %>
+    <%= render StandupMeeting::MeetingColumnComponent.new(title: "Blockers") do |component| %>
+      <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@standup_meetings, content_type: :blockers_description) %>
+    <% end %>
+  </div>
+    <%#= render StandupMeeting::MeetingRowComponent.with_collection(@standup_meetings) %>
 </div>
