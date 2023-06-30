@@ -4,8 +4,6 @@ class StandupMeetingsController < ApplicationController
   def edit
     @standup_meeting = StandupMeeting.find(params[:id])
     authorize @standup_meeting
-  rescue Pundit::NotAuthorizedError
-    redirect_back_or_to(standup_meeting_groups_path)
   end
 
   private
