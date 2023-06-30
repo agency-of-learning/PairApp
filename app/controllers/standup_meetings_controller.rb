@@ -2,7 +2,7 @@ class StandupMeetingsController < ApplicationController
   before_action :set_standup_meeting_group
 
   def index
-    @meeting_date = params[:date] || Date.current
+    @meeting_date = params[:date].nil? ? Date.current : Date.parse(params[:date])
     @standup_meetings = StandupMeeting.includes(:user)
                                       .completed
                                       .where(
