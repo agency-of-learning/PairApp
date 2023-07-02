@@ -1,31 +1,33 @@
-<h1 class="font-bold text-3xl text-center">My Feedback</h1>
+<h1 class="font-bold text-3xl text-center mb-4">My Feedback</h1>
 
-<div class="max-w-4xl mx-auto" data-controller="tabs" data-tabs-active-tab="tab-active">
-  <ul class="tabs">
-    <%= link_to(
-      'Given',
-      "#",
-      data: { tabs_target: "tab", action: "click->tabs#change" },
-      class: "tab tab-lifted",
-    ) %>
-    <%= link_to(
-      'Received',
-      "#",
-      data: { tabs_target: "tab", action: "click->tabs#change" },
-      class: "tab tab-lifted",
-    ) %>
-    <span class="grow border-b border-base-300 rounded-md"></span>  
-  </ul>
+<div class="px-2">
+  <div class="max-w-4xl mx-auto" data-controller="tabs" data-tabs-active-tab="tab-active">
+    <ul class="tabs">
+      <%= link_to(
+        'Given',
+        "#",
+        data: { tabs_target: "tab", action: "click->tabs#change" },
+        class: "tab tab-lifted",
+      ) %>
+      <%= link_to(
+        'Received',
+        "#",
+        data: { tabs_target: "tab", action: "click->tabs#change" },
+        class: "tab tab-lifted",
+      ) %>
+      <span class="grow border-b border-base-300 rounded-md"></span>  
+    </ul>
 
-  <div class="flex flex-col gap-4 p-4 border border-t-0 rounded-b-md" data-tabs-target="panel">
-    <% @given_feedback.each do |item| %>
-      <%= render Feedback::ItemComponent.new(feedback: item, current_user:) %>
-    <% end %>
-  </div>
+    <div class="flex flex-col gap-4 p-4 border border-t-0 rounded-b-md" data-tabs-target="panel">
+      <% @given_feedback.each do |item| %>
+        <%= render Feedback::ItemComponent.new(feedback: item, current_user:) %>
+      <% end %>
+    </div>
 
-  <div class="flex flex-col gap-4 p-4 border border-t-0 rounded-b-md" data-tabs-target="panel">
-    <% @received_feedback.each do |item| %>
-      <%= render Feedback::ItemComponent.new(feedback: item, current_user:) %>
-    <% end %>
+    <div class="flex flex-col gap-4 p-4 border border-t-0 rounded-b-md" data-tabs-target="panel">
+      <% @received_feedback.each do |item| %>
+        <%= render Feedback::ItemComponent.new(feedback: item, current_user:) %>
+      <% end %>
+    </div>
   </div>
 </div>
