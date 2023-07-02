@@ -6,11 +6,11 @@ class Feedback::EditButtonComponent < ViewComponent::Base
     link: 'btn-link btn-xs sm:btn-sm hover:no-underline'
   }.freeze
 
-  def initialize(feedback:, current_user:, style: :button, classes: '')
+  def initialize(feedback:, current_user:, style: :button, class_names: '')
     @feedback = feedback
     @current_user = current_user
     @style = style
-    @classes = classes
+    @class_names = class_names
   end
 
   def call
@@ -18,7 +18,7 @@ class Feedback::EditButtonComponent < ViewComponent::Base
 
     link_to(
       edit_feedback_path(feedback),
-      class: "btn btn-sm capitalize #{variant} #{classes}"
+      class: "btn btn-sm capitalize #{variant} #{class_names}"
     ) do
       content || 'Edit'
     end
@@ -26,7 +26,7 @@ class Feedback::EditButtonComponent < ViewComponent::Base
 
   private
 
-  attr_reader :feedback, :current_user, :style, :classes
+  attr_reader :feedback, :current_user, :style, :class_names
 
   def render?
     feedback.present? && Pundit.policy(current_user, feedback).edit?
