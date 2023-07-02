@@ -6,32 +6,46 @@ RSpec.describe Feedback::ItemComponent, type: :component do
   let(:user) { create(:user) }
 
   context 'when the user is the author' do
-    let(:feedback) { create(:feedback, author: user) }
+    let(:draft_feedback) { create(:feedback, author: user) }
+    let(:complete_feedback) { create(:feedback, author: user, status: :completed) }
 
     it "renders with the text 'For'" do
-      render_inline(described_class.new(feedback:, current_user: user))
+      render_inline(described_class.new(feedback: draft_feedback, current_user: user))
 
       expect(page).to have_content('For')
     end
 
     it 'renders an edit link' do
-      render_inline(described_class.new(feedback:, current_user: user))
+      render_inline(described_class.new(feedback: draft_feedback, current_user: user))
 
       expect(page).to have_link('Edit')
+    end
+
+    it "renders 'Awaiting completion' with incomplete feedback" do
+      render_inline(described_class.new(feedback: draft_feedback, current_user: user))
+
+      expect(page).to have_content('Awaiting completion')
     end
   end
 
   context 'when the user is the receiver' do
-    let(:feedback) { create(:feedback, receiver: user) }
+    let(:draft_feedback) { create(:feedback, receiver: user) }
+    let(:complete_feedback) { create(:feedback, receiver: user, status: :completed) }
 
-    it "renders with the text 'From'" do
-      render_inline(described_class.new(feedback:, current_user: user))
+    it 'renders nothing with a draft feedback' do
+      render_inline(described_class.new(feedback: draft_feedback, current_user: user))
+
+      expect(page).not_to have_selector('body')
+    end
+
+    it "renders with the text 'From' with completed feedback" do
+      render_inline(described_class.new(feedback: complete_feedback, current_user: user))
 
       expect(page).to have_content('From')
     end
 
-    it 'does not render an edit link' do
-      render_inline(described_class.new(feedback:, current_user: user))
+    it 'does not render an edit link with completed feedback' do
+      render_inline(described_class.new(feedback: complete_feedback, current_user: user))
 
       expect(page).not_to have_button('Edit')
     end

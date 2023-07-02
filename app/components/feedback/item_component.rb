@@ -13,11 +13,37 @@ class Feedback::ItemComponent < ViewComponent::Base
 
   attr_reader :feedback, :user
 
+  def render?
+    Pundit.policy(user, feedback).show?
+  end
+
   def heading_text
     TYPE_HEADINGS.fetch(feedback.referenceable_type)
   end
 
-  def partner_label
-    user == feedback.author ? 'For' : 'From'
+  def partner_section
+    content_tag(:p) do
+      if user == feedback.author
+        render_partner('For: ', feedback.receiver.email)
+      else
+        render_partner('From: ', feedback.author.email)
+      end
+    end
+  end
+
+  def rating_section
+    content_tag(:p) do
+      feedback.completed? ? render_rating : 'Awaiting completion of feedback.'
+    end
+  end
+
+  private
+
+  def render_partner(label, partner)
+    content_tag(:span, label, class: 'font-bold') + partner
+  end
+
+  def render_rating
+    content_tag(:span, 'Rating: ', class: 'font-bold') + "#{feedback.overall_rating}/10"
   end
 end
