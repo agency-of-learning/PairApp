@@ -37,6 +37,8 @@ class Feedback < ApplicationRecord
 
   validates :overall_rating, inclusion: { in: 0..100, message: 'must be in range 0-10' }
 
+  scope :order_newest_first, -> { order(created_at: :desc) }
+
   # rubocop:disable Layout/LineLength
   DATA_OBJECT = {
     feedback: [

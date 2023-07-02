@@ -2,8 +2,8 @@ class FeedbacksController < ApplicationController
   before_action :set_feedback, only: %i[show edit update]
 
   def index
-    @given_feedback = current_user.authored_feedbacks
-    @received_feedback = current_user.received_feedbacks
+    @given_feedback = current_user.authored_feedbacks.order_newest_first
+    @received_feedback = current_user.received_feedbacks.order_newest_first
   end
 
   def show
