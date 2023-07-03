@@ -1,11 +1,15 @@
-<%= turbo_stream.prepend(
-  "standup_meeting_group_list",
-  partial: 'standup_meeting_group_list_item',
-  locals: { standup_meeting_group: @standup_meeting_group }
-  )
-%>
+<%= turbo_stream.update "flash", partial: "layouts/flash" %>
 
-<%= turbo_stream.update "new_standup_meeting_group"  do %>
-  <%= render "form", standup_meeting_group: @new_standup_meeting_group %>
+<% if @standup_meeting_group.valid? %>
+  <%= turbo_stream.prepend(
+    "find-standup-meeting-groups",
+    partial: 'standup_meeting_group_list_item',
+    locals: { standup_meeting_group: @standup_meeting_group }
+    )
+  %>
+
+  <%= turbo_stream.update "new_standup_meeting_group"  do %>
+    <%= render "form", standup_meeting_group: @new_standup_meeting_group %>
+  <% end %>
 <% end %>
 

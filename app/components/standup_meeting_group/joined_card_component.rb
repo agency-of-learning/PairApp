@@ -9,14 +9,4 @@ class StandupMeetingGroup::JoinedCardComponent < ViewComponent::Base
     @standup_meeting_group = standup_meeting_group
     @user = current_user
   end
-
-  def card_class_names
-    "card card-bordered w-72 #{background_color}"
-  end
-
-  private
-
-  def background_color
-    'bg-green-200'
-  end
 end

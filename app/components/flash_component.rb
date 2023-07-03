@@ -2,6 +2,7 @@
 
 class FlashComponent < ViewComponent::Base
   TYPE_THEMES = {
+    success: 'success',
     notice: 'success',
     alert: 'error',
     form_errors: 'error'
