@@ -17,32 +17,37 @@
         <%= form.label :invitee_id, class: "label label-text" %>
         <%= form.select :invitee_id, 
                         User.invitee_select_for(current_user).map{|array| [ array[0], {'value' => array[1], 'data-email' => array[0], "data-id"=> array[1], "data-timezone" => array[2], "data-usertimezone" =>"#{current_user.time_zone}"}]}, #order is hardcoded here, not great
-                        {prompt: "Select User"}, 
+                        {prompt: "Select User"},
                         { class: 'select select-primary',
-                          data: {action: "change->pair-requests-form#change"} } %>
-      </div> 
+                          data: {action: "change->pair-requests-form#click"} } %>
+        </div> 
 
       <div class="flex justify-between space-x-4 align-middle">
         <%= form.label :when, class: "label label-text" %>
-        <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#change"} %>
+        <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date"} %>
     
       </div>
 
       <div>
-        <em>Your TimeZone:</em>
+        <em>You:</em>
         <strong id="user-time" data-value="" data-pair-requests-form-target="user">
           
         </strong>
         <strong id="user-time" data-value="" data-pair-requests-form-target="userTime">
           
         </strong>
-        <em>Your Partner's TimeZone:</em>
-        <strong id="invitee-time" data-value="" data-pair-requests-form-target="invitee">
-          ?
+        <br>
+        <em>Invitee:</em>
+        <strong id="invitee" data-value="" data-pair-requests-form-target="invitee">
          </strong>
          <strong id="invitee-time" data-value="" data-pair-requests-form-target="inviteeTime">
-          ?
          </strong>
+
+         <turbo-frame id="<%= form.field_id(:invitee_id, :turbo_frame) %>" class="contents">
+       <% if @pair_request.when? && pair_request.invitee_id? %>
+         <%= @pair_request.when %>
+       <% end %>
+       </turbo-frame>
 
       </div>
 
