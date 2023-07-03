@@ -1,12 +1,8 @@
 class FeedbackPolicy < ApplicationPolicy
   alias_method :feedback, :record
 
-  def index?
-    user_is_owner? || user.admin?
-  end
-
   def show?
-    user_is_owner? || user.admin?
+    user == feedback.author || (user == feedback.receiver && feedback.completed?)
   end
 
   def update?

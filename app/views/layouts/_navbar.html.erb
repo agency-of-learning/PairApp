@@ -16,6 +16,9 @@
           <%= link_to 'Pair Requests', pair_requests_path %>
         </li>
         <li>
+          <%= link_to 'Feedback', feedbacks_path %>
+        </li>
+        <li>
           <%= link_to 'Standup Meeting Groups', standup_meeting_groups_path %>
         </li>
         <% if policy(:invitation).new? %>
@@ -51,6 +54,9 @@
           </li>
           <li>
             <%= link_to 'Pair Requests', pair_requests_path %>
+          </li>
+          <li>
+            <%= link_to 'Feedback', feedbacks_path %>
           </li>
           <% if policy(:invitation).new? %>
             <li>
