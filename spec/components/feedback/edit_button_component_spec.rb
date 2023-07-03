@@ -11,7 +11,15 @@ RSpec.describe Feedback::EditButtonComponent, type: :component do
     it 'renders an edit link' do
       render_inline(described_class.new(feedback: editable_feedback, current_user:))
 
-      expect(page).to have_content('Edit')
+      expect(page).to have_link('Edit')
+    end
+  end
+
+  context 'when the feedback is passed a link style' do
+    it 'renders an edit link with a link styling' do
+      render_inline(described_class.new(feedback: editable_feedback, current_user:, style: :link))
+
+      expect(page).to have_link('Edit', class: 'btn-link')
     end
   end
 
