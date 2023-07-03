@@ -48,8 +48,9 @@ class PairRequestsController < ApplicationController
   end
 
   def invitee 
-    @target = params[:target]
-    @invitee = User.find_by_id(params[:invitee_id])
+    @invitee = @invitee ||= User.find_by_id(params[:invitee_id])
+    @pair_request = PairRequest.new pair_request_params
+    #I need to figure out what this format turbo_stream is doing 
     respond_to do |format|
       format.turbo_stream
     end
@@ -64,6 +65,11 @@ class PairRequestsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def pair_request_params
-    params.require(:pair_request).permit(:invitee_id, :when, :duration, :target)
+    params.fetch(:pair_request, {}).permit(:invitee_id, :when, :duration)
   end
+
+  #invitee_request_params, can I even do this?>
+  def invitee_request_params 
+    params.fetch#the flexible params here just to update stuff
+  end 
 end
