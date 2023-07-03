@@ -1,14 +1,32 @@
 # frozen_string_literal: true
 
 class Feedback::EditButtonComponent < ViewComponent::Base
-  def initialize(feedback:, current_user:)
+  VARIANTS = {
+    button: 'btn-primary',
+    link: 'btn-link btn-xs sm:btn-sm hover:no-underline'
+  }.freeze
+
+  def initialize(feedback:, current_user:, style: :button, class_names: '')
     @feedback = feedback
     @current_user = current_user
+    @style = style
+    @class_names = class_names
+  end
+
+  def call
+    variant = VARIANTS.fetch(style)
+
+    link_to(
+      edit_feedback_path(feedback),
+      class: "btn btn-sm capitalize #{variant} #{class_names}"
+    ) do
+      content || 'Edit'
+    end
   end
 
   private
 
-  attr_reader :feedback, :current_user
+  attr_reader :feedback, :current_user, :style, :class_names
 
   def render?
     feedback.present? && Pundit.policy(current_user, feedback).edit?
