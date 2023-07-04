@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
 
   around_action :set_time_zone, if: :current_user
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   protected
 
   def configure_permitted_parameters
@@ -24,5 +26,10 @@ class ApplicationController < ActionController::Base
 
   def set_time_zone(&)
     Time.use_zone(current_user.time_zone, &)
+  end
+
+  def user_not_authorized
+    flash[:alert] = 'You are not authorized to perform this action.'
+    redirect_back(fallback_location: root_path)
   end
 end

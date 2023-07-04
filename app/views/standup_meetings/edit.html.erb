@@ -1,0 +1,11 @@
+<div class="max-w-4xl mx-auto">
+  <div class="p-8 flex justify-between ">
+    <h1 class="text-3xl font-bold">Get-up, Standup!</h1>
+    <%= link_to 'Back', :back, class: 'link text-primary text-lg mt-2' %>
+  </div>
+  <div class="divider"></div>
+
+  <%= render 'form', 
+      standup_meeting: @standup_meeting,
+      standup_meeting_group: @standup_meeting_group %>
+</div>

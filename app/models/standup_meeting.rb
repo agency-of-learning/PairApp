@@ -35,4 +35,6 @@ class StandupMeeting < ApplicationRecord
     skipped: 2,
     missed: 3
   }
+
+  scope :for_member, ->(user, group) { where(user:, standup_meeting_group: group) }
 end
