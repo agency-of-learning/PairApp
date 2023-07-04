@@ -24,31 +24,15 @@
 
       <div class="flex justify-between space-x-4 align-middle">
         <%= form.label :when, class: "label label-text" %>
+        <p class="label label-text">(<%= current_user.time_zone %>)</p>
         <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date"} %>
-    
       </div>
 
-      <div>
-        <em>You:</em>
-        <strong id="user-time" data-value="" data-pair-requests-form-target="user">
-          
-        </strong>
-        <strong id="user-time" data-value="" data-pair-requests-form-target="userTime">
-          
-        </strong>
-        <br>
-        <em>Invitee:</em>
+      <div class="flex justify-between space-x-4 align-middle">
+        <span class="label label-text">Invitee:
         <strong id="invitee" data-value="" data-pair-requests-form-target="invitee">
-         </strong>
-         <strong id="invitee-time" data-value="" data-pair-requests-form-target="inviteeTime">
-         </strong>
-
-         <turbo-frame id="<%= form.field_id(:invitee_id, :turbo_frame) %>" class="contents">
-       <% if @pair_request.when? && pair_request.invitee_id? %>
-         <%= @pair_request.when %>
-       <% end %>
-       </turbo-frame>
-
+        </strong>
+         </span>
       </div>
 
       <div class="flex justify-between space-x-4 align-middle">
