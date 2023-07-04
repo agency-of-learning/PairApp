@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "new_request_form" do %>
   <%= form_with(model: pair_request, class: 'p-4 w-full mx-auto border-2 border-primary rounded-md flex flex-col') do |form| %>
-    <div id="form-container" class='flex flex-col space-y-4 xl:space-y-0 xl:max-w-full xl:inline-flex xl:justify-around xl:space-x-8 xl:flex-row' data-controller="pair-requests-form">
+    <div id="form-container" class='flex flex-col space-y-4 xl:space-y-0 xl:max-w-full xl:inline-flex xl:justify-around xl:space-x-8 xl:flex-row' data-controller="pair-requests-form" data-controller="pair-requests-form">
       <div class="flex justify-between space-x-4 align-middle">
         <%= form.label :invitee_id, class: "label label-text" %>
         <%= form.select :invitee_id, 
@@ -13,7 +13,15 @@
       <div class="flex justify-between space-x-4 align-middle">
         <%= form.label :when, class: "label label-text" %>
         <p class="label label-text">(<%= current_user.time_zone %>)</p>
-        <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date"}, class: "input input-primary input-md" %>
+        <p class="label label-text">(<%= current_user.time_zone %>)</p>
+        <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date"}, class: "input input-primary input-md", data: {action: "input->pair-requests-form#date"} %>
+      </div>
+
+      <div class="flex justify-between space-x-4 align-middle">
+        <span class="label label-text">Invitee:
+        <strong id="invitee" data-value="" data-pair-requests-form-target="invitee">
+        </strong>
+         </span>
       </div>
 
       <div class="flex justify-between space-x-4 align-middle">
