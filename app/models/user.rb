@@ -54,20 +54,23 @@ class User < ApplicationRecord
     foreign_key: 'author_id',
     dependent: :destroy,
     inverse_of: 'author'
-
-  has_many :received_feedbacks,
+    
+    has_many :received_feedbacks,
     class_name: 'Feedback',
     foreign_key: 'receiver_id',
     dependent: :destroy,
     inverse_of: 'receiver'
+    
+    has_many :references, as: :referenceable, dependent: :destroy, class_name: 'Feedback'
+    
+    has_many :standup_meeting_groups_users, dependent: :destroy, class_name: 'StandupMeetingGroupUser'
+    has_many :standup_meetings, dependent: :destroy
+    has_many :standup_meeting_groups, through: :standup_meeting_groups_users
+    
+    validates :first_name, presence: true
+    validates :last_name, presence: true
 
-  has_many :references, as: :referenceable, dependent: :destroy, class_name: 'Feedback'
-
-  has_many :standup_meeting_groups_users, dependent: :destroy, class_name: 'StandupMeetingGroupUser'
-  has_many :standup_meetings, dependent: :destroy
-  has_many :standup_meeting_groups, through: :standup_meeting_groups_users
-
-  scope :invitee_select_for, ->(user) { User.excluding(user).pluck(:email, :id) }
+    scope :invitee_select_for, ->(user) { User.excluding(user).pluck(:email, :id) }
 
   def self.invite!(attributes = {}, invited_by = nil, options = {}, &)
     default_name = { first_name: 'First', last_name: 'Last' }

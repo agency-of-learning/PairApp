@@ -71,7 +71,7 @@ rails console
 ```
 3. In the console, run the following command to invite a user:
 ```bash 
-User.invite!(email: <some_test_email>, first_name: <user_first_name>, last_name: <user_last_name></user_last_name>)
+User.invite!(email: <some_test_email>)
 ```
 4. The `letter_opener` gem should open a new tab in your browser with an invite link. If it doesn't, you can manually access the letter opener by opening http://localhost:3000/letter_opener.
 
