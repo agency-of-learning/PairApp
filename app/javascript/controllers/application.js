@@ -13,6 +13,7 @@ application.register('popover', Popover);
 application.register('toggle', Toggle);
 application.register('slideover', Slideover);
 
+
 // Configure Stimulus development experience;
 application.debug = true;
 window.Stimulus   = application;

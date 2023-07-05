@@ -9,9 +9,10 @@ RSpec.describe FeedbackPolicy do
   let(:not_owned_feedback) { build(:feedback) }
   let(:authored_feedback) { build(:feedback, author: user, locked_at:) }
   let(:received_feedback) { build(:feedback, receiver: user) }
+  let(:received_complete_feedback) { build(:feedback, receiver: user, status: :completed) }
   let(:locked_at) { nil }
 
-  permissions :index?, :show? do
+  permissions :show? do
     it 'denies access if the user is not an owner of the request' do
       expect(subject).not_to permit(user, not_owned_feedback)
     end
@@ -20,12 +21,12 @@ RSpec.describe FeedbackPolicy do
       expect(subject).to permit(user, authored_feedback)
     end
 
-    it 'grants access when the user is the receiver' do
-      expect(subject).to permit(user, received_feedback)
+    it 'grants access when the user is the receiver on a completed feedback' do
+      expect(subject).to permit(user, received_complete_feedback)
     end
 
-    it 'grants access when the user is an admin' do
-      expect(subject).to permit(admin, not_owned_feedback)
+    it 'denies access when the user is the receiver on a draft feedback' do
+      expect(subject).not_to permit(user, received_feedback)
     end
   end
 
