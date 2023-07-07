@@ -45,7 +45,7 @@ export default class extends Controller {
         hour: '2-digit',
         minute: '2-digit' 
       }); */
-      this.inviteeTarget.textContent = (`${inviteeResult}, ${invitee_time_zone}`)
+      this.inviteeTarget.textContent = (`${inviteeResult} (${invitee_time_zone})`)
 
     }
     //get(`/pair_requests/invitee?invitee_id=${invitee_id}`,{
@@ -82,7 +82,7 @@ export default class extends Controller {
         hour: '2-digit',
         minute: '2-digit' 
       }); */
-      this.inviteeTarget.textContent = (`${inviteeResult}, ${inviteeValue}`)
+      this.inviteeTarget.textContent = (`${inviteeResult} (${inviteeValue})`)
 
     }
   }
@@ -105,9 +105,9 @@ class TimeZoneConverter {
     }
     const result = this.time.toLocaleString("en-US", {
         timeZone: match,
-        year: 'numeric',
         month: 'numeric',
-        day: 'numeric',
+        day: "numeric",
+        year: "numeric",
         hour: '2-digit',
         minute: '2-digit' 
       });

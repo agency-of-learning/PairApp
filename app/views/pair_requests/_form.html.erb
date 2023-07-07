@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "new_request_form" do %>
-  <%= form_with(model: pair_request, class: 'p-4 w-full mx-auto border-2 border-primary rounded-md flex flex-col') do |form| %>
-    <div id="form-container" class='flex flex-col space-y-4 xl:space-y-0 xl:max-w-full xl:inline-flex xl:justify-around xl:space-x-8 xl:flex-row' data-controller="pair-requests-form" data-controller="pair-requests-form">
-      <div class="flex justify-between space-x-4 align-middle">
+  <%= form_with(model: pair_request, class: 'p-4 w-full mx-auto border-2 border-primary rounded-md flex flex-col w-min') do |form| %>
+    <div id="form-container" class='flex flex-col space-y-4 xl:space-y-0 xl:max-w-full xl:inline-flex xl:justify-around xl:space-x-8 xl:flex-row object-contain' data-controller="pair-requests-form" data-controller="pair-requests-form">
+      <div class="flex justify-between space-x-4 align-middle items-center ">
         <%= form.label :invitee_id, class: "label label-text" %>
         <%= form.select :invitee_id, 
                         User.invitee_select_for(current_user).map{|array| [ array[0], {'value' => array[1], 'data-email' => array[0], "data-id"=> array[1], "data-timezone" => array[2], "data-usertimezone" =>"#{current_user.time_zone}"}]}, #order is hardcoded here, not great
@@ -10,34 +10,25 @@
                           data: {action: "change->pair-requests-form#click"} } %>
         </div> 
 
-      <div class="flex justify-between space-x-4 align-middle">
+      <div class="flex justify-between align-middle items-center">
         <%= form.label :when, class: "label label-text" %>
-        <p class="label label-text">(<%= current_user.time_zone %>)</p>
-        <p class="label label-text">(<%= current_user.time_zone %>)</p>
-        <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date"}, class: "input input-primary input-md", data: {action: "input->pair-requests-form#date"} %>
+        <p class="label label-text"><%= "(#{Time.now.zone})" %></p>
+        <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date"}, class: "input input-primary input-md w-max", data: {action: "input->pair-requests-form#date"} %>
       </div>
 
-      <div class="flex justify-between space-x-4 align-middle">
-        <span class="label label-text">Invitee:
-        <strong id="invitee" data-value="" data-pair-requests-form-target="invitee">
-        </strong>
-         </span>
+      <div class="flex align-middle items-center">
+        <p class="whitespace-nowrap label label-text">Invitee</p>
+        <p class="whitespace-nowrap label label-text" id="invitee" data-value="" data-pair-requests-form-target="invitee">
+        </p>
       </div>
 
-      <div class="flex justify-between space-x-4 align-middle">
-        <span class="label label-text">Invitee:
-        <strong id="invitee" data-value="" data-pair-requests-form-target="invitee">
-        </strong>
-         </span>
-      </div>
-
-      <div class="flex justify-between space-x-4 align-middle">
+      <div class="flex justify-between space-x-4 align-middle items-center">
         <%= form.label :duration, 'Duration (minutes)', class: "label label-text"  %>
         <%= form.number_field :duration, value: 15, in: 15..180, step: 15, required: true, class: 'input input-primary input-md w-36' %>
       </div>
 
-      <div class='ml-auto'>
-        <%= form.submit "Create Pair Request", class: 'btn btn-primary' %>
+      <div class='ml-auto flex items-center'>
+        <%= form.submit "Create Pair Request", class: 'btn btn-primary w' %>
       </div>
     </div>
   <% end %>
