@@ -1,33 +1,33 @@
+<h1 class="text-2xl font-bold mb-4 text-center">Edit Feedback</h1>
 
-<%= form_with model: @feedback, local: true, html: { class: 'max-w-prose mx-auto px-4' } do |form| %>
-  <% if @feedback.errors.any? %>
+<%= turbo_frame_tag @feedback do %>
 
-    <div class="mb-4">
-      <h2 class="text-red-700 text-lg">
-        Please fix <%= pluralize(@feedback.errors.count, "error") %>
-      </h2>
+  <%= form_with model: @feedback, local: true, html: { class: 'max-w-prose mx-auto px-4' } do |form| %>
+    <p class="font-bold mb-2">Rating:</p>
+    <div class="flex gap-x-2 mb-4">
+      <% 11.times do |n| %>
+        <div class="flex flex-col text-center">
+          <%= form.radio_button :overall_rating, n, class: "radio radio-primary" %>
+          <%= form.label :overall_rating, n %>
+        </div>
+      <% end %>
+    </div>
 
-      <ul>
-        <% @feedback.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <% @feedback.data['feedback'].each_with_index do |object, index| %>
+      <div class="form-control mb-4">
+        <%= form.label "data[feedback][#{index}][answer]", object['question'], class: "font-bold mb-2" %>
+        <%= form.text_area "data[feedback][#{index}][answer]",
+          value: object['answer'],
+          required: object['required'],
+          class: "textarea textarea-bordered",
+          data: { controller: 'textarea-autogrow'},
+          rows: '1'
+        %>
+      </div>
+    <% end %>
+
+    <div class="form-control">
+      <%= form.submit "Update Feedback", class: "btn btn-primary btn-wide mx-auto" %>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label "overall_rating", class: "label label-text text-lg " %>
-    <%= form.number_field :overall_rating, class: "input input-bordered input-sm", min: 0, max: 10 %>
-  </div>
-
-  <% @feedback.data['feedback'].each_with_index do |object, index| %>
-    <div class="form-control mb-4">
-      <%= form.label "data[feedback][#{index}][answer]", object['question'], class: "label label-text text-lg" %>
-      <%= form.text_area "data[feedback][#{index}][answer]", value: object['answer'], required: object['required'], class: "textarea textarea-bordered" %>
-    </div>
-  <% end %>
-
-  <div class="form-control">
-    <%= form.submit "Update Feedback", class: "btn btn-primary btn-wide mx-auto" %>
-  </div>
 <% end %>
