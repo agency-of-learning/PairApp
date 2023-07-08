@@ -5,6 +5,16 @@
 
   <% if f.object.class.require_password_on_accepting %>
     <div class="form-control">
+      <%= f.label :first_name, class: 'label label-text text-lg' %>
+      <%= f.text_field :first_name, class: 'input input-bordered' %>
+    </div>
+
+    <div class="form-control">
+      <%= f.label :last_name, class: 'label label-text text-lg' %>
+      <%= f.text_field :last_name, class: 'input input-bordered' %>
+    </div>
+
+    <div class="form-control">
       <%= f.label :password, class: 'label label-text text-lg' %>
       <%= f.password_field :password, class: 'input input-bordered' %>
     </div>
