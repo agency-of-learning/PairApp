@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "new_request_form" do %>
   <%= form_with(model: pair_request, class: 'p-4 w-full mx-auto border-2 border-primary rounded-md flex flex-col w-min') do |form| %>
-    <div id="form-container" class='flex flex-col space-y-4 xl:space-y-0 xl:max-w-full xl:inline-flex xl:justify-around xl:space-x-8 xl:flex-row object-contain' data-controller="pair-requests-form" data-controller="pair-requests-form">
+    <div id="form-container" class='flex flex-col space-y-4 xl:space-y-0 xl:max-w-full xl:inline-flex xl:justify-around xl:space-x-4 xl:flex-row object-contain' data-controller="pair-requests-form" data-controller="pair-requests-form">
       <div class="flex justify-between space-x-4 align-middle items-center ">
         <%= form.label :invitee_id, class: "label label-text" %>
         <%= form.select :invitee_id, 
@@ -9,17 +9,18 @@
                         { class: 'select select-primary',
                           data: {action: "change->pair-requests-form#click"} } %>
         </div> 
+      <div class="flex flex-col w-auto">
+        <div class="flex basis-1/8 space-x-4 align-middle items-center w-max">
+          <%= form.label :when, class: "label label-text pr-2.5" %>
+          <p class="label label-text basis-1/2"><%= "(#{current_user.time_zone})" %></p>
+          <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date"}, class: " basis-1/2 input input-primary input-md w-max", data: {action: "input->pair-requests-form#date"} %>
+        </div>
 
-      <div class="flex justify-between align-middle items-center">
-        <%= form.label :when, class: "label label-text" %>
-        <p class="label label-text"><%= "(#{Time.now.zone})" %></p>
-        <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date"}, class: "input input-primary input-md w-max", data: {action: "input->pair-requests-form#date"} %>
-      </div>
-
-      <div class="flex align-middle items-center">
-        <p class="whitespace-nowrap label label-text">Invitee</p>
-        <p class="whitespace-nowrap label label-text" id="invitee" data-value="" data-pair-requests-form-target="invitee">
-        </p>
+        <div class="flex space-x-4 align-middle items-center text-left">
+          <p class="text-left basis-1/8 label label-text">Invitee</p>
+          <p data-pair-requests-form-target="invitee_tz" class="basis-1/2 text-left whitespace-nowrap  label label-text"></p>
+          <strong class="pl-4 basis-1/2 label-text" id="invitee" data-value="" data-pair-requests-form-target="invitee"></strong>
+        </div>
       </div>
 
       <div class="flex justify-between space-x-4 align-middle items-center">
