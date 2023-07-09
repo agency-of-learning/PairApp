@@ -1,5 +1,4 @@
 class StandupMeetingsController < ApplicationController
-  # rubocop:disable Metrics/AbcSize
   def index
     @meeting_date = params[:date].nil? ? Date.current : Date.parse(params[:date])
     @standup_meetings = StandupMeeting.includes(:user, :standup_meeting_group)
@@ -16,7 +15,6 @@ class StandupMeetingsController < ApplicationController
       @standup_meeting_group = @standup_meetings.first.standup_meeting_group
     end
   end
-  # rubocop:enable Metrics/AbcSize
 
   def edit
     @standup_meeting = StandupMeeting.includes(:standup_meeting_group).find(params[:id])
