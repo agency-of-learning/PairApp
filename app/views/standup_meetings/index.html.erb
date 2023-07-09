@@ -1,0 +1,12 @@
+<div class="max-w-6xl mx-auto p-4">
+  <div class="text-sm breadcrumbs max-w-xs">
+    <ul>
+      <li><%= link_to "Standup Groups", standup_meeting_groups_path %></li> 
+      <li><%= link_to @standup_meeting_group.name, standup_meeting_group_path(@standup_meeting_group) %></li> 
+      <li><%= @meeting_date %></li>
+    </ul>
+  </div>
+  <div class="py-4 flex flex-col md:flex-row justify-between">
+    <h1 class="text-3xl font-bold text-center md:text-left">Standup - <%= @meeting_date %></h1>
+  </div>
+</div>
