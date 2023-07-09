@@ -1,5 +1,10 @@
 <h1 class="text-2xl font-bold mb-4 text-center">Edit Feedback</h1>
 
+<dl class="text-center mb-2">
+  <dl class="font-bold">For</dl>
+  <dt><%= @feedback.receiver.email %></dt>
+</dl>
+
 <%= turbo_frame_tag @feedback, target: "_top" do %>
 
   <%= form_with model: @feedback, local: true, html: { class: 'max-w-prose mx-auto px-4' } do |form| %>
