@@ -8,31 +8,86 @@
   </div>
   <div class="py-4 flex flex-col md:flex-row justify-between">
     <h1 class="text-3xl font-bold text-center md:text-left">Standup - <%= @meeting_date %></h1>
-    <div class="flex justify-between w-1/2 mt-4 lg:mt-0 mx-auto" data-controller="link-builder" data-link-builder-param-value='date'>
-      <%= link_to standup_meeting_group_standup_meetings_path(@standup_meeting_group, date: yesterday(@meeting_date)), class: 'link text-primary text-lg mt-2 flex flex-col no-underline' do %>
-        <i class="fa-solid fa-caret-left h-8"></i> 
-        <span class="md:hidden">
-          Previous
-        </span>
+    <div class="flex flex-around w-1/2 lg:w-1/4 mt-4 mx-auto lg:mt-0 lg:mx-0 space-x-4" data-controller="link-builder" data-link-builder-param-value='date'>
+      <% if @standup_meeting_group.previous_standup_meeting(date: @meeting_date) %>
+        <%= link_to standup_meeting_group_standup_meetings_path(
+          @standup_meeting_group, 
+          date: @standup_meeting_group.previous_standup_meeting(date: @meeting_date)
+        ), class: 'link text-primary text-lg mt-2 flex flex-col no-underline' do %>
+          <i class="fa-solid fa-caret-left text-3xl"></i> 
+          <span class="md:hidden">
+            Previous
+          </span>
+        <% end %>
+      <% else %>
+        <div class="text-lg mt-2 flex flex-col no-underline">
+          <i class="fa-solid fa-caret-left text-3xl text-base-300 cursor-not-allowed"></i> 
+          <span class="md:hidden">
+            Previous
+          </span>
+        </div>
       <% end %>
+      
       <%= text_field_tag :date_jumper, @meeting_date, class: 'hidden md:inline border px-4 mx-2 w-48',data: {
         controller: "flatpickr",
         flatpickr_date_format: "Y-m-d",
-        flatpickr_max_date: Date.current,
+        flatpickr_enable: @standup_meeting_group.meeting_dates,
         action: "change->link-builder#updateDestinationParams",
         link_builder_target: 'source'
         } %>
         <a href="" class="btn hidden md:inline pt-4" data-link-builder-target='destination'>GO</a>
-          
-        <%= link_to_if !@meeting_date.today?, (content_tag(:i, nil, class: "fa-solid fa-caret-right h-8 text-lg mt-2 link text-primary flex flex-col no-underline")),standup_meeting_group_standup_meetings_path(@standup_meeting_group, date: tomorrow(@meeting_date)), class: 'flex flex-col no-underline' do %>
-          <i class="fa-solid fa-caret-right h-8 text-base-300 cursor-not-allowed"></i> 
-          <span class="md:hidden">
-            Next
-          </span>
-        <% end %>
         
+        
+        <% if @standup_meeting_group.next_standup_meeting(date: @meeting_date) %>
+          <%= link_to standup_meeting_group_standup_meetings_path(
+            @standup_meeting_group, 
+            date: @standup_meeting_group.next_standup_meeting(date: @meeting_date)
+          ), class: 'link text-primary text-lg mt-2 flex flex-col no-underline' do %>
+            <i class="fa-solid fa-caret-right text-3xl"></i> 
+            <span class="md:hidden">
+              Next
+            </span>
+          <% end %>
+        <% else %>
+          <div class="text-lg mt-2 flex flex-col no-underline">
+            <i class="fa-solid fa-caret-right text-3xl text-base-300 cursor-not-allowed"></i> 
+            <span class="md:hidden">
+              Next
+            </span>
+          </div>
+        <% end %>
       </div>
     </div>
+    <div id="check-in-cta" class="p-4 border-2 border-primary my-4 flex flex-col space-y-4 sm:flex-row sm:space-y-0 justify-between">
+      <% if @current_user_standup_meeting.completed? %>
+        <span class="text-xl align-middle py-2 mx-auto sm:mx-0">
+          <i class="fa-solid fa-check text-2xl text-green-500 mr-4"></i> 
+          You checked in today!
+        </span> 
+      <% elsif @current_user_standup_meeting.skipped? %>
+        <span class="text-xl align-middle py-2 mx-auto sm:mx-0">
+          <i class="fa-solid fa-check text-2xl text-green-500 mr-4"></i> 
+          You skipped your check-in today
+        </span> 
+      <% else %>
+        <span class="text-xl align-middle py-2 mx-auto sm:mx-0">
+          <i class="fa-solid fa-warning text-2xl text-yellow-400 mr-4"></i> 
+          You have not yet checked in today!
+        </span> 
+      <% end %>
+      <div id="cta-actions" class="flex mx-auto sm:mx-0">
+        <% if @current_user_standup_meeting.completed? %>
+          <%= link_to "Edit Response", edit_standup_meeting_group_standup_meeting_path(@standup_meeting_group, @current_user_standup_meeting), class: 'btn btn-primary' %>
+        <% else %>
+          <%= render StandupMeeting::ActionButtonComponent.new(
+            standup_meeting_group: @standup_meeting_group, 
+            standup_meeting: @current_user_standup_meeting, 
+            current_user: current_user) %>
+          <%= link_to "Check in", edit_standup_meeting_group_standup_meeting_path(@standup_meeting_group, @current_user_standup_meeting), class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+
     <div data-controller="tabs" data-tabs-active-tab="-mb-px border-l-2 border-t-2 border-r-2 rounded-t text-primary">
       <a class="text-lg border-b-0 bg-white inline-block py-2 px-4" href="#"  data-tabs-target="tab" data-action="click->tabs#change">
         <span class="hidden md:inline">View by </span>
@@ -46,17 +101,17 @@
 
       <div class="flex flex-col lg:flex-row justify-evenly" data-tabs-target="panel">
         <%= render StandupMeeting::MeetingColumnComponent.new(title: "Previous Work Day") do |component| %>
-          <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@standup_meetings, content_type: :yesterday_work_description) %>
+          <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@standup_meetings.completed, content_type: :yesterday_work_description) %>
         <% end %>
         <%= render StandupMeeting::MeetingColumnComponent.new(title: "Today's Work Day") do |component| %>
-          <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@standup_meetings, content_type: :today_work_description) %>
+          <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@standup_meetings.completed, content_type: :today_work_description) %>
         <% end %>
         <%= render StandupMeeting::MeetingColumnComponent.new(title: "Blockers") do |component| %>
-          <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@standup_meetings, content_type: :blockers_description) %>
+          <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@standup_meetings.completed, content_type: :blockers_description) %>
         <% end %>
       </div>
       <div class="hidden" data-tabs-target="panel">
-        <%= render StandupMeeting::MeetingRowComponent.with_collection(@standup_meetings) %>
+        <%= render StandupMeeting::MeetingRowComponent.with_collection(@standup_meetings.completed) %>
       </div>
     </div>
   </div>

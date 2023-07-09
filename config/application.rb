@@ -23,6 +23,9 @@ module PairApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.autoload_paths << Rails.root.join('decorators')
+    config.eager_load_paths << Rails.root.join('decorators')
+
     config.active_storage.variant_processor = :mini_magick
   end
 end
