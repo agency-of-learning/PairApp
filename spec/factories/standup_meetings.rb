@@ -35,4 +35,11 @@ FactoryBot.define do
     meeting_date { Date.current }
     status { StandupMeeting.statuses[:draft] }
   end
+
+  trait :skipped do
+    status { StandupMeeting.statuses[:skipped] }
+  end
+  trait :completed do
+    status { StandupMeeting.statuses[:completed] }
+  end
 end

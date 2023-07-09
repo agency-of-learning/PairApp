@@ -6,7 +6,8 @@ class StandupMeetingsController < ApplicationController
                                         meeting_date: @meeting_date,
                                         standup_meeting_group_id: params[:standup_meeting_group_id]
                                       )
-    @current_user_standup_meeting = @standup_meetings.filter { |meet| meet.user == current_user }.first
+    @completed_meetings = @standup_meetings.filter(&:completed?)
+    @current_user_standup_meeting = @standup_meetings.find { |meet| meet.user == current_user }
     @standup_meeting_group = StandupMeetingGroupDecorator.new(@standup_meetings.first.standup_meeting_group)
   end
 
