@@ -7,6 +7,7 @@ class StandupMeetings::SkipsController < ApplicationController
     @standup_meeting.skipped!
 
     flash[:notice] = "You skipped standup for #{@standup_meeting.meeting_date}"
-    redirect_to standup_meeting_group_path(@standup_meeting_group)
+    redirect_to standup_meeting_group_standup_meetings_path(@standup_meeting_group,
+    date: @standup_meeting.meeting_date)
   end
 end
