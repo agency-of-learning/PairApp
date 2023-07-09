@@ -5,6 +5,7 @@
 #  id                     :bigint           not null, primary key
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  first_name             :string           not null
 #  invitation_accepted_at :datetime
 #  invitation_created_at  :datetime
 #  invitation_limit       :integer
@@ -12,6 +13,7 @@
 #  invitation_token       :string
 #  invitations_count      :integer          default(0)
 #  invited_by_type        :string
+#  last_name              :string           not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
@@ -31,6 +33,8 @@
 #
 FactoryBot.define do
   factory :user do
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
     email { Faker::Internet.email }
     password { Faker::Internet.password(min_length: 6) }
 
