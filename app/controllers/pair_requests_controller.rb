@@ -47,15 +47,6 @@ class PairRequestsController < ApplicationController
     end
   end
 
-  def invitee 
-    @invitee = @invitee ||= User.find_by_id(params[:invitee_id])
-    @pair_request = PairRequest.new pair_request_params
-    #I need to figure out what this format turbo_stream is doing 
-    respond_to do |format|
-      format.turbo_stream
-    end
-  end 
-
   private
 
   # Use callbacks to share common setup or constraints between actions.
