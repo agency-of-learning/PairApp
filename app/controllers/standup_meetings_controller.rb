@@ -13,6 +13,8 @@ class StandupMeetingsController < ApplicationController
         date: @date_options.max)
     else
       @standup_meeting_group = @standup_meetings.first.standup_meeting_group
+      @current_user_standup_meeting = @standup_meetings.find { |meet| meet.user == current_user }
+      @completed_meetings = @standup_meetings.filter(&:completed?)
     end
   end
 
