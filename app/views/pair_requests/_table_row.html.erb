@@ -17,7 +17,8 @@
       feedback: pair_request.authored_feedback_for(current_user),
       current_user:,
       style: :link,
-      class_names: "text-left flex flex-col flex-nowrap gap-y-0.5 items-start"
+      class_names: "text-left flex flex-col flex-nowrap gap-y-0.5 items-start",
+      data: { turbo_frame: "_top" }
     ) do %>
       <%= content_tag(:p, 'Edit') + content_tag(:p, 'Feedback') %>
     <% end %>

@@ -6,6 +6,7 @@
     "esbuild": "^0.17.19",
     "flatpickr": "^4.6.13",
     "stimulus-flatpickr": "^3.0.0-0",
+    "stimulus-textarea-autogrow": "^4.1.0",
     "tailwindcss-stimulus-components": "^3.0.4"
   },
   "scripts": {

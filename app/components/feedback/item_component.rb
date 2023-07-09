@@ -44,6 +44,6 @@ class Feedback::ItemComponent < ViewComponent::Base
   end
 
   def render_rating
-    content_tag(:span, 'Rating: ', class: 'font-bold') + "#{feedback.overall_rating}/10"
+    content_tag(:span, 'Rating: ', class: 'font-bold') + "#{feedback.overall_rating}/5"
   end
 end
