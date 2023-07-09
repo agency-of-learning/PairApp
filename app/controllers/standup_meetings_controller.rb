@@ -12,6 +12,7 @@ class StandupMeetingsController < ApplicationController
       redirect_to standup_meeting_group_standup_meetings_path(params[:standup_meeting_group_id],
         date: @date_options.max)
     else
+      @completed_meetings = @standup_meetings.filter(&:completed?)
       @standup_meeting_group = @standup_meetings.first.standup_meeting_group
     end
   end
