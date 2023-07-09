@@ -7,7 +7,7 @@ class StandupMeetings::CompletionsController < ApplicationController
     if @standup_meeting.update(standup_meeting_params)
       flash[:notice] = "You completed the standup for #{@standup_meeting.meeting_date}"
       redirect_to standup_meeting_group_standup_meetings_path(@standup_meeting_group,
-      date: @standup_meeting.meeting_date)
+        date: @standup_meeting.meeting_date)
     else
       flash[:form_errors] = @standup_meeting.errors.full_messages
       redirect_to edit_standup_meeting_group_standup_meeting_path(@standup_meeting_group, @standup_meeting)
