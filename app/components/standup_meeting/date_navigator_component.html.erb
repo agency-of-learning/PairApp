@@ -1,0 +1,48 @@
+<div class="flex flex-row-reverse justify-between w-1/2 lg:w-1/4 mt-4 mx-auto md:mt-0 lg:mx-0 md:space-x-4" data-controller="link-builder" data-link-builder-param-value='date'>
+  <% if standup_meeting_group.next_standup_meeting(meeting_date:, date_options:) %>
+    <%= link_to standup_meeting_group_standup_meetings_path(
+      standup_meeting_group, 
+      date: standup_meeting_group.next_standup_meeting(meeting_date:, date_options:)
+    ), class: 'link text-primary text-lg mt-2 ml-4 flex flex-col no-underline' do %>
+      <i class="fa-solid fa-caret-right text-3xl"></i> 
+      <span class="md:hidden">
+        Next
+      </span>
+    <% end %>
+  <% else %>
+    <div class="text-lg mt-2 flex flex-col no-underline">
+      <i class="fa-solid fa-caret-right text-3xl text-base-300 cursor-not-allowed ml-4"></i> 
+      <span class="md:hidden">
+        Next
+      </span>
+    </div>
+  <% end %>
+  <a href="" class="btn hidden md:inline pt-4" data-link-builder-target='destination'>GO</a>
+  <%= text_field_tag :date_jumper, meeting_date, class: 'hidden md:inline border px-4 mx-2 w-48',data: {
+    controller: "flatpickr",
+    flatpickr_date_format: "Y-m-d",
+    flatpickr_enable: date_options,
+    action: "change->link-builder#updateDestinationParams",
+    link_builder_target: 'source'
+    } %>
+    
+    <% if standup_meeting_group.previous_standup_meeting(meeting_date:, date_options:) %>
+      <%= link_to standup_meeting_group_standup_meetings_path(
+        standup_meeting_group, 
+        date: standup_meeting_group.previous_standup_meeting(meeting_date:, date_options:)
+      ), class: 'link text-primary text-lg mt-2 flex flex-col no-underline' do %>
+        <i class="fa-solid fa-caret-left text-3xl"></i> 
+        <span class="md:hidden">
+          Previous
+        </span>
+      <% end %>
+    <% else %>
+      <div class="text-lg mt-2 flex flex-col no-underline">
+        <i class="fa-solid fa-caret-left text-3xl text-base-300 cursor-not-allowed"></i> 
+        <span class="md:hidden">
+          Previous
+        </span>
+      </div>
+    <% end %>
+  </div>
+</div>

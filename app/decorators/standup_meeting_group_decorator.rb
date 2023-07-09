@@ -1,17 +1,9 @@
 class StandupMeetingGroupDecorator < SimpleDelegator
-  attr_reader :meeting_dates
-
-  def initialize(*args)
-    super(*args)
-    return if nil?
-    @meeting_dates = StandupMeeting.meeting_dates(id)
+  def next_standup_meeting(meeting_date:, date_options:)
+    date_options.select { |date| date > meeting_date }.min
   end
 
-  def next_standup_meeting(date:)
-    meeting_dates.select { |meeting_date| meeting_date > date }.min
-  end
-
-  def previous_standup_meeting(date:)
-    meeting_dates.select { |meeting_date| meeting_date < date }.max
+  def previous_standup_meeting(meeting_date:, date_options:)
+    date_options.select { |date| date < meeting_date }.max
   end
 end
