@@ -21,7 +21,6 @@
   <%= text_field_tag :date_jumper, meeting_date, class: 'hidden md:inline border px-4 mx-2 w-48',data: {
     controller: "flatpickr",
     flatpickr_date_format: "Y-m-d",
-    flatpickr_enable: date_options,
     action: "change->link-builder#updateDestinationParams",
     link_builder_target: 'source'
     } %>
