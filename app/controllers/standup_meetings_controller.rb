@@ -16,6 +16,12 @@ class StandupMeetingsController < ApplicationController
     @completed_meetings = @standup_meetings.filter(&:completed?)
   end
 
+  def edit
+    @standup_meeting = StandupMeeting.includes(:standup_meeting_group).find(params[:id])
+    @standup_meeting_group = @standup_meeting.standup_meeting_group
+    authorize @standup_meeting
+  end
+
   def create
     @standup_meeting_group = StandupMeetingGroup.find(params[:standup_meeting_group_id])
     authorize @standup_meeting_group, policy_class: StandupMeetingPolicy
@@ -31,11 +37,5 @@ class StandupMeetingsController < ApplicationController
         status: :unprocessable_entity
       )
     end
-  end
-
-  def edit
-    @standup_meeting = StandupMeeting.includes(:standup_meeting_group).find(params[:id])
-    @standup_meeting_group = @standup_meeting.standup_meeting_group
-    authorize @standup_meeting
   end
 end
