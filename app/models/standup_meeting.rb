@@ -37,10 +37,4 @@ class StandupMeeting < ApplicationRecord
   }
 
   scope :for_member, ->(user, group) { where(user:, standup_meeting_group: group) }
-  scope :meeting_dates, ->(group_id) do
-    select(:meeting_date)
-      .where(standup_meeting_group_id: group_id)
-      .distinct
-      .pluck(:meeting_date)
-  end
 end
