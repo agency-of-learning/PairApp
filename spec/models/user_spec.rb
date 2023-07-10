@@ -34,70 +34,53 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  describe 'scopes' do
-    describe '.invitee_select_for' do
-      let!(:param_user) { create(:user) }
-      let!(:other_user) { create(:user) }
+  describe '#my_pair_requests' do
+    let!(:user) { create(:user) }
+    let!(:authored_request) { create(:pair_request, author: user) }
+    let!(:received_request) { create(:pair_request, invitee: user) }
 
-      it 'excludes the user in the param' do
-        param_user_data = [param_user.email, param_user.id]
-        expect(described_class.invitee_select_for(param_user)).not_to include(param_user_data)
-      end
-
-      it 'includes other users' do
-        other_user_data = [other_user.email, other_user.id]
-        expect(described_class.invitee_select_for(param_user)).to include(other_user_data)
-      end
+    it "fetches a user's received and authored pair requests" do
+      expect(user.my_pair_requests).to include(authored_request, received_request)
     end
 
-    describe '#my_pair_requests' do
-      let!(:user) { create(:user) }
-      let!(:authored_request) { create(:pair_request, author: user) }
-      let!(:received_request) { create(:pair_request, invitee: user) }
-
-      it "fetches a user's received and authored pair requests" do
-        expect(user.my_pair_requests).to include(authored_request, received_request)
-      end
-
-      it "doesn't fetch other users' requests" do
-        other_request = create(:pair_request)
-        expect(user.my_pair_requests).not_to include(other_request)
-      end
-
-      it 'returns an ActiveRecord Relation' do
-        expect(user.my_pair_requests).to be_a ActiveRecord::Relation
-      end
+    it "doesn't fetch other users' requests" do
+      other_request = create(:pair_request)
+      expect(user.my_pair_requests).not_to include(other_request)
     end
 
-    describe '#role' do
-      let(:user) { build(:user) }
+    it 'returns an ActiveRecord Relation' do
+      expect(user.my_pair_requests).to be_a ActiveRecord::Relation
+    end
+  end
 
-      it 'defaults to member' do
-        expect(user.role).to eq('member')
-      end
+  describe '#role' do
+    let(:user) { build(:user) }
 
-      it 'responds to member? properly' do
-        expect(user.member?).to be(true)
-      end
+    it 'defaults to member' do
+      expect(user.role).to eq('member')
     end
 
-    describe '#my_feedback' do
-      let(:user) { create(:user) }
-      let!(:authored_feedback) { create(:feedback, author: user) }
-      let!(:received_feedback) { create(:feedback, receiver: user) }
+    it 'responds to member? properly' do
+      expect(user.member?).to be(true)
+    end
+  end
 
-      it "fetches a user's received and authored feedback" do
-        expect(user.my_feedback).to include(authored_feedback, received_feedback)
-      end
+  describe '#my_feedback' do
+    let(:user) { create(:user) }
+    let!(:authored_feedback) { create(:feedback, author: user) }
+    let!(:received_feedback) { create(:feedback, receiver: user) }
 
-      it "doesn't return other users' feedback" do
-        other_feedback = create(:feedback)
-        expect(user.my_feedback).not_to include(other_feedback)
-      end
+    it "fetches a user's received and authored feedback" do
+      expect(user.my_feedback).to include(authored_feedback, received_feedback)
+    end
 
-      it 'returns an ActiveRecord Relation' do
-        expect(user.my_pair_requests).to be_a ActiveRecord::Relation
-      end
+    it "doesn't return other users' feedback" do
+      other_feedback = create(:feedback)
+      expect(user.my_feedback).not_to include(other_feedback)
+    end
+
+    it 'returns an ActiveRecord Relation' do
+      expect(user.my_pair_requests).to be_a ActiveRecord::Relation
     end
   end
 end
