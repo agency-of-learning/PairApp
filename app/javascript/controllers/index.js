@@ -6,3 +6,7 @@ import { application } from "./application"
 
 import PairRequestsFormController from "./pair_requests_form_controller"
 application.register("pair-requests-form", PairRequestsFormController)
+
+import LinkBuilderController from "./link_builder_controller"
+application.register("link-builder", LinkBuilderController)
+

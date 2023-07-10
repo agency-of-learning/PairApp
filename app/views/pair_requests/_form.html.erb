@@ -3,19 +3,8 @@
     <div id="form-container" class='flex flex-col space-y-4 xl:space-y-0 xl:max-w-full xl:inline-flex xl:justify-around xl:space-x-4 xl:flex-row object-contain' data-controller="pair-requests-form" data-controller="pair-requests-form">
       <div class="flex justify-between space-x-4 align-middle items-center ">
         <%= form.label :invitee_id, class: "label label-text" %>
-        <%= form.select :invitee_id, 
-                        User.invitee_select_for(current_user).map{|array| [ array[0], {"data-timezone" => array[2]}]}, #order is hardcoded here, not great
-                        {prompt: "Select User"},
-                        { class: 'select select-primary',
-                          data: {action: "change->pair-requests-form#click"} } %>
-      </div> 
-      
-      <div class="flex flex-col">
-        <div class="flex basis-1/8 space-x-4 align-middle items-center w-max">
-          <%= form.label :when, class: "label label-text pr-2.5" %>
-          <p class="label label-text basis-1/2"><%= "(#{current_user.time_zone})" %></p>
-          <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date"}, class: " basis-1/2 input input-primary input-md w-max", data: {action: "input->pair-requests-form#date"} %>
-        </div>
+        <%= form.collection_select :invitee_id, User.excluding(current_user), :id, :full_name, {}, { class: 'select select-primary' } %>
+      </div>
 
         <div class="flex space-x-4 align-middle items-center text-left">
           <p class="text-left basis-1/8 label label-text">Invitee</p>

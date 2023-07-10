@@ -1,0 +1,45 @@
+<div class="max-w-6xl mx-auto p-4">
+  <div class="text-sm breadcrumbs max-w-xs">
+    <ul>
+      <li><%= link_to "Standup Groups", standup_meeting_groups_path %></li> 
+      <li><%= link_to @standup_meeting_group.name, standup_meeting_group_path(@standup_meeting_group) %></li> 
+      <li><%= @meeting_date %></li>
+    </ul>
+  </div>
+  <div class="py-4 flex flex-col md:flex-row justify-between">
+    <h1 class="text-3xl font-bold text-center md:text-left">Standup - <%= @meeting_date %></h1>
+    <%= render StandupMeeting::DateNavigatorComponent.new(
+      standup_meeting_group: @standup_meeting_group, 
+      meeting_date: @meeting_date
+    ) %>
+  <% if @current_user_standup_meeting %>
+    <%= render StandupMeeting::CheckInCtaComponent.new(standup_meeting_group: @standup_meeting_group, standup_meeting: @current_user_standup_meeting, current_user:) %>
+  <% end %>
+  
+  <div data-controller="tabs" data-tabs-active-tab="-mb-px border-l-2 border-t-2 border-r-2 rounded-t text-primary">
+    <a class="text-lg border-b-0 bg-white inline-block py-2 px-4" href="#"  data-tabs-target="tab" data-action="click->tabs#change">
+      <span class="hidden md:inline">View by </span>
+      <span>Status</span> 
+    </a>
+    <a class="text-lg border-b-0 bg-white inline-block py-2 px-4" href="#" data-tabs-target="tab" data-action="click->tabs#change">
+      <span class="hidden md:inline">View by </span>
+      User
+    </a>
+    <div class="divider my-0"></div>
+
+    <div class="flex flex-col lg:flex-row justify-evenly" data-tabs-target="panel">
+      <%= render StandupMeeting::MeetingColumnComponent.new(title: "Previous Work Day") do |component| %>
+        <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@completed_meetings, content_type: :yesterday_work_description) %>
+      <% end %>
+      <%= render StandupMeeting::MeetingColumnComponent.new(title: "Today's Work Day") do |component| %>
+        <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@completed_meetings, content_type: :today_work_description) %>
+      <% end %>
+      <%= render StandupMeeting::MeetingColumnComponent.new(title: "Blockers") do |component| %>
+        <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@completed_meetings, content_type: :blockers_description) %>
+      <% end %>
+    </div>
+    <div class="hidden" data-tabs-target="panel">
+      <%= render StandupMeeting::MeetingRowComponent.with_collection(@completed_meetings) %>
+    </div>
+  </div>
+</div>
