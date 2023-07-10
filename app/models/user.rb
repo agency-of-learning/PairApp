@@ -85,6 +85,10 @@ class User < ApplicationRecord
     authored_feedbacks.or(received_feedbacks)
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   enum role: {
     member: 0,
     admin: 1
