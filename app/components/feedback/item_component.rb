@@ -24,9 +24,9 @@ class Feedback::ItemComponent < ViewComponent::Base
   def partner_section
     content_tag(:p) do
       if user == feedback.author
-        render_partner('For: ', feedback.receiver.email)
+        render_partner('For: ', feedback.receiver.full_name)
       else
-        render_partner('From: ', feedback.author.email)
+        render_partner('From: ', feedback.author.full_name)
       end
     end
   end
@@ -44,6 +44,6 @@ class Feedback::ItemComponent < ViewComponent::Base
   end
 
   def render_rating
-    content_tag(:span, 'Rating: ', class: 'font-bold') + "#{feedback.overall_rating}/10"
+    content_tag(:span, 'Rating: ', class: 'font-bold') + "#{feedback.overall_rating}/5"
   end
 end

@@ -75,7 +75,7 @@ class Feedback < ApplicationRecord
   # rubocop:enable Layout/LineLength
 
   def overall_rating
-    super / 10
+    super / 20
   end
 
   def update_with_json_answers(params)
@@ -86,7 +86,7 @@ class Feedback < ApplicationRecord
     end
 
     self.data = { feedback: merged_answers }
-    self.overall_rating = (params.dig(:feedback, :overall_rating).to_i * 10) || 0
+    self.overall_rating = (params.dig(:feedback, :overall_rating).to_i * 20) || 0
     self.locked_at ||= 7.days.from_now
     self.status = :completed
     save

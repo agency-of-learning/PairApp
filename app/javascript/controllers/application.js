@@ -3,6 +3,7 @@ import '@hotwired/turbo-rails';
 
 const application = Application.start();
 import { Alert, Autosave, Dropdown, Modal, Tabs, Popover, Toggle, Slideover } from "tailwindcss-stimulus-components"
+import TextareaAutogrow from 'stimulus-textarea-autogrow';
 
 application.register('alert', Alert);
 application.register('autosave', Autosave);
@@ -13,6 +14,7 @@ application.register('popover', Popover);
 application.register('toggle', Toggle);
 application.register('slideover', Slideover);
 
+application.register('textarea-autogrow', TextareaAutogrow);
 
 // Configure Stimulus development experience;
 application.debug = true;
