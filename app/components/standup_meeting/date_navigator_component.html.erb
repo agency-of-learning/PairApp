@@ -1,4 +1,4 @@
-<div class="flex flex-row-reverse justify-between w-1/2 lg:w-1/4 mt-4 mx-auto md:mt-0 lg:mx-0 md:space-x-4" data-controller="link-builder" data-link-builder-param-value='date'>
+<div class="flex flex-row-reverse justify-between w-1/2 lg:w-1/4 mt-4 mx-auto md:mt-0 lg:mx-0 md:space-x-4" data-controller="link-builder" data-link-builder-param-value='date' data-link-builder-url-value="<%= request.path %>">
   <% if next_standup_meeting %>
     <%= link_to standup_meeting_group_standup_meetings_path(
       standup_meeting_group, 
@@ -21,6 +21,7 @@
   <%= text_field_tag :date_jumper, meeting_date, class: 'hidden md:inline border px-4 mx-2 w-48',data: {
     controller: "flatpickr",
     flatpickr_date_format: "Y-m-d",
+    flatpickr_min_date: standup_meeting_group.created_at,
     action: "change->link-builder#updateDestinationParams",
     link_builder_target: 'source'
     } %>
