@@ -83,4 +83,13 @@ RSpec.describe User do
       expect(user.my_pair_requests).to be_a ActiveRecord::Relation
     end
   end
+
+  describe '#full_name' do
+    let(:user) { create(:user, first_name: 'Albert', last_name: 'Einstein') }
+
+    it "returns the user's first and last name together in a string" do
+      expected_full_name = 'Albert Einstein'
+      expect(user.full_name).to eq(expected_full_name)
+    end
+  end
 end
