@@ -10,8 +10,6 @@
     <h1 class="text-3xl font-bold text-center md:text-left">Standup - <%= @meeting_date %></h1>
   </div>
   
-  <% if @current_user_standup_meeting %>
-    <%= render StandupMeeting::CheckInCtaComponent.new(standup_meeting_group: @standup_meeting_group, standup_meeting: @current_user_standup_meeting, current_user:) %>
-  <% end %>
+  <%= render StandupMeeting::CheckInCtaComponent.new(standup_meeting_group: @standup_meeting_group, standup_meeting: @current_user_standup_meeting, current_user:) %>
   
 </div>

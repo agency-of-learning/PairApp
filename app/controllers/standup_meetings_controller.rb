@@ -7,7 +7,10 @@ class StandupMeetingsController < ApplicationController
                                               .where(meeting_date: @meeting_date)
     @current_user_standup_meeting = @standup_meetings.find do |meeting|
       meeting.user == current_user
-    end
+    end || @standup_meeting_group.standup_meetings.new(
+      user: current_user,
+      meeting_date: @meeting_date
+    )
     @completed_meetings = @standup_meetings.filter(&:completed?)
   end
 
@@ -15,5 +18,22 @@ class StandupMeetingsController < ApplicationController
     @standup_meeting = StandupMeeting.includes(:standup_meeting_group).find(params[:id])
     @standup_meeting_group = @standup_meeting.standup_meeting_group
     authorize @standup_meeting
+  end
+
+  def create
+    @standup_meeting_group = StandupMeetingGroup.find(params[:standup_meeting_group_id])
+    authorize @standup_meeting_group, policy_class: StandupMeetingPolicy
+    @standup_meeting = @standup_meeting_group.standup_meetings.new(
+      user: current_user,
+      meeting_date: params[:meeting_date]
+    )
+    if @standup_meeting.save
+      redirect_to edit_standup_meeting_group_standup_meeting_path(@standup_meeting_group, @standup_meeting)
+    else
+      redirect_back_or_to(
+        standup_meeting_group_standup_meetings_path(@standup_meeting_group),
+        status: :unprocessable_entity
+      )
+    end
   end
 end

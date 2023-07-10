@@ -1,8 +1,6 @@
 class StandupMeetingPolicy < ApplicationPolicy
-  alias_method :standup_meeting, :record
-
-  def index?
-    user.admin? || matching_user?
+  def create?
+    group_member?
   end
 
   def update?
@@ -12,12 +10,10 @@ class StandupMeetingPolicy < ApplicationPolicy
   private
 
   def matching_user?
-    standup_meeting.user_id == user.id
+    record.user_id == user.id
   end
 
-  class Scope < Scope
-    def resolve
-      user.standup_meetings
-    end
+  def group_member?
+    record.users.where(id: user.id).present?
   end
 end
