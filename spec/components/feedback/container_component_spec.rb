@@ -55,11 +55,11 @@ RSpec.describe Feedback::ContainerComponent, type: :component do
   context 'when the feedback is completed' do
     let(:status) { :completed }
 
-    it 'renders the feedback rating out of 10' do
+    it 'renders the feedback rating out of 5' do
       render_inline(described_class.new(feedback: authored_feedback, current_user:))
 
       expected_rating = authored_feedback.overall_rating
-      expect(page).to have_content("#{expected_rating}/10")
+      expect(page).to have_content("#{expected_rating}/5")
     end
   end
 end
