@@ -1,24 +1,15 @@
 class StandupMeetingsController < ApplicationController
-  # rubocop:disable Metrics/AbcSize
   def index
     @meeting_date = params[:date].nil? ? Date.current : Date.parse(params[:date])
-    @standup_meetings = StandupMeeting.includes(:user, :standup_meeting_group)
-                                      .where(
-                                        meeting_date: @meeting_date,
-                                        standup_meeting_group_id: params[:standup_meeting_group_id]
-                                      )
-    @date_options = StandupMeeting.meeting_dates(params[:standup_meeting_group_id])
-    if @standup_meetings.empty?
-      flash[:alert] = 'There are no standups for the date you selected'
-      redirect_to standup_meeting_group_standup_meetings_path(params[:standup_meeting_group_id],
-        date: @date_options.max)
-    else
-      @standup_meeting_group = @standup_meetings.first.standup_meeting_group
-      @current_user_standup_meeting = @standup_meetings.find { |meet| meet.user == current_user }
-      @completed_meetings = @standup_meetings.filter(&:completed?)
+    @standup_meeting_group = StandupMeetingGroup.find(params[:standup_meeting_group_id])
+    @standup_meetings = @standup_meeting_group.standup_meetings
+                                              .includes(:user)
+                                              .where(meeting_date: @meeting_date)
+    @current_user_standup_meeting = @standup_meetings.find do |meeting|
+      meeting.user == current_user
     end
+    @completed_meetings = @standup_meetings.filter(&:completed?)
   end
-  # rubocop:enable Metrics/AbcSize
 
   def edit
     @standup_meeting = StandupMeeting.includes(:standup_meeting_group).find(params[:id])
