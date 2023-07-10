@@ -14,6 +14,6 @@ class StandupMeetingPolicy < ApplicationPolicy
   end
 
   def group_member?
-    record.users.where(id: user.id).present?
+    record.users.find_by(id: user.id).present?
   end
 end
