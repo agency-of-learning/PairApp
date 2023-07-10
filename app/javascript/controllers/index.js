@@ -3,3 +3,6 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
+
+import LinkBuilderController from "./link_builder_controller"
+application.register("link-builder", LinkBuilderController)
