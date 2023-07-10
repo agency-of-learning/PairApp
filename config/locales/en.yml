@@ -30,4 +30,9 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  pundit:
+    default: "You are not authorized to perform this action."
+    standup_meeting_policy:
+      index?: "Please join the group to view standups!"
+      create?: "You must be a group member to create a standup meeting!"
+      update?: "You cannot edit someone else's standup"
