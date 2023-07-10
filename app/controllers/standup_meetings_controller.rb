@@ -7,6 +7,10 @@ class StandupMeetingsController < ApplicationController
     @standup_meetings = @standup_meeting_group.standup_meetings
                                               .includes(:user)
                                               .where(meeting_date: @meeting_date)
+    @current_user_standup_meeting = @standup_meetings.detect do |meeting|
+      meeting.user == current_user
+    end
+    @completed_meetings = @standup_meetings.filter(&:completed?)
   end
 
   def edit
