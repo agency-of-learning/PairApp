@@ -1,4 +1,8 @@
 class StandupMeetingPolicy < ApplicationPolicy
+  def index?
+    group_member? || user.admin?
+  end
+
   def create?
     group_member?
   end
