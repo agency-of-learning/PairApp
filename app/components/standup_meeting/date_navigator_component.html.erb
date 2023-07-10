@@ -1,5 +1,5 @@
 <div class="flex flex-row-reverse justify-between w-1/2 lg:w-1/4 mt-4 mx-auto md:mt-0 lg:mx-0 md:space-x-4" data-controller="link-builder" data-link-builder-param-value='date' data-link-builder-url-value="<%= request.path %>">
-  <% if next_standup_meeting %>
+  <% if next_standup_meeting? %>
     <%= link_to standup_meeting_group_standup_meetings_path(
       standup_meeting_group, 
       date: next_standup_meeting
@@ -26,7 +26,7 @@
     link_builder_target: 'source'
     } %>
     
-    <% if previous_standup_meeting %>
+    <% if previous_standup_meeting? %>
       <%= link_to standup_meeting_group_standup_meetings_path(
         standup_meeting_group, 
         date: previous_standup_meeting

@@ -14,7 +14,15 @@ class StandupMeeting::DateNavigatorComponent < ViewComponent::Base
     meeting_date.tomorrow
   end
 
+  def next_standup_meeting?
+    next_standup_meeting.present?
+  end
+
   def previous_standup_meeting
     meeting_date.yesterday
+  end
+
+  def previous_standup_meeting?
+    previous_standup_meeting.present?
   end
 end
