@@ -4,6 +4,8 @@
     <div class="card-actions">
       <button class="btn btn-sm">Check In</button>
       <button class="btn btn-sm">Dismiss</button>
+      <br>
+      <%= render StandupMeetingGroup::LeaveButtonComponent.new(standup_meeting_group: standup_meeting_group, current_user: user, standup_meeting_group_user:@standup_meeting_group_user ) %>
     </div>
   </div>
 <% end %>
