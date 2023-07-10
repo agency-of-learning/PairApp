@@ -3,10 +3,7 @@
     <div id="form-container" class='flex flex-col space-y-4 xl:space-y-0 xl:max-w-full xl:inline-flex xl:justify-around xl:space-x-8 xl:flex-row'>
       <div class="flex justify-between space-x-4 align-middle">
         <%= form.label :invitee_id, class: "label label-text" %>
-        <%= form.select :invitee_id, 
-                        User.invitee_select_for(current_user), 
-                        {}, 
-                        { class: 'select select-primary' } %>
+        <%= form.collection_select :invitee_id, User.all, :id, :full_name, {}, { class: 'select select-primary' } %>
       </div>
 
       <div class="flex justify-between space-x-4 align-middle">
