@@ -37,6 +37,9 @@ class StandupMeetingGroups::JoinsController < ApplicationController
           helpers.dom_id(@standup_meeting_group, :join_or_leave), component
         )
       end
+      format.html do
+        redirect_to standup_meeting_groups_path
+      end
     end
   end
 end
