@@ -58,9 +58,4 @@ class PairRequestsController < ApplicationController
   def pair_request_params
     params.fetch(:pair_request, {}).permit(:invitee_id, :when, :duration)
   end
-
-  #invitee_request_params, can I even do this?>
-  def invitee_request_params 
-    params.fetch#the flexible params here just to update stuff
-  end 
 end
