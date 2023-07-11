@@ -5,16 +5,18 @@
          <%= form.label :invitee_id, class: "label label-text" %>
          <%= form.select :invitee_id, options_for_select(User.excluding(current_user).map{|invitee| [invitee.full_name, invitee.id, {"data-timezone" => invitee.time_zone}]}), {:include_blank => "Please select"}, { class: 'select select-primary', data: {action: "change->pair-requests-form#click"}} %>
       </div>
-      <div class="flex flex-col">
-       <div class="flex space-x-4 align-middle items-center w-max">
-          <%= form.label :when, class: " label label-text pr-2.5" %>
+
+      <div class="flex flex-col justify-between">
+       <div class="flex space-x-4 align-middle items-center w-max justify-between">
+          <%= form.label :when, class: "label label-text pr-2.5" %>
           <p class="label label-text "><%= "(#{current_user.time_zone})" %></p>
           <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date"}, class: "input input-primary input-md w-max", data: {action: "input->pair-requests-form#date"} %>
         </div>
-        <div class="flex space-x-4 align-middle items-center text-left">
-         <p class="text-left  label label-text">Invitee</p>
-         <p data-pair-requests-form-target="invitee_tz" class=" text-left whitespace-nowrap  label label-text"></p>
-         <strong class="pl-4 label-text" id="invitee" data-value="" data-pair-requests-form-target="invitee"></strong>
+        
+        <div class="flex space-x-4 align-middle items-center justify-around">
+         <p class="inline-block label label-text">Invitee</p>
+         <p data-pair-requests-form-target="invitee_tz" class="inline-block label label-text grow "></p>
+         <strong class="pr-16 inline-block label-text" id="invitee" data-value="" data-pair-requests-form-target="invitee"></strong>
         </div>
       </div>
 
