@@ -2,7 +2,7 @@ class StandupMeetingGroupsController < ApplicationController
   before_action :set_standup_meeting_group, only: %i[edit update destroy]
 
   def index
-    @standup_meeting_groups = policy_scope(StandupMeetingGroup).includes(:standup_meeting_groups_users)
+    @standup_meeting_groups = StandupMeetingGroup.all
   end
 
   def show
