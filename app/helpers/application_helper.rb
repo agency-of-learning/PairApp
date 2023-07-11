@@ -5,6 +5,7 @@ module ApplicationHelper
     timestamp.strftime('%B %d, %Y at %l:%M %p')
   end
 
+  # rubocop:disable Style/PerceivedComplexity
   def pagy_nav(pagy, pagy_id: nil, link_extra: '', **vars)
     p_id   = %[ id="#{pagy_id}"] if pagy_id
     link   = pagy_link_proc(pagy, link_extra:)
@@ -13,8 +14,8 @@ module ApplicationHelper
 
     html = +%[<nav#{p_id} class="isolate inline-flex -space-x-px shadow-sm">]
     html << if p_prev
-              %[#{link.call p_prev, pagy_t('pagy.nav.prev'),
-                'aria-label="previous" class="btn rounded-none rounded-l-md"'}]
+              link.call(p_prev, pagy_t('pagy.nav.prev'),
+                'aria-label="previous" class="btn rounded-none rounded-l-md"').to_s
             else
               %[<span class="btn btn-disabled rounded-none rounded-l-md">#{pagy_t('pagy.nav.prev')}</span> ]
             end
@@ -28,10 +29,11 @@ module ApplicationHelper
               end
     end
     html << if p_next
-              %[#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next" class="btn rounded-none rounded-r-md"'}]
+              link.call(p_next, pagy_t('pagy.nav.next'), 'aria-label="next" class="btn rounded-none rounded-r-md"').to_s
             else
               %[<span class="btn rounded-none rounded-r-md btn-disabled">#{pagy_t('pagy.nav.next')}</span>]
             end
     html << %[</nav>]
   end
+  # rubocop:enable Style/PerceivedComplexity
 end
