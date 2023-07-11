@@ -19,7 +19,7 @@
       <%= form.text_area :today_work_description, required: true, class: 'textarea-lg textarea-primary textarea', placeholder: "e.g., 1. Review some outstanding PRs\n2. Push forward on second feature" %>
     </div>
     <div class="flex flex-col justify-between space-y-2">
-      <%= form.label :blockers_description, '3. Do you have any blockers?', class: 'mb-4 md:mb-0'%>
+      <%= form.label :blockers_description, '3. Do you have any blockers? (Leave empty if none)', class: 'mb-4 md:mb-0'%>
       <%= form.text_area :blockers_description, class: 'textarea-lg textarea-primary textarea', placeholder: 'e.g., Wireframes for third feature are still not complete' %>
     </div>
     <div class="flex flex-row-reverse space-x-4">
