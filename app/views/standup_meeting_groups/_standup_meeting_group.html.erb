@@ -33,6 +33,12 @@
         <%= render "table_row", standup_meeting:, standup_meeting_group: %>
       <% end %>
     </div>
+    
+    <% if @pagy.pages > 1 %>
+      <div class="flex justify-center mt-4">
+        <%== pagy_nav(@pagy) %>
+      </div>
+    <% end %>
   </div>
 </div>
 

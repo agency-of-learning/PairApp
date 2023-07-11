@@ -11,7 +11,10 @@ class StandupMeetingGroupsController < ApplicationController
     authorize @standup_meeting_group
     meeting_date = Date.current
     @standup_meeting_group_user = @standup_meeting_group.standup_meeting_groups_users.find_by(user_id: current_user)
-    @standup_meetings = @standup_meeting_group.standup_meetings.where(user: current_user).order(meeting_date: :desc)
+    @pagy, @standup_meetings = pagy(
+      @standup_meeting_group.standup_meetings.where(user: current_user).order(meeting_date: :desc),
+      items: 10
+    )
     @current_user_standup_meeting = @standup_meetings.detect do |meeting|
       meeting.meeting_date == meeting_date
     end || @standup_meetings.new(
