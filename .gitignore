@@ -45,4 +45,3 @@ node_modules/
 
 # ignore byebug history
 .byebug_history
-dump.rdb
