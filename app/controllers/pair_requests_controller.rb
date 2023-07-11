@@ -56,6 +56,6 @@ class PairRequestsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def pair_request_params
-    params.fetch(:pair_request, {}).permit(:invitee_id, :when, :duration)
+    params.require(:pair_request).permit(:invitee_id, :when, :duration)
   end
 end
