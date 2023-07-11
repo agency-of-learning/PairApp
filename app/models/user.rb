@@ -70,8 +70,6 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  scope :invitee_select_for, ->(user) { User.excluding(user).pluck(:email, :id) }
-
   def self.invite!(attributes = {}, invited_by = nil, options = {}, &)
     default_name = { first_name: 'First', last_name: 'Last' }
     super(attributes.merge(default_name), invited_by, options, &)
