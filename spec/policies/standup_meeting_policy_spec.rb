@@ -28,6 +28,16 @@ RSpec.describe StandupMeetingPolicy, type: :policy do
     end
   end
 
+  permissions :create? do
+    it 'denies access if user is not a member of the group' do
+      expect(subject).not_to permit(random_user, standup_meeting_group)
+    end
+
+    it 'grants access if user is a member of the group' do
+      expect(subject).to permit(user, standup_meeting_group)
+    end
+  end
+
   permissions :edit?, :update? do
     it 'denies access if user is not owner' do
       expect(subject).not_to permit(random_user, user_standup_meeting)

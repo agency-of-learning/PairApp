@@ -42,4 +42,5 @@
       <%= render StandupMeeting::MeetingRowComponent.with_collection(@completed_meetings) %>
     </div>
   </div>
+  <%= render StandupMeeting::CheckInCtaComponent.new(standup_meeting_group: @standup_meeting_group, standup_meeting: @current_user_standup_meeting, current_user:) %>
 </div>

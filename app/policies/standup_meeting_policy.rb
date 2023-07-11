@@ -3,6 +3,10 @@ class StandupMeetingPolicy < ApplicationPolicy
     group_member? || user.admin?
   end
 
+  def create?
+    group_member?
+  end
+
   def update?
     matching_user?
   end
