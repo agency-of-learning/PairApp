@@ -1,36 +1,53 @@
 import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
-  static targets = ["click", "invitee", "invitee_tz"]
+  static targets = ["invitee", "inviteeTz", "inviterRequestTime"]
   connect(){
     localStorage.clear()
     console.log("localStorage is cleared")
   }
 
-  click(event) {
-    const invitee_time_zone = event.target.selectedOptions[0].dataset.timezone
-    localStorage.setItem("invitee_time_zone", invitee_time_zone)
+  onClick(event) {
+    const inviteeTimeZone = event.target.selectedOptions[0].dataset.timezone
+    const userTimeZone = event.target.selectedOptions[0].dataset.usertz
+
+    localStorage.setItem("inviteeTimeZone", inviteeTimeZone)
+    localStorage.setItem("userTimeZone", userTimeZone)
 
     if(localStorage.getItem("pair_app_when")){
       let time = localStorage.getItem("pair_app_when")
       time = new Date(time);
 
-      this.setSchedule(invitee_time_zone, time)
+      this.setInviteeSchedule(inviteeTimeZone, time)
+      this.setUserSchedule(userTimeZone, time)
     }
   }
   
   date(event){
+    
     let time = new Date(event.target.value)
+    console.log(event.target.dataset.user)
+    console.log(this.inviterRequestTimeTarget.value)
+
     localStorage.setItem("pair_app_when", time)
-    if(localStorage.getItem("invitee_time_zone")){
-      const inviteeValue = localStorage.getItem("invitee_time_zone")
-      this.setSchedule(inviteeValue, time)
+    const userTimeZone = localStorage.getItem("userTimeZone")
+
+    this.setUserSchedule(userTimeZone, time)
+    if (localStorage.getItem("inviteeTimeZone")){
+      const inviteeValue = localStorage.getItem("inviteeTimeZone")
+      this.setInviteeSchedule(inviteeValue, time)
     }
   }
 
-  setSchedule(invitee, time){
+  setInviteeSchedule(invitee, time){
     const inviteeResult = new TimeZoneConverter(invitee, time).conversion
-    this.invitee_tzTarget.textContent = (`(${invitee})`)
+    this.inviteeTzTarget.textContent = (`(${invitee})`)
     this.inviteeTarget.textContent = (`${inviteeResult}`)
+  }
+
+  setUserSchedule(user, time){
+    const userResult = new TimeZoneConverter(user, time).conversion
+    debugger
+    this.inviterRequestTimeTarget = (`${userResult}`)
   }
 }
 
@@ -43,6 +60,7 @@ class TimeZoneConverter {
   get conversion() {
     let match
     let ary = Intl.supportedValuesOf('timeZone');
+    
     if (this.input == 'UTC'){
       match = this.input
     } else {
