@@ -1,10 +1,9 @@
 <div class="border p-4 flex flex-col  justify-between mt-4">
-  <div class="w-full mb-1 font-bold justify-center">
-    <%= user.email %>
-  </div>
-  <div class="grow w-full">
+  <span class="flex flex-col justify-center mr-4 font-bold">
+    <%= user.full_name %>
+  </span>
+  <hr class="border-t border-gray-400 my-4" />
+  <span class="grow">
     <%= standup_meeting.public_send(content_type) %>
-  </div>
+  </span>
 </div>
-
-
