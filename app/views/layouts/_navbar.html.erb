@@ -1,16 +1,16 @@
-<nav class="navbar bg-base-100 p-4">
-  <div class="navbar-start">
+<nav class="navbar bg-base-100 p-4 flex justify-between">
+  <div>
     <%= link_to "Agency of Learning", root_path, class: "text-xl" %>
   </div>
-  <div class="navbar-end">
+  <div>
     <%# Desktop Nav %>
     <ul class="menu menu-horizontal px-1 hidden lg:flex space-x-2">
       <li>
-        <%= link_to "Home", root_path, class: 'no-underline' %>
+        <%= link_to "Home", root_path %>
       </li>
       <% if user_signed_in? %>
         <li>
-          <%= link_to 'My Account', edit_user_registration_url(current_user)  %>
+          <%= link_to 'My Account', edit_user_registration_path %>
         </li>
         <li>
           <%= link_to 'Pair Requests', pair_requests_path %>
@@ -27,11 +27,11 @@
           </li>
         <% end %>
         <li>
-          <%= link_to 'Logout', destroy_user_session_path, data: { turbo_method: :get }, class: "btn btn-primary text-white" %>
+          <%= link_to 'Logout', destroy_user_session_path, class: "btn btn-primary text-white" %>
         </li>
       <% else %>
         <li>
-          <%= link_to 'Login', new_user_session_url, data: { turbo_method: :get }, class: "btn btn-primary text-white" %>
+          <%= link_to 'Login', new_user_session_path, class: "btn btn-primary text-white" %>
         </li>
       <% end %>
     </ul>
@@ -50,7 +50,7 @@
             <%= link_to 'Standups', standup_meeting_groups_path %>
           </li>
           <li>
-            <%= link_to 'My Account', edit_user_registration_url(current_user) %>
+            <%= link_to 'My Account', edit_user_registration_path %>
           </li>
           <li>
             <%= link_to 'Pair Requests', pair_requests_path %>
@@ -63,12 +63,12 @@
               <%= link_to 'Invite New User', new_user_invitation_path %>
             </li>
           <% end %>
-          <li class="nav-item">
-            <%= link_to 'Logout', destroy_user_session_path, data: { turbo_method: :get } %>
+          <li>
+            <%= link_to 'Logout', destroy_user_session_path %>
           </li>
         <% else %>
           <li>
-            <%= link_to 'Login', new_user_session_url, data: { turbo_method: :get } %>
+            <%= link_to 'Login', new_user_session_path %>
           </li>
         <% end %>
       </ul>
