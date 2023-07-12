@@ -7,6 +7,7 @@ class StandupMeeting::DateJumperComponent < ViewComponent::Base
   end
 
   private
+
   attr_reader :standup_meeting_group
 
   def meeting_date
