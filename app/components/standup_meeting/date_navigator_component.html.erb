@@ -1,4 +1,23 @@
-<div class="flex flex-row-reverse mt-4 md:mt-0 lg:mx-0 md:space-x-4" data-controller="link-builder" data-link-builder-param-value='date' data-link-builder-url-value="<%= standup_meeting_group_standup_meetings_path(standup_meeting_group) %>">
+<div class="flex flex-row mt-4 md:mt-0 lg:mx-0 md:space-x-4">
+  <% if previous_standup_meeting? %>
+    <%= link_to standup_meeting_group_standup_meetings_path(
+      standup_meeting_group, 
+      date: previous_standup_meeting
+    ), class: 'link text-primary text-lg mt-2 hidden lg:flex flex-col no-underline' do %>
+      <i class="fa-solid fa-caret-left text-3xl"></i> 
+      <span>
+        Previous
+      </span>
+    <% end %>
+  <% else %>
+    <div class="text-lg mt-2 hidden lg:flex flex-col no-underline">
+      <i class="fa-solid fa-caret-left text-3xl text-base-300 cursor-not-allowed"></i> 
+      <span>
+        Previous
+      </span>
+    </div>
+  <% end %>
+  <%= render StandupMeeting::DateJumperComponent.new(standup_meeting_group:, meeting_date:) %>
   <% if next_standup_meeting? %>
     <%= link_to standup_meeting_group_standup_meetings_path(
       standup_meeting_group, 
@@ -17,34 +36,4 @@
       </span>
     </div>
   <% end %>
-  <div class="flex justify-between mx-auto max-w-md">
-    <%= text_field_tag :date_jumper, meeting_date, class: 'inline border px-4 mx-2',data: {
-      controller: "flatpickr",
-      flatpickr_date_format: "Y-m-d",
-      flatpickr_min_date: standup_meeting_group.created_at,
-      action: "change->link-builder#updateDestinationParams",
-      link_builder_target: 'source'
-      } %>
-    <a href="" class="btn inline pt-4 mt-2" data-link-builder-target='destination'>GO</a>
-  </div>
-    
-    <% if previous_standup_meeting? %>
-      <%= link_to standup_meeting_group_standup_meetings_path(
-        standup_meeting_group, 
-        date: previous_standup_meeting
-      ), class: 'link text-primary text-lg mt-2 hidden lg:flex flex-col no-underline' do %>
-        <i class="fa-solid fa-caret-left text-3xl"></i> 
-        <span>
-          Previous
-        </span>
-      <% end %>
-    <% else %>
-      <div class="text-lg mt-2 hidden lg:flex flex-col no-underline">
-        <i class="fa-solid fa-caret-left text-3xl text-base-300 cursor-not-allowed"></i> 
-        <span>
-          Previous
-        </span>
-      </div>
-    <% end %>
-  </div>
 </div>

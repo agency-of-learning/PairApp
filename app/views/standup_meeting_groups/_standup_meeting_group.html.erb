@@ -14,8 +14,9 @@
   <div class="flex flex-col">
     <div class="flex flex-col md:flex-row justify-between">
       <h1 class="text-2xl text-center md:text-left">Previous Standups</h1>
-      <%= render StandupMeeting::DateNavigatorComponent.new(
-        standup_meeting_group: standup_meeting_group
+      <%= render StandupMeeting::DateJumperComponent.new(
+        standup_meeting_group: standup_meeting_group,
+        meeting_date: Date.current
       ) %>
     </div>
     <div class="table w-full border-2 border-black text-md md:text-base mt-4">
