@@ -3,7 +3,7 @@
     <%= link_to standup_meeting_group_standup_meetings_path(
       standup_meeting_group, 
       date: previous_standup_meeting
-    ), class: 'link text-primary text-lg mt-2 hidden lg:flex flex-col no-underline' do %>
+    ), class: 'link text text-lg mt-2 hidden lg:flex flex-col no-underline' do %>
       <i class="fa-solid fa-caret-left text-3xl"></i> 
       <span>
         Previous
@@ -22,7 +22,7 @@
     <%= link_to standup_meeting_group_standup_meetings_path(
       standup_meeting_group, 
       date: next_standup_meeting
-    ), class: 'hidden lg:flex link text-primary text-lg mt-2 ml-4 flex flex-col no-underline' do %>
+    ), class: 'hidden lg:flex link text text-lg mt-2 ml-4 flex flex-col no-underline' do %>
       <i class="fa-solid fa-caret-right text-3xl"></i> 
       <span>
         Next

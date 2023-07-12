@@ -15,12 +15,11 @@ class StandupMeetingGroupsController < ApplicationController
       @standup_meeting_group.standup_meetings.where(user: current_user).order(meeting_date: :desc),
       items: 10
     )
-    @current_user_standup_meeting = @standup_meetings.detect do |meeting|
-      meeting.meeting_date == meeting_date
-    end || @standup_meetings.new(
-      user: current_user,
-      meeting_date:
-    )
+    @current_user_standup_meeting = current_user.standup_meetings
+                                                .find_by(meeting_date:) || @standup_meetings.new(
+                                                  user: current_user,
+                                                  meeting_date:
+                                                )
   end
 
   def new
