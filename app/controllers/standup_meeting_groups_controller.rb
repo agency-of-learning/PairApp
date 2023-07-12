@@ -6,8 +6,20 @@ class StandupMeetingGroupsController < ApplicationController
   end
 
   def show
-    @standup_meeting_group = StandupMeetingGroup.includes(:standup_meetings).find(params[:id])
+    @standup_meeting_group = StandupMeetingGroup.includes(:standup_meetings,
+      :standup_meeting_groups_users).find(params[:id])
     authorize @standup_meeting_group
+    meeting_date = Date.current
+    @standup_meeting_group_user = @standup_meeting_group.standup_meeting_groups_users.find_by(user_id: current_user)
+    @pagy, @standup_meetings = pagy(
+      @standup_meeting_group.standup_meetings.where(user: current_user).order(meeting_date: :desc),
+      items: 10
+    )
+    @current_user_standup_meeting = current_user.standup_meetings
+                                                .find_by(meeting_date:) || @standup_meetings.new(
+                                                  user: current_user,
+                                                  meeting_date:
+                                                )
   end
 
   def new

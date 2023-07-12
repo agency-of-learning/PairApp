@@ -176,6 +176,7 @@ GEM
     nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (6.0.4)
     paper_trail (14.0.0)
       activerecord (>= 6.0)
       request_store (~> 1.4)
@@ -388,6 +389,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails (~> 1.1)
   letter_opener
+  pagy (~> 6.0)
   paper_trail
   pg (~> 1.1)
   pry-byebug

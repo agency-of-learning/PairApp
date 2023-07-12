@@ -1,6 +1,6 @@
 class StandupMeetingsController < ApplicationController
   def index
-    @meeting_date = params[:date].nil? ? Date.current : Date.parse(params[:date])
+    @meeting_date = params[:date].nil? ? Date.current : Date.strptime(params[:date], '%m-%d-%Y')
     @standup_meeting_group = StandupMeetingGroup.includes(:users)
                                                 .find(params[:standup_meeting_group_id])
     authorize @standup_meeting_group, policy_class: StandupMeetingPolicy

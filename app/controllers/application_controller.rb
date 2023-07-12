@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
   include ApplicationHelper
+  include Pagy::Backend
 
   add_flash_types :form_errors
 
