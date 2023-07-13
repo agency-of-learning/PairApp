@@ -36,3 +36,5 @@ en:
       index?: "Please join the group to view standups!"
       create?: "You must be a group member to create a standup meeting!"
       update?: "You cannot edit someone else's standup"
+    standup_meeting_group_policy:
+      show?: "Please join the group to view standups!"

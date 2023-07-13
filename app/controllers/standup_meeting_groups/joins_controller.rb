@@ -13,8 +13,7 @@ class StandupMeetingGroups::JoinsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.update(helpers.dom_id(@standup_meeting_group, :join_or_leave),
-          component)
+        render turbo_stream: turbo_stream.update(helpers.dom_id(@standup_meeting_group, :join_or_leave), component)
       end
     end
   end
@@ -36,6 +35,9 @@ class StandupMeetingGroups::JoinsController < ApplicationController
         render turbo_stream: turbo_stream.update(
           helpers.dom_id(@standup_meeting_group, :join_or_leave), component
         )
+      end
+      format.html do
+        redirect_to standup_meeting_groups_path
       end
     end
   end

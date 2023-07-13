@@ -12,7 +12,7 @@ RSpec.describe StandupMeeting::DateNavigatorComponent, type: :component do
     )
 
     expect(page).to have_link('Previous')
-    expect(page).to have_link('GO')
+    expect(page).to have_link('JUMP')
     expect(page).to have_link('Next')
   end
 end

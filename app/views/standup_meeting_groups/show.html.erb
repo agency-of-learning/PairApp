@@ -1,4 +1,5 @@
-<%= render @standup_meeting_group %>
-<div>
-  <%= link_to "Back to standup meeting group", standup_meeting_groups_path %>
-</div>
+<%= render partial: @standup_meeting_group, locals: { 
+  standup_meeting_group_user: @standup_meeting_group_user,
+  current_user_standup_meeting: @current_user_standup_meeting,
+  standup_meeting: @standup_meetings
+  } %>

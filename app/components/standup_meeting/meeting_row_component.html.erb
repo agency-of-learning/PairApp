@@ -1,22 +1,24 @@
 <div class="collapse collapse-arrow border-l border-r border-b space-y-2">
   <input type="checkbox" class="peer" checked />
   <div class="collapse-title text-xl font-medium bg-primary text-primary-content">
-    <%= standup_meeting.user.email %>
+    <%= standup_meeting.user.full_name %>
   </div>
   <div class="collapse-content text-neutral">
     <div class="flex flex-col md:flex-row justify-around space-y-4 md:space-y-0 md:space-x-4 w-full pt-2">
-      <div class="flex flex-col w-1/3">
+      <div class="flex flex-col w-full md:w-1/3">
         <span class="text-center font-bold">Yesterday</span>
-        <%= standup_meeting.yesterday_work_description %>
+        <p class="break-all"><%= standup_meeting.yesterday_work_description %></p>
       </div>
-      <div class="flex flex-col w-1/3">
+      <div class="flex flex-col w-full md:w-1/3">
         <span class="text-center font-bold">Today</span>
-        <%= standup_meeting.today_work_description %>
+        <p class="break-all"><%= standup_meeting.today_work_description %></p>
       </div>
-      <div class="flex flex-col w-1/3">
-        <span class="text-center font-bold">Blockers</span>
-        <%= standup_meeting.blockers_description %>
-      </div>
+      <% if standup_meeting.blockers_description.present? %>
+        <div class="flex flex-col w-full md:w-1/3">
+          <span class="text-center font-bold">Blockers</span>
+          <p class="break-all"><%= standup_meeting.blockers_description %></p>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
