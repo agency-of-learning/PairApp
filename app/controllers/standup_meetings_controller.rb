@@ -1,6 +1,13 @@
 class StandupMeetingsController < ApplicationController
+  # rubocop:disable Metrics/AbcSize
   def index
-    @meeting_date = params[:date].nil? ? Date.current : Date.strptime(params[:date], '%m-%d-%Y')
+    begin
+      @meeting_date = Date.strptime(params[:date], '%m-%d-%Y')
+    rescue StandardError
+      redirect_to standup_meeting_group_standup_meetings_path(params[:standup_meeting_group_id],
+        date: Date.current.strftime('%m-%d-%Y'))
+    end
+
     @standup_meeting_group = StandupMeetingGroup.includes(:users)
                                                 .find(params[:standup_meeting_group_id])
     authorize @standup_meeting_group, policy_class: StandupMeetingPolicy
@@ -15,6 +22,7 @@ class StandupMeetingsController < ApplicationController
     )
     @completed_meetings = @standup_meetings.filter(&:completed?)
   end
+  # rubocop:enable Metrics/AbcSize
 
   def edit
     @standup_meeting = StandupMeeting.includes(:standup_meeting_group).find(params[:id])
