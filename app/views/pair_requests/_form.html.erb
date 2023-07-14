@@ -3,7 +3,11 @@
     <div id="form-container" class='flex flex-col space-y-4 xl:space-y-0 xl:max-w-full xl:inline-flex xl:justify-around xl:space-x-4 xl:flex-row object-contain' data-controller="pair-requests-form">  
       <div class="flex justify-between space-x-4 align-middle items-center ">
          <%= form.label :invitee_id, class: "label label-text" %>
-         <%= form.select :invitee_id, options_for_select(User.excluding(current_user).map{|invitee| [invitee.full_name, invitee.id, { "data-timezone-identifier" => ActiveSupport::TimeZone.new(invitee.time_zone).tzinfo.identifier, "data-timezone-display-name" => invitee.time_zone, "data-usertz" => current_user.time_zone}]}), {:include_blank => "Please select"}, { class: 'select select-primary', data: {action: "change->pair-requests-form#onClick",  "pair-requests-form-target" => "inviteeInfo"}} %>
+         <%= form.select :invitee_id, nil, { :include_blank => "Please select" }, { class: "select select-primary", data: { action: "change->pair-requests-form#onClick", "pair-requests-form-target" => "inviteeInfo"}} do %>
+          <% @invitees.each do |invitee| %>
+            <%= tag.option(invitee.full_name, value: invitee.id, data: { "time-zone-identifier" => invitee.time_zone_identifier, "time-zone-display-name" => invitee.time_zone, "user-time-zone-identifier" => @inviter.time_zone_identifier }) %>
+          <% end %>
+        <% end %>
       </div>
 
       <div class="w-full flex flex-col justify-between grow" >
@@ -26,7 +30,7 @@
       </div>
 
       <div class='ml-auto flex items-center'>
-        <%= form.submit "Create Pair Request", class: 'btn btn-primary w' %>
+        <%= form.submit "Create Pair Request", class: 'btn btn-primary' %>
       </div>
     </div>
   <% end %>
