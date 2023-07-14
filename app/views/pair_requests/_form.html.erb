@@ -4,22 +4,22 @@
       <div class="flex justify-between space-x-4 align-middle items-center ">
          <%= form.label :invitee_id, class: "label label-text" %>
          <%= form.select :invitee_id, nil, { :include_blank => "Please select" }, { class: "select select-primary", data: { action: "change->pair-requests-form#onClick", "pair-requests-form-target" => "inviteeInfo"}} do %>
-          <% @invitees.each do |invitee| %>
-            <%= tag.option(invitee.full_name, value: invitee.id, data: { "time-zone-identifier" => invitee.time_zone_identifier, "time-zone-display-name" => invitee.time_zone, "user-time-zone-identifier" => @inviter.time_zone_identifier }) %>
+          <% User.excluding(current_user).each do |invitee| %>
+            <%= tag.option(invitee.full_name, value: invitee.id, data: { "time-zone-identifier" => invitee.time_zone_identifier, "time-zone-display-name" => invitee.time_zone, "user-time-zone" => current_user.time_zone_identifier}) %>
           <% end %>
         <% end %>
       </div>
 
       <div class="w-full flex flex-col justify-between grow" >
        <div class=" flex space-x-1 align-middle items-center justify-between">
-          <%= form.label :when, class: "inline-block label label-text break-keep pr-2.5" %>
-          <p class="label label-text grow"><%= "(#{current_user.time_zone})" %></p>
+          <%= form.label :when, class: "inline-block label label-text pr-2.5" %>
+          <p class="label label-text grow break-words"><%= "(#{current_user.time_zone})" %></p>
           <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date", "pair-requests-form-target" => "inviterRequestTime", "pair-requests-form-input-value" => ""}, class: "input input-primary input-md w-max" %>
         </div>
         
         <div class="flex space-x-1 align-middle items-center justify-around">
          <p class="inline-block label label-text">Invitee</p>
-         <p data-pair-requests-form-target="inviteeTz" class="inline-block label label-text grow "></p>
+         <p data-pair-requests-form-target="inviteeTz" class="inline-block label label-text grow break-words"></p>
          <strong class="pr-14 inline-block label-text" id="invitee" data-value="" data-pair-requests-form-target="invitee"></strong>
         </div>
       </div>
