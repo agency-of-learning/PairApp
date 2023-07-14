@@ -14,10 +14,10 @@ export default class extends Controller {
   onClick(event) {
     if(this.inviterRequestTimeTarget.value){
       const time = this.inputValue
-      const timezoneIdentifier = this.inviteeInfoTarget.selectedOptions[0].dataset.timezoneIdentifier
-      const timezoneDisplayName = this.inviteeInfoTarget.selectedOptions[0].dataset.timezoneDisplayName
+      const timeZoneIdentifier = this.inviteeInfoTarget.selectedOptions[0].dataset.timeZoneIdentifier
+      const timeZoneDisplayName = this.inviteeInfoTarget.selectedOptions[0].dataset.timeZoneDisplayName
 
-      this.setInviteeSchedule(timezoneIdentifier, time, timezoneDisplayName)
+      this.setInviteeSchedule(timeZoneIdentifier, time, timeZoneDisplayName)
     }
   }
   
@@ -25,31 +25,31 @@ export default class extends Controller {
     this.inputValue =  event.target.value
     
     if (this.inviteeInfoTarget.selectedOptions[0].dataset){
-      const timezoneIdentifier = this.inviteeInfoTarget.selectedOptions[0].dataset.timezoneIdentifier
-      const timezoneDisplayName = this.inviteeInfoTarget.selectedOptions[0].dataset.timezoneDisplayName
-      const timezoneIdentifierInviter = this.inviteeInfoTarget.selectedOptions[0].dataset.usertz
+      const timeZoneIdentifier = this.inviteeInfoTarget.selectedOptions[0].dataset.timeZoneIdentifier
+      const timeZoneDisplayName = this.inviteeInfoTarget.selectedOptions[0].dataset.timeZoneDisplayName
+      const invitertimeZoneIdentifier = this.inviteeInfoTarget.selectedOptions[0].dataset.userTimeZone
       
-      this.setInviteeSchedule(timezoneIdentifier, this.inputValue, timezoneDisplayName)
-      this.setUserSchedule(timezoneIdentifierInviter, event.target.value)
+      this.setInviteeSchedule(timeZoneIdentifier, this.inputValue, timeZoneDisplayName)
+      this.setUserSchedule(invitertimeZoneIdentifier, event.target.value)
     }
   }
 
-  setInviteeSchedule(timezoneIdentifier, time, timezoneDisplayName){
+  setInviteeSchedule(timeZoneIdentifier, time, timeZoneDisplayName){
     dayjs.extend(utc)
     dayjs.extend(timezone)
     dayjs.extend(customParseFormat)
 
-    const result = dayjs(time).tz(timezoneIdentifier).format("MM/DD/YYYY, hh:mm A")
-    this.inviteeTzTarget.textContent = (`(${timezoneDisplayName})`)
+    const result = dayjs(time).tz(timeZoneIdentifier).format("MM/DD/YYYY, hh:mm A")
+    this.inviteeTzTarget.textContent = (`(${timeZoneDisplayName})`)
     this.inviteeTarget.textContent = (`${result}`)
   }
 
-  setUserSchedule(timezoneIdentifier, time){
+  setUserSchedule(timeZoneIdentifier, time){
     dayjs.extend(utc)
     dayjs.extend(timezone)
     dayjs.extend(customParseFormat)
 
-    const result = dayjs(time).tz(timezoneIdentifier).format("YYYY-MM-DDThh:mm")
+    const result = dayjs(time).tz(timeZoneIdentifier).format("YYYY-MM-DDThh:mm")
     this.inviterRequestTimeTarget.value = result
   } 
 }
