@@ -3,20 +3,20 @@
     <div id="form-container" class='flex flex-col space-y-4 xl:space-y-0 xl:max-w-full xl:inline-flex xl:justify-around xl:space-x-4 xl:flex-row object-contain' data-controller="pair-requests-form">  
       <div class="flex justify-between space-x-4 align-middle items-center ">
          <%= form.label :invitee_id, class: "label label-text" %>
-         <%= form.select :invitee_id, options_for_select(User.excluding(current_user).map{|invitee| [invitee.full_name, invitee.id, {"data-timezone" => invitee.time_zone, "data-usertz" => current_user.time_zone}]}), {:include_blank => "Please select"}, { class: 'select select-primary', data: {action: "change->pair-requests-form#onClick"}} %>
+         <%= form.select :invitee_id, options_for_select(User.excluding(current_user).map{|invitee| [invitee.full_name, invitee.id, { "data-timezone-identifier" => ActiveSupport::TimeZone.new(invitee.time_zone).tzinfo.identifier, "data-timezone-display-name" => invitee.time_zone, "data-usertz" => current_user.time_zone}]}), {:include_blank => "Please select"}, { class: 'select select-primary', data: {action: "change->pair-requests-form#onClick",  "pair-requests-form-target" => "inviteeInfo"}} %>
       </div>
 
       <div class="w-full flex flex-col justify-between grow" >
-       <div class=" flex space-x-4 align-middle items-center justify-between">
-          <%= form.label :when, class: "label label-text pr-2.5" %>
+       <div class=" flex space-x-1 align-middle items-center justify-between">
+          <%= form.label :when, class: "inline-block label label-text break-keep pr-2.5" %>
           <p class="label label-text grow"><%= "(#{current_user.time_zone})" %></p>
-          <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date", "pair-requests-form-target" => "inviterRequestTime"}, class: "input input-primary input-md w-max" %>
+          <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date", "pair-requests-form-target" => "inviterRequestTime", "pair-requests-form-input-value" => ""}, class: "input input-primary input-md w-max" %>
         </div>
         
-        <div class="flex space-x-4 align-middle items-center justify-around">
+        <div class="flex space-x-1 align-middle items-center justify-around">
          <p class="inline-block label label-text">Invitee</p>
          <p data-pair-requests-form-target="inviteeTz" class="inline-block label label-text grow "></p>
-         <strong class="pr-16 inline-block label-text whitespace-nowrap" id="invitee" data-value="" data-pair-requests-form-target="invitee"></strong>
+         <strong class="pr-14 inline-block label-text" id="invitee" data-value="" data-pair-requests-form-target="invitee"></strong>
         </div>
       </div>
 

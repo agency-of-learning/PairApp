@@ -1,80 +1,55 @@
 import { Controller } from "@hotwired/stimulus"
+import dayjs from "dayjs"
+import utc from "dayjs/plugin/utc"
+import timezone from "dayjs/plugin/timezone"
+import customParseFormat from "dayjs/plugin/customParseFormat"
+
 export default class extends Controller {
-  static targets = ["invitee", "inviteeTz", "inviterRequestTime"]
-  connect(){
-    localStorage.clear()
-    console.log("localStorage is cleared")
+  
+  static targets = ["invitee", "inviteeTz", "inviterRequestTime", "inviteeInfo",]
+  static values = {
+    input : String
   }
 
   onClick(event) {
-    const inviteeTimeZone = event.target.selectedOptions[0].dataset.timezone
-    const userTimeZone = event.target.selectedOptions[0].dataset.usertz
+    if(this.inviterRequestTimeTarget.value){
+      const time = this.inputValue
+      const timezoneIdentifier = this.inviteeInfoTarget.selectedOptions[0].dataset.timezoneIdentifier
+      const timezoneDisplayName = this.inviteeInfoTarget.selectedOptions[0].dataset.timezoneDisplayName
 
-    localStorage.setItem("inviteeTimeZone", inviteeTimeZone)
-    localStorage.setItem("userTimeZone", userTimeZone)
-
-    if(localStorage.getItem("pair_app_when")){
-      let time = localStorage.getItem("pair_app_when")
-      time = new Date(time);
-
-      this.setInviteeSchedule(inviteeTimeZone, time)
-      this.setUserSchedule(userTimeZone, time)
+      this.setInviteeSchedule(timezoneIdentifier, time, timezoneDisplayName)
     }
   }
   
   date(event){
+    this.inputValue =  event.target.value
     
-    let time = new Date(event.target.value)
-    console.log(event.target.dataset.user)
-    console.log(this.inviterRequestTimeTarget.value)
-
-    localStorage.setItem("pair_app_when", time)
-    const userTimeZone = localStorage.getItem("userTimeZone")
-
-    this.setUserSchedule(userTimeZone, time)
-    if (localStorage.getItem("inviteeTimeZone")){
-      const inviteeValue = localStorage.getItem("inviteeTimeZone")
-      this.setInviteeSchedule(inviteeValue, time)
+    if (this.inviteeInfoTarget.selectedOptions[0].dataset){
+      const timezoneIdentifier = this.inviteeInfoTarget.selectedOptions[0].dataset.timezoneIdentifier
+      const timezoneDisplayName = this.inviteeInfoTarget.selectedOptions[0].dataset.timezoneDisplayName
+      const timezoneIdentifierInviter = this.inviteeInfoTarget.selectedOptions[0].dataset.usertz
+      
+      this.setInviteeSchedule(timezoneIdentifier, this.inputValue, timezoneDisplayName)
+      this.setUserSchedule(timezoneIdentifierInviter, event.target.value)
     }
   }
 
-  setInviteeSchedule(invitee, time){
-    const inviteeResult = new TimeZoneConverter(invitee, time).conversion
-    this.inviteeTzTarget.textContent = (`(${invitee})`)
-    this.inviteeTarget.textContent = (`${inviteeResult}`)
+  setInviteeSchedule(timezoneIdentifier, time, timezoneDisplayName){
+    dayjs.extend(utc)
+    dayjs.extend(timezone)
+    dayjs.extend(customParseFormat)
+
+    const result = dayjs(time).tz(timezoneIdentifier).format("MM/DD/YYYY, hh:mm A")
+    this.inviteeTzTarget.textContent = (`(${timezoneDisplayName})`)
+    this.inviteeTarget.textContent = (`${result}`)
   }
 
-  setUserSchedule(user, time){
-    const userResult = new TimeZoneConverter(user, time).conversion
-    debugger
-    this.inviterRequestTimeTarget = (`${userResult}`)
-  }
-}
+  setUserSchedule(timezoneIdentifier, time){
+    dayjs.extend(utc)
+    dayjs.extend(timezone)
+    dayjs.extend(customParseFormat)
 
-class TimeZoneConverter {
-  constructor(input, time) {
-    this.input = input;
-    this.time = time
-  }
-
-  get conversion() {
-    let match
-    let ary = Intl.supportedValuesOf('timeZone');
-    
-    if (this.input == 'UTC'){
-      match = this.input
-    } else {
-      match = ary.find(element => element.match(this.input))
-    }
-    const result = this.time.toLocaleString("en-US", {
-        timeZone: match,
-        month: '2-digit',
-        day: "2-digit",
-        year: "numeric",
-        hour: '2-digit',
-        minute: '2-digit' 
-      });
-      return result;
-  }
-
+    const result = dayjs(time).tz(timezoneIdentifier).format("YYYY-MM-DDThh:mm")
+    this.inviterRequestTimeTarget.value = result
+  } 
 }
