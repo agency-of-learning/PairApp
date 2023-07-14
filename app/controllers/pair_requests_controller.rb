@@ -6,6 +6,9 @@ class PairRequestsController < ApplicationController
     @pair_request = PairRequest.new
     filter = params[:filter] == 'past' ? :past : :upcoming
     @pair_requests = policy_scope(PairRequest).public_send(filter).order_by_status.order_by_date
+
+    @invitees = User.excluding(current_user).map { |user| Invitee.new(user) }
+    @inviter = Invitee.new(current_user)
   end
 
   # GET /pair_requests/1 or /pair_requests/1.json
