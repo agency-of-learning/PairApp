@@ -16,7 +16,10 @@ class StandupMeetingGroupsController < ApplicationController
       items: 10
     )
     @current_user_standup_meeting = current_user.standup_meetings
-                                                .find_by(meeting_date:) || @standup_meetings.new(
+                                                .find_by(
+                                                  meeting_date:,
+                                                  standup_meeting_group: @standup_meeting_group
+                                                ) || @standup_meetings.new(
                                                   user: current_user,
                                                   meeting_date:
                                                 )
