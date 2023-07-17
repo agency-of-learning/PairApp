@@ -88,8 +88,8 @@ class User < ApplicationRecord
   end
 
   def time_zone_identifier
-     ActiveSupport::TimeZone.new(self.time_zone).tzinfo.identifier
-  end 
+    ActiveSupport::TimeZone.new(time_zone).tzinfo.identifier
+  end
 
   enum role: {
     member: 0,
