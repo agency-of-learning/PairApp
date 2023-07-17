@@ -52,7 +52,6 @@ export default class extends Controller {
 
   setUserSchedule(timeZoneIdentifier, time){
     const result = dayjs(time).tz(timeZoneIdentifier).format("YYYY-MM-DDTHH:mm")
-    const dum = dayjs(time)
     
     this.inviterRequestTimeTarget.value = result
     
