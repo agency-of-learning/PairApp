@@ -17,10 +17,10 @@
           <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date", "pair-requests-form-target" => "inviterRequestTime", "pair-requests-form-input-value" => ""}, class: "input input-primary input-md w-max" %>
         </div>
         
-        <div class="flex space-x-1 align-middle items-center justify-around">
-         <p class="inline-block label label-text">Invitee</p>
-         <p data-pair-requests-form-target="inviteeTz" class="inline-block label label-text grow break-words"></p>
-         <strong class="pr-14 inline-block label-text" id="invitee" data-value="" data-pair-requests-form-target="invitee"></strong>
+        <div class="space-x-1 align-middle inline-flex justify-center">
+         <p class="label label-text">Invitee</p>
+         <p data-pair-requests-form-target="inviteeTz" class="label label-text break-words w-full"></p>
+         <strong class="label label-text w-full" id="invitee" data-value="" data-pair-requests-form-target="invitee"></strong>
         </div>
       </div>
 
