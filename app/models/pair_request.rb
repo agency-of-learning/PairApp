@@ -31,8 +31,6 @@ class PairRequest < ApplicationRecord
 
   has_many :references, as: :referenceable, dependent: :destroy, class_name: 'Feedback'
 
-  after_create_commit :notify_invitee
-
   validates :when,
     presence: true,
     inclusion: { in: (Date.current..(Date.current + 1.month)),
@@ -87,13 +85,5 @@ class PairRequest < ApplicationRecord
     elsif invitee == user
       author
     end
-  end
-
-  private
-
-  def notify_invitee
-    PairRequest::CreationNotification
-      .with(pair_request: self)
-      .deliver(invitee)
   end
 end
