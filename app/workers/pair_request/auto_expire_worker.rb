@@ -1,5 +1,5 @@
 class PairRequest
-  class AutoExpireJob < ApplicationJob
+  class AutoExpireWorker < ApplicationWorker
     sidekiq_options queue: 'low'
 
     # rubocop:disable Rails/SkipsModelValidations
