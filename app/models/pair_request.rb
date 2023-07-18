@@ -31,6 +31,8 @@ class PairRequest < ApplicationRecord
 
   has_many :references, as: :referenceable, dependent: :destroy, class_name: 'Feedback'
 
+  after_create_commit :notify_invitee
+
   validates :when,
     presence: true,
     inclusion: { in: (Date.current..(Date.current + 1.month)),
@@ -50,6 +52,8 @@ class PairRequest < ApplicationRecord
 
   scope :order_by_date, -> { order(:when) }
   scope :order_by_status, -> { in_order_of(:status, STATUS_PRIORITIES) }
+  scope :upcoming, -> { where(when: Time.now..) }
+  scope :past, -> { where(when: ..Time.now).order(when: :desc) }
 
   def started?
     self.when <= Time.current
@@ -85,6 +89,11 @@ class PairRequest < ApplicationRecord
     end
   end
 
-  scope :upcoming, -> { where(when: Time.now..) }
-  scope :past, -> { where(when: ..Time.now).order(when: :desc) }
+  private
+
+  def notify_invitee
+    PairRequest::CreationNotification
+      .with(pair_request: self)
+      .deliver_later(invitee)
+  end
 end

@@ -1,2 +1,5 @@
-<h1>Smoke Test</h1>
+<p><%= @recipient.full_name %>,</p>
 
+<p>You've been invited to a Pair Request by <%= @pair_request.author.full_name %></p>
+
+<p>Click <%= link_to "Here", pair_request_url(@pair_request) %> to respond!</p>
