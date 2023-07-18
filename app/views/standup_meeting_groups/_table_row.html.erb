@@ -2,16 +2,16 @@
     <%= render TableCellComponent.new(
       container_link: standup_meeting_group_standup_meetings_path(
         standup_meeting_group, 
-        date: standup_meeting.meeting_date
+        date: standup_meeting.meeting_date.strftime('%m-%d-%Y')
       )
     ) do %>
-      <p><%= standup_meeting.meeting_date %></p>
+      <p><%= standup_meeting.meeting_date.strftime('%m-%d-%Y') %></p>
     <% end %>
 
   <%= render TableCellComponent.new(
       container_link: standup_meeting_group_standup_meetings_path(
         standup_meeting_group, 
-        date: standup_meeting.meeting_date
+        date: standup_meeting.meeting_date.strftime('%m-%d-%Y')
       )
     ) do %>
     <%= standup_meeting.status %>

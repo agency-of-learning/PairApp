@@ -10,5 +10,5 @@ require 'rufus-scheduler'
 s = Rufus::Scheduler.singleton
 
 s.every '30m' do
-  PairRequest::AutoExpireJob.perform_async
+  PairRequest::AutoExpireWorker.perform_async
 end

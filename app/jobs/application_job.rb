@@ -1,3 +1,3 @@
-class ApplicationJob
-  include Sidekiq::Worker
+class ApplicationJob < ActiveJob::Base
+  queue_as :default
 end
