@@ -1,11 +1,17 @@
 class PairRequestMailer < ApplicationMailer
-  def notify_for_create
-    @recipient = params[:recipient]
-    @pair_request = params[:pair_request]
+  before_action :set_pair_request
 
-    mail(
-      to: @recipient.email,
-      subject: 'Pair Request Invite'
-    )
+  def notify_for_create
+    mail(subject: 'Pair Request Invite')
+  end
+
+  def notify_for_complete
+    mail(subject: 'Pair Request Completed')
+  end
+
+  private
+
+  def set_pair_request
+    @pair_request = params[:pair_request]
   end
 end

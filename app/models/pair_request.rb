@@ -94,6 +94,6 @@ class PairRequest < ApplicationRecord
   def notify_invitee
     PairRequest::CreationNotification
       .with(pair_request: self)
-      .deliver_later(invitee)
+      .deliver(invitee)
   end
 end

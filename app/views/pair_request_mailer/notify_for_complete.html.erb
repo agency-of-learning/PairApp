@@ -1,0 +1,5 @@
+<p><%= @recipient.full_name %>,</p>
+
+<p>Your pair request with <%= @pair_request.author.full_name %> is completed.</p>
+
+<p>Click <%= link_to "Here", edit_feedback_url(@pair_request.invitee_feedback) %> to fill out your feedback!</p>
