@@ -9,6 +9,10 @@ class PairRequestMailer < ApplicationMailer
     mail(subject: 'Pair Request Completed')
   end
 
+  def notify_for_accept
+    mail(subject: 'Pair Request Accepted')
+  end
+
   private
 
   def set_pair_request
