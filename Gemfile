@@ -50,6 +50,8 @@ group :test do
   gem 'rspec-sidekiq'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'simplecov'
+  gem 'simplecov-cobertura'
 end
 
 gem 'pundit', '~> 2.3'
