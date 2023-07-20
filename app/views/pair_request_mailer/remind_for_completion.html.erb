@@ -1,0 +1,5 @@
+<p><%= @recipient.full_name %>,</p>
+
+<p>Your pair request with <%= @pair_request.invitee.full_name %> has concluded. Be sure to mark your pair request as completed so you and your partner can fill out feedback.</p>
+
+<p>Click <%= link_to "Here", pair_request_url(@pair_request) %> to complete!</p>

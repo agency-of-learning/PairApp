@@ -13,6 +13,10 @@ class PairRequestMailer < ApplicationMailer
     mail(subject: 'Pair Request Accepted')
   end
 
+  def remind_for_completion
+    mail(subject: 'Mark Pair Request as Completed')
+  end
+
   private
 
   def set_pair_request
