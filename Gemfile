@@ -45,13 +45,13 @@ group :development do
 end
 
 group :test do
+  gem 'simplecov'
+  gem 'simplecov-cobertura'
   gem 'capybara'
   gem 'faker' # Fake data
   gem 'rspec-sidekiq'
   gem 'selenium-webdriver'
   gem 'webdrivers'
-  gem 'simplecov'
-  gem 'simplecov-cobertura'
 end
 
 gem 'pundit', '~> 2.3'
