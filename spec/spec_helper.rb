@@ -12,7 +12,7 @@
 # the additional setup, and require it from the spec files that actually need
 # it.
 #
-require "simplecov"
+require 'simplecov'
 SimpleCov.start
 
 require 'simplecov-cobertura'
