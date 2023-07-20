@@ -57,6 +57,10 @@ class PairRequest < ApplicationRecord
     self.when <= Time.current
   end
 
+  def end_time
+    self.when + duration
+  end
+
   def create_draft_feedback!
     data = Feedback::DATA_OBJECT
     references.build([
