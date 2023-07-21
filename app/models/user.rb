@@ -67,6 +67,8 @@ class User < ApplicationRecord
   has_many :standup_meetings, dependent: :destroy
   has_many :standup_meeting_groups, through: :standup_meeting_groups_users
 
+  has_one :profile, dependent: :destroy
+
   validates :first_name, presence: true
   validates :last_name, presence: true
 
