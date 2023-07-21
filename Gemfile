@@ -49,6 +49,8 @@ group :test do
   gem 'faker' # Fake data
   gem 'rspec-sidekiq'
   gem 'selenium-webdriver'
+  gem 'simplecov'
+  gem 'simplecov-cobertura'
   gem 'webdrivers'
 end
 
