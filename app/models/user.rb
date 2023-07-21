@@ -72,6 +72,8 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
 
+  after_create :create_profile!
+
   def self.invite!(attributes = {}, invited_by = nil, options = {}, &)
     default_name = { first_name: 'First', last_name: 'Last' }
     super(attributes.merge(default_name), invited_by, options, &)
