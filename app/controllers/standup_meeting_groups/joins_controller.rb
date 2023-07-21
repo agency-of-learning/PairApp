@@ -29,9 +29,8 @@ class StandupMeetingGroups::JoinsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.update(
-          helpers.dom_id(@standup_meeting_group, :join_or_leave), component
-        )
+        flash.now[:notice] = 'You have left the standup meeting group.'
+        render 'standup_meeting_groups/joins/destroy'
       end
     end
   end
