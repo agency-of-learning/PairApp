@@ -5,6 +5,7 @@
 #  id                     :bigint           not null, primary key
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  first_name             :string           not null
 #  invitation_accepted_at :datetime
 #  invitation_created_at  :datetime
 #  invitation_limit       :integer
@@ -12,6 +13,7 @@
 #  invitation_token       :string
 #  invitations_count      :integer          default(0)
 #  invited_by_type        :string
+#  last_name              :string           not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
@@ -65,7 +67,13 @@ class User < ApplicationRecord
   has_many :standup_meetings, dependent: :destroy
   has_many :standup_meeting_groups, through: :standup_meeting_groups_users
 
-  scope :invitee_select_for, ->(user) { User.excluding(user).pluck(:email, :id) }
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
+  def self.invite!(attributes = {}, invited_by = nil, options = {}, &)
+    default_name = { first_name: 'First', last_name: 'Last' }
+    super(attributes.merge(default_name), invited_by, options, &)
+  end
 
   def my_pair_requests
     authored_pair_requests.or(received_pair_requests)
@@ -73,6 +81,14 @@ class User < ApplicationRecord
 
   def my_feedback
     authored_feedbacks.or(received_feedbacks)
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def time_zone_identifier
+    ActiveSupport::TimeZone.new(time_zone).tzinfo.identifier
   end
 
   enum role: {

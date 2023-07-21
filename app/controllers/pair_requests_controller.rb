@@ -21,6 +21,7 @@ class PairRequestsController < ApplicationController
 
     respond_to do |format|
       if @pair_request.save
+        PairRequest::CreationNotification.with(pair_request: @pair_request).deliver(@pair_request.invitee)
         format.html { redirect_to @pair_request, notice: 'Pair request was successfully created.' }
         format.turbo_stream do
           @persisted_pair_request = @pair_request

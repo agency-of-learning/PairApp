@@ -1,0 +1,5 @@
+<p><%= @recipient.full_name %>,</p>
+
+<p>Your pair request with <%= @pair_request.invitee.full_name %> has been accepted.</p>
+
+<p>Click <%= link_to "Here", pair_request_url(@pair_request) %> to view your pair request.</p>

@@ -110,6 +110,9 @@ GEM
       actionmailer (>= 5.0)
       devise (>= 4.6)
     diff-lcs (1.5.0)
+    docile (1.4.0)
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
     erubi (1.12.0)
     et-orbi (1.2.7)
       tzinfo
@@ -121,11 +124,22 @@ GEM
     faker (3.2.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
+    ffi-compiler (1.0.1)
+      ffi (>= 1.0.0)
+      rake
     fugit (1.8.1)
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    http (5.1.1)
+      addressable (~> 2.8)
+      http-cookie (~> 1.0)
+      http-form_data (~> 2.2)
+      llhttp-ffi (~> 0.4.0)
+    http-cookie (1.0.5)
+      domain_name (~> 0.5)
+    http-form_data (2.3.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -145,6 +159,9 @@ GEM
       addressable (~> 2.8)
     letter_opener (1.8.1)
       launchy (>= 2.2, < 3)
+    llhttp-ffi (0.4.0)
+      ffi-compiler (~> 1.0)
+      rake (~> 13.0)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -175,7 +192,11 @@ GEM
       racc (~> 1.4)
     nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
+    noticed (1.6.3)
+      http (>= 4.0.0)
+      rails (>= 5.2.0)
     orm_adapter (0.5.0)
+    pagy (6.0.4)
     paper_trail (14.0.0)
       activerecord (>= 6.0)
       request_store (~> 1.4)
@@ -264,7 +285,7 @@ GEM
       rspec-core (~> 3.0, >= 3.0.0)
       sidekiq (>= 2.4.0)
     rspec-support (3.12.0)
-    rubocop (1.53.1)
+    rubocop (1.54.2)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -318,6 +339,15 @@ GEM
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.14.0)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-cobertura (2.1.0)
+      rexml
+      simplecov (~> 0.19)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -342,6 +372,9 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.8.2)
     unicode-display_width (2.4.2)
     view_component (3.2.0)
       activesupport (>= 5.2.0, < 8.0)
@@ -388,6 +421,8 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails (~> 1.1)
   letter_opener
+  noticed
+  pagy (~> 6.0)
   paper_trail
   pg (~> 1.1)
   pry-byebug
@@ -407,6 +442,8 @@ DEPENDENCIES
   selenium-webdriver
   sendgrid-ruby
   sidekiq
+  simplecov
+  simplecov-cobertura
   sprockets-rails
   stimulus-rails
   tailwindcss-rails (~> 2.0)

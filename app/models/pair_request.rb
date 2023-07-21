@@ -50,9 +50,15 @@ class PairRequest < ApplicationRecord
 
   scope :order_by_date, -> { order(:when) }
   scope :order_by_status, -> { in_order_of(:status, STATUS_PRIORITIES) }
+  scope :upcoming, -> { where(when: Time.now..) }
+  scope :past, -> { where(when: ..Time.now).order(when: :desc) }
 
   def started?
     self.when <= Time.current
+  end
+
+  def end_time
+    self.when + duration
   end
 
   def create_draft_feedback!
@@ -84,7 +90,4 @@ class PairRequest < ApplicationRecord
       author
     end
   end
-
-  scope :upcoming, -> { where(when: Time.now..) }
-  scope :past, -> { where(when: ..Time.now).order(when: :desc) }
 end

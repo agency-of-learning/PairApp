@@ -45,3 +45,6 @@ node_modules/
 
 # ignore byebug history
 .byebug_history
+
+# coverage
+/coverage

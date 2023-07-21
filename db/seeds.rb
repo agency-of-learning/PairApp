@@ -1,11 +1,12 @@
+require 'faker'
 begin
   puts "Seeding users..."
 
   user_data = [
-    { email: "admin@user.com", password: "password", role: "admin" },
-    { email: "user1@user.com", password: "password", role: "member" },
-    { email: "user2@user.com", password: "password", role: "member" },
-    { email: "user3@user.com", password: "password", role: "member" }
+    { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: "admin@user.com", password: "password", role: "admin" },
+    { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: "user1@user.com", password: "password", role: "member" },
+    { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: "user2@user.com", password: "password", role: "member" },
+    { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: "user3@user.com", password: "password", role: "member" }
   ]
 
   users = []

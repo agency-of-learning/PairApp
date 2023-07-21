@@ -8,6 +8,7 @@ gem 'devise'
 gem 'devise_invitable'
 gem 'image_processing', '~> 1.2'
 gem 'jbuilder'
+gem 'noticed'
 gem 'paper_trail'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
@@ -48,6 +49,8 @@ group :test do
   gem 'faker' # Fake data
   gem 'rspec-sidekiq'
   gem 'selenium-webdriver'
+  gem 'simplecov'
+  gem 'simplecov-cobertura'
   gem 'webdrivers'
 end
 
@@ -56,3 +59,5 @@ gem 'pundit', '~> 2.3'
 gem 'tailwindcss-rails', '~> 2.0'
 
 gem 'jsbundling-rails', '~> 1.1'
+
+gem 'pagy', '~> 6.0'

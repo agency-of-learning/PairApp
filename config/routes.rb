@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       resources :joins, only: %i[create destroy]
     end
 
-    resources :standup_meetings, only: %i[edit update] do
+    resources :standup_meetings, only: %i[index create edit update] do
       scope module: :standup_meetings do
         resources :skips, only: :create
         resources :completions, only: :create

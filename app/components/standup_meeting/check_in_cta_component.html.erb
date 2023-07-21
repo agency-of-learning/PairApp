@@ -1,0 +1,39 @@
+<div id="check-in-cta" class="p-4 border-2 border-primary my-4 flex flex-col space-y-4 sm:flex-row sm:space-y-0 justify-between">
+  <% if standup_meeting.completed? %>
+    <span class="text-xl align-middle py-2 mx-auto sm:mx-0">
+      <i class="fa-solid fa-check text-2xl text-green-500 mr-4"></i> 
+      You checked in today!
+    </span> 
+  <% elsif standup_meeting.skipped? %>
+    <span class="text-xl align-middle py-2 mx-auto sm:mx-0">
+      <i class="fa-solid fa-check text-2xl text-green-500 mr-4"></i> 
+      You skipped your check-in today
+    </span> 
+  <% else %>
+    <span class="text-xl align-middle py-2 mx-auto sm:mx-0">
+      <i class="fa-solid fa-warning text-2xl text-yellow-400 mr-4"></i> 
+      You have not yet checked in today!
+    </span> 
+  <% end %>
+  <div id="cta-actions" class="flex mx-auto sm:mx-0">
+    <% if standup_meeting.completed? %>
+      <%= link_to "Edit Response", 
+                  edit_standup_meeting_group_standup_meeting_path(standup_meeting_group, standup_meeting), 
+                  class: 'btn btn-primary' %>
+    <% else %>
+      <%= render StandupMeeting::ActionButtonComponent.new(
+        standup_meeting_group:, 
+        standup_meeting:, 
+        current_user:) %>
+      <% if standup_meeting.persisted? %>
+        <%= link_to "Check in", 
+                    edit_standup_meeting_group_standup_meeting_path(standup_meeting_group, standup_meeting), 
+                    class: 'btn btn-primary' %>
+      <% else %>
+        <%= button_to "Check in", 
+                      standup_meeting_group_standup_meetings_path(standup_meeting_group, meeting_date: standup_meeting.meeting_date), 
+                      class: 'btn btn-primary' %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

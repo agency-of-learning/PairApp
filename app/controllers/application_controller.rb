@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
   include ApplicationHelper
+  include Pagy::Backend
 
   add_flash_types :form_errors
 
@@ -18,8 +19,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:accept_invitation, keys: [:time_zone])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:time_zone])
+    devise_parameter_sanitizer.permit(:accept_invitation, keys: %i[time_zone first_name last_name])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[time_zone first_name last_name])
   end
 
   private
@@ -28,8 +29,10 @@ class ApplicationController < ActionController::Base
     Time.use_zone(current_user.time_zone, &)
   end
 
-  def user_not_authorized
-    flash[:alert] = 'You are not authorized to perform this action.'
+  def user_not_authorized(exception)
+    policy_name = exception.policy.class.to_s.underscore
+
+    flash[:alert] = t "#{policy_name}.#{exception.query}", scope: 'pundit', default: :default
     redirect_back(fallback_location: root_path)
   end
 end
