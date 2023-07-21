@@ -19,8 +19,8 @@
 #
 FactoryBot.define do
   factory :profile do
-    user { nil }
-    bio { "MyText" }
-    job_title { "MyString" }
+    user
+    bio { Faker::Lorem.paragraph }
+    job_title { Faker::Job.title }
   end
 end
