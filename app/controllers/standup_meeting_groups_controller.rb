@@ -3,8 +3,8 @@ class StandupMeetingGroupsController < ApplicationController
 
   def index
     @my_standup_meeting_groups = policy_scope(StandupMeetingGroup).includes(:standup_meeting_groups_users)
-    @joinable_standup_meeting_groups = 
-      StandupMeetingGroup.includes(:standup_meeting_groups_users).all.excluding(@my_standup_meeting_groups)
+    @joinable_standup_meeting_groups = StandupMeetingGroup.includes(:standup_meeting_groups_users)
+                                                          .excluding(@my_standup_meeting_groups)
   end
 
   def show
