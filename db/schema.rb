@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_21_003955) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_21_231634) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_21_003955) do
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_pair_requests_on_author_id"
     t.index ["invitee_id"], name: "index_pair_requests_on_invitee_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "bio"
+    t.string "job_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "standup_meeting_groups", force: :cascade do |t|
@@ -116,6 +125,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_21_003955) do
   add_foreign_key "feedbacks", "users", column: "receiver_id"
   add_foreign_key "pair_requests", "users", column: "author_id"
   add_foreign_key "pair_requests", "users", column: "invitee_id"
+  add_foreign_key "profiles", "users"
   add_foreign_key "standup_meetings", "standup_meeting_groups"
   add_foreign_key "standup_meetings", "users"
 end

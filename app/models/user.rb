@@ -67,8 +67,12 @@ class User < ApplicationRecord
   has_many :standup_meetings, dependent: :destroy
   has_many :standup_meeting_groups, through: :standup_meeting_groups_users
 
+  has_one :profile, dependent: :destroy
+
   validates :first_name, presence: true
   validates :last_name, presence: true
+
+  after_create :create_profile!
 
   def self.invite!(attributes = {}, invited_by = nil, options = {}, &)
     default_name = { first_name: 'First', last_name: 'Last' }
