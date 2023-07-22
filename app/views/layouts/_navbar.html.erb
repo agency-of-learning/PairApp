@@ -8,9 +8,11 @@
       <li>
         <%= link_to "Home", root_path %>
       </li>
-      <li>
-        <%= link_to "FAQ", faq_path %>
-      </li>
+      <% if !user_signed_in? %>
+        <li>
+          <%= link_to "FAQ", faq_path %>
+        </li>
+      <% end %>
       <% if user_signed_in? %>
         <li>
           <%= link_to 'My Account', edit_user_registration_path %>
@@ -48,9 +50,11 @@
         <li>
           <%= link_to "Home", root_path %>
         </li>
-        <li>
-          <%= link_to "FAQ", faq_path %>
-        </li>
+        <% if !user_signed_in? %>
+          <li>
+            <%= link_to "FAQ", faq_path %>
+          </li>
+        <% end %>
         <% if user_signed_in? %>
           <li>
             <%= link_to 'Standups', standup_meeting_groups_path %>
