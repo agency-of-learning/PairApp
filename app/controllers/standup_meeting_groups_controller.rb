@@ -3,7 +3,9 @@ class StandupMeetingGroupsController < ApplicationController
 
   def index
     @my_standup_meeting_groups = policy_scope(StandupMeetingGroup).includes(:standup_meeting_groups_users)
-    @joinable_standup_meeting_groups = StandupMeetingGroup.includes(:standup_meeting_groups_users).all.excluding(@my_standup_meeting_groups)
+    @joinable_standup_meeting_groups = StandupMeetingGroup.includes(:standup_meeting_groups_users)
+                                                          .all
+                                                          .excluding(@standup_meeting_groups)
   end
 
   def show
@@ -42,11 +44,11 @@ class StandupMeetingGroupsController < ApplicationController
 
     respond_to do |format|
       if @standup_meeting_group.save
-        format.turbo_stream {
+        format.turbo_stream do
           @new_standup_meeting_group = StandupMeetingGroup.new
 
           flash.now[:success] = "#{@standup_meeting_group.name} was successfully created."
-        }
+        end
 
         format.html do
           redirect_to standup_meeting_group_url(@standup_meeting_group),
