@@ -12,7 +12,8 @@
     "tailwindcss-stimulus-components": "^3.0.4"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets"
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets",
+    "eslint": "eslint './app/javascript/**/*.js'"
   },
   "devDependencies": {
     "eslint": "^8.45.0",
