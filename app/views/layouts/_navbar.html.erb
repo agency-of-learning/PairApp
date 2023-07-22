@@ -8,6 +8,9 @@
       <li>
         <%= link_to "Home", root_path %>
       </li>
+      <li>
+        <%= link_to "FAQ", faq_path %>
+      </li>
       <% if user_signed_in? %>
         <li>
           <%= link_to 'My Account', edit_user_registration_path %>
@@ -44,6 +47,9 @@
       <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
         <li>
           <%= link_to "Home", root_path %>
+        </li>
+        <li>
+          <%= link_to "FAQ", faq_path %>
         </li>
         <% if user_signed_in? %>
           <li>

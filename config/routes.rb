@@ -40,4 +40,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  scope controller: :static do
+    get :faq
+  end
 end
