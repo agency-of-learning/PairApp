@@ -102,7 +102,11 @@ git commit -m "Add your commit message here"
 
 4. Cleaning up before pushing
 ```bash
-  bundle exec rubocop -a
+# lint ruby code
+bundle exec rubocop -a
+
+# lint javascript code
+yarn eslint --fix
 ```
 
 5. Push your changes to origin:
