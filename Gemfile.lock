@@ -427,6 +427,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
+  ruby-vips
   rufus-scheduler
   sassc-rails
   selenium-webdriver
