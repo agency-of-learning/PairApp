@@ -1,9 +1,15 @@
-import { Application } from "@hotwired/stimulus";
+import { Application } from '@hotwired/stimulus';
 import '@hotwired/turbo-rails';
+import {
+  Alert, Autosave, Dropdown, Modal, Tabs, Popover, Toggle, Slideover,
+} from 'tailwindcss-stimulus-components';
+import TextareaAutogrow from 'stimulus-textarea-autogrow';
+
+// import Flatpickr
+import Flatpickr from 'stimulus-flatpickr';
+import 'flatpickr/dist/flatpickr.css';
 
 const application = Application.start();
-import { Alert, Autosave, Dropdown, Modal, Tabs, Popover, Toggle, Slideover } from "tailwindcss-stimulus-components"
-import TextareaAutogrow from 'stimulus-textarea-autogrow';
 
 application.register('alert', Alert);
 application.register('autosave', Autosave);
@@ -18,11 +24,8 @@ application.register('textarea-autogrow', TextareaAutogrow);
 
 // Configure Stimulus development experience;
 application.debug = true;
-window.Stimulus   = application;
-
-// import Flatpickr
-import Flatpickr from 'stimulus-flatpickr';
-import "flatpickr/dist/flatpickr.css";
+window.Stimulus = application;
 // Manually register Flatpickr as a stimulus controller
 application.register('flatpickr', Flatpickr);
-export { application }
+
+export { application }; // eslint-disable-line
