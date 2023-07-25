@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.0'
 
+gem 'active_storage_validations'
 gem 'annotate'
 gem 'devise'
 gem 'devise_invitable'
