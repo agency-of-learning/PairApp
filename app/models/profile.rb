@@ -25,4 +25,8 @@ class Profile < ApplicationRecord
   end
 
   validates :picture, content_type: ['image/png', 'image/jpeg']
+
+  def to_s
+    user.full_name
+  end
 end

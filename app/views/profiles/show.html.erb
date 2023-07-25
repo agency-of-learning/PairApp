@@ -1,0 +1,9 @@
+<h1>Hello World</h1>
+
+<%= @profile %>
+
+<% if @profile.picture.attached? %>
+  <%= image_tag @profile.picture.variant(:square), class: 'rounded-full' %>
+<% else %>
+  <p>No Profile image</p>
+<% end %>
