@@ -19,4 +19,8 @@
 #
 class Profile < ApplicationRecord
   belongs_to :user
+
+  has_one_attached :picture do |attachable|
+    attachable.variant :square, resize_to_fill: [256, 256]
+  end
 end
