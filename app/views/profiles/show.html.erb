@@ -2,6 +2,8 @@
 
 <%= @profile %>
 
+<%= link_to "Edit Profile", edit_profile_path(@profile) %>
+
 <% if @profile.picture.attached? %>
   <%= image_tag @profile.picture.variant(:square), class: 'rounded-full' %>
 <% else %>
