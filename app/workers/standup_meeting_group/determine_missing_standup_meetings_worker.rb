@@ -14,15 +14,23 @@ class StandupMeetingGroup
         StandupMeetingGroup.left_outer_joins(:standup_meetings)
                            .joins(:standup_meeting_groups_users)
                            .preload(:standup_meetings)
-                           .select('standup_meeting_groups.id, ARRAY_AGG(standup_meeting_groups_users.user_id) AS user_ids')
+                           .select(
+                            'standup_meeting_groups.id,
+                            ARRAY_AGG(standup_meeting_groups_users.user_id) AS user_ids'
+                          )
                            .where(active: true)
-                           .where('standup_meeting_groups.start_time::time BETWEEN ?::time AND ?::time', start_time, end_time)
+                           .where(
+                             'standup_meeting_groups.start_time::time BETWEEN ?::time AND ?::time',
+                             start_time,
+                             end_time
+                           )
                            .where('standup_meetings.id IS NULL OR standup_meetings.meeting_date = ?', current_date)
                            .group('standup_meeting_groups.id')
                            .having('COUNT(standup_meeting_groups_users.id) > COUNT(DISTINCT standup_meetings.id)')
 
-      # NOTE: later on if this becomes a bottle neck we can have a separate worker for each standup_meeting_group (and pass in user_ids)
-      # ideally though we would just batch these at that point.
+      # NOTE: later on if this becomes a bottle neck we can have a separate worker
+      # for each standup_meeting_group (and pass in user_ids).
+      # Ideally though we would just batch these at that point.
       standup_meeting_groups.each do |standup_meeting_group|
         standup_meeting_group.user_ids.each do |user_id|
           StandupMeeting::CreateDraftWorker.perform_async(
