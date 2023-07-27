@@ -25,4 +25,8 @@ class StandupMeetingGroup < ApplicationRecord
   def standup_meeting_group_user(user_id)
     standup_meeting_groups_users.find_by(user_id:)
   end
+
+  def to_s
+    name
+  end
 end

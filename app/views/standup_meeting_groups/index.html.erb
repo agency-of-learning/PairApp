@@ -5,15 +5,18 @@
 <% end %>
 
 <div class="flex flex-col">
-  <h1 class="font-bold text-3xl">My Standups</h1>
-  <div id="my-standup-meeting-groups" class="grid grid-cols-3 gap-3 pl-5 pt-5 pb-5">
+  <h2 class="font-bold text-3xl pl-5 text-center md:text-left">My Standups</h2>
+  <div id="my-standup-meeting-groups" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 pl-5 pt-5 pb-5">
     <%= render StandupMeetingGroup::JoinedCardComponent.with_collection(@my_standup_meeting_groups, current_user:) %>
   </div>
 </div>
 
 <div class="flex flex-col">
-  <h1 class="font-bold text-3xl">Find a Standup</h1>
+ <h2 class="font-bold text-3xl pl-5 text-center md:text-left">Find a Standup</h2>
   <ul id="find-standup-meeting-groups" class="flex flex-col pl-5 pt-5 pb-5">
     <%= render StandupMeetingGroup::JoinableItemComponent.with_collection(@joinable_standup_meeting_groups, current_user:) %>
   </ul>
 </div>
+
+
+

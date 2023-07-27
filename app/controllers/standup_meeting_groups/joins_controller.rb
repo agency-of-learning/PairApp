@@ -5,12 +5,11 @@ class StandupMeetingGroups::JoinsController < ApplicationController
 
     authorize @standup_meeting_group_user, policy_class: StandupMeetingGroup::JoinPolicy
 
-    @standup_meeting_group_user.save
+    @standup_meeting_group_user.save!
 
     respond_to do |format|
       format.turbo_stream do
         flash.now[:notice] = "You have joined #{@standup_meeting_group.name}!"
-        render 'standup_meeting_groups/joins/create'
       end
     end
   end
