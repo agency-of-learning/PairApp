@@ -28,4 +28,26 @@ class Profile < ApplicationRecord
     open_to_opportunities: 1,
     not_looking: 2
   }
+
+  WORK_MODELS = %w[inoffice hybrid remote].freeze
+  validate :work_model_preferences_must_exist, :must_not_duplicate_preferences
+
+  def work_model_preferences
+    super || []
+  end
+
+  private
+
+  def work_model_preferences_must_exist
+    if work_model_preferences.any? { |preference| WORK_MODELS.exclude?(preference) }
+      error_message = "must only include valid preferences: #{WORK_MODELS.to_sentence}"
+      errors.add(:work_model_preferences, error_message)
+    end
+  end
+
+  def must_not_duplicate_preferences
+    if work_model_preferences.size != work_model_preferences.uniq.size
+      errors.add(:work_model_preferences, 'must not contain duplicate preferences')
+    end
+  end
 end
