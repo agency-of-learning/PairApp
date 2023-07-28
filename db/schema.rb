@@ -10,9 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_21_231634) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_26_191050) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "work_models_enum", ["inoffice", "hybrid", "remote"]
 
   create_table "feedbacks", force: :cascade do |t|
     t.bigint "author_id", null: false
@@ -48,6 +52,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_231634) do
     t.string "job_title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "location"
+    t.integer "job_search_status", default: 0
+    t.enum "work_model_preferences", array: true, enum_type: "work_models_enum"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
