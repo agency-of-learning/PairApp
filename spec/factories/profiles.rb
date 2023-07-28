@@ -25,5 +25,8 @@ FactoryBot.define do
     user
     bio { Faker::Lorem.paragraph }
     job_title { Faker::Job.title }
+    location { Faker::Address.country }
+    job_search_status { Profile.job_search_statuses[:actively_looking] }
+    work_model_preferences { ['remote'] }
   end
 end
