@@ -46,8 +46,8 @@ class Profile < ApplicationRecord
   end
 
   def must_not_duplicate_preferences
-    if work_model_preferences.size != work_model_preferences.uniq.size
-      errors.add(:work_model_preferences, 'must not contain duplicate preferences')
-    end
+    return if work_model_preferences.size == work_model_preferences.uniq.size
+
+    errors.add(:work_model_preferences, 'must not contain duplicate preferences')
   end
 end
