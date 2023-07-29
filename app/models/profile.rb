@@ -24,9 +24,9 @@ class Profile < ApplicationRecord
   belongs_to :user
 
   enum job_search_status: {
-    actively_looking: 0,
+    not_looking: 0,
     open_to_opportunities: 1,
-    not_looking: 2
+    actively_looking: 2
   }
 
   WORK_MODELS = %w[onsite hybrid remote].freeze
