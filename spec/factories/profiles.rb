@@ -2,12 +2,15 @@
 #
 # Table name: profiles
 #
-#  id         :bigint           not null, primary key
-#  bio        :text
-#  job_title  :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint           not null
+#  id                     :bigint           not null, primary key
+#  bio                    :text
+#  job_search_status      :integer          default("actively_looking")
+#  job_title              :string
+#  location               :string
+#  work_model_preferences :enum             is an Array
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  user_id                :bigint           not null
 #
 # Indexes
 #
@@ -22,5 +25,8 @@ FactoryBot.define do
     user
     bio { Faker::Lorem.paragraph }
     job_title { Faker::Job.title }
+    location { Faker::Address.country }
+    job_search_status { Profile.job_search_statuses[:actively_looking] }
+    work_model_preferences { ['remote'] }
   end
 end
