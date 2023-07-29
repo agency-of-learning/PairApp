@@ -9,14 +9,5 @@ class StandupMeetingGroup::JoinedCardComponent < ViewComponent::Base
     @standup_meeting_group = standup_meeting_group
     @user = current_user
     @standup_meeting_group_user = standup_meeting_group.standup_meeting_groups_users.find_by(user:)
-    @current_standup_meeting = @user.standup_meetings.find_by(standup_meeting_group: standup_meeting_group)
-  end
-
-  def self.checked_in_status
-    if @current_standup_meeting
-      "Checked in today!"
-    else
-      "outstanding check in"
-    end
   end
 end
