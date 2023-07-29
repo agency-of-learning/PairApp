@@ -10,23 +10,23 @@ class StandupMeetingGroup
       # NOTE: the goal is to compare the number of users in a standup_meeting_group to the number of standup_meetings
       # for a particular day. If there are more users than standup_meetings, it means people haven't completed it yet.
       # Thus, we need to create standup_meetings (drafts) for those users and send a notification.
+
       standup_meeting_groups =
-        StandupMeetingGroup.left_outer_joins(:standup_meetings)
-                           .joins(:standup_meeting_groups_users)
-                           .preload(:standup_meetings)
-                           .select(
-                            'standup_meeting_groups.id,
-                            ARRAY_AGG(standup_meeting_groups_users.user_id) AS user_ids'
-                          )
-                           .where(active: true)
-                           .where(
-                             'standup_meeting_groups.start_time::time BETWEEN ?::time AND ?::time',
-                             start_time,
-                             end_time
-                           )
-                           .where('standup_meetings.id IS NULL OR standup_meetings.meeting_date = ?', current_date)
-                           .group('standup_meeting_groups.id')
-                           .having('COUNT(standup_meeting_groups_users.id) > COUNT(DISTINCT standup_meetings.id)')
+        StandupMeetingGroup
+        .joins("LEFT OUTER JOIN standup_meetings ON standup_meeting_groups.id = standup_meetings.standup_meeting_group_id AND standup_meetings.meeting_date = '#{current_date}'")
+        .joins(:standup_meeting_groups_users)
+        .select(
+          'standup_meeting_groups.id,
+          ARRAY_AGG(DISTINCT standup_meeting_groups_users.user_id) AS user_ids'
+        )
+        .where(active: true)
+        .where(
+          'standup_meeting_groups.start_time::time BETWEEN ?::time AND ?::time',
+          start_time,
+          end_time
+        )
+        .group('standup_meeting_groups.id')
+        .having('COUNT(standup_meeting_groups_users.id) > COUNT(DISTINCT standup_meetings.id)')
 
       # NOTE: later on if this becomes a bottle neck we can have a separate worker
       # for each standup_meeting_group (and pass in user_ids).
