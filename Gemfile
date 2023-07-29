@@ -5,6 +5,7 @@ ruby '3.1.0'
 
 gem 'active_storage_validations'
 gem 'annotate'
+gem 'aws-sdk-s3'
 gem 'devise'
 gem 'devise_invitable'
 gem 'image_processing', '~> 1.2'
