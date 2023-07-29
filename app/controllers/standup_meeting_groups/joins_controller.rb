@@ -22,9 +22,7 @@ class StandupMeetingGroups::JoinsController < ApplicationController
 
     @standup_meeting_group_user.destroy
     respond_to do |format|
-      format.turbo_stream do
-        render 'standup_meeting_groups/joins/destroy'
-      end
+      format.html { redirect_to standup_meeting_groups_path, notice: 'You have left the standup meeting group.' }
     end
   end
 end
