@@ -13,7 +13,11 @@ class StandupMeetingGroup
 
       standup_meeting_groups =
         StandupMeetingGroup
-        .joins("LEFT OUTER JOIN standup_meetings ON standup_meeting_groups.id = standup_meetings.standup_meeting_group_id AND standup_meetings.meeting_date = '#{current_date}'")
+        .joins(
+          "LEFT OUTER JOIN standup_meetings
+            ON standup_meeting_groups.id = standup_meetings.standup_meeting_group_id
+            AND standup_meetings.meeting_date = '#{current_date}'"
+        )
         .joins(:standup_meeting_groups_users)
         .select(
           'standup_meeting_groups.id,

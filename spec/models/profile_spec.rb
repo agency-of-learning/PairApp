@@ -27,7 +27,7 @@ RSpec.describe Profile do
     subject(:profile) { build(:profile, work_model_preferences: preferences) }
 
     context 'with accepted keys and no duplicates' do
-      let(:preferences) { %w[remote hybrid inoffice] }
+      let(:preferences) { %w[remote hybrid onsite] }
 
       it 'is valid' do
         expect(subject).to be_valid
