@@ -4,7 +4,7 @@ class AddFieldsToProfile < ActiveRecord::Migration[7.0]
     add_column :profiles, :job_search_status, :integer, default: 0
 
     execute <<-SQL
-      CREATE TYPE WORK_MODELS_ENUM AS ENUM('inoffice', 'hybrid', 'remote');
+      CREATE TYPE WORK_MODELS_ENUM AS ENUM('onsite', 'hybrid', 'remote');
     SQL
     add_column :profiles, :work_model_preferences, :work_models_enum, array: true
   end

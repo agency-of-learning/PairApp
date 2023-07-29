@@ -29,7 +29,7 @@ class Profile < ApplicationRecord
     not_looking: 2
   }
 
-  WORK_MODELS = %w[inoffice hybrid remote].freeze
+  WORK_MODELS = %w[onsite hybrid remote].freeze
   validate :work_model_preferences_must_exist, :must_not_duplicate_preferences
 
   def work_model_preferences

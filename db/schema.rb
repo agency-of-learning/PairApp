@@ -16,7 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_191050) do
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
-  create_enum "work_models_enum", ["inoffice", "hybrid", "remote"]
+  create_enum "work_models_enum", ["onsite", "hybrid", "remote"]
 
   create_table "feedbacks", force: :cascade do |t|
     t.bigint "author_id", null: false
