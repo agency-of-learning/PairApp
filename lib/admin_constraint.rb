@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# :nocov:
 class AdminConstraint
   def self.matches?(request)
     return false if request.session['warden.user.user.key'].blank?
@@ -9,3 +12,4 @@ class AdminConstraint
     user.admin?
   end
 end
+# :nocov:

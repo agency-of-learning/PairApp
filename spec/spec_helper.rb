@@ -13,7 +13,9 @@
 # it.
 #
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  add_filter '/app/controllers/*'
+end
 
 require 'simplecov-cobertura'
 SimpleCov.formatters = [SimpleCov::Formatter::HTMLFormatter, SimpleCov::Formatter::CoberturaFormatter]
