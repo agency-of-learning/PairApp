@@ -12,3 +12,8 @@ s = Rufus::Scheduler.singleton
 s.every '30m' do
   PairRequest::AutoExpireWorker.perform_async
 end
+
+# This does a longer look ahead to account for failures and ensure nothing is missed.
+s.every '15m' do
+  StandupMeetingGroup::DetermineMissingStandupMeetingsWorker.perform_async(0, 60)
+end

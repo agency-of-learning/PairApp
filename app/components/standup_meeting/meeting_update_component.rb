@@ -12,4 +12,12 @@ class StandupMeeting::MeetingUpdateComponent < ViewComponent::Base
   private
 
   attr_reader :standup_meeting, :content_type, :user
+
+  def standup_content
+    @standup_content ||= standup_meeting.public_send(content_type)
+  end
+
+  def render?
+    standup_content.present?
+  end
 end

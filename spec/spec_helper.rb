@@ -13,10 +13,12 @@
 # it.
 #
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  add_filter '/app/controllers/*'
+end
 
 require 'simplecov-cobertura'
-SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
+SimpleCov.formatters = [SimpleCov::Formatter::HTMLFormatter, SimpleCov::Formatter::CoberturaFormatter]
 
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'pundit/rspec'

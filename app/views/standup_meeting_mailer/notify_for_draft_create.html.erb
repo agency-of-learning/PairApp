@@ -1,0 +1,5 @@
+<p><%= @recipient.full_name %>,</p>
+
+<p>This is a reminder to fill out your standup status for <%= @standup_meeting_group.name %></p>
+
+<p>Click <%= link_to "Here", edit_standup_meeting_group_standup_meeting_url(@standup_meeting_group, @standup_meeting) %> to write your status update.</p>

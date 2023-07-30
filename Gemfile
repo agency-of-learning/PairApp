@@ -3,7 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.0'
 
+gem 'active_storage_validations'
 gem 'annotate'
+gem 'aws-sdk-s3'
 gem 'devise'
 gem 'devise_invitable'
 gem 'image_processing', '~> 1.2'
@@ -14,6 +16,7 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.4', '>= 7.0.4.2'
 gem 'redis', '~> 4.0'
+gem 'ruby-vips'
 gem 'rufus-scheduler'
 gem 'sendgrid-ruby'
 gem 'sidekiq'

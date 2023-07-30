@@ -2,11 +2,11 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import { application } from './application';
 
-import PairRequestsFormController from "./pair_requests_form_controller"
-application.register("pair-requests-form", PairRequestsFormController)
+import PairRequestsFormController from './pair_requests_form_controller';
 
-import LinkBuilderController from "./link_builder_controller"
-application.register("link-builder", LinkBuilderController)
+import LinkBuilderController from './link_builder_controller';
 
+application.register('pair-requests-form', PairRequestsFormController);
+application.register('link-builder', LinkBuilderController);

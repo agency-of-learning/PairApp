@@ -43,8 +43,11 @@ jobs:
           sudo apt-get install -y -qq libvips
           yarn install --frozen-lockfile
 
-      - name: Linter Check
+      - name: Ruby Lint Check
         run: bundle exec rubocop
+
+      - name: JavaScript Lint Check
+        run: yarn run eslint
 
       - name: Run tests
         env:
