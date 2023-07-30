@@ -8,7 +8,7 @@
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
-# It"s strongly recommended that you check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_07_26_191050) do
   # These are extensions that must be enabled in order to support this database
@@ -28,22 +28,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_191050) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "feedbacks", force: :cascade do |t|
-    t.bigint "author_id", null: false
-    t.bigint "receiver_id", null: false
-    t.string "referenceable_type", null: false
-    t.bigint "referenceable_id", null: false
-    t.integer "overall_rating", default: 0, null: false
-    t.integer "status", default: 0, null: false
-    t.jsonb "data", default: {}, null: false
-    t.datetime "locked_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_feedbacks_on_author_id"
-    t.index ["receiver_id"], name: "index_feedbacks_on_receiver_id"
-    t.index ["referenceable_type", "referenceable_id"], name: "index_feedbacks_on_referenceable"
-  end
-
   create_table "active_storage_blobs", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
@@ -60,18 +44,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_191050) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-  end
-
-  create_table "profiles", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.text "bio"
-    t.string "job_title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "location"
-    t.integer "job_search_status", default: 0
-    t.enum "work_model_preferences", array: true, enum_type: "work_models_enum"
-    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -108,6 +80,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_191050) do
     t.string "job_title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "location"
+    t.integer "job_search_status", default: 0
+    t.enum "work_model_preferences", array: true, enum_type: "work_models_enum"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
