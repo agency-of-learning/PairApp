@@ -34,7 +34,7 @@ class PairRequest < ApplicationRecord
   validates :when,
     presence: true,
     inclusion: { in: (Date.current..(Date.current + 1.month)),
-                 message: 'field must not be in the past' }
+                 message: 'field must not be in the past or more than 1 month into the future' }
   validates :duration, presence: true, numericality: { greater_than_or_equal_to: 5.minutes }
   validates :status, presence: true
 

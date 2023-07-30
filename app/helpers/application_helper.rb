@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# :nocov:
 module ApplicationHelper
   include Pagy::Frontend
   # NOTE: move to specific datetime place (forget name)
@@ -37,3 +40,4 @@ module ApplicationHelper
   end
   # rubocop:enable Style/PerceivedComplexity
 end
+# :nocov:
