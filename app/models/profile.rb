@@ -4,7 +4,7 @@
 #
 #  id                     :bigint           not null, primary key
 #  bio                    :text
-#  job_search_status      :integer          default("actively_looking")
+#  job_search_status      :integer          default("not_looking")
 #  job_title              :string
 #  location               :string
 #  work_model_preferences :enum             is an Array
@@ -23,6 +23,12 @@
 class Profile < ApplicationRecord
   belongs_to :user
 
+  has_one_attached :picture do |attachable|
+    attachable.variant :square, resize_to_fill: [256, 256]
+  end
+
+  validates :picture, content_type: ['image/png', 'image/jpeg']
+
   enum job_search_status: {
     not_looking: 0,
     open_to_opportunities: 1,
@@ -34,6 +40,10 @@ class Profile < ApplicationRecord
 
   def work_model_preferences
     super || []
+  end
+
+  def to_s
+    user.full_name
   end
 
   private
