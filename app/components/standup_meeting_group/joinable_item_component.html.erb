@@ -2,8 +2,6 @@
   <h1 class=""><%= standup_meeting_group.name %></h1>
 
   <div class="">
-    <%= turbo_frame_tag dom_id(standup_meeting_group, :join) do %>
       <%= button_to 'Join', standup_meeting_group_joins_path(@standup_meeting_group), class: 'btn btn-success' %>
-    <% end %>
   </div>
 <% end %>
