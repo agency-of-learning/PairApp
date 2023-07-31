@@ -38,6 +38,8 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable
 
+  has_many :notifications, as: :recipient, dependent: :destroy
+
   has_many :authored_pair_requests,
     class_name: 'PairRequest',
     foreign_key: 'author_id',

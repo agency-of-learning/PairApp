@@ -24,6 +24,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class StandupMeeting < ApplicationRecord
+  has_noticed_notifications
+
   belongs_to :standup_meeting_group, inverse_of: :standup_meetings
   belongs_to :user
 

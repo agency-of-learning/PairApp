@@ -25,6 +25,7 @@ class PairRequest < ApplicationRecord
   # NOTE: might modify this to only save for specific scenarios like when changing from
   # draft -> completed. Want to noodle on this a bit.
   has_paper_trail
+  has_noticed_notifications
 
   belongs_to :author, class_name: 'User'
   belongs_to :invitee, class_name: 'User'
