@@ -1,12 +1,9 @@
 <%= turbo_stream.update "flash", partial: "layouts/flash" %>
 
 <% if @standup_meeting_group.valid? %>
-  <%= turbo_stream.prepend(
-    "find-standup-meeting-groups",
-    partial: 'standup_meeting_group_list_item',
-    locals: { standup_meeting_group: @standup_meeting_group }
-    )
-  %>
+  <%= turbo_stream.prepend  "find-standup-meeting-groups" do %>
+    <%= render StandupMeetingGroup::JoinableItemComponent.new(standup_meeting_group: @standup_meeting_group, current_user: current_user) %>
+  <% end %>
 
   <%= turbo_stream.update "new_standup_meeting_group"  do %>
     <%= render "form", standup_meeting_group: @new_standup_meeting_group %>
