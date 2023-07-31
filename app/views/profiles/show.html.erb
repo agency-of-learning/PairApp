@@ -1,11 +1,26 @@
-<h1>Hello World</h1>
+<div class="max-w-prose mx-auto">
+  <div class="flex justify-center mb-4 px-8 sm:justify-end">
+    <%= link_to "Edit Profile", edit_profile_path(@profile), class: 'btn btn-outline btn-sm text-right' %>
+  </div>
+  <div class="flex flex-col items-center justify-center mb-2 sm:flex-row">
+    <% if @profile.picture.attached? %>
+      <%= image_tag @profile.picture.variant(:square), class: 'rounded-full w-[256px] h-[256px] mx-auto sm:mx-0' %>
+    <% else %>
+      <p>No image attached!</p>
+    <% end %>
+    <div class="text-center px-4 sm:text-left">
+      <h1 class="text-2xl font-bold"><%= @profile %></h1>
+      <p class="text-xl"><%= @profile.job_title %></p>
+      <p><i class="fa-solid fa-location-dot mr-2"></i><%= @profile.location %></p>
+    </div>
+  </div>
 
-<%= @profile %>
+  <div class="text-center mb-4 px-4">
+    <p><%= @profile.bio %></p>
+  </div>
 
-<%= link_to "Edit Profile", edit_profile_path(@profile) %>
-
-<% if @profile.picture.attached? %>
-  <%= image_tag @profile.picture.variant(:square), class: 'rounded-full' %>
-<% else %>
-  <p>No Profile image</p>
-<% end %>
+  <div class="flex justify-between px-8">
+    <button class="btn btn-sm">View Resume</button>
+    <button class="btn btn-sm">View Bragsheet</button>
+  </div>
+</div>
