@@ -12,6 +12,9 @@
       <h1 class="text-2xl font-bold"><%= @profile %></h1>
       <p class="text-xl"><%= @profile.job_title %></p>
       <p><i class="fa-solid fa-location-dot mr-2"></i><%= @profile.location %></p>
+      <% @profile.work_model_preferences.each do |preference| %>
+        <div class="badge badge-primary badge-outline"><%= preference %></div>
+      <% end %>
     </div>
   </div>
 

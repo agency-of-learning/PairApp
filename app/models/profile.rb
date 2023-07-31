@@ -42,6 +42,10 @@ class Profile < ApplicationRecord
     super || []
   end
 
+  def work_model_preferences=(value)
+    super(value.reject(&:empty?))
+  end
+
   def to_s
     user.full_name
   end
