@@ -1,0 +1,6 @@
+<figure class="rounded-full w-64 h-64 mx-auto sm:mx-0 relative border-2 border-black bg-black mb-2">
+  <%= image_tag profile_picture_src, class: 'w-full object-cover rounded-full' %>
+  <%= tag.figcaption(class: "absolute bottom-0 translate-y-1 z-90 py-2 rounded-lg w-full text-center font-bold #{figcaption_colors}") do %>
+    <%= profile.job_search_status.humanize.titleize %>
+  <% end %>
+</figure>
