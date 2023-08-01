@@ -7,7 +7,7 @@
   </div>
   <div class="py-4 flex justify-between">
     <h1 class="text-3xl font-bold text-left mb-4 md:mb-0"><%= standup_meeting_group.name %></h1>
-    <%= button_to 'Leave', standup_meeting_group_join_path(standup_meeting_group, standup_meeting_group_user), method: :delete, data: { turbo: false }, class: 'link mt-4' %>
+    <%= button_to 'Leave', standup_meeting_group_join_path(standup_meeting_group, standup_meeting_group_user), method: :delete, class: 'link mt-4' %>
   </div>
   <%= render StandupMeeting::CheckInCtaComponent.new(standup_meeting_group: standup_meeting_group, standup_meeting: current_user_standup_meeting, current_user:) %>
   <div class="divider my-4 "></div>
