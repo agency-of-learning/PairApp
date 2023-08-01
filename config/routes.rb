@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   constraints(AdminConstraint) do
     mount Sidekiq::Web => '/sidekiq'
   end
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
   resources :feedbacks, only: %i[index edit update show]
 
