@@ -61,23 +61,28 @@ bin/dev
 This will start the development server, the asset compiling for CSS and JS, and background worker. Open your web browser and go to http://localhost:3000 to see the application running.
 
 ## Working with Devise Invitable
+
 If you need to work with the user registration/invitation process, follow these steps:
 
 1. Make sure you are logged out of the application.
 
 2. Open a Rails console session:
+
 ```bash
 rails console
 ```
+
 3. In the console, run the following command to invite a user:
-```bash 
+
+```bash
 User.invite!(email: <some_test_email>)
 ```
-4. The `letter_opener` gem should open a new tab in your browser with an invite link. If it doesn't, you can manually access the letter opener by opening http://localhost:3000/letter_opener.
+
+4. You can access the letter by opening http://localhost:3000/letter_opener (dev only).
 
 5. Click the invite link to get to the sign-up page where you can set a password. This will create a fully active account with the provided email and password.
 
-Note: This flow is only necessary if you're building something around the user registration/invitation process. If you just want to create users, you can use User.create(**attrs) as usual.
+Note: This flow is only necessary if you're building something around the user registration/invitation process. If you just want to create users, you can use User.create(\*\*attrs) as usual.
 
 ## Contributing
 
@@ -94,13 +99,16 @@ git checkout -b your-feature-branch-name
 ```bash
 git add .
 git commit -m "Add your commit message here"
-``` 
+```
+
 3. Running Tests
+
 ```bash
   bundle exec rspec
 ```
 
 4. Cleaning up before pushing
+
 ```bash
 # lint ruby code
 bundle exec rubocop -a
