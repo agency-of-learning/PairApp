@@ -30,9 +30,9 @@ class Profile < ApplicationRecord
   validates :picture, content_type: ['image/png', 'image/jpeg']
 
   enum job_search_status: {
-    not_looking: 0,
+    not_job_searching: 0,
     open_to_opportunities: 1,
-    actively_looking: 2
+    open_to_work: 2
   }
 
   WORK_MODELS = %w[onsite hybrid remote].freeze
