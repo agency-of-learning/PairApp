@@ -7,6 +7,17 @@
       <%= form.file_field :picture, class: 'file-input file-input-bordered file-input-primary max-w-xs' %>
     </div>
     <div class="form-control">
+      <%= form.label :job_search_status, class: 'label label-text text-lg' %>
+      <div class="flex flex-col gap-1">
+        <%= form.collection_radio_buttons :job_search_status, Profile.job_search_statuses.keys, :itself, :humanize do |b| %>
+          <div class="flex items-center gap-2">
+            <%= b.radio_button(class: "radio radio-primary") %>
+            <%= b.label(class: "label label-text") %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-control">
       <%= form.label :location, class: 'label label-text text-lg' %>
       <%= form.text_field :location, class: 'input input-primary input-bordered' %>
     </div>

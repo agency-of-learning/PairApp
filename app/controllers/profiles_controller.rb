@@ -23,6 +23,7 @@ class ProfilesController < ApplicationController
       :location,
       :job_title,
       :bio,
+      :job_search_status,
       work_model_preferences: []
     )
   end
