@@ -4,11 +4,11 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    @profile = Profile.find(params[:id])
+    @profile = authorize Profile.find(params[:id])
   end
 
   def update
-    @profile = Profile.find(params[:id])
+    @profile = authorize Profile.find(params[:id])
 
     if @profile.update(profile_params)
       redirect_to @profile, success: 'Profile successfully updated!'

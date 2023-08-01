@@ -1,7 +1,9 @@
 <div class="max-w-prose mx-auto">
-  <div class="flex justify-center mb-4 px-8 sm:justify-end">
-    <%= link_to "Edit Profile", edit_profile_path(@profile), class: 'btn btn-outline btn-sm text-right' %>
-  </div>
+  <% if policy(@profile).edit? %>
+    <div class="flex justify-center mb-4 px-8 sm:justify-end">
+      <%= link_to "Edit Profile", edit_profile_path(@profile), class: 'btn btn-outline btn-sm text-right' %>
+    </div>
+  <% end %>
   <div class="flex flex-col items-center justify-center mb-2 sm:flex-row">
     <%= render Profile::PictureComponent.new(profile: @profile) %>
     <div class="text-center px-4 sm:text-left">
