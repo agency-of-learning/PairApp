@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   def show
-    @profile = Profile.find(params[:id])
+    @profile = Profile.includes(:user, :picture_blob).find(params[:id])
   end
 
   def edit
