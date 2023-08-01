@@ -2,7 +2,9 @@ class StandupMeetingGroupsController < ApplicationController
   before_action :set_standup_meeting_group, only: %i[edit update destroy]
 
   def index
-    @standup_meeting_groups = StandupMeetingGroup.includes(:standup_meeting_groups_users).all
+    @my_standup_meeting_groups = policy_scope(StandupMeetingGroup).includes(:standup_meeting_groups_users)
+    @joinable_standup_meeting_groups = StandupMeetingGroup.includes(:standup_meeting_groups_users)
+                                                          .excluding(@my_standup_meeting_groups)
   end
 
   def show
@@ -36,22 +38,24 @@ class StandupMeetingGroupsController < ApplicationController
 
   def create
     @standup_meeting_group = StandupMeetingGroup.new(standup_meeting_group_params)
-    @new_standup_meeting_group = StandupMeetingGroup.new
 
     authorize(@standup_meeting_group)
 
     respond_to do |format|
       if @standup_meeting_group.save
-        format.turbo_stream
+        format.turbo_stream do
+          @new_standup_meeting_group = StandupMeetingGroup.new
+
+          flash.now[:success] = "#{@standup_meeting_group.name} was successfully created."
+        end
+
         format.html do
           redirect_to standup_meeting_group_url(@standup_meeting_group),
             notice: 'Standup meeting group was successfully created.'
         end
       else
-        # NOTE: figure out how to do errors
         format.turbo_stream do
-          render turbo_stream: turbo_stream.update(@standup_meeting_group, partial: 'form',
-            locals: { standup_meeting_group: @standup_meeting_group })
+          flash.now[:form_errors] = @standup_meeting_group.errors.full_messages
         end
         format.html { render :new, status: :unprocessable_entity }
       end

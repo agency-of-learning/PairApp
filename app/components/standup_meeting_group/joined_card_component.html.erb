@@ -1,0 +1,17 @@
+<%= tag.div(id: dom_id(standup_meeting_group), class: "card card-bordered w-72") do %>
+  <div class="card-body flex flex-row p-4">
+    <div class="w-1/2">
+      <h4 class="card-title font-bold text-lg"><%= link_to standup_meeting_group %></h4>
+      <div class="checkin_message">
+        <p class="text-xs"> <i class="fa-solid fa-check"></i> Checked in </p> 
+       <p class="text-xs"> <i class="fa-solid fa-triangle-exclamation"></i> Outstanding check in</p> 
+      </div>
+    </div>
+    <div class="w-1/2">
+      <div class="card-actions flex space-x-2 justify-end">
+        <button class="btn btn-sm">Check In</button>
+        <button class="btn btn-sm">Skip</button>        
+      </div>
+    </div>
+  </div>
+<% end %>
