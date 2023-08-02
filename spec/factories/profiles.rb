@@ -26,7 +26,21 @@ FactoryBot.define do
     bio { Faker::Lorem.paragraph }
     job_title { Faker::Job.title }
     location { Faker::Address.country }
-    job_search_status { Profile.job_search_statuses[:actively_looking] }
+    job_search_status { Profile.job_search_statuses[:not_job_searching] }
     work_model_preferences { ['remote'] }
+
+    transient do
+      attached_picture { false }
+    end
+
+    after(:build) do |profile, evaluator|
+      next unless evaluator.attached_picture
+
+      profile.picture.attach(
+        io: Rails.root.join('spec/fixtures/test_image.png').open,
+        filename: 'test_image.png',
+        content_type: 'image/png'
+      )
+    end
   end
 end
