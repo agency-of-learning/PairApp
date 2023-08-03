@@ -9,5 +9,6 @@ class StandupMeetingGroup::JoinedCardComponent < ViewComponent::Base
     @standup_meeting_group = standup_meeting_group
     @user = current_user
     @standup_meeting_group_user = standup_meeting_group.standup_meeting_groups_users.find_by(user:)
+    # @current_user_standup_meeting = current_user_standup_meeting
   end
 end

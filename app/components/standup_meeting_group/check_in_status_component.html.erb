@@ -1,5 +1,8 @@
-<% if @checked_in %>
-  <p class="text-xs"> <i class="fa-solid fa-check"></i> Checked in </p> 
-  <% else %>
-  <p class="text-xs"> <i class="fa-solid fa-triangle-exclamation"></i> Outstanding check in</p> 
+<% if @standup_meeting.present? && @standup_meeting.completed? %>
+  <p class="text-xs"> <i class="fa-solid fa-check"></i> Checked in </p>
+<% else %>
+  <p class="text-xs"> <i class="fa-solid fa-triangle-exclamation"></i> Outstanding check-in</p>
 <% end %>
+  
+
+
