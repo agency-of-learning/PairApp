@@ -14,9 +14,6 @@ class StandupMeetingGroup < ApplicationRecord
   has_many :standup_meetings, inverse_of: :standup_meeting_group, dependent: :destroy
   has_many :standup_meeting_groups_users, dependent: :destroy, class_name: 'StandupMeetingGroupUser'
   has_many :users, through: :standup_meeting_groups_users
-  
-  has_many :standup_meetings_for_today, -> { where(meeting_date: Date.current) }, class_name: "StandupMeeting"
-
 
   validates :name, presence: true
   validates :start_time, presence: true
