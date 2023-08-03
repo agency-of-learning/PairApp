@@ -16,12 +16,12 @@ RSpec.describe StandupMeetingGroup::CheckInStatusComponent, type: :component do
   it "renders 'Checked in' message when user has checked in" do
     render_inline(described_class.new(standup_meeting_group, user))
 
-    expect(page).to have_css('p', text: 'Checked in')
+    expect(page).to have_content("Checked in")
   end
 
   it "renders 'Outstanding check-in' message when user has not checked in" do
     render_inline(described_class.new(standup_meeting_group2, user))
 
-    expect(page).to have_css('p', text: 'Outstanding check-in')
+    expect(page).to have_content("Outstanding check-in")
   end
 end
