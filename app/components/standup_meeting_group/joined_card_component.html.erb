@@ -6,8 +6,7 @@
     </div>
     <div class="w-1/2">
       <div class="card-actions flex space-x-2 justify-end">
-        <button class="btn btn-sm">Check In</button>
-        <button class="btn btn-sm">Skip</button>        
+        <%= render StandupMeetingGroup::CheckInButtonComponent.new(standup_meeting_group) %>        
       </div>
     </div>
   </div>
