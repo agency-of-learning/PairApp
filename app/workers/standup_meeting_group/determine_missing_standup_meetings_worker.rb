@@ -3,9 +3,11 @@ class StandupMeetingGroup
     sidekiq_options queue: 'default'
 
     def perform(start_minutes = 0, end_minutes = 0)
+      current_date = Date.current
+      return if current_date.on_weekend?
+
       start_time = start_minutes.minutes.ago
       end_time = end_minutes.minutes.from_now
-      current_date = Date.current
 
       # NOTE: the goal is to compare the number of users in a standup_meeting_group to the number of standup_meetings
       # for a particular day. If there are more users than standup_meetings, it means people haven't completed it yet.
