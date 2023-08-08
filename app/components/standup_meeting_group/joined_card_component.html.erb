@@ -2,10 +2,7 @@
   <div class="card-body flex flex-row p-4">
     <div class="w-1/2">
       <h4 class="card-title font-bold text-lg"><%= link_to standup_meeting_group %></h4>
-      <div class="checkin_message">
-        <p class="text-xs"> <i class="fa-solid fa-check"></i> Checked in </p> 
-       <p class="text-xs"> <i class="fa-solid fa-triangle-exclamation"></i> Outstanding check in</p> 
-      </div>
+      <%= render StandupMeetingGroup::CheckInStatusComponent.new(standup_meeting_group, user) %>
     </div>
     <div class="w-1/2">
       <div class="card-actions flex space-x-2 justify-end">
