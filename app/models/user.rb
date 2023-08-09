@@ -75,6 +75,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true
 
   after_create :create_profile!
+  after_update :update_profile_slug!
 
   def self.invite!(attributes = {}, invited_by = nil, options = {}, &)
     default_name = { first_name: 'First', last_name: 'Last' }
@@ -101,4 +102,11 @@ class User < ApplicationRecord
     member: 0,
     admin: 1
   }
+
+  private
+
+  def update_profile_slug!
+    profile.slug = nil
+    profile.save!
+  end
 end
