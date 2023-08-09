@@ -5,3 +5,4 @@
 .field_with_errors {
   @apply flex [&>input]:input-error;
 }
+@import 'actiontext.css';

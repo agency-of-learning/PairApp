@@ -4,7 +4,7 @@
 #
 #  id                     :bigint           not null, primary key
 #  bio                    :text
-#  job_search_status      :integer          default("not_looking")
+#  job_search_status      :integer          default("not_job_searching")
 #  job_title              :string
 #  location               :string
 #  work_model_preferences :enum             is an Array
