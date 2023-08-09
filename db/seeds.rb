@@ -45,11 +45,11 @@ begin
 
   puts "Seeding completed pair requests with feedback drafts..."
   completed_pair_request_data =[
-  { status: "completed", author: users[1], invitee: users[2], when: Time.current - 30.minutes,  duration: 30.minutes },
-  { status: "completed", author: users[1], invitee: users[2], when: Time.current - 60.minutes,  duration: 30.minutes },
-  { status: "completed", author: users[1], invitee: users[3], when: Time.current - 45.minutes,  duration: 30.minutes },
-  { status: "completed", author: users[3], invitee: users[1], when: Time.current - 60.minutes,  duration: 30.minutes },
-  { status: "completed", author: users[2], invitee: users[1], when: Time.current - 50.minutes,  duration: 30.minutes },
+  { status: "completed", author: users[1], invitee: users[2], when: Time.now + 30.minutes,  duration: 30.minutes },
+  { status: "completed", author: users[1], invitee: users[2], when: Time.now + 60.minutes,  duration: 30.minutes },
+  { status: "completed", author: users[1], invitee: users[3], when: Time.now + 45.minutes,  duration: 30.minutes },
+  { status: "completed", author: users[3], invitee: users[1], when: Time.now + 60.minutes,  duration: 30.minutes },
+  { status: "completed", author: users[2], invitee: users[1], when: Time.now + 50.minutes,  duration: 30.minutes },
   ]
   
   PairRequest.transaction do
