@@ -131,14 +131,47 @@ RSpec.describe PairRequest do
       expect(subject).to be_valid
     end
 
-    context 'when date is more than a month into the future' do
-      let(:when_date) { Date.current + 2.months }
+    context 'when a request is pending' do
+      context 'when date is more than a month into the future' do
+        let(:when_date) { Date.current + 2.months }
 
-      it 'is invalid' do
-        expect(subject).not_to be_valid
+        it 'is invalid' do
+          expect(subject).not_to be_valid
+        end
+      end
+
+      context 'when date is in the past' do
+        let(:when_date) { Date.current - 2.months }
+
+        it 'is invalid' do
+          expect(subject).not_to be_valid
+        end
+      end
+    end
+
+    context 'when a pair request is not pending' do
+      before do
+        subject.completed!
+      end
+
+      context 'a date 2 months in the future' do
+        let(:when_date) { Date.current + 2.months }
+
+        it 'is valid' do
+          expect(subject).to be_valid
+        end
+      end
+
+      context 'a past date' do
+        let(:when_date) { Date.current - 1.month }
+
+        it 'is valid' do
+          expect(subject).to be_valid
+        end
       end
     end
   end
+
 
   describe '#started?' do
     context "when the request hasn't started" do
