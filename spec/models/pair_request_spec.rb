@@ -149,12 +149,12 @@ RSpec.describe PairRequest do
       end
     end
 
-    context 'when a pair request is not pending' do
+    context 'when a request is not pending' do
       before do
         subject.completed!
       end
 
-      context 'a date 2 months in the future' do
+      context 'with a date 2 months in the future' do
         let(:when_date) { Date.current + 2.months }
 
         it 'is valid' do
@@ -162,7 +162,7 @@ RSpec.describe PairRequest do
         end
       end
 
-      context 'a past date' do
+      context 'with a past date' do
         let(:when_date) { Date.current - 1.month }
 
         it 'is valid' do
@@ -171,7 +171,6 @@ RSpec.describe PairRequest do
       end
     end
   end
-
 
   describe '#started?' do
     context "when the request hasn't started" do
