@@ -151,6 +151,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_09_045548) do
     t.index ["user_id"], name: "index_standup_meetings_on_user_id"
   end
 
+  create_table "user_mentee_applications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "country", null: false
+    t.text "reason_for_applying", null: false
+    t.string "linkedin_url"
+    t.string "github_url"
+    t.text "learned_to_code", null: false
+    t.text "project_experience", null: false
+    t.integer "available_hours_per_week", null: false
+    t.string "referral_source"
+    t.text "additional_information"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_mentee_applications_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -199,4 +217,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_09_045548) do
   add_foreign_key "profiles", "users"
   add_foreign_key "standup_meetings", "standup_meeting_groups"
   add_foreign_key "standup_meetings", "users"
+  add_foreign_key "user_mentee_applications", "users"
 end
