@@ -22,9 +22,11 @@
 FactoryBot.define do
   factory :blog_post do
     content { nil }
-    title { 'MyString' }
+    title { Faker::Lorem.sentence }
     user
-    status { 1 }
-    slug { 'MyString' }
+    status { BlogPosts.statuses[:draft] }
+    sequence :slug do |n|
+      "blog#{n}"
+    end
   end
 end

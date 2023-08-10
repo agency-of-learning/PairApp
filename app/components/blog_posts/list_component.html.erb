@@ -1,0 +1,11 @@
+<div class="flex flex-col gap-4">
+  <% if render_empty_state? %>
+    <p class="text-center text-lg">
+      <%= empty_message %>
+    </p>
+  <% end %>
+
+  <% blog_posts.each do |blog_post| %>
+    <%= render "blog_posts/blog_post_item", blog_post: %>
+  <% end %>
+</div>
