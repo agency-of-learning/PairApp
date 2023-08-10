@@ -1,0 +1,36 @@
+<h1 class="text-3xl font-bold text-center mb-4">
+  <%= @author.first_name %>'s Blog
+</h1>
+
+<div class="max-w-prose mx-auto">
+  <% if @author == current_user %>
+    <div class="flex justify-end">
+      <%= link_to "New Post", new_blog_post_path, class: "btn btn-primary" %>
+    </div>
+
+    <%= render TabsComponent.new do |component| %>
+      <% component.with_tab_link { "Published" } %>
+      <% component.with_tab_link { "Drafts" } %>
+
+      <% component.with_active_panel do %>
+        <%= render BlogPosts::ListComponent.new(
+          blog_posts: @published_posts,
+          empty_message: "You don't have any published posts."
+        ) %>
+      <% end %>
+
+      <% component.with_panel do %>
+        <%= render BlogPosts::ListComponent.new(
+          blog_posts: @draft_posts,
+          empty_message: "You don't have any draft posts."
+        ) %>
+      <% end %>
+    <% end %>
+
+  <% else %>
+    <%= render BlogPosts::ListComponent.new(
+      blog_posts: @published_posts,
+      empty_message: "#{@author.first_name} doesn't have any posts yet."
+    ) %>
+  <% end %>
+</div>
