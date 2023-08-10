@@ -44,6 +44,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :blogs, only: :show, param: :user_id
+  resources :blog_posts, except: :index
+
   scope controller: :static do
     get :faq
   end
