@@ -16,6 +16,14 @@
   @apply underline hover:no-underline hover:text-primary;
 }
 
+.trix-content ul {
+  @apply list-disc pl-4;
+}
+
+.trix-content ol {
+  @apply list-decimal pl-4;
+}
+
 trix-toolbar {
   @apply sticky top-0 z-50 bg-white;
 }
