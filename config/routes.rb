@@ -44,6 +44,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :user_mentee_applications, only: %i[index show new create edit update]
+
   scope controller: :static do
     get :faq
   end
