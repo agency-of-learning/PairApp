@@ -1,0 +1,66 @@
+<dl class="text-center mb-2">
+  <dt><%= current_user.full_name %></dt>
+</dl>
+
+<%= form_with model: @user_mentee_application, local: true, html: { class: 'flex flex-col' } do |form| %>
+
+  <div class="flex flex-col">
+    <%= form.label :city, class: 'font-bold' %>
+    <%= form.text_field :city, class: 'form-input' %>
+  </div>
+
+  <div class="flex flex-col">
+    <%= form.label :state, class: 'font-bold' %>
+    <%= form.text_field :state, class: 'form-input' %>
+  </div>
+
+  <div class="flex flex-col">
+    <%= form.label :country, class: 'font-bold' %>
+    <%= form.text_field :country, class: 'form-input' %>
+  </div>
+
+  <div class="flex flex-col">
+    <%= form.label :reason_for_applying, class: 'font-bold' %>
+    <%= form.text_area :reason_for_applying, class: 'form-input' %>
+  </div>
+
+  <div class="flex flex-col">
+    <%= form.label :linkedin_url, class: 'font-bold' %>
+    <%= form.text_field :linkedin_url, class: 'form-input' %>
+  </div>
+
+  <div class="flex flex-col">
+    <%= form.label :github_url, class: 'font-bold' %>
+    <%= form.text_field :github_url, class: 'form-input' %>
+  </div>
+
+  <div class="flex flex-col">
+    <%= form.label :learned_to_code, class: 'font-bold' %>
+    <%= form.text_area :learned_to_code, class: 'form-input' %>
+  </div>
+
+  <div class="flex flex-col">
+    <%= form.label :project_experience, class: 'font-bold' %>
+    <%= form.text_area :project_experience, class: 'form-input' %>
+  </div>
+
+  <div class="flex flex-col">
+    <%= form.label :available_hours_per_week, class: 'font-bold' %>
+    <%= form.number_field :available_hours_per_week, class: 'form-input' %>
+  </div>
+
+  <div class="flex flex-col">
+    <%= form.label :referral_source, class: 'font-bold' %>
+    <%= form.text_field :referral_source, class: 'form-input' %>
+  </div>
+
+  <div class="flex flex-col">
+    <%= form.label :additional_information, class: "font-bold" %>
+    <%= form.text_area :additional_information, class: "form-input" %>
+  </div>
+
+  <div class="flex">
+    <%= form.submit "Submit Application", class: "btn btn-primary btn-wide mx-auto" %>
+  </div>
+
+<% end %>

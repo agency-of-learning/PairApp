@@ -30,5 +30,5 @@ class BlogPost < ApplicationRecord
 
   validates :title, presence: true
 
-  scope :order_newest_first, -> { order(created_at: :desc) }
+  scope :order_newest_first, ->() { order(created_at: :desc) }
 end
