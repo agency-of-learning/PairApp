@@ -24,7 +24,7 @@ FactoryBot.define do
     content { nil }
     title { Faker::Lorem.sentence }
     user
-    status { BlogPosts.statuses[:draft] }
+    status { BlogPost.statuses[:draft] }
     sequence :slug do |n|
       "blog#{n}"
     end
