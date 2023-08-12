@@ -1,13 +1,28 @@
-<div class="navbar  ">
-  <div class="flex-1">
+<nav class="navbar p-4 flex justify-between">
+  <div>
+    <%= link_to "Agency of Learning", root_path, class: "text-xl" %>
   </div>
+  <div>
 
-  <div class="flex-none">
-    <ul class="menu menu-horizontal px-1">
-      <li><a>Blog</a></li>
-      <li>
-        <a href="">Login</a>
-      </li>
+    <ul class="menu menu-horizontal px-1 hidden lg:flex space-x-2">
+
+      <% if !user_signed_in? %>
+        <li>
+          <%= link_to "FAQ", faq_path %>
+        </li>
+      <% end %>
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to "Blog", "#" %>
+        </li>
+        <li>
+          <%= link_to 'Logout', destroy_user_session_path, class: "" %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to 'Login', new_user_session_path, class: "" %>
+        </li>
+      <% end %>
     </ul>
   </div>
-</div>
+</nav>
