@@ -22,4 +22,13 @@
 class BlogPost < ApplicationRecord
   belongs_to :user
   has_rich_text :content
+
+  enum status: {
+    draft: 0,
+    published: 1
+  }
+
+  validates :title, presence: true
+
+  scope :order_newest_first, -> { order(created_at: :desc) }
 end

@@ -1,0 +1,19 @@
+<div data-controller="tabs" data-tabs-active-tab="-mb-px border-l-2 border-t-2 border-r-2 rounded-t text-primary">
+  <% tab_links.each do |link| %>
+    <a class="text-lg border-b-0 bg-white inline-block py-2 px-4" href="#"  data-tabs-target="tab" data-action="click->tabs#change">
+      <%= link %>
+    </a>
+  <% end %>
+
+  <div class="divider my-0"></div>
+
+  <div class="flex flex-col" data-tabs-target="panel">
+    <%= active_panel %>
+  </div>
+
+  <% panels.each do |panel| %>
+    <div class="hidden" data-tabs-target="panel">
+      <%= panel %>
+    </div>
+  <% end %>
+</div>
