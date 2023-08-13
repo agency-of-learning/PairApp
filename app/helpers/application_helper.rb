@@ -42,9 +42,9 @@ module ApplicationHelper
 
   def render_navbar
     if current_page?(root_path)
-      render(partial: "layouts/landing_navbar")
+      render(partial: 'layouts/landing_navbar')
     else
-      render partial: "layouts/navbar"
+      render partial: 'layouts/navbar'
     end
   end
 end
