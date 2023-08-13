@@ -39,5 +39,13 @@ module ApplicationHelper
     html << %[</nav>]
   end
   # rubocop:enable Style/PerceivedComplexity
+
+  def render_navbar
+    if current_page?(root_path)
+      render(partial: "layouts/landing_navbar")
+    else
+      render partial: "layouts/navbar"
+    end
+  end
 end
 # :nocov:
