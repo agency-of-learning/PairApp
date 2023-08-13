@@ -1,66 +1,89 @@
-<dl class="text-center mb-2">
-  <dt><%= current_user.full_name %></dt>
-</dl>
+<h1 class="text-center font-bold text-2xl mb-2">
+  Welcome <%= current_user.first_name %>!
+</h1>
 
-<%= form_with model: @user_mentee_application, local: true, html: { class: 'flex flex-col' } do |form| %>
+<%= form_with model: @user_mentee_application, local: true, html: { class: 'max-w-prose mx-auto' } do |form| %>
+  <div class='flex flex-col'>
+    <section class='flex flex-col'>
+      <h1 class='flex font-bold text-xl'>Tell us about your Journey</h1>
+      <div class="flex flex-col">
+        <%= form.label :learned_to_code, 'How did you learn to code?', class: 'font-bold' %>
+        <%= form.text_area :learned_to_code, class: 'form-input border-2' %>
+      </div>
+      <div class="flex flex-col">
+        <%= form.label :project_experience, class: 'font-bold' %>
+        <%= form.text_area :project_experience, class: 'form-input border-2' %>
+      </div>
+    </section>
 
-  <div class="flex flex-col">
-    <%= form.label :city, class: 'font-bold' %>
-    <%= form.text_field :city, class: 'form-input' %>
-  </div>
+    <section class="flex flex-col">
+      <h1 class='flex font-bold text-xl'>Tell us about your interest in the Agency of Learning</h1>
+      <div class="flex flex-col">
+        <%= form.label :reason_for_applying, 'Why are you here?', class: 'font-bold' %>
+        <%= form.select :reason_for_applying, options_for_select(UserMenteeApplication::REASONS_FOR_APPLYING), class: 'form-input' %>
+      </div>
 
-  <div class="flex flex-col">
-    <%= form.label :state, class: 'font-bold' %>
-    <%= form.text_field :state, class: 'form-input' %>
-  </div>
+      <div class="flex flex-col">
+        <%= form.label :referral_source, 'How did you hear about The Agency of Learning?', class: 'font-bold' %>
+        <%= form.text_field :referral_source, class: 'form-input' %>
+      </div>
 
-  <div class="flex flex-col">
-    <%= form.label :country, class: 'font-bold' %>
-    <%= form.text_field :country, class: 'form-input' %>
-  </div>
+      <div class="flex flex-col">
+        <%= form.label :available_hours_per_week, 'How many hours per week are you able to commit to The Agency of Learning?', class: 'font-bold' %>
+        <%= form.number_field :available_hours_per_week,
+          min: 1,
+          max: 60,
+          value: @user_mentee_application.available_hours_per_week.presence || 1,
+          class: 'form-input'
+        %>
+      </div>
+    </section>
 
-  <div class="flex flex-col">
-    <%= form.label :reason_for_applying, class: 'font-bold' %>
-    <%= form.text_area :reason_for_applying, class: 'form-input' %>
-  </div>
+    <section>
+      <h1 class='flex font-bold text-xl'>Current Location Information</h1>
+      <div class="flex flex-col">
+        <%= form.label :city, class: 'font-bold' %>
+        <%= form.text_field :city, class: 'form-input' %>
+      </div>
 
-  <div class="flex flex-col">
-    <%= form.label :linkedin_url, class: 'font-bold' %>
-    <%= form.text_field :linkedin_url, class: 'form-input' %>
-  </div>
+      <div class="flex flex-col">
+        <%= form.label :state, class: 'font-bold' %>
+        <%= form.text_field :state, class: 'form-input' %>
+      </div>
 
-  <div class="flex flex-col">
-    <%= form.label :github_url, class: 'font-bold' %>
-    <%= form.text_field :github_url, class: 'form-input' %>
-  </div>
+      <div class="flex flex-col">
+        <%= form.label :country, class: 'font-bold' %>
+        <%= form.text_field :country, class: 'form-input' %>
+      </div>
+    </section>
 
-  <div class="flex flex-col">
-    <%= form.label :learned_to_code, class: 'font-bold' %>
-    <%= form.text_area :learned_to_code, class: 'form-input' %>
-  </div>
+    <section>
+      <h1 class='flex font-bold text-xl'>Job Hunting Information</h1>
+      <div class="flex flex-col">
+        <%= form.label :linkedin_url, class: 'font-bold' %>
+        <%= form.text_field :linkedin_url, class: 'form-input' %>
+      </div>
 
-  <div class="flex flex-col">
-    <%= form.label :project_experience, class: 'font-bold' %>
-    <%= form.text_area :project_experience, class: 'form-input' %>
-  </div>
+      <div class="flex flex-col">
+        <%= form.label :github_url, class: 'font-bold' %>
+        <%= form.text_field :github_url, class: 'form-input' %>
+      </div>
 
-  <div class="flex flex-col">
-    <%= form.label :available_hours_per_week, class: 'font-bold' %>
-    <%= form.number_field :available_hours_per_week, class: 'form-input' %>
-  </div>
+      <%# RESUME WILL GO HERE LATER ON%>
+    </section>
 
-  <div class="flex flex-col">
-    <%= form.label :referral_source, class: 'font-bold' %>
-    <%= form.text_field :referral_source, class: 'form-input' %>
-  </div>
+    <section>
+      <h1 class='flex font-bold text-xl'>Additional Information</h1>
+      <div class="flex flex-col">
+        <%= form.label :additional_information, 'Anything else we should know?', class: "font-bold" %>
+        <%= form.text_area :additional_information, class: "form-input" %>
+      </div>
+    </section>
 
-  <div class="flex flex-col">
-    <%= form.label :additional_information, class: "font-bold" %>
-    <%= form.text_area :additional_information, class: "form-input" %>
-  </div>
 
-  <div class="flex">
     <%= form.submit "Submit Application", class: "btn btn-primary btn-wide mx-auto" %>
   </div>
+
+
 
 <% end %>
