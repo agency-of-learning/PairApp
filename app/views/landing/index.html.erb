@@ -1,31 +1,9 @@
-<div class="bg-[#363942] w-3/4 mx-auto rounded-lg text-white my-8">
+<div class="bg-[#363942] w-3/4  mx-auto rounded-lg text-white my-8">
   <%= render_navbar %>
   <%#= render 'landing_navbar' %>
   <!-- Hero Section -->
   <div class=" text-white flex justify-left items-center p-5">
-    <div class="w-2/3 pl-8">
-      <button class="flex justify-between items-center w-full h-[67px] mb-2 bg-blue-500 text-white hover:bg-blue-600 px-4 rounded-lg">
-          Button 1
-          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-      </button>
 
-      <button class="flex justify-between items-center w-full h-[67px] mb-2 bg-blue-500 text-white hover:bg-blue-600 px-4 rounded-lg">
-        Button 2
-        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </button>
-
-      <button class="flex justify-between items-center w-full h-[67px] mb-2 bg-blue-500 text-white hover:bg-blue-600 px-4 rounded-lg">
-        Button 3
-        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </button>
-
-    </div>
   </div>
 
   <hr class="border-t-1 border-[rgba(255,255,255,0.051)]">
@@ -38,14 +16,18 @@
         <div class="flex justify-center mb-5">
           <div class="flex justify-center gap-1 flex-col md:flex-row">
             <div class="p-2 w-full md:w-1/2 justify-center mx-auto ">
-              <img src="https://img.brickscout.com/2e/da/40/ce/8a/c6/4f/27/b9/31/ec/93/a1/1b/c7/29/279x279.png" alt="Description of Image" class="w-full rounded object-cover justify-center">
+              <%= image_tag "welcome/simmon",
+                alt:"Description of Image",
+                class:"w-full rounded object-cover justify-center"
+                %>
             </div>
 
             <div class="p-2 w-full md:w-1/2 max-w-prose mx-auto flex-1">
               <h3 class="font-bold text-3xl mb-5">Simmon</h3>
-              <p class="italic text-[rgba(255,255,255,0.678)]">"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore autem quia neque consequatur 
-                tempore. Vitae obcaecati doloribus inventore quo culpa esse libero! Saepe illo ratione corporis sunt accusamus 
-                consectetur adipisci."
+              <p class="italic text-[rgba(255,255,255,0.678)]">
+                "The Agency of Learning provided me with the next building block in my transition into a career in software development. It had the structure I was looking for to boost my 
+                confidence about my next step. With guidance on open source issues I could participate in, access to seniors and folks already in the industry to help get unstuck, 
+                The Agency supercharged my network."
               </p> 
             </div>
           </div>
@@ -54,14 +36,16 @@
         <div class="flex justify-center mb-5">
           <div class="flex justify-center gap-1 flex-col md:flex-row">
             <div class="p-2 w-full md:w-1/2 justify-center mx-auto ">
-              <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2F736x%2F15%2Fd3%2Ff9%2F15d3f976270f83fe40bdf6153c86623f--hawk-eye-lego-marvel.jpg&f=1&nofb=1&ipt=f07d048815272a978c169689f47e42b061192f289729a9cee730bd8e9d848be4&ipo=images" alt="Description of Image" class="w-full rounded object-cover justify-center">
+              <%= image_tag "welcome/nathan",
+                alt:"Description of Image",
+                class:"w-full rounded object-cover justify-center"
+                %>
             </div>
 
             <div class="p-2 w-full md:w-1/2  max-w-prose mx-auto flex-1">
-              <h3 class="font-bold text-3xl mb-5">Josh</h3>
-              <p class="italic text-[rgba(255,255,255,0.678)]">"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore autem quia neque consequatur 
-                tempore. Vitae obcaecati doloribus inventore quo culpa esse libero! Saepe illo ratione corporis sunt accusamus 
-                consectetur adipisci."
+              <h3 class="font-bold text-3xl mb-5">Nathan</h3>
+              <p class="italic text-[rgba(255,255,255,0.678)]">
+                "Man, I kind of feel like I struck gold when I applied to this program."
               </p> 
             </div>
           </div>
@@ -70,14 +54,18 @@
         <div class="flex justify-center mb-5">
           <div class="flex justify-center gap-1 flex-col md:flex-row">
             <div class="p-2 w-full md:w-1/2 justify-center mx-auto ">
-              <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.brickowl.com%2Ffiles%2Fimage_cache%2Flarger%2Flego-red-beard-runner-buccaneer-minifigure-25.jpg&f=1&nofb=1&ipt=4d1ad155fcbc83a1af046973b265fb98b370f7a289d802c458c46d71ed81331a&ipo=images" alt="Description of Image" class="w-full rounded object-cover justify-center">
+              <%= image_tag "welcome/cody",
+                alt:"Description of Image",
+                class:"w-full rounded object-cover justify-center"
+                %>
             </div>
 
             <div class="p-2 w-full md:w-1/2 max-w-prose mx-auto flex-1">
-              <h3 class="font-bold text-3xl mb-5">Daniel</h3>
-              <p class="italic text-[rgba(255,255,255,0.678)]">"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore autem quia neque consequatur 
-                tempore. Vitae obcaecati doloribus inventore quo culpa esse libero! Saepe illo ratione corporis sunt accusamus 
-                consectetur adipisci."
+              <h3 class="font-bold text-3xl mb-5">Cody</h3>
+              <p class="italic text-[rgba(255,255,255,0.678)]">
+                "A strong culture of mentorship is vital for ensuring the future of our community. 
+                I’ve been fortunate enough to work with Ruby professionally for almost a decade now and want to make sure that’s 
+                a future available to others."
               </p> 
             </div>
           </div>
@@ -86,14 +74,16 @@
         <div class="flex justify-center mb-5">
           <div class="flex justify-center gap-1 flex-col md:flex-row">
             <div class="p-2 w-full md:w-1/2 justify-center mx-auto ">
-              <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.brickowl.com%2Ffiles%2Fimage_cache%2Flarger%2Flego-red-beard-runner-buccaneer-minifigure-25.jpg&f=1&nofb=1&ipt=4d1ad155fcbc83a1af046973b265fb98b370f7a289d802c458c46d71ed81331a&ipo=images" alt="Description of Image" class="w-full rounded object-cover justify-center">
+              <%= image_tag "welcome/alex",
+                alt:"Description of Image",
+                class:"w-full rounded object-cover justify-center"
+                %>
             </div>
 
             <div class="p-2 w-full md:w-1/2 max-w-prose mx-auto flex-1">
-              <h3 class="font-bold text-3xl mb-5">Simmon</h3>
-              <p class="italic text-[rgba(255,255,255,0.678)]">"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore autem quia neque consequatur 
-                tempore. Vitae obcaecati doloribus inventore quo culpa esse libero! Saepe illo ratione corporis sunt accusamus 
-                consectetur adipisci."
+              <h3 class="font-bold text-3xl mb-5">Alex</h3>
+              <p class="italic text-[rgba(255,255,255,0.678)]">
+                "I'm 100% convinced that this is how we cultivate the next generation of truly powerful software engineers."
               </p> 
             </div>
           </div>
@@ -189,11 +179,19 @@
     </div>
   </div>
   
-  <hr class="border-t-1 border-[rgba(255,255,255,0.051)]">
+ 
   <!-- CTA -->
-    <div class="">
-      
+  <div class=" text-white flex justify-left items-center p-5">
+    <div class="w-1/2 pl-8">
+      <button class="flex justify-between items-center w-full h-[60px] mb-2 bg-[#38D68E] text-[#363942] font-bold px-4 rounded-lg hover:scale-105 transform transition-transform">
+          Become a Member
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+            <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
+          </svg>
+      </button>
     </div>
+  </div>
 
     <!-- Footer -->
   <footer class="footer footer-center p-10 text-primary-content">
