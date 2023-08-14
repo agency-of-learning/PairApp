@@ -51,8 +51,6 @@ module ApplicationHelper
   def background_color
     if current_page?(root_path)
       'bg-[#2C2E36]'
-    else
-      ''
     end
   end
 end
