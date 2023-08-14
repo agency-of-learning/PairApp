@@ -5,19 +5,19 @@
 <%= form_with model: @user_mentee_application, local: true, html: { class: 'max-w-prose mx-auto' } do |form| %>
   <div class='flex flex-col'>
     <section class='flex flex-col'>
-      <h1 class='flex font-bold text-xl'>Tell us about your Journey</h1>
+      <h1 class='font-bold text-xl text-center'>Tell us about your journey</h1>
       <div class="flex flex-col">
         <%= form.label :learned_to_code, 'How did you learn to code?', class: 'font-bold' %>
         <%= form.text_area :learned_to_code, class: 'form-input border-2' %>
       </div>
       <div class="flex flex-col">
-        <%= form.label :project_experience, class: 'font-bold' %>
+        <%= form.label :project_experience, "Describe a project you’ve worked on that you especially loved or are proud of",  class: 'font-bold' %>
         <%= form.text_area :project_experience, class: 'form-input border-2' %>
       </div>
     </section>
 
     <section class="flex flex-col">
-      <h1 class='flex font-bold text-xl'>Tell us about your interest in the Agency of Learning</h1>
+      <h1 class='font-bold text-xl text-center'>Tell us about your interest in the Agency of Learning</h1>
       <div class="flex flex-col">
         <%= form.label :reason_for_applying, 'Why are you here?', class: 'font-bold' %>
         <%= form.select :reason_for_applying, options_for_select(UserMenteeApplication::REASONS_FOR_APPLYING), class: 'form-input' %>
@@ -25,7 +25,7 @@
 
       <div class="flex flex-col">
         <%= form.label :referral_source, 'How did you hear about The Agency of Learning?', class: 'font-bold' %>
-        <%= form.text_field :referral_source, class: 'form-input' %>
+        <%= form.text_field :referral_source, class: 'form-input border-2' %>
       </div>
 
       <div class="flex flex-col">
@@ -40,48 +40,48 @@
     </section>
 
     <section>
-      <h1 class='flex font-bold text-xl'>Current Location Information</h1>
+      <h1 class='font-bold text-xl text-center'>Current Location Information</h1>
       <div class="flex flex-col">
         <%= form.label :city, class: 'font-bold' %>
-        <%= form.text_field :city, class: 'form-input' %>
+        <%= form.text_field :city, class: 'form-input border-2' %>
       </div>
 
       <div class="flex flex-col">
         <%= form.label :state, class: 'font-bold' %>
-        <%= form.text_field :state, class: 'form-input' %>
+        <%= form.text_field :state, class: 'form-input border-2' %>
       </div>
 
       <div class="flex flex-col">
         <%= form.label :country, class: 'font-bold' %>
-        <%= form.text_field :country, class: 'form-input' %>
+        <%= form.text_field :country, class: 'form-input border-2' %>
       </div>
     </section>
 
     <section>
-      <h1 class='flex font-bold text-xl'>Job Hunting Information</h1>
+      <h1 class='font-bold text-xl text-center'>Job Hunting Information</h1>
       <div class="flex flex-col">
         <%= form.label :linkedin_url, class: 'font-bold' %>
-        <%= form.text_field :linkedin_url, class: 'form-input' %>
+        <%= form.text_field :linkedin_url, class: 'form-input border-2' %>
       </div>
 
       <div class="flex flex-col">
         <%= form.label :github_url, class: 'font-bold' %>
-        <%= form.text_field :github_url, class: 'form-input' %>
+        <%= form.text_field :github_url, class: 'form-input border-2' %>
       </div>
 
       <%# RESUME WILL GO HERE LATER ON%>
     </section>
 
     <section>
-      <h1 class='flex font-bold text-xl'>Additional Information</h1>
+      <h1 class='font-bold text-xl text-center'>Additional Information</h1>
       <div class="flex flex-col">
         <%= form.label :additional_information, 'Anything else we should know?', class: "font-bold" %>
-        <%= form.text_area :additional_information, class: "form-input" %>
+        <%= form.text_area :additional_information, class: "form-input border-2" %>
       </div>
     </section>
 
 
-    <%= form.submit "Submit Application", class: "btn btn-primary btn-wide mx-auto" %>
+    <%= form.submit "Submit", class: "btn btn-primary btn-wide mx-auto mt-5" %>
   </div>
 
 
