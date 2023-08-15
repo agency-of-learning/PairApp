@@ -33,11 +33,4 @@ class UserMenteeApplication < ApplicationRecord
 
   validates :city, :state, :country, :reason_for_applying, :learned_to_code, :project_experience,
     :available_hours_per_week, presence: true
-
-  REASONS_FOR_APPLYING = [
-    'Struggling to land my first job as a junior dev',
-    'I want more of a support network as a dev',
-    'Landed my job and want more coaching',
-    'Experienced dev and want to help'
-  ].freeze
 end

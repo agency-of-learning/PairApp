@@ -18,7 +18,7 @@
     <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Tell us about your interest in the Agency of Learning') do %>
       <div class="flex flex-col mb-5">
         <%= form.label :reason_for_applying, 'Why are you here?', class: 'font-bold' %>
-        <%= form.select :reason_for_applying, options_for_select(UserMenteeApplication::REASONS_FOR_APPLYING), class: 'form-input mb-2', required: true %>
+        <%= form.select :reason_for_applying, options_for_select(UserMenteeApplicationsHelper::REASONS_FOR_APPLYING), class: 'form-input mb-2', required: true %>
       </div>
 
       <div class="flex flex-col">
