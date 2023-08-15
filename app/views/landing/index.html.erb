@@ -15,18 +15,9 @@
       <!-- CTA's -->
       <div class="flex-col w-full my-5 ">
         <div class="sm:w-3/4  mb-4">
-          <button class="flex justify-between items-center w-full h-[70px] mb-4 bg-[#38D68E] text-[#363942] font-bold px-4 rounded-lg hover:scale-105 transform transition-transform">
-              Become a Member
-              <i class="fa-solid fa-arrow-right fa-lg color-[#363942]"></i>
-          </button>
-          <button class="flex justify-between items-center w-full h-[70px] mb-4 bg-[#38D68E] text-[#363942] font-bold px-4 rounded-lg hover:scale-105 transform transition-transform">
-              For employers
-             <i class="fa-solid fa-arrow-right fa-lg color-[#363942]"></i>
-          </button>
-          <button class="flex justify-between items-center w-full h-[70px] mb-4 bg-[#38D68E] text-[#363942] font-bold px-4 rounded-lg hover:scale-105 transform transition-transform">
-              Our Services
-             <i class="fa-solid fa-arrow-right fa-lg color-[#363942]"></i>
-          </button>
+          <%= cta_button("Become a Member", "color-[#363942]") %>
+          <%= cta_button("For employers", "color-[#363942]") %>
+          <%= cta_button("Our Services", "color-[#363942]") %>
         </div>
       </div>
       
@@ -211,10 +202,7 @@
     <!-- CTA -->
     <div class="text-white flex justify-left items-center p-5 w-full">
       <div class="w-full sm:w-3/4 sm:pl-8">
-        <button class="flex justify-between items-center w-full h-[70px] mb-2 bg-[#38D68E] text-[#363942] font-bold px-4 rounded-lg hover:scale-105 transform transition-transform">
-            Become a Member
-             <i class="fa-solid fa-arrow-right fa-lg color-[#363942]"></i>
-        </button>
+        <%= cta_button("Become a Member", "color-[#363942]") %>
       </div>
     </div>
 
