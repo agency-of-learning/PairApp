@@ -23,6 +23,8 @@ class BlogPost < ApplicationRecord
   belongs_to :user
   has_rich_text :content
 
+  has_one :featured_blog_post, dependent: :destroy
+
   enum status: {
     draft: 0,
     published: 1
@@ -31,4 +33,5 @@ class BlogPost < ApplicationRecord
   validates :title, presence: true
 
   scope :order_newest_first, -> { order(created_at: :desc) }
+  scope :all_featured, -> { joins(:featured_blog_post) }
 end
