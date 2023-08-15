@@ -7,23 +7,23 @@
     <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Tell us about your journey') do %>
       <div class="flex flex-col mb-5">
         <%= form.label :learned_to_code, 'How did you learn to code?', class: 'font-bold' %>
-        <%= form.text_area :learned_to_code, class: 'form-input border-2 mb-2', required: true %>
+        <%= form.text_area :learned_to_code, class: 'textarea textarea-bordered', required: true %>
       </div>
       <div class="flex flex-col">
         <%= form.label :project_experience, "Describe a project you’ve worked on that you especially loved or are proud of.",  class: 'font-bold' %>
-        <%= form.text_area :project_experience, class: 'form-input border-2 mb-2', required: true %>
+        <%= form.text_area :project_experience, class: 'textarea textarea-bordered', required: true %>
       </div>
     <% end %>
 
     <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Tell us about your interest in the Agency of Learning') do %>
       <div class="flex flex-col mb-5">
         <%= form.label :reason_for_applying, 'Why are you here?', class: 'font-bold' %>
-        <%= form.select :reason_for_applying, options_for_select(UserMenteeApplicationsHelper::REASONS_FOR_APPLYING), class: 'form-input mb-2', required: true %>
+        <%= form.select :reason_for_applying, options_for_select(UserMenteeApplicationsHelper::REASONS_FOR_APPLYING), {}, class: 'select select-bordered', required: true %>
       </div>
 
       <div class="flex flex-col">
         <%= form.label :referral_source, 'How did you hear about The Agency of Learning?', class: 'font-bold' %>
-        <%= form.text_field :referral_source, class: 'form-input border-2 mb-2' %>
+        <%= form.text_field :referral_source, class: 'input input-bordered mb-2' %>
       </div>
 
       <div class="flex flex-col">
@@ -32,7 +32,7 @@
           min: 1,
           max: 60,
           value: @user_mentee_application.available_hours_per_week.presence || 1,
-          class: 'form-input mb-2',
+          class: 'input input-sm input-bordered',
           required: true
         %>
       </div>
@@ -41,29 +41,29 @@
     <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Current Location Information') do %>
       <div class="flex flex-col">
         <%= form.label :city, class: 'font-bold' %>
-        <%= form.text_field :city, class: 'form-input border-2 mb-2', required: true %>
+        <%= form.text_field :city, class: 'input input-bordered mb-2', required: true %>
       </div>
 
       <div class="flex flex-col">
         <%= form.label :state, class: 'font-bold' %>
-        <%= form.text_field :state, class: 'form-input border-2 mb-2', required: true %>
+        <%= form.text_field :state, class: 'input input-bordered mb-2', required: true %>
       </div>
 
       <div class="flex flex-col">
         <%= form.label :country, class: 'font-bold' %>
-        <%= form.text_field :country, class: 'form-input border-2 mb-2', required: true %>
+        <%= form.text_field :country, class: 'input input-bordered mb-2', required: true %>
       </div>
     <% end %>
 
     <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Job Hunting Information') do %>
       <div class="flex flex-col">
         <%= form.label :linkedin_url, class: 'font-bold' %>
-        <%= form.text_field :linkedin_url, class: 'form-input border-2 mb-2' %>
+        <%= form.text_field :linkedin_url, class: 'input input-bordered mb-2' %>
       </div>
 
       <div class="flex flex-col">
         <%= form.label :github_url, class: 'font-bold' %>
-        <%= form.text_field :github_url, class: 'form-input border-2 mb-2' %>
+        <%= form.text_field :github_url, class: 'input input-bordered mb-2' %>
       </div>
       <%# RESUME WILL GO HERE LATER ON%>
     <% end %>
@@ -71,11 +71,11 @@
     <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Additional Information') do %>
       <div class="flex flex-col">
         <%= form.label :additional_information, 'Anything else we should know?', class: 'font-bold' %>
-        <%= form.text_area :additional_information, class: 'form-input border-2 mb-2' %>
+        <%= form.text_area :additional_information, class: 'textarea textarea-bordered' %>
       </div>
     <% end %>
 
-    <%= form.submit "Submit", class: 'btn btn-primary btn-wide mx-auto mt-5' %>
+    <%= form.submit "Submit", class: 'btn btn-primary btn-wide mx-auto mt-5 mb-5' %>
   </div>
 
 
