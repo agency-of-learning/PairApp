@@ -1,6 +1,7 @@
 class BlogPostsController < ApplicationController
   def show
     @blog_post = authorize BlogPost.find(params[:id])
+    @featured_blog_post = FeaturedBlogPost.find_or_initialize_by(blog_post: @blog_post)
   end
 
   def new

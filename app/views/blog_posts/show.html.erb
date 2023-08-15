@@ -1,5 +1,18 @@
 <div class="max-w-prose mx-auto mb-6 p-2">
-  <div class="flex justify-end">
+  <div class="flex justify-end gap-2">
+    <% if @featured_blog_post.persisted? && policy(@featured_blog_post).destroy? %>
+      <%= link_to "Remove Feature",
+        featured_blog_post_path(@featured_blog_post),
+        data: { turbo_method: :delete },
+        class: "btn btn-error btn-sm"
+      %>
+    <% elsif policy(@featured_blog_post).create? %>
+      <%= button_to "Feature Post",
+        featured_blog_posts_path(featured_blog_post: { blog_post_id: @blog_post }),
+        class: "btn btn-primary btn-sm"
+      %>
+    <% end %>
+
     <% if policy(@blog_post).edit? %>
       <%= link_to "Edit Post", edit_blog_post_path(@blog_post), class: "btn btn-primary btn-sm" %>
     <% end %>
