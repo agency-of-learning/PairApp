@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_195028) do
 
   create_table "featured_blog_posts", force: :cascade do |t|
     t.bigint "blog_post_id", null: false
-    t.integer "order"
+    t.integer "row_order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["blog_post_id"], name: "index_featured_blog_posts_on_blog_post_id"
