@@ -49,9 +49,7 @@ module ApplicationHelper
   end
 
   def background_color
-    if current_page?(root_path)
-      'bg-[#2C2E36]'
-    end
+    'bg-[#2C2E36]' if current_page?(root_path)
   end
 end
 # :nocov:
