@@ -7,11 +7,11 @@
     <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Tell us about your journey') do %>
       <div class="flex flex-col mb-5">
         <%= form.label :learned_to_code, 'How did you learn to code?', class: 'font-bold' %>
-        <%= form.text_area :learned_to_code, class: 'textarea textarea-bordered', required: true %>
+        <%= form.text_area :learned_to_code, class: 'textarea textarea-bordered', required: true, data: { controller: 'textarea-autogrow' } %>
       </div>
       <div class="flex flex-col">
         <%= form.label :project_experience, "Describe a project you’ve worked on that you especially loved or are proud of.",  class: 'font-bold' %>
-        <%= form.text_area :project_experience, class: 'textarea textarea-bordered', required: true %>
+        <%= form.text_area :project_experience, class: 'textarea textarea-bordered', required: true, data: { controller: 'textarea-autogrow' } %>
       </div>
     <% end %>
 
@@ -71,7 +71,7 @@
     <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Additional Information') do %>
       <div class="flex flex-col">
         <%= form.label :additional_information, 'Anything else we should know?', class: 'font-bold' %>
-        <%= form.text_area :additional_information, class: 'textarea textarea-bordered' %>
+        <%= form.text_area :additional_information, class: 'textarea textarea-bordered', data: { controller: 'textarea-autogrow' } %>
       </div>
     <% end %>
 
