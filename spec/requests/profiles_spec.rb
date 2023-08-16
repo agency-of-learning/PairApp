@@ -3,14 +3,13 @@ require 'rails_helper'
 RSpec.describe 'Profiles' do
   describe '#show' do
     let!(:user) { create(:user, first_name: 'Jim', last_name: 'Bob') }
-    let!(:profile) { create(:profile, user: user, slug: user.full_name.parameterize) }
+    let!(:profile) { create(:profile, user:, slug: user.full_name.parameterize) }
 
     before do
       sign_in user
     end
 
     context 'when provided a slug' do
-
       before do
         get "/profiles/#{user.full_name.parameterize}"
       end
