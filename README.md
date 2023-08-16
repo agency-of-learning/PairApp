@@ -101,26 +101,28 @@ git add .
 git commit -m "Add your commit message here"
 ```
 
-3. Running Tests
+3. Running Pre-Flight Checks
+
+In order to pass our continuous integration, your PR will need to pass the RSpec test suite and lint for both Ruby and JavaScript. We've rolled all of this into one command you can run to make sure everything is in order before submitting a PR.
 
 ```bash
-  bundle exec rspec
+bin/checks
 ```
 
-4. Cleaning up before pushing
+For linting errors, you can pass a flag to Rubocop and/or ESLint to have the tool try to autocorrect any linting offenses:
 
 ```bash
-# lint ruby code
+# for Rubocop
 bundle exec rubocop -a
 
-# lint javascript code
+# for ESLint
 yarn eslint --fix
 ```
 
-5. Push your changes to origin:
+4. Push your changes to origin:
 
 ```bash
 git push origin your-feature-branch-name
 ```
 
-6. Create a new pull request on the original repository and wait for the maintainer to review and merge your changes.
+5. Create a new pull request on the original repository and wait for the maintainer to review and merge your changes.

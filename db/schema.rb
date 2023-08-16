@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_09_011403) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_09_045548) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "work_models_enum", ["onsite", "hybrid", "remote"]
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -44,6 +54,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_09_011403) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "blog_posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.bigint "user_id", null: false
+    t.integer "status", default: 0, null: false
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_blog_posts_on_slug", unique: true
+    t.index ["user_id"], name: "index_blog_posts_on_user_id"
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -143,6 +164,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_09_011403) do
     t.index ["user_id"], name: "index_standup_meetings_on_user_id"
   end
 
+  create_table "user_mentee_applications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "country", null: false
+    t.text "reason_for_applying", null: false
+    t.string "linkedin_url"
+    t.string "github_url"
+    t.text "learned_to_code", null: false
+    t.text "project_experience", null: false
+    t.integer "available_hours_per_week", null: false
+    t.string "referral_source"
+    t.text "additional_information"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_mentee_applications_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -183,6 +222,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_09_011403) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "blog_posts", "users"
   add_foreign_key "feedbacks", "users", column: "author_id"
   add_foreign_key "feedbacks", "users", column: "receiver_id"
   add_foreign_key "pair_requests", "users", column: "author_id"
@@ -190,4 +230,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_09_011403) do
   add_foreign_key "profiles", "users"
   add_foreign_key "standup_meetings", "standup_meeting_groups"
   add_foreign_key "standup_meetings", "users"
+  add_foreign_key "user_mentee_applications", "users"
 end

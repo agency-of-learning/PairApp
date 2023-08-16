@@ -69,7 +69,10 @@ class User < ApplicationRecord
   has_many :standup_meetings, dependent: :destroy
   has_many :standup_meeting_groups, through: :standup_meeting_groups_users
 
+  has_many :blog_posts, dependent: :destroy
+
   has_one :profile, dependent: :destroy
+  has_one :mentee_application, class_name: 'UserMenteeApplication', dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true
