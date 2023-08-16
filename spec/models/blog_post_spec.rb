@@ -22,22 +22,5 @@
 require 'rails_helper'
 
 RSpec.describe BlogPost do
-  describe '#scopes' do
-    describe '.all_featured' do
-      let(:post_with_feature) { create(:blog_post) }
-      let(:normal_post) { create(:blog_post) }
-
-      before do
-        create(:featured_blog_post, blog_post: post_with_feature)
-      end
-
-      it 'returns a collection including the featured post' do
-        expect(described_class.all_featured).to include(post_with_feature)
-      end
-
-      it 'returns a collection not including the normal post' do
-        expect(described_class.all_featured).not_to include(normal_post)
-      end
-    end
-  end
+  pending "add some examples to (or delete) #{__FILE__}"
 end

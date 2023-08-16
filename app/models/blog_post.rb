@@ -33,5 +33,4 @@ class BlogPost < ApplicationRecord
   validates :title, presence: true
 
   scope :order_newest_first, -> { order(created_at: :desc) }
-  scope :all_featured, -> { joins(:featured_blog_post) }
 end
