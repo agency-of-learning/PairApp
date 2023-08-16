@@ -27,7 +27,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class UserMenteeApplication < ApplicationRecord
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
+
+  validates :available_hours_per_week, numericality: { greater_than: 0, less_than_or_equal_to: 60 }
 
   validates :city, :state, :country, :reason_for_applying, :learned_to_code, :project_experience,
     :available_hours_per_week, presence: true

@@ -1,0 +1,231 @@
+<div class="bg-[#363942] lg:w-3/4 mx-auto rounded-lg text-white">
+  <div class="sm:px-[5em]">
+    <%= render_navbar %>
+    <!-- Hero Section -->
+    <div class="flex flex-col text-white px-4">
+      <div class="flex justify-center w-full mb-5">
+        <%= image_tag "aol_logo", width:"104px" %>
+      </div> 
+      <div class="flex  w-full ">
+        <div class="text-6xl mb-5  font-bold">The Agency of Learning</div>
+      </div>
+      <div class="flex w-full ">
+        <p class="mb-5 text-white/[0.678]">Join our private community of highly motivated early career developers.</p>
+      </div>
+      <!-- CTA's -->
+      <div class="flex-col w-full my-5 ">
+        <div class="sm:w-3/4  mb-4">
+          <%= cta_button("Become a Member", "color-[#363942]") %>
+          <%= cta_button("For employers", "color-[#363942]") %>
+          <%= cta_button("Our Services", "color-[#363942]") %>
+        </div>
+      </div>
+      
+    </div>
+
+    <hr class="border-t-1 border-[rgba(255,255,255,0.051)]">
+    <!-- Testimonial Section -->
+    <div class="my-5 text-base pl-4 sm:pl-0">
+      <h2 class="text-4xl mb-5 font-bold">Agency members stand out from the crowd</h2>
+        <p class="mb-5 text-white/[0.678]">A small selection of our members and what they're saying about The Agency</p>
+      <div class="px-4 w-full mx-auto">      
+        <div class="mx-auto leading-loose text-base font-medium">
+          <div class="flex justify-center mb-5">
+            <div class="flex justify-center gap-1 flex-col md:flex-row">
+              <div class="p-2 w-full md:w-1/2 justify-center mx-auto ">
+                <%= image_tag "welcome/simmon",
+                  alt:"Headshot of Simon, a member of Agency of Learning",
+                  class:"w-full rounded object-cover justify-center"
+                  %>
+              </div>
+
+              <div class="p-2 w-full md:w-1/2 max-w-prose mx-auto flex-1">
+                <h3 class="font-bold text-3xl mb-5">Simmon</h3>
+                <p class="italic text-white/[0.678]">
+                  "The Agency of Learning provided me with the next building block in my transition into a career in software development. It had the structure I was looking for to boost my 
+                  confidence about my next step. With guidance on open source issues I could participate in, access to seniors and folks already in the industry to help get unstuck, 
+                  The Agency supercharged my network."
+                </p> 
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-center mb-5">
+            <div class="flex justify-center gap-1 flex-col md:flex-row">
+              <div class="p-2 w-full md:w-1/2 justify-center mx-auto ">
+                <%= image_tag "welcome/nathan",
+                  alt:"Headshot of Nathan, a member of Agency of Learning",
+                  class:"w-full rounded object-cover justify-center"
+                  %>
+              </div>
+
+              <div class="p-2 w-full md:w-1/2  max-w-prose mx-auto flex-1">
+                <h3 class="font-bold text-3xl mb-5">Nathan</h3>
+                <p class="italic text-white/[0.678]">
+                  "Man, I kind of feel like I struck gold when I applied to this program."
+                </p> 
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex justify-center mb-5">
+            <div class="flex justify-center gap-1 flex-col md:flex-row">
+              <div class="p-2 w-full md:w-1/2 justify-center mx-auto ">
+                <%= image_tag "welcome/cody",
+                  alt:"Headshot of Cody, a member of Agency of Learning",
+                  class:"w-full rounded object-cover justify-center"
+                  %>
+              </div>
+
+              <div class="p-2 w-full md:w-1/2 max-w-prose mx-auto flex-1">
+                <h3 class="font-bold text-3xl mb-5">Cody</h3>
+                <p class="italic text-white/[0.678]">
+                  "A strong culture of mentorship is vital for ensuring the future of our community. 
+                  I’ve been fortunate enough to work with Ruby professionally for almost a decade now and want to make sure that’s 
+                  a future available to others."
+                </p> 
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-center mb-5">
+            <div class="flex justify-center gap-1 flex-col md:flex-row">
+              <div class="p-2 w-full md:w-1/2 justify-center mx-auto ">
+                <%= image_tag "welcome/alex",
+                  alt:"Headshot of Alex, a member of Agency of Learning",
+                  class:"w-full rounded object-cover justify-center"
+                  %>
+              </div>
+
+              <div class="p-2 w-full md:w-1/2 max-w-prose mx-auto flex-1">
+                <h3 class="font-bold text-3xl mb-5">Alex</h3>
+                <p class="italic text-white/[0.678]">
+                  "I'm 100% convinced that this is how we cultivate the next generation of truly powerful software engineers."
+                </p> 
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="border-t-1 border-[rgba(255,255,255,0.051)]">
+    <!-- "The Pain" -->
+    <div class="py-12 mb-5">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl mb-8 text-center font-extrabold ">Being a junior dev is lonely</h2>
+
+        <div class="flex justify-center mb-5">
+          <div class="flex justify-center gap-1 flex-col md:flex-row">
+            <div class="p-2 w-full md:w-1/2  mx-auto grid justify-items-end ">
+              <%= image_tag "welcome/the_pain.jpeg", class:" rounded object-cover ",
+                alt:"Two developers collaborating at a desk, focused on a tablet screen. One developer is holding a cup of coffee, engaged in a thoughtful discussion." %>
+            </div>
+            <div class="p-2 w-full md:w-1/2 max-w-prose mx-auto flex-1 leading-loose text-base font-medium">
+              <p class="text-white/[0.678]">
+                <span class="p">Joining a developer community helps you meet peers, get advice, get unstuck, practice tricky situations, and grow your network.</span> <br>
+                <span class="p">Mentorship and collaboration are also very hard to find when you’re solo.</span> <br>
+                <span class="p">That’s what The Agency of Learning is for.</span> <br>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="border-t-1 border-[rgba(255,255,255,0.051)]">
+    <!--  Members Benefits -->
+    <div class="py-12 mb-5">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl mb-8 text-center font-extrabold ">Member Benefits</h2>
+
+        <div class="flex justify-center mb-5 leading-loose text-base font-medium">
+          <div class="flex justify-center gap-1 flex-col md:flex-row">
+            <div class="p-2 w-full md:w-1/2  mx-auto grid justify-items-end ">
+              <%= image_tag "welcome/real_code.jpeg", class:" rounded object-cover ",
+               alt:"Three developers gathered around a laptop, engaged in pair programming and collaborating to solve a coding problem together" %>
+            </div>
+
+            <div class="p-2 w-full md:w-1/2 max-w-prose mx-auto flex-1">
+              <strong>Real code, real peers</strong>
+              <p class="text-white/[0.678]">Work together on software projects on a team with other developers. Get feedback on your code from experienced engineers. Talk to users.</p>
+            </div>
+
+          </div>
+        </div>
+        <div class="flex justify-center mb-5 leading-loose text-base font-medium">
+          <div class="flex justify-center gap-1 flex-col-reverse md:flex-row">
+            <div class="p-2 w-full md:w-1/2 max-w-prose mx-auto flex-1">
+              <strong>Mastermind Community</strong>
+              <p class="text-white/[0.678]">Gain access to our private Discord community to connect with other members, attend daily standups, ask questions, get unstuck, and grow your skills.</p>
+            </div>
+
+            <div class="p-2 w-full md:w-1/2  mx-auto grid justify-items-end">
+              <%= image_tag "welcome/master_mind.jpeg", class:" rounded object-cover ",
+               alt:"Image featuring a group of five developers in active discussion, gathered around a table, working collaboratively to address and resolve a complex problem." %>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center mb-5 leading-loose text-base font-medium">
+          <div class="flex justify-center gap-1 flex-col md:flex-row">
+            <div class="p-2 w-full md:w-1/2  mx-auto grid justify-items-end ">
+              <%= image_tag "welcome/career_services.jpeg", class:" rounded object-cover ",
+               alt:"A developer seated at a desk, engrossed in work, with focused attention directed toward a computer screen." %>
+            </div>
+
+            <div class="p-2 w-full md:w-1/2 max-w-prose mx-auto flex-1">
+              <strong>Career Services</strong>
+              <p class="text-white/[0.678]" >Get job ready with resume review and coding exercises. Wow your first employer by learning how to give great verbal and written status updates.</p>
+            </div>
+
+          </div>
+        </div>
+        <div class="flex justify-center mb-5 leading-loose text-base font-medium">
+          <div class="flex justify-center gap-1 flex-col-reverse md:flex-row">
+            <div class="p-2 w-full md:w-1/2  max-w-prose mx-auto flex-1">
+              <strong>Hiring Partner Network</strong>
+              <p class="text-white/[0.678]">We'll feature you in our periodic outreach to our hiring partners - a small, motivated network of companies looking to hire early career talent.</p>
+            </div>
+
+            <div class="p-2 w-full md:w-1/2  mx-auto grid justify-items-end ">
+              <%= image_tag "welcome/hiring_networks.jpeg", class:" rounded object-cover ",
+               alt:"Two developers sitting across from one another, engaged in a productive conversation." %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    
+  
+    <!-- CTA -->
+    <div class="text-white flex justify-left items-center p-5 w-full">
+      <div class="w-full sm:w-3/4 sm:pl-8">
+        <%= cta_button("Become a Member", "color-[#363942]") %>
+      </div>
+    </div>
+
+      <!-- Footer -->
+    <footer class="footer footer-center p-10 text-primary-content">
+      <div>
+        <div class="grid grid-flow-col gap-5">
+        <ul class="flex space-x-4">
+          <li class="w-10 h-10 rounded-full flex items-center justify-center bg-[#38D68E] hover:scale-110 transform transition-transform">
+            <i class="fa-brands fa-twitter fa-xl" style="color: #363942"></i>
+          </li>
+          <li class="w-10 h-10 rounded-full flex items-center justify-center bg-[#38D68E] hover:scale-110 transform transition-transform">
+            <i class="fa-solid fa-envelope fa-xl" style="color: #363942"></i>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="mt-5">
+        <%= image_tag "aol_logo",
+         width:"104px",
+         alt:"The Agency of Learning logo"
+          %>
+      </div> 
+    </footer>
+  </div>
+</div>
