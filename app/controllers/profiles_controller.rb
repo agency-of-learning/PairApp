@@ -20,13 +20,14 @@ class ProfilesController < ApplicationController
   def find_profile
     @profile = authorize Profile.friendly.find(params[:id])
   end
-
+ 
   def profile_params
     params.require(:profile).permit(
       :picture,
       :location,
       :job_title,
       :bio,
+      :slug,
       :job_search_status,
       work_model_preferences: []
     )
