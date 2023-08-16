@@ -22,7 +22,7 @@ FactoryBot.define do
     row_order { 1 }
 
     trait :with_published_post do
-      association :blog_post, status: :published
+      blog_post { association :blog_post, status: :published }
     end
   end
 end
