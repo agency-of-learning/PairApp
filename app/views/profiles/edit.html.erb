@@ -36,6 +36,12 @@
       <%= form.label :job_title, class: 'label label-text text-lg' %>
       <%= form.text_field :job_title, class: 'input input-primary input-bordered' %>
     </div>
+    <div class="form-control">
+      <%= form.label :slug, class: 'label label-text text-lg' do %>
+        Profile slug
+      <% end %>
+      <%= form.text_field :slug, class: 'input input-primary input-bordered' %>
+    </div>
     <div class="form-control mb-4">
       <%= form.label :bio, class: 'label label-text text-lg' %>
       <%= form.text_area :bio,
