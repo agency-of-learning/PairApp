@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
   def find_profile
     @profile = authorize Profile.friendly.find(params[:id])
   end
- 
+
   def profile_params
     params.require(:profile).permit(
       :picture,

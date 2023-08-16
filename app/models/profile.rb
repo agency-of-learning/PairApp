@@ -59,7 +59,7 @@ class Profile < ApplicationRecord
   def slug_candidates
     [
       :slug,
-      [:slug, :id],
+      %i[slug id]
     ]
   end
 
