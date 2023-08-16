@@ -1,4 +1,6 @@
 class FeaturedBlogPostsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
+
   def index
     @featured_blog_posts = BlogPost.all_featured
   end
@@ -8,7 +10,7 @@ class FeaturedBlogPostsController < ApplicationController
     authorize featured_blog_post
     featured_blog_post.save!
 
-    redirect_to featured_blog_posts_path, success: 'Post added to Featured Blog!'
+    redirect_to featured_blog_posts_path, notice: 'Post added to Featured Blog!'
   end
 
   def destroy
