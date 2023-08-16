@@ -30,6 +30,7 @@ FactoryBot.define do
     location { Faker::Address.country }
     job_search_status { Profile.job_search_statuses[:not_job_searching] }
     work_model_preferences { ['remote'] }
+    slug { user.full_name.parameterize }
 
     transient do
       attached_picture { false }
