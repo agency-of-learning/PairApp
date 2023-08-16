@@ -52,4 +52,14 @@ RSpec.describe Profile do
       end
     end
   end
+
+  describe 'slug validation' do
+    subject(:profile) { build(:profile) }
+
+    it 'does not allow slugs with invalid characters' do
+      expect { subject.update!(slug: 'invalid.slug') }.to raise_error(ActiveRecord::RecordInvalid)
+      expect { subject.update!(slug: 'invalid slug') }.to raise_error(ActiveRecord::RecordInvalid)
+      expect { subject.update!(slug: 'invalid|slug') }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
 end
