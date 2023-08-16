@@ -2,12 +2,13 @@ class FeaturedBlogPostsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
-    @featured_blog_posts = BlogPost.all_featured
+    @featured_blog_posts = FeaturedBlogPost.in_rank_order.blog_posts
   end
 
   def create
-    featured_blog_post = FeaturedBlogPost.new(featured_blog_post_params)
-    authorize featured_blog_post
+    featured_blog_post = authorize FeaturedBlogPost.new(
+      featured_blog_post_params.merge({ row_order_position: :first })
+    )
     featured_blog_post.save!
 
     redirect_to featured_blog_posts_path, notice: 'Post added to Featured Blog!'

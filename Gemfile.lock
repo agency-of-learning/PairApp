@@ -279,6 +279,8 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
+    ranked-model (0.4.8)
+      activerecord (>= 4.2)
     redis (4.8.1)
     redis-client (0.14.1)
       connection_pool
@@ -460,6 +462,7 @@ DEPENDENCIES
   puma (~> 5.0)
   pundit (~> 2.3)
   rails (~> 7.0.4, >= 7.0.4.2)
+  ranked-model
   redis (~> 4.0)
   rspec-rails
   rspec-sidekiq
