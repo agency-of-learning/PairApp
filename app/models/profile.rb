@@ -33,6 +33,7 @@ class Profile < ApplicationRecord
   end
 
   validates :picture, content_type: ['image/png', 'image/jpeg']
+  validates :slug, format: { with: /\A[\w\-]+\z/, message: 'must be alphanumeric with - or _ only' }
 
   enum job_search_status: {
     not_job_searching: 0,
@@ -57,8 +58,8 @@ class Profile < ApplicationRecord
 
   def slug_candidates
     [
-      :to_s,
-      %i[to_s id]
+      :slug,
+      [:slug, :id],
     ]
   end
 
