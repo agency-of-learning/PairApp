@@ -19,6 +19,10 @@
 FactoryBot.define do
   factory :featured_blog_post do
     blog_post
-    order { 1 }
+    row_order { 1 }
+
+    trait :with_published_post do
+      association :blog_post, status: :published
+    end
   end
 end

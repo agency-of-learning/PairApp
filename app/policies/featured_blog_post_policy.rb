@@ -1,10 +1,12 @@
 class FeaturedBlogPostPolicy < ApplicationPolicy
+  alias_method :featured_post, :record
+
   def index?
     true
   end
 
   def create?
-    user.admin?
+    user.admin? && featured_post.blog_post.published?
   end
 
   def update?
