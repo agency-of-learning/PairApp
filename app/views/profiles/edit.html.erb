@@ -38,9 +38,9 @@
     </div>
     <div class="form-control">
       <%= form.label :slug, class: 'label label-text text-lg' do %>
-        Profile slug
+        Profile slug (alphanumeric with - and _ only)
       <% end %>
-      <%= form.text_field :slug, class: 'input input-primary input-bordered' %>
+      <%= form.text_field :slug, required: true, pattern: '^[\-_a-zA-Z0-9]+$', class: 'input input-primary input-bordered' %>
     </div>
     <div class="form-control mb-4">
       <%= form.label :bio, class: 'label label-text text-lg' %>

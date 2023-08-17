@@ -4,7 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  slug       :string
-#  status     :integer          default(0), not null
+#  status     :integer          default("draft"), not null
 #  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

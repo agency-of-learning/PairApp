@@ -8,10 +8,14 @@ class ProfilesController < ApplicationController
   def edit; end
 
   def update
-    if @profile.update(profile_params)
-      redirect_to @profile, success: 'Profile successfully updated!'
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @profile.update(profile_params)
+        format.html { redirect_to @profile, success: 'Profile successfully updated!' }
+        format.turbo_stream { flash.now[:notice] = 'Profile successfully updated!' }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream { flash.now[:form_errors] = @profile.errors.full_messages }
+      end
     end
   end
 
