@@ -7,6 +7,7 @@
 #  job_search_status      :integer          default("not_job_searching")
 #  job_title              :string
 #  location               :string
+#  slug                   :string
 #  work_model_preferences :enum             is an Array
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -14,6 +15,7 @@
 #
 # Indexes
 #
+#  index_profiles_on_slug     (slug) UNIQUE
 #  index_profiles_on_user_id  (user_id)
 #
 # Foreign Keys
@@ -48,6 +50,16 @@ RSpec.describe Profile do
       it 'is not valid' do
         expect(subject).not_to be_valid
       end
+    end
+  end
+
+  describe 'slug validation' do
+    subject(:profile) { build(:profile) }
+
+    it 'does not allow slugs with invalid characters' do
+      expect { subject.update!(slug: 'invalid.slug') }.to raise_error(ActiveRecord::RecordInvalid)
+      expect { subject.update!(slug: 'invalid slug') }.to raise_error(ActiveRecord::RecordInvalid)
+      expect { subject.update!(slug: 'invalid|slug') }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 end

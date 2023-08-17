@@ -7,6 +7,7 @@
 #  job_search_status      :integer          default("not_job_searching")
 #  job_title              :string
 #  location               :string
+#  slug                   :string
 #  work_model_preferences :enum             is an Array
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -14,6 +15,7 @@
 #
 # Indexes
 #
+#  index_profiles_on_slug     (slug) UNIQUE
 #  index_profiles_on_user_id  (user_id)
 #
 # Foreign Keys
@@ -23,11 +25,15 @@
 class Profile < ApplicationRecord
   belongs_to :user
 
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
   has_one_attached :picture do |attachable|
     attachable.variant :square, resize_to_fill: [256, 256]
   end
 
   validates :picture, content_type: ['image/png', 'image/jpeg']
+  validates :slug, format: { with: /\A[\w\-]+\z/, message: 'must be alphanumeric with - or _ only' }
 
   enum job_search_status: {
     not_job_searching: 0,
@@ -48,6 +54,13 @@ class Profile < ApplicationRecord
 
   def to_s
     user.full_name
+  end
+
+  def slug_candidates
+    [
+      :slug,
+      %i[slug id]
+    ]
   end
 
   private

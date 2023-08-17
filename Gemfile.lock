@@ -148,6 +148,8 @@ GEM
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
+    friendly_id (5.4.2)
+      activerecord (>= 4.0.0)
     fugit (1.8.1)
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
@@ -446,6 +448,7 @@ DEPENDENCIES
   devise_invitable
   factory_bot_rails
   faker
+  friendly_id (~> 5.4.0)
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails (~> 1.1)
