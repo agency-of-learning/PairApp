@@ -7,6 +7,7 @@
 #  job_search_status      :integer          default("not_job_searching")
 #  job_title              :string
 #  location               :string
+#  slug                   :string
 #  work_model_preferences :enum             is an Array
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -14,6 +15,7 @@
 #
 # Indexes
 #
+#  index_profiles_on_slug     (slug) UNIQUE
 #  index_profiles_on_user_id  (user_id)
 #
 # Foreign Keys
@@ -28,6 +30,7 @@ FactoryBot.define do
     location { Faker::Address.country }
     job_search_status { Profile.job_search_statuses[:not_job_searching] }
     work_model_preferences { ['remote'] }
+    slug { user.full_name.parameterize }
 
     transient do
       attached_picture { false }

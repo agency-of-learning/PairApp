@@ -7,12 +7,14 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
   <body>
-    <div class="min-h-full">
-      <%= render "layouts/navbar" %>
+    <div class="min-h-full <%= background_color %>">
+      <%= render "layouts/navbar" unless controller_name =="landing"  && action_name == "index"%>
+
       <div class="container mx-auto">
         <div id="flash" class="empty:hidden px-4">
           <%= render "layouts/flash" %>

@@ -1,0 +1,15 @@
+<div class="max-w-prose mx-auto mb-6 p-2">
+  <div class="flex justify-end">
+    <% if policy(@blog_post).edit? %>
+      <%= link_to "Edit Post", edit_blog_post_path(@blog_post), class: "btn btn-primary btn-sm" %>
+    <% end %>
+  </div>
+
+  <div class="mb-2">
+    <p class="font-bold"><%= @blog_post.user.full_name %></p>
+    <p><%= @blog_post.created_at.to_fs(:month_day_year) %></p>
+  </div>
+
+  <h1 class="font-bold text-4xl mb-2"><%= @blog_post.title %></h1>
+  <%= @blog_post.content %>
+</div>
