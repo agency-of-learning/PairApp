@@ -27,6 +27,7 @@ class Profile < ApplicationRecord
 
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
+  after_validation :move_friendly_id_error_to_slug
 
   has_one_attached :picture do |attachable|
     attachable.variant :square, resize_to_fill: [256, 256]
@@ -34,6 +35,7 @@ class Profile < ApplicationRecord
 
   validates :picture, content_type: ['image/png', 'image/jpeg']
   validates :slug, format: { with: /\A[\w\-]+\z/, message: 'must be alphanumeric with - or _ only' }
+  validates :slug, uniqueness: { case_sensitive: false, message: 'already taken' }
 
   enum job_search_status: {
     not_job_searching: 0,
@@ -64,6 +66,10 @@ class Profile < ApplicationRecord
   end
 
   private
+
+  def move_friendly_id_error_to_slug
+    errors.add :slug, *errors.delete(:friendly_id) if errors[:friendly_id].present?
+  end
 
   def work_model_preferences_must_exist
     if work_model_preferences.any? { |preference| WORK_MODELS.exclude?(preference) }
