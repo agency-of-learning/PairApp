@@ -33,4 +33,8 @@ class BlogPost < ApplicationRecord
   validates :title, presence: true
 
   scope :order_newest_first, -> { order(created_at: :desc) }
+
+  def featured?
+    featured_blog_post.present?
+  end
 end

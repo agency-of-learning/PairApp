@@ -22,5 +22,21 @@
 require 'rails_helper'
 
 RSpec.describe BlogPost do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#featured?' do
+    context 'when the blog post has an associated featured post' do
+      let(:blog_post_with_feature) { build(:blog_post, :with_feature) }
+
+      it 'returns true' do
+        expect(blog_post_with_feature).to be_featured
+      end
+    end
+
+    context 'when the blog post lacks an associated featured post' do
+      let(:blog_post) { build(:blog_post) }
+
+      it 'returns false' do
+        expect(blog_post).not_to be_featured
+      end
+    end
+  end
 end
