@@ -19,7 +19,7 @@
 #
 FactoryBot.define do
   factory :resume do
-    user { nil }
+    user
     name { 'My Resume' }
     current { true }
     resume { nil }
