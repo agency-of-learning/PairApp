@@ -1,7 +1,7 @@
 <nav class="navbar p-4 flex justify-between">
   <div></div>
   <div class="flex space-x-4">
-    <%= link_to "Blog", root_path, class: "text-xl " %>
+    <%= link_to "Blog", featured_blog_posts_path, class: "text-xl " %>
     <% if user_signed_in? %>
       <div class="dropdown dropdown-end flex ">
         <label tabindex="0" class="btn btn-ghost">

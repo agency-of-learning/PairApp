@@ -4,7 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  slug       :string
-#  status     :integer          default(0), not null
+#  status     :integer          default("draft"), not null
 #  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -27,6 +27,10 @@ FactoryBot.define do
     status { BlogPost.statuses[:draft] }
     sequence :slug do |n|
       "blog#{n}"
+    end
+
+    trait :with_feature do
+      featured_blog_post
     end
   end
 end

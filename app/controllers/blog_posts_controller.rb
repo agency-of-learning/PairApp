@@ -1,6 +1,6 @@
 class BlogPostsController < ApplicationController
   def show
-    @blog_post = authorize BlogPost.find(params[:id])
+    @blog_post = authorize BlogPost.includes(:featured_blog_post).find(params[:id])
   end
 
   def new
