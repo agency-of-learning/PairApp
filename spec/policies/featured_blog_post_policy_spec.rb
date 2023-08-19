@@ -5,7 +5,7 @@ RSpec.describe FeaturedBlogPostPolicy, type: :policy do
 
   let(:user) { create(:user) }
   let(:admin) { create(:user, :admin) }
-  let(:featured_published_post) { create(:featured_blog_post, :with_published_post) }
+  let(:featured_published_post) { build(:featured_blog_post, :with_published_post) }
 
   permissions :update?, :destroy? do
     it 'denies permission for a regular user' do
@@ -37,6 +37,18 @@ RSpec.describe FeaturedBlogPostPolicy, type: :policy do
 
       it 'denies permission to an admin user' do
         expect(subject).not_to permit(admin, featured_draft_post)
+      end
+    end
+
+    context 'when the featured post is persisted' do
+      let(:persisted_feature) { create(:featured_blog_post, :with_published_post) }
+
+      it 'denies permission to a regular user' do
+        expect(subject).not_to permit(user, persisted_feature)
+      end
+
+      it 'denies permission for admins' do
+        expect(subject).not_to permit(admin, persisted_feature)
       end
     end
   end
