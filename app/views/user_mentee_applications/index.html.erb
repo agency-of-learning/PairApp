@@ -21,33 +21,18 @@
           <%= render TableCellComponent.new(class_names: 'table-cell text-center') do %>
             Country
           <% end %>
+          <%= render TableCellComponent.new(class_names: 'table-cell text-center') do %>
+            Notes
+          <% end %> 
           <%= render TableCellComponent.new(class_names: 'hidden sm:table-cell text-center') do %>
             Status
           <% end %>
         </div>
       </div>
       <div class="table-row-group" id='my-pair-requests'>
-
-      <% UserMenteeApplication.all.each do |mentee_application| %>
-        <div class="table-row odd:bg-white even:bg-neutral-100 hover:bg-neutral-200 divide-x-2 divide-black">
-          <%= render TableCellComponent.new(container_link: mentee_application) do %>
-            <%= mentee_application.user.first_name %>
-          <% end %>
-
-          <%= render TableCellComponent.new(container_link: mentee_application) do %>
-            <%= mentee_application.created_at.strftime("%d/%m/%Y") %>
-          <% end %>
-
-          <%= render TableCellComponent.new(container_link: mentee_application) do %>
-            <%= mentee_application.country %>
-          <% end %>
-
-          <%= render TableCellComponent.new(container_link: mentee_application) do %>
-            <%#= mentee_application.status %>
-          <% end %>
-          
-        </div>
-      <% end %>
+        <% UserMenteeApplication.all.each do |mentee_application| %>
+          <%= render "table_row", mentee_application: %>
+        <% end %>
       </div>
     </div>
 
