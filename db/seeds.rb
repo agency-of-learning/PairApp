@@ -6,7 +6,10 @@ begin
     { first_name: 'Admin', last_name: Faker::Name.last_name, email: "admin@aol.com", password: "password", role: "admin" },
     { first_name: 'User1', last_name: Faker::Name.last_name, email: "user1@aol.com", password: "password", role: "member" },
     { first_name: 'User2', last_name: Faker::Name.last_name, email: "user2@aol.com", password: "password", role: "member" },
-    { first_name: 'User3', last_name: Faker::Name.last_name, email: "user3@aol.com", password: "password", role: "member" }
+    { first_name: 'User3', last_name: Faker::Name.last_name, email: "user3@aol.com", password: "password", role: "member" },
+    { first_name: 'Applicant1', last_name: Faker::Name.last_name, email: "applicant1@aol.com", password: "password", role: "member" },
+    { first_name: 'Applicant2', last_name: Faker::Name.last_name, email: "applicant2@aol.com", password: "password", role: "member" },
+    { first_name: 'Applicant3', last_name: Faker::Name.last_name, email: "applicant3@aol.com", password: "password", role: "member" },
   ]
 
   users = []
@@ -78,6 +81,60 @@ begin
     end
   end
   puts "Completed seeding standup meeting group!"
+
+
+  puts "Seeding a user_mentee_application..."
+
+  user_mentee_application_data = [
+    {
+      user_id: users[4].id,
+      city: Faker::Address.city,
+      state: Faker::Address.state,
+      country: Faker::Address.country,
+      reason_for_applying: Faker::Lorem.paragraph, 
+      linkedin_url: Faker::Internet.url, 
+      github_url: Faker::Internet.url, 
+      learned_to_code: Faker::Lorem.paragraph, 
+      project_experience: Faker::Lorem.paragraph, 
+      available_hours_per_week: 10, 
+      referral_source: Faker::Lorem.paragraph, 
+      additional_information: Faker::Lorem.paragraph
+    },
+    {
+      user_id: users[5].id,
+      city: Faker::Address.city,
+      state: Faker::Address.state,
+      country: Faker::Address.country,
+      reason_for_applying: Faker::Lorem.paragraph,
+      linkedin_url: Faker::Internet.url,
+      github_url: Faker::Internet.url,
+      learned_to_code: Faker::Lorem.paragraph,
+      project_experience: Faker::Lorem.paragraph,
+      available_hours_per_week: 10,
+      referral_source: Faker::Lorem.paragraph,
+      additional_information: Faker::Lorem.paragraph
+    },
+    {
+      user_id: users[6].id,
+      city: Faker::Address.city,
+      state: Faker::Address.state,
+      country: Faker::Address.country,
+      reason_for_applying: Faker::Lorem.paragraph,
+      linkedin_url: Faker::Internet.url,
+      github_url: Faker::Internet.url,
+      learned_to_code: Faker::Lorem.paragraph,
+      project_experience: Faker::Lorem.paragraph,
+      available_hours_per_week: 10,
+      referral_source: Faker::Lorem.paragraph,
+      additional_information: Faker::Lorem.paragraph
+    }
+  ]
+
+  UserMenteeApplication.transaction do
+    user_mentee_application_data.each do |data|
+      UserMenteeApplication.create!(data)
+    end
+  end
 
 rescue StandardError => e
   puts "Error occurred while seeding: #{e.message}"
