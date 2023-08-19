@@ -6,7 +6,7 @@ class FeaturedBlogPostPolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin? && featured_post.blog_post.published?
+    user.admin? && featured_post.new_record? && featured_post.blog_post.published?
   end
 
   def update?
