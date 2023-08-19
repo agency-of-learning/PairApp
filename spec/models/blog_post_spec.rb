@@ -39,4 +39,16 @@ RSpec.describe BlogPost do
       end
     end
   end
+
+  describe '#friendly_id' do
+    let(:blog_post) { create(:blog_post, title: 'Blog Post') }
+
+    context 'when the blog post title changes' do
+      it 'the slug changes to match the new title' do
+        expect {
+          blog_post.update(title: 'Different Name')
+        }.to change(blog_post, :slug).from('blog-post').to('different-name')
+      end
+    end
+  end
 end
