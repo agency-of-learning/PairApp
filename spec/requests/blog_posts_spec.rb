@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Profiles' do
+RSpec.describe 'BlogPosts' do
   describe '#show' do
     let(:user) { create(:user) }
     let(:blog_post) { create(:blog_post, title: 'Blog Title') }
