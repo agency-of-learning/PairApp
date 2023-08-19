@@ -24,7 +24,6 @@ begin
   puts "Users seeded successfully!"
 
   puts "Seeding pair requests..."
-
   pair_request_data = [
     { status: "pending", author: users[1], invitee: users[2], when: 1.day.from_now, duration: 30.minutes },
     { status: "pending", author: users[1], invitee: users[3], when: 1.day.from_now, duration: 30.minutes },
@@ -60,9 +59,6 @@ begin
       PairRequest.create!(data).create_draft_feedback!
     end
   end
-
-  puts "Seeding completed pair requests with feedbacks..."
-
 
   puts "Seeding a Standup Meeting Group"
   standup_meeting_group = StandupMeetingGroup.create!(
