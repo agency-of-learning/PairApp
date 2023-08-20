@@ -19,16 +19,6 @@ class UserMenteeApplicationPolicy < ApplicationPolicy
     matching_user?
   end
 
-  class Scope < Scope
-    def resolve
-      if user.admin?
-        scope.all
-      else
-        scope.where(user_id: user.id)
-      end
-    end
-  end
-
   private
 
   def matching_user?
