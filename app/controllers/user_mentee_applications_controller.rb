@@ -2,7 +2,8 @@ class UserMenteeApplicationsController < ApplicationController
   before_action :set_user_mentee_application, only: %i[show]
 
   def index
-    @user_mentee_applications = policy_scope(UserMenteeApplication)
+    # @user_mentee_applications = policy_scope(UserMenteeApplication)
+    @user_mentee_application = authorize UserMenteeApplication.all
   end
 
   def show
