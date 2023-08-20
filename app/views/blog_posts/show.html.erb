@@ -6,9 +6,9 @@
         data: { turbo_method: :delete },
         class: "btn btn-error btn-sm"
       %>
-    <% elsif policy(@blog_post.build_featured_blog_post).create? %>
+    <% elsif policy(@blog_post).feature? %>
       <%= button_to "Feature Post",
-        featured_blog_posts_path(featured_blog_post: { blog_post_id: @blog_post }),
+        featured_blog_posts_path(featured_blog_post: { blog_post_id: @blog_post.id }),
         class: "btn btn-primary btn-sm"
       %>
     <% end %>
