@@ -17,42 +17,6 @@ RSpec.describe FeaturedBlogPostPolicy, type: :policy do
     end
   end
 
-  permissions :create? do
-    context 'when the featured blog is published' do
-      it 'grants permission for an admin' do
-        expect(subject).to permit(admin, featured_published_post)
-      end
-
-      it 'denies permission to a regular user' do
-        expect(subject).not_to permit(user, featured_published_post)
-      end
-    end
-
-    context 'when the featured post is in a draft state' do
-      let(:featured_draft_post) { create(:featured_blog_post) }
-
-      it 'denies permission to a regular user' do
-        expect(subject).not_to permit(user, featured_draft_post)
-      end
-
-      it 'denies permission to an admin user' do
-        expect(subject).not_to permit(admin, featured_draft_post)
-      end
-    end
-
-    context 'when the featured post is persisted' do
-      let(:persisted_feature) { create(:featured_blog_post, :with_published_post) }
-
-      it 'denies permission to a regular user' do
-        expect(subject).not_to permit(user, persisted_feature)
-      end
-
-      it 'denies permission for admins' do
-        expect(subject).not_to permit(admin, persisted_feature)
-      end
-    end
-  end
-
   permissions :index? do
     it 'grants permission to a nil user' do
       expect(subject).to permit(nil, featured_published_post)

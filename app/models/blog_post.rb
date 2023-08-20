@@ -51,8 +51,4 @@ class BlogPost < ApplicationRecord
   def should_generate_new_friendly_id?
     title_changed?
   end
-
-  def initialize_feature
-    featured_blog_post || build_featured_blog_post
-  end
 end

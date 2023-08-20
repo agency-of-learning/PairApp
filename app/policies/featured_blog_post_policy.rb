@@ -5,16 +5,12 @@ class FeaturedBlogPostPolicy < ApplicationPolicy
     true
   end
 
-  def create?
-    user.admin? && featured_post.new_record? && featured_post.blog_post.published?
-  end
-
   def update?
     user.admin?
   end
 
   def destroy?
-    user.admin?
+    user&.admin?
   end
 
   class Scope < Scope
