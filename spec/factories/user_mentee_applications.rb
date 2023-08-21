@@ -14,6 +14,7 @@
 #  reason_for_applying      :text             not null
 #  referral_source          :string
 #  state                    :string           not null
+#  status                   :integer
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  user_id                  :bigint           not null
