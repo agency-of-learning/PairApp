@@ -24,6 +24,10 @@
   @apply list-decimal pl-4;
 }
 
+.trix-content code {
+  @apply bg-[#eee] py-1;
+}
+
 trix-toolbar {
   @apply sticky top-0 z-50 bg-white;
 }
