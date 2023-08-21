@@ -35,4 +35,3 @@ document.addEventListener('trix-initialize', (event) => {
     inlineCodeButton.hidden = type === 'block';
   });
 });
-
