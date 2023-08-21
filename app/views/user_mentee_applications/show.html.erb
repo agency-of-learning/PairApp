@@ -1,5 +1,4 @@
-<div class="max-w-prose mx-auto">
-
+<div class="max-w-prose mx-auto p-4">
   <%= render UserMenteeApplication::SectionComponent.new(header_text: "Tell us about yoru journey") do %>
     <div class="flex flex-col mb-5">
       <strong>How did you learn to code?</strong>
@@ -59,6 +58,4 @@
       <p><%= @user_mentee_application.additional_information %></p>
     </div>
   <% end %>
-  
-  
 </div>
