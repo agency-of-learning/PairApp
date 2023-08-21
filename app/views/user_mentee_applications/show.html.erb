@@ -1,4 +1,64 @@
-<div>Show Page</div>
+<div class="max-w-prose mx-auto">
 
-<%= render 'form'  %>
+  <%= render UserMenteeApplication::SectionComponent.new(header_text: "Tell us about yoru journey") do %>
+    <div class="flex flex-col mb-5">
+      <strong>How did you learn to code?</strong>
+      <p><%= @user_mentee_application.learned_to_code %></p>
+    </div>
 
+    <div class="flex flex-col">
+      <strong>Describe a project you’ve worked on that you especially loved or are proud of.</strong>
+      <p><%= @user_mentee_application.project_experience %></p>
+    </div>
+  <% end %>
+
+  <%= render UserMenteeApplication::SectionComponent.new(header_text: "Tell us about your interest in the Agency of Learning") do %>
+    <div class="flex flex-col mb-5">
+      <strong>Why are you here?</strong>
+      <p><%= @user_mentee_application.reason_for_applying %></p>
+    </div>
+    <div class="flex flex-col mb-5">
+      <strong>How did you hear about The Agency of Learning?</strong>
+      <p><%= @user_mentee_application.referral_source %></p>
+    </div>
+    <div class="flex flex-col">
+      <strong>How many hours per week are you able to commit to The Agency of Learning?</strong>
+      <p><%= @user_mentee_application.available_hours_per_week %></p>
+    </div>
+  <% end %>
+
+  <%= render UserMenteeApplication::SectionComponent.new(header_text: "Current Location Information") do %>
+    <div class="flex flex-col">
+      <strong>City:</strong>
+      <p><%= @user_mentee_application.city %></p>
+    </div>
+    <div class="flex flex-col">
+      <strong>State:</strong>
+      <p><%= @user_mentee_application.state %></p>
+    </div>
+    <div class="flex flex-col">
+      <strong>Country:</strong>
+      <p><%= @user_mentee_application.country %></p>
+    </div>
+  <% end %>
+
+  <%= render UserMenteeApplication::SectionComponent.new(header_text: "Job Hunting Information") do %>
+    <div class="flex flex-col">
+      <strong>LinkedIn URL:</strong>
+      <p><%= @user_mentee_application.linkedin_url %></p>
+    </div>
+    <div class="flex flex-col">
+      <strong>GitHub URL:</strong>
+      <p><%= @user_mentee_application.github_url %></p>
+    </div>
+  <% end %>
+
+  <%= render UserMenteeApplication::SectionComponent.new(header_text: "Additional Information") do %>
+    <div class="flex flex-col">
+      <strong>Anything else we should know?</strong>
+      <p><%= @user_mentee_application.additional_information %></p>
+    </div>
+  <% end %>
+  
+  
+</div>
