@@ -5,12 +5,12 @@
   </p>
 <% elsif @standup_meeting&.skipped? %>
   <p class="<%= p_tag_classes %>">
-    <i class="fa-solid fa-check text-green-500 mr-4 <%= icon_classes %>"></i>
+    <i class="fa-solid fa-check text-green-500 <%= icon_classes %>"></i>
     You skipped your check-in today
   </p>
 <% else %>
   <p class="<%= p_tag_classes %>">
-    <i class="fa-solid fa-triangle-exclamation text-yellow-400 mr-4 <%= icon_classes %>"></i>
+    <i class="fa-solid fa-triangle-exclamation text-yellow-400 <%= icon_classes %>"></i>
     Outstanding check-in
   </p>
 <% end %>
