@@ -28,5 +28,9 @@ FactoryBot.define do
     sequence :slug do |n|
       "blog#{n}"
     end
+
+    trait :with_feature do
+      featured_blog_post
+    end
   end
 end

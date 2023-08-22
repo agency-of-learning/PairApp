@@ -1,0 +1,23 @@
+<div class="table-row odd:bg-white even:bg-neutral-100 hover:bg-neutral-200 divide-x-2 divide-black">
+  <%= render TableCellComponent.new(container_link: mentee_application) do %>
+    <%= mentee_application.user.first_name %>
+  <% end %>
+
+  <%= render TableCellComponent.new(container_link: mentee_application) do %>
+    <%= mentee_application.created_at.strftime("%d/%m/%Y") %>
+  <% end %>
+
+  <%= render TableCellComponent.new(container_link: mentee_application) do %>
+    <%= mentee_application.country %>
+  <% end %>
+
+  <%= render TableCellComponent.new(container_link: mentee_application) do %>
+    <%#= mentee_application.notes %>
+  <% end %>
+
+  <%= render(TableCellComponent.new(class_names: "hidden sm:table-cell text-center")) do %>
+    <%= render TableCellComponent.new(container_link: mentee_application, class_names:"hiddent sm:table-cell") do %>
+      <%#= mentee_application.status %>
+    <% end %>
+  <% end %>
+</div>

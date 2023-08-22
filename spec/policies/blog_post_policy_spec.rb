@@ -22,4 +22,36 @@ RSpec.describe BlogPostPolicy, type: :policy do
       expect(subject).to permit(user, user_blog_post)
     end
   end
+
+  permissions :feature? do
+    let(:admin) { create(:user, :admin) }
+    let(:published_post) { build(:blog_post, status: :published) }
+    let(:featured_published_post) { build(:blog_post, :with_feature, status: :published) }
+
+    context 'when the post is published' do
+      it 'denies permission to a visitor' do
+        expect(subject).not_to permit(nil, published_post)
+      end
+
+      it 'denies permission for member users' do
+        expect(subject).not_to permit(user, published_post)
+      end
+
+      it 'grants permission for admin users' do
+        expect(subject).to permit(admin, published_post)
+      end
+    end
+
+    context "when the post isn't published" do
+      it 'denies permission for admin users' do
+        expect(subject).not_to permit(user, random_blog_post)
+      end
+    end
+
+    context 'when the post is already featured' do
+      it 'denies permission for admin users' do
+        expect(subject).not_to permit(user, featured_published_post)
+      end
+    end
+  end
 end

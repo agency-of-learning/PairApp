@@ -16,4 +16,10 @@ class BlogPostPolicy < ApplicationPolicy
   def destroy?
     user == blog_post.user
   end
+
+  def feature?
+    return false unless user&.admin?
+
+    !blog_post.featured? && blog_post.published?
+  end
 end

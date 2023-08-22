@@ -1,7 +1,8 @@
-<%= tag.li(id: dom_id(standup_meeting_group), class: " justify-between flex flex-row p-4 mb-2 border-black border-2 items-center") do %>
-  <h1 class=""><%= standup_meeting_group.name %></h1>
-
-  <div class="">
-      <%= button_to 'Join', standup_meeting_group_joins_path(@standup_meeting_group), class: 'btn btn-success' %>
-  </div>
+<%= tag.li(id: dom_id(standup_meeting_group), class: "justify-between flex flex-row p-4 mb-2 border-black border-2 items-center rounded-md") do %>
+  <%= standup_meeting_group.name %>
+  <% if my_standup_meeting_groups.include? standup_meeting_group %>
+    <%= button_to 'Leave', standup_meeting_group_join_path(standup_meeting_group, standup_meeting_group_user), method: :delete, class: 'btn btn-success', id: "#{dom_id(standup_meeting_group)}-join-btn" %>
+  <% else %>
+    <%= button_to 'Join', standup_meeting_group_joins_path(standup_meeting_group), class: 'btn btn-success', id: "#{dom_id(standup_meeting_group)}-join-btn" %>
+  <% end %>
 <% end %>

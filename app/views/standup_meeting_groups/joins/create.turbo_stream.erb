@@ -1,4 +1,10 @@
-<%= turbo_stream.remove @standup_meeting_group %>
 <%= turbo_stream.prepend 'my-standup-meeting-groups' do %>
   <%= render StandupMeetingGroup::JoinedCardComponent.new(standup_meeting_group: @standup_meeting_group, current_user: current_user) %>
+<% end %>
+<%= turbo_stream.replace "#{dom_id(@standup_meeting_group)}-join-btn" do %>
+  <%= button_to 'Leave',
+                standup_meeting_group_join_path(@standup_meeting_group, @standup_meeting_group_user),
+                method: :delete,
+                class: 'btn btn-success',
+                id: "#{dom_id(@standup_meeting_group)}-join-btn" %>
 <% end %>
