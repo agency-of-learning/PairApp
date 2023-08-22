@@ -15,12 +15,12 @@
   </div>
   <%= render StandupMeeting::CheckInCtaComponent.new(standup_meeting_group: @standup_meeting_group, standup_meeting: @current_user_standup_meeting, current_user:) %>
   
-  <div data-controller="tabs" data-tabs-active-tab="-mb-px border-l-2 border-t-2 border-r-2 rounded-t text-primary">
-    <a class="text-lg border-b-0 bg-white inline-block py-2 px-4" href="#"  data-tabs-target="tab" data-action="click->tabs#change">
+  <div data-controller="tabs" data-tabs-active-tab="-mb-px border-l-2 border-t-2 border-r-2 rounded-t text-secondary">
+    <a class="text-lg border-b-0 bg-base-100 inline-block py-2 px-4" href="#"  data-tabs-target="tab" data-action="click->tabs#change">
       <span class="hidden md:inline">View by </span>
       <span>Status</span> 
     </a>
-    <a class="text-lg border-b-0 bg-white inline-block py-2 px-4" href="#" data-tabs-target="tab" data-action="click->tabs#change">
+    <a class="text-lg border-b-0 bg-base-100 inline-block py-2 px-4" href="#" data-tabs-target="tab" data-action="click->tabs#change">
       <span class="hidden md:inline">View by </span>
       User
     </a>
