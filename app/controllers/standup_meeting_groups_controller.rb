@@ -46,7 +46,7 @@ class StandupMeetingGroupsController < ApplicationController
         format.turbo_stream do
           @new_standup_meeting_group = StandupMeetingGroup.new
           @my_standup_meeting_groups = policy_scope(StandupMeetingGroup).includes(:standup_meeting_groups_users,
-      :standup_meetings)
+            :standup_meetings)
 
           flash.now[:success] = "#{@standup_meeting_group.name} was successfully created."
         end
