@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe StandupMeeting::ButtonGroupComponent, type: :component do
+RSpec.describe StandupMeeting::CheckInActionComponent, type: :component do
   let(:user) { create(:user) }
   let(:standup_meeting_group) { create(:standup_meeting_group) }
   let(:standup_meeting) { create(:standup_meeting, status:, user:) }
@@ -14,12 +14,6 @@ RSpec.describe StandupMeeting::ButtonGroupComponent, type: :component do
       render_inline(described_class.new(standup_meeting_group:, standup_meeting:, current_user: user))
 
       expect(page).to have_link('Check in')
-    end
-
-    it 'renders a Skip button' do
-      render_inline(described_class.new(standup_meeting_group:, standup_meeting:, current_user: user))
-
-      expect(page).to have_button('Skip')
     end
   end
 
