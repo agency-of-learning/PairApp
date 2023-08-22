@@ -1,8 +1,0 @@
-<% if policy(:skip).create? && standup_meeting.persisted? %>
-  <%= button_to(
-    "Skip",
-    standup_meeting_group_standup_meeting_skips_path(standup_meeting_group, standup_meeting),
-    class: "btn btn-link",
-    form_class: "w-fit"
-  ) %>
-<% end %>
