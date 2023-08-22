@@ -34,4 +34,7 @@ class UserMenteeApplication < ApplicationRecord
 
   validates :city, :state, :country, :reason_for_applying, :learned_to_code, :project_experience,
     :available_hours_per_week, presence: true
+
+
+  enum status: { pending: 0, accepted: 1, rejected: 2}
 end
