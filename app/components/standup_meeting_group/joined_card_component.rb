@@ -10,4 +10,12 @@ class StandupMeetingGroup::JoinedCardComponent < ViewComponent::Base
     @user = current_user
     @standup_meeting_group_user = standup_meeting_group.standup_meeting_groups_users.find_by(user:)
   end
+
+  def standup_meeting
+    existing_meeting = standup_meeting_group.standup_meetings.detect do |meeting|
+      meeting.meeting_date == Date.current && meeting.user == user
+    end
+
+    existing_meeting || standup_meeting_group.standup_meetings.build(user:, meeting_date: Date.current)
+  end
 end
