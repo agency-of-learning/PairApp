@@ -1,7 +1,16 @@
 <% if @standup_meeting&.completed? %>
-  <p class="<%= class_names %>"> <i class="fa-solid fa-check text-green-500 mr-4"></i> Checked in </p>
+  <p class="<%= p_tag_classes %>">
+    <i class="fa-solid fa-check text-green-500 <%= icon_classes %>"></i>
+    Checked in
+  </p>
 <% elsif @standup_meeting&.skipped? %>
-  <p class="<%= class_names %>" <i class="fa-solid fa-check text-green-500 mr-4"></i> You skipped your check-in today</p>
+  <p class="<%= p_tag_classes %>">
+    <i class="fa-solid fa-check text-green-500 mr-4 <%= icon_classes %>"></i>
+    You skipped your check-in today
+  </p>
 <% else %>
-  <p class="<%= class_names %>"> <i class="fa-solid fa-triangle-exclamation text-yellow-400 mr-4"></i> Outstanding check-in</p>
+  <p class="<%= p_tag_classes %>">
+    <i class="fa-solid fa-triangle-exclamation text-yellow-400 mr-4 <%= icon_classes %>"></i>
+    Outstanding check-in
+  </p>
 <% end %>

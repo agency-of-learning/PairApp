@@ -11,7 +11,7 @@
   </div>
   <div id="check-in-cta" class="p-4 border-2 border-primary my-4 flex flex-col space-y-4 sm:flex-row sm:space-y-0 justify-between">
     <div class="flex items-center">
-      <%= render StandupMeetingGroup::CheckInStatusComponent.new(standup_meeting_group:, current_user:, class_names: "text-xl") %>
+      <%= render StandupMeetingGroup::CheckInStatusComponent.new(standup_meeting_group:, current_user:, variant: :large) %>
     </div>
     <div id="cta-actions" class="flex mx-auto sm:mx-0">
       <%= render StandupMeeting::ButtonGroupComponent.new(standup_meeting_group:, standup_meeting: current_user_standup_meeting, current_user:) %>
