@@ -4,8 +4,7 @@ class StandupMeetingGroupsController < ApplicationController
   def index
     @my_standup_meeting_groups = policy_scope(StandupMeetingGroup).includes(:standup_meeting_groups_users,
       :standup_meetings)
-    @joinable_standup_meeting_groups = StandupMeetingGroup.includes(:standup_meeting_groups_users)
-                                                          .excluding(@my_standup_meeting_groups)
+    @standup_meeting_groups = StandupMeetingGroup.includes(:standup_meeting_groups_users)
   end
 
   def show
@@ -46,6 +45,8 @@ class StandupMeetingGroupsController < ApplicationController
       if @standup_meeting_group.save
         format.turbo_stream do
           @new_standup_meeting_group = StandupMeetingGroup.new
+          @my_standup_meeting_groups = policy_scope(StandupMeetingGroup).includes(:standup_meeting_groups_users,
+            :standup_meetings)
 
           flash.now[:success] = "#{@standup_meeting_group.name} was successfully created."
         end

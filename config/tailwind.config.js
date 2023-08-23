@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+        sans: ["Roboto", "Inter var", ...defaultTheme.fontFamily.sans],
       },
     },
   },
@@ -23,12 +23,14 @@ module.exports = {
           primary: "#38d68e",
           "primary-focus": "#03985c",
           "primary-content": "#ecfdf3",
+          "primary-content-dark": "#022c1e",
           neutral: "#363942",
           "neutral-focus": "#2C2E36",
           "neutral-content": "#ededf1",
           secondary: "#45aeeb",
           "secondary-focus": "#0e5e96",
           "secondary-content": "#f1f8fe",
+          success: "#ecfdf3",
         },
       },
     ],
@@ -39,6 +41,13 @@ module.exports = {
     require("daisyui"),
   ],
   purge: {
-    safelist: ["alert-error", "alert-success"],
+    safelist: [
+      "alert-error",
+      "alert-success",
+      "border-success",
+      "border-error",
+      "bg-success",
+      "bg-error",
+    ],
   },
 };

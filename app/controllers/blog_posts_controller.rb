@@ -1,6 +1,8 @@
 class BlogPostsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :show
+
   def show
-    @blog_post = authorize BlogPost.find(params[:id])
+    @blog_post = authorize BlogPost.includes(:featured_blog_post).friendly.find(params[:id])
   end
 
   def new
@@ -8,7 +10,7 @@ class BlogPostsController < ApplicationController
   end
 
   def edit
-    @blog_post = authorize current_user.blog_posts.find(params[:id])
+    @blog_post = authorize current_user.blog_posts.friendly.find(params[:id])
   end
 
   def create
@@ -22,7 +24,7 @@ class BlogPostsController < ApplicationController
   end
 
   def update
-    @blog_post = authorize current_user.blog_posts.find(params[:id])
+    @blog_post = authorize current_user.blog_posts.friendly.find(params[:id])
 
     if @blog_post.update(blog_post_params)
       redirect_to @blog_post, notice: 'Post succesfully updated!'
@@ -32,7 +34,7 @@ class BlogPostsController < ApplicationController
   end
 
   def destroy
-    @blog_post = authorize current_user.blog_posts.find(params[:id])
+    @blog_post = authorize current_user.blog_posts.friendly.find(params[:id])
     @blog_post.destroy!
 
     redirect_to blog_path(current_user), notice: 'Post deleted!'
