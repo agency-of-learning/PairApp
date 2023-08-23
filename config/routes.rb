@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     scope module: :user_mentee_applications do
       resources :acceptances, only: :create
       resources :rejections, only: :create
+      resource :promotions, only: :create
     end
   end
 
