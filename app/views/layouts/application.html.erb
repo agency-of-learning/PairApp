@@ -8,7 +8,10 @@
     <title><%= title %></title>
     <meta property="og:title" content="<%= title %>" />
 
+    <meta name="description" content="<%= content_for(:description) || 'A Community of Highly Motivated Early Career Developers' %>" />
     <meta property="og:image" content="<%= image_url('og-logo.jpg') %>" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:type" content="<%= content_for(:page_type) || 'website' %>" />
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
