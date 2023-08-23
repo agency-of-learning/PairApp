@@ -29,6 +29,7 @@
 #
 class UserMenteeApplication < ApplicationRecord
   belongs_to :user
+  has_many :mentee_application_states, dependent: :destroy
 
   validates :available_hours_per_week, numericality: { greater_than: 0, less_than_or_equal_to: 60 }
 

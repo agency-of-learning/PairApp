@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_21_233937) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_23_001215) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -100,6 +100,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_233937) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "mentee_application_states", force: :cascade do |t|
+    t.bigint "user_mentee_application_id", null: false
+    t.integer "status"
+    t.text "note"
+    t.integer "status_changed_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_mentee_application_id"], name: "index_mentee_application_states_on_user_mentee_application_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -244,6 +254,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_233937) do
   add_foreign_key "featured_blog_posts", "blog_posts"
   add_foreign_key "feedbacks", "users", column: "author_id"
   add_foreign_key "feedbacks", "users", column: "receiver_id"
+  add_foreign_key "mentee_application_states", "user_mentee_applications"
   add_foreign_key "pair_requests", "users", column: "author_id"
   add_foreign_key "pair_requests", "users", column: "invitee_id"
   add_foreign_key "profiles", "users"
