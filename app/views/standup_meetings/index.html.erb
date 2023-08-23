@@ -14,7 +14,7 @@
     ) %>
   </div>
 
-  <div id="check-in-cta" class="p-4 border-2 border-primary my-4 flex flex-col space-y-4 sm:flex-row sm:space-y-0 justify-between">
+  <div id="check-in-cta" class="p-4 border-2 border-neutral rounded-md my-4 flex flex-col space-y-4 sm:flex-row sm:space-y-0 justify-between">
     <div class="flex items-center">
       <%= render StandupMeetingGroup::CheckInStatusComponent.new(
         standup_meeting_group: @standup_meeting_group,
@@ -37,11 +37,11 @@
   </div>
 
   <div data-controller="tabs" data-tabs-active-tab="-mb-px border-l-2 border-t-2 border-r-2 rounded-t text-primary">
-    <a class="text-lg border-b-0 bg-white inline-block py-2 px-4" href="#"  data-tabs-target="tab" data-action="click->tabs#change">
+    <a class="text-lg border-b-0 bg-base-100 inline-block py-2 px-4" href="#"  data-tabs-target="tab" data-action="click->tabs#change">
       <span class="hidden md:inline">View by </span>
       <span>Status</span> 
     </a>
-    <a class="text-lg border-b-0 bg-white inline-block py-2 px-4" href="#" data-tabs-target="tab" data-action="click->tabs#change">
+    <a class="text-lg border-b-0 bg-base-100 inline-block py-2 px-4" href="#" data-tabs-target="tab" data-action="click->tabs#change">
       <span class="hidden md:inline">View by </span>
       User
     </a>

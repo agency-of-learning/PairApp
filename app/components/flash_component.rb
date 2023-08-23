@@ -16,6 +16,6 @@ class FlashComponent < ViewComponent::Base
   attr_reader :type, :message
 
   def theme
-    "alert-#{TYPE_THEMES.fetch(type)}"
+    "alert-#{TYPE_THEMES.fetch(type)} bg-#{TYPE_THEMES.fetch(type)}/30 border-2 border-#{TYPE_THEMES.fetch(type)}"
   end
 end
