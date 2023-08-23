@@ -24,7 +24,8 @@ class UserMenteeApplicationsController < ApplicationController
 
     @user_mentee_application = UserMenteeApplication.new(user_mentee_application_params)
     @user_mentee_application.user = current_user
-
+    @user_mentee_application.mentee_application_states.new(status: :pending)
+      
     authorize @user_mentee_application
 
     respond_to do |format|
