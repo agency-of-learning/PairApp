@@ -9,7 +9,15 @@
     <h1 class="text-3xl font-bold text-left mb-4 md:mb-0"><%= standup_meeting_group.name %></h1>
     <%= button_to 'Leave', standup_meeting_group_join_path(standup_meeting_group, standup_meeting_group_user), method: :delete, class: 'link mt-4' %>
   </div>
-  <%= render StandupMeeting::CheckInCtaComponent.new(standup_meeting_group: standup_meeting_group, standup_meeting: current_user_standup_meeting, current_user:) %>
+  <div id="check-in-cta" class="p-4 border-2 border-primary my-4 flex flex-col space-y-4 sm:flex-row sm:space-y-0 justify-between">
+    <div class="flex items-center">
+      <%= render StandupMeetingGroup::CheckInStatusComponent.new(standup_meeting_group:, current_user:, variant: :large) %>
+    </div>
+    <div id="cta-actions" class="flex mx-auto sm:mx-0">
+      <%= render StandupMeeting::SkipButtonComponent.new(standup_meeting_group:, standup_meeting: current_user_standup_meeting, current_user:) %>
+      <%= render StandupMeeting::CheckInActionComponent.new(standup_meeting_group:, standup_meeting: current_user_standup_meeting, current_user:) %>
+    </div>
+  </div>
   <div class="divider my-4 "></div>
   <div class="flex flex-col">
     <div class="flex flex-col md:flex-row justify-between">
