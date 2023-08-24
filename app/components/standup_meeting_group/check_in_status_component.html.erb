@@ -1,5 +1,16 @@
 <% if @standup_meeting&.completed? %>
-  <p class="text-xs"> <i class="fa-solid fa-check"></i> Checked in </p>
+  <p class="<%= p_tag_classes %>">
+    <i class="fa-solid fa-check text-success <%= icon_classes %>"></i>
+    Checked in
+  </p>
+<% elsif @standup_meeting&.skipped? %>
+  <p class="<%= p_tag_classes %>">
+    <i class="fa-solid fa-check text-success <%= icon_classes %>"></i>
+    You skipped your check-in today
+  </p>
 <% else %>
-  <p class="text-xs"> <i class="fa-solid fa-triangle-exclamation"></i> Outstanding check-in</p>
+  <p class="<%= p_tag_classes %>">
+    <i class="fa-solid fa-triangle-exclamation text-warning <%= icon_classes %>"></i>
+    Outstanding check-in
+  </p>
 <% end %>

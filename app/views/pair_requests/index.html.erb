@@ -9,9 +9,9 @@
       <%= link_to 'Upcoming', pair_requests_path(filter: 'upcoming'), data: { turbo_action: 'advance' }, class:"tab tab-lifted #{'tab-active' if params[:filter] == 'upcoming' || params[:filter].nil? }" %>
       <%= link_to 'Past', pair_requests_path(filter: 'past'), data: { turbo_action: 'advance' }, class:"tab tab-lifted #{'tab-active' if params[:filter] == 'past'}"  %>
     </div>
-    <div class="table w-full border-2 border-black text-md md:text-base">
+    <div class="table w-full border-2 border-neutral text-md md:text-base">
       <div class="table-header-group">
-        <div class="table-row font-bold bg-primary divide-x-2 divide-black text-white">
+        <div class="table-row font-bold bg-primary divide-x-2 divide-neutral text-primary-content">
           <%= render TableCellComponent.new(class_names: 'table-cell text-center') do %>
             Partner
           <% end %>

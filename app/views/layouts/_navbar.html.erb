@@ -38,11 +38,11 @@
           </li>
         <% end %>
         <li>
-          <%= link_to 'Logout', destroy_user_session_path, class: "btn btn-primary text-white" %>
+          <%= link_to 'Logout', destroy_user_session_path, class: "btn btn-primary text-primary-content" %>
         </li>
       <% else %>
         <li>
-          <%= link_to 'Login', new_user_session_path, class: "btn btn-primary text-white" %>
+          <%= link_to 'Login', new_user_session_path, class: "btn btn-primary text-primary-content" %>
         </li>
       <% end %>
     </ul>

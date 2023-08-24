@@ -1,3 +1,7 @@
+<% content_for :title, @blog_post.title %>
+<% content_for :description, "Posted by #{@blog_post.user.full_name} | The Agency of Learning" %>
+<% content_for :page_type, 'article' %>
+
 <div class="max-w-prose mx-auto mb-6 p-2">
   <div class="flex justify-end gap-2">
     <% if @blog_post.featured? && policy(@blog_post.featured_blog_post).destroy? %>

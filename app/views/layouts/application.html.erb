@@ -3,7 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Agency of Learning</title>
+
+    <% title = content_for(:title) || 'The Agency of Learning' %>
+    <title><%= title %></title>
+    <meta property="og:title" content="<%= title %>" />
+
+    <meta name="description" content="<%= content_for(:description) || 'A Community of Highly Motivated Early Career Developers' %>" />
+    <meta property="og:image" content="<%= image_url('og-logo.jpg') %>" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:type" content="<%= content_for(:page_type) || 'website' %>" />
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
