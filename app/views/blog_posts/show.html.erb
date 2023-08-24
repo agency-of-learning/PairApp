@@ -23,7 +23,11 @@
   </div>
 
   <div class="mb-2">
-    <p class="font-bold"><%= @blog_post.user.full_name %></p>
+    <% if user_signed_in? %>
+      <%= link_to @blog_post.user.full_name, @blog_post.user.profile, class: 'link link-secondary' %>
+    <% else %>
+      <p class="font-bold"><%= @blog_post.user.full_name %></p>
+    <% end %>
     <p><%= @blog_post.created_at.to_fs(:month_day_year) %></p>
   </div>
 
