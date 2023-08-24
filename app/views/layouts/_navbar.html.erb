@@ -41,6 +41,9 @@
           </li>
         <% end %>
         <li>
+          <%= link_to 'Profile', profile_path(current_user) %>
+        </li>
+        <li>
           <%= link_to 'Logout', destroy_user_session_path, class: "btn btn-primary text-primary-content" %>
         </li>
       <% else %>
@@ -91,6 +94,9 @@
               <%= link_to 'Invite New User', new_user_invitation_path %>
             </li>
           <% end %>
+          <li>
+            <%= link_to 'Profile', profile_path(current_user) %>
+          </li>
           <li>
             <%= link_to 'Logout', destroy_user_session_path %>
           </li>

@@ -22,8 +22,13 @@
     <p><%= @profile.bio %></p>
   </div>
 
-  <div class="flex justify-between px-8 gap-4 sm:justify-center">
-    <button class="btn btn-sm">View Resume</button>
-    <button class="btn btn-sm">View Bragsheet</button>
+  <div class="flex flex-col px-8 gap-2 sm:flex-row sm:justify-center">
+    <div class="flex justify-center gap-2">
+      <button class="btn btn-sm">View Resume</button>
+      <button class="btn btn-sm">View Bragsheet</button>
+    </div>
+    <div class="flex justify-center">
+      <%= link_to "#{@profile.user.first_name}'s Blog", blog_path(@profile.user), class: 'btn btn-sm btn-primary' %>
+    </div>
   </div>
 </div>
