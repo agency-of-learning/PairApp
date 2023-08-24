@@ -7,7 +7,7 @@ RSpec.describe FeaturedBlogPostPolicy, type: :policy do
   let(:admin) { create(:user, :admin) }
   let(:featured_published_post) { build(:featured_blog_post, :with_published_post) }
 
-  permissions :update?, :destroy? do
+  permissions :create?, :update?, :destroy? do
     it 'denies permission for a regular user' do
       expect(subject).not_to permit(user, featured_published_post)
     end
