@@ -20,6 +20,6 @@
       <%#= mentee_application.mentee_application_states.last.status %>
     <% end %>
 
-        <%= render(UserMenteeApplication::ActionButtonBuilderComponent.new(user_mentee_application: mentee_application)) %> <br>
+        <%= render(UserMenteeApplication::ActionButtonBuilderComponent.new(mentee_application: mentee_application)) %> <br>
   <% end %>
 </div>
