@@ -101,6 +101,10 @@ class User < ApplicationRecord
     ActiveSupport::TimeZone.new(time_zone).tzinfo.identifier
   end
 
+  def blog_slug
+    profile.slug
+  end
+
   enum role: {
     member: 0,
     admin: 1
