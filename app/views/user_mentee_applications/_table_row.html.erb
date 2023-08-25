@@ -17,19 +17,9 @@
 
   <%= render(TableCellComponent.new(class_names: "hidden sm:table-cell text-center")) do %>
     <%= render TableCellComponent.new(container_link: mentee_application, class_names:"hiddent sm:table-cell") do %>
-      <%#= mentee_application.status %>
+      <%#= mentee_application.mentee_application_states.last.status %>
     <% end %>
-      <% if mentee_application.accepted? %>
-        <%= button_to "Reject", user_mentee_application_rejections_path(mentee_application) %>
-        
 
-      <% else %>
-        <%#= button_to "Accept", user_mentee_application_acceptances_path(mentee_application) %>
-        <%= button_to "Next Stage", user_mentee_application_promotions_path(mentee_application)  %>
-        <%#= button_to "Next Stage", user_mentee_application_promotions_path(mentee_application.mentee_application_statates)  %>
-
-      
-      <% end %>
-      
+        <%= render(UserMenteeApplication::ActionButtonBuilderComponent.new(user_mentee_application: mentee_application)) %> <br>
   <% end %>
 </div>
