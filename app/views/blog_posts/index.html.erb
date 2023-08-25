@@ -1,0 +1,8 @@
+<h1 class="text-3xl font-bold text-center mb-4">Agency Blog</h1>
+
+<div class="max-w-prose mx-auto px-2">
+  <%= render BlogPosts::ListComponent.new(
+    blog_posts: @blog_posts,
+    empty_message: "Blog doesn't have any posts yet."
+  ) %>
+</div>
