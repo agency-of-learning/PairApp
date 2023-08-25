@@ -40,9 +40,4 @@ class MenteeApplicationState < ApplicationRecord
       next_status = STATUSES.keys[next_status_index]
     end
   end
-
-  def current_status
-    status
-  end
-
 end
