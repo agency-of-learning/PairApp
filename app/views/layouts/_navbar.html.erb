@@ -18,7 +18,7 @@
           <%= link_to 'My Account', edit_user_registration_path %>
         </li>
         <li>
-          <%= link_to 'My Blog', blog_path(current_user) %>
+          <%= link_to 'My Blog', blog_path(current_user.blog_slug) %>
         </li>
         <li>
           <%= link_to 'Agency Blog', featured_blog_posts_path %>
@@ -69,7 +69,7 @@
             <%= link_to 'My Account', edit_user_registration_path %>
           </li>
           <li>
-            <%= link_to 'My Blog', blog_path(current_user) %>
+            <%= link_to 'My Blog', blog_path(current_user.blog_slug) %>
           </li>
           <li>
             <%= link_to 'Agency Blog', featured_blog_posts_path %>

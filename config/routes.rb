@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :blogs, only: :show, param: :user_id
+  resources :blogs, only: :show, param: :slug
   resources :blog_posts, except: :index
   resources :featured_blog_posts, only: %i[index create update destroy]
 

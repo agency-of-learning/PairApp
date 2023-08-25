@@ -37,7 +37,7 @@ class BlogPostsController < ApplicationController
     @blog_post = authorize current_user.blog_posts.friendly.find(params[:id])
     @blog_post.destroy!
 
-    redirect_to blog_path(current_user), notice: 'Post deleted!'
+    redirect_to blog_path(current_user.blog_slug), notice: 'Post deleted!'
   end
 
   private
