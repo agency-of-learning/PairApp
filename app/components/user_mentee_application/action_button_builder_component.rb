@@ -2,10 +2,6 @@
 
 class UserMenteeApplication::ActionButtonBuilderComponent < ViewComponent::Base
   attr_reader :mentee_application
-
-  STATUS_POLICIES = {
-    promote: UserMenteeApplication::PromotionsPolicy,
-  }.freeze
   
   def initialize(mentee_application:)
     @mentee_application = mentee_application
