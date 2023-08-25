@@ -1,0 +1,8 @@
+<% if !(@user_mentee_application.current_status == "accepted") %>
+  <%= button_to "Promote to #{button_text}",
+ user_mentee_application_promotions_path(@user_mentee_application.id),
+  method: :post,
+  class: "" 
+%>
+<% end %>
+
