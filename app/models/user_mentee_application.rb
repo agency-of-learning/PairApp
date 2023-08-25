@@ -36,6 +36,30 @@ class UserMenteeApplication < ApplicationRecord
   validates :city, :state, :country, :reason_for_applying, :learned_to_code, :project_experience,
     :available_hours_per_week, presence: true
 
+  def current_status
+    mentee_application_states.last.status
+  end
+  def current_state
+    mentee_application_states.last
+  end
 
-  enum status: { pending: 0, accepted: 1, rejected: 2}
+  def next_status
+    current_status_index = MenteeApplicationState::STATUSES.keys.index(current_status.to_sym)
+    next_status_index = current_status_index.to_i + 1
+
+    # MenteeApplicationState::STATUSES.keys.fetch(next_status_index)
+    
+    if next_status_index < MenteeApplicationState::STATUSES.keys.length
+      next_status = MenteeApplicationState::STATUSES.keys[next_status_index]
+    else
+      "This is the final stage"
+    end
+  end
+
+  def promote_application(current_user)
+    next_status = self.next_status
+    mentee_application_states.build(status: next_status, status_changed_by_id: current_user).save
+  end
+
+
 end
