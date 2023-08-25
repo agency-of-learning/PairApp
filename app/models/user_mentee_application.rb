@@ -47,13 +47,7 @@ class UserMenteeApplication < ApplicationRecord
     current_status_index = MenteeApplicationState::STATUSES.keys.index(current_status.to_sym)
     next_status_index = current_status_index.to_i + 1
 
-    # MenteeApplicationState::STATUSES.keys.fetch(next_status_index)
-    
-    if next_status_index < MenteeApplicationState::STATUSES.keys.length
-      next_status = MenteeApplicationState::STATUSES.keys[next_status_index]
-    else
-      "This is the final stage"
-    end
+    MenteeApplicationState::STATUSES.keys.fetch(next_status_index)
   end
 
   def promote_application(current_user)
