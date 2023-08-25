@@ -2,7 +2,7 @@ class BlogPostsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
 
   def index
-    @blog_posts = BlogPost.published.order_newest_first
+    @blog_posts = BlogPost.includes(:user).published.order_newest_first
   end
 
   def show
