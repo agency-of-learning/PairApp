@@ -20,4 +20,29 @@
 #
 class MenteeApplicationState < ApplicationRecord
   belongs_to :user_mentee_application
+
+  STATUSES={
+    pending: 0,
+    stage_one: 1,
+    stage_two: 2,
+    stage_three: 3,
+    stage_four: 4,
+    accepted: 5,
+  }.freeze
+
+  enum status: STATUSES
+
+  def next_status
+    current_status_index = STATUSES.keys.index(self.status.to_sym)
+    next_status_index = current_status_index.to_i + 1
+
+    if next_status_index < STATUSES.keys.length
+      next_status = STATUSES.keys[next_status_index]
+    end
+  end
+
+  def current_status
+    status
+  end
+
 end
