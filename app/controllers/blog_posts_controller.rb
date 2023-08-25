@@ -1,6 +1,10 @@
 class BlogPostsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
 
+  def index
+    @blog_posts = BlogPost.published.order_newest_first
+  end
+
   def show
     @blog_post = authorize BlogPost.includes(:featured_blog_post).friendly.find(params[:id])
   end

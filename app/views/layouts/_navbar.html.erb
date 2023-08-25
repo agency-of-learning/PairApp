@@ -21,7 +21,10 @@
           <%= link_to 'My Blog', blog_path(current_user.blog_slug) %>
         </li>
         <li>
-          <%= link_to 'Agency Blog', featured_blog_posts_path %>
+          <%= link_to 'Agency Blog', blog_posts_path %>
+        </li>
+        <li>
+          <%= link_to 'Featured Blog', featured_blog_posts_path %>
         </li>
         <li>
           <%= link_to 'Pair Requests', pair_requests_path %>
@@ -72,7 +75,10 @@
             <%= link_to 'My Blog', blog_path(current_user.blog_slug) %>
           </li>
           <li>
-            <%= link_to 'Agency Blog', featured_blog_posts_path %>
+            <%= link_to 'Agency Blog', blog_posts_path %>
+          </li>
+          <li>
+            <%= link_to 'Featured Blog', featured_blog_posts_path %>
           </li>
           <li>
             <%= link_to 'Pair Requests', pair_requests_path %>

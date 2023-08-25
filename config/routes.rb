@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   end
 
   resources :blogs, only: :show, param: :slug
-  resources :blog_posts, except: :index
+  resources :blog_posts
   resources :featured_blog_posts, only: %i[index create update destroy]
 
   resources :user_mentee_applications, only: %i[index show new create edit update]
