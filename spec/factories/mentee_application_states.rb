@@ -22,7 +22,7 @@ FactoryBot.define do
   factory :mentee_application_state do
     user_mentee_application { nil }
     status { 1 }
-    note { "MyText" }
+    note { 'MyText' }
     status_changed_by_id { 1 }
   end
 end

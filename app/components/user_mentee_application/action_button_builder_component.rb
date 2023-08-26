@@ -2,7 +2,7 @@
 
 class UserMenteeApplication::ActionButtonBuilderComponent < ViewComponent::Base
   attr_reader :mentee_application
-  
+
   def initialize(mentee_application:)
     @mentee_application = mentee_application
   end
@@ -14,17 +14,19 @@ class UserMenteeApplication::ActionButtonBuilderComponent < ViewComponent::Base
   def render_button
     if MenteeApplicationState::STATUSES.keys.index(@mentee_application.mentee_application_states.last.status.to_sym) < (MenteeApplicationState::STATUSES.keys.length - 1)
       button_to button_text, user_mentee_application_promotions_path(@mentee_application),
-      method: :post,
-      class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
+        method: :post,
+        class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
     else
-      "Accepted"
+      'Accepted'
     end
   end
 
   private
+
   def application_in_final_state?
-    current_status_index = MenteeApplicationState::STATUSES.keys.index(@mentee_application.mentee_application_states.last.status.to_sym)
+    current_status_index = MenteeApplicationState::STATUSES
+    .keys.index(@mentee_application.mentee_application_states.last.status.to_sym)
     last_status_index = MenteeApplicationState::STATUSES.keys.length - 1
-    current_status_index >= last_status_index
+    current_status_index > last_status_index
   end
 end
