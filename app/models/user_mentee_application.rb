@@ -55,4 +55,8 @@ class UserMenteeApplication < ApplicationRecord
     next_status = self.next_status
     mentee_application_states.build(status: next_status, status_changed_by_id: current_user.id).save
   end
+
+  def reject_application(current_user)
+    mentee_application_states.build(status: :rejected, status_changed_by_id: current_user.id).save
+  end
 end
