@@ -12,7 +12,11 @@ class UserMenteeApplication::ActionButtonBuilderComponent < ViewComponent::Base
   end
 
   def render_button
-    if MenteeApplicationState::STATUSES.keys.index(@mentee_application.mentee_application_states.last.status.to_sym) < (MenteeApplicationState::STATUSES.keys.length - 1)
+    last_status = @mentee_application.mentee_application_states.last.status.to_sym
+    max_index = MenteeApplicationState::STATUSES.keys.length - 1
+    current_index = MenteeApplicationState::STATUSES.keys.index(last_status)
+
+    if current_index < max_index
       button_to button_text, user_mentee_application_promotions_path(@mentee_application),
         method: :post,
         class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
@@ -25,7 +29,7 @@ class UserMenteeApplication::ActionButtonBuilderComponent < ViewComponent::Base
 
   def application_in_final_state?
     current_status_index = MenteeApplicationState::STATUSES
-    .keys.index(@mentee_application.mentee_application_states.last.status.to_sym)
+                           .keys.index(@mentee_application.mentee_application_states.last.status.to_sym)
     last_status_index = MenteeApplicationState::STATUSES.keys.length - 1
     current_status_index > last_status_index
   end

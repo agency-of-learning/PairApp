@@ -53,6 +53,6 @@ class UserMenteeApplication < ApplicationRecord
 
   def promote_application(current_user)
     next_status = self.next_status
-    self.mentee_application_states.build(status: next_status, status_changed_by_id: current_user.id).save
+    mentee_application_states.build(status: next_status, status_changed_by_id: current_user.id).save
   end
 end

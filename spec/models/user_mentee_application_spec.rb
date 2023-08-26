@@ -42,7 +42,7 @@ RSpec.describe UserMenteeApplication do
 
     expect(mentee_application.mentee_application_states.count).to eq(initial_state_count + 1)
     last_state = mentee_application.mentee_application_states.last
-    
+
     expect(last_state.status).to eq('stage_two')
     expect(last_state.status_changed_by_id).to eq(user.id)
   end

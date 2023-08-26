@@ -36,6 +36,6 @@ class MenteeApplicationState < ApplicationRecord
     current_status_index = STATUSES.keys.index(status.to_sym)
     next_status_index = current_status_index.to_i + 1
 
-    next_status = STATUSES.keys[next_status_index] if next_status_index < STATUSES.keys.length
+    STATUSES.keys[next_status_index] if next_status_index < STATUSES.keys.length
   end
 end
