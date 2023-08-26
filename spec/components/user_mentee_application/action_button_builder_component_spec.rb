@@ -28,7 +28,7 @@ RSpec.describe UserMenteeApplication::ActionButtonBuilderComponent, type: :compo
     end
   end
 
-  context 'when current mentee application has a accepted status' do
+  context 'when current mentee application has an accepted status' do
     it "renders 'Reject' button" do
       mentee_application.mentee_application_states.last.accepted!
 
@@ -44,7 +44,7 @@ RSpec.describe UserMenteeApplication::ActionButtonBuilderComponent, type: :compo
       mentee_application.mentee_application_states.last.rejected!
 
       component = described_class.new(mentee_application:)
-      rendered_component = render_inline(component)
+      render_inline(component)
 
       expect(page).to have_button('Restore Application')
     end
