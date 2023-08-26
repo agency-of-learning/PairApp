@@ -7,33 +7,46 @@ RSpec.describe UserMenteeApplication::ActionButtonBuilderComponent, type: :compo
   let(:component) { described_class.new(mentee_application:) }
 
   context 'when current mentee application has a pending state' do
-    it 'returns HTML that includes a button element' do
+    it 'renders a Promote and Reject button' do
       component = described_class.new(mentee_application:)
-      rendered_component = render_inline(component)
+      render_inline(component)
 
-      expect(rendered_component.text).to include('stage_two')
+      expect(page).to have_button('Promote to next stage')
+      expect(page).to have_button('Reject')
     end
   end
 
   context 'when current mentee application has a pending stage_three status' do
-    it 'returns HTML that includes a button element' do
+    it 'renders a Promote and Reject button' do
       mentee_application.mentee_application_states.last.stage_three!
 
       component = described_class.new(mentee_application:)
-      rendered_component = render_inline(component)
+      render_inline(component)
 
-      expect(rendered_component.text).to include('stage_four')
+      expect(page).to have_button('Promote to next stage')
+      expect(page).to have_button('Reject')
     end
   end
 
   context 'when current mentee application has a accepted status' do
-    it "returns 'accepted' text" do
+    it "renders 'Reject' button" do
       mentee_application.mentee_application_states.last.accepted!
+
+      component = described_class.new(mentee_application:)
+      render_inline(component)
+
+      expect(page).to have_button('Reject')
+    end
+  end
+
+  context 'when current mentee application has a rejected status' do
+    it "returns a 'Restore' button" do
+      mentee_application.mentee_application_states.last.rejected!
 
       component = described_class.new(mentee_application:)
       rendered_component = render_inline(component)
 
-      expect(rendered_component.text).to include('Accepted')
+      expect(page).to have_button('Restore Application')
     end
   end
 end
