@@ -30,5 +30,20 @@
 require 'rails_helper'
 
 RSpec.describe UserMenteeApplication do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:user) { create(:user) }
+  let(:mentee_application) { create(:user_mentee_application) }
+
+  it 'creates a new mentee_application_state with the next status and current_user_id' do
+    initial_state_count = mentee_application.mentee_application_states.count
+
+    allow(mentee_application).to receive(:next_status).and_return('stage_two')
+
+    mentee_application.promote_application(user)
+
+    expect(mentee_application.mentee_application_states.count).to eq(initial_state_count + 1)
+    last_state = mentee_application.mentee_application_states.last
+    
+    expect(last_state.status).to eq('stage_two')
+    expect(last_state.status_changed_by_id).to eq(user.id)
+  end
 end
