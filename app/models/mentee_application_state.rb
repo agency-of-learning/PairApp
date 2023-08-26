@@ -27,7 +27,8 @@ class MenteeApplicationState < ApplicationRecord
     stage_two: 2,
     stage_three: 3,
     stage_four: 4,
-    accepted: 5
+    accepted: 5,
+    rejected: 6
   }.freeze
 
   enum status: STATUSES
