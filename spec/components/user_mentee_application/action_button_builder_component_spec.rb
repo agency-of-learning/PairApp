@@ -3,11 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe UserMenteeApplication::ActionButtonBuilderComponent, type: :component do
-  let(:mentee_application) { create(:user_mentee_application) }
-  # Using the correct attribute name
-  let!(:mentee_application_state) do
-    create(:mentee_application_state, user_mentee_application: mentee_application)
-  end
+  let!(:mentee_application) { create(:user_mentee_application, :with_application_state) }
   let(:component) { described_class.new(mentee_application:) }
 
   context 'when current mentee application has a pending state' do
