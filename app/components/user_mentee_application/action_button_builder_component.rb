@@ -13,15 +13,29 @@ class UserMenteeApplication::ActionButtonBuilderComponent < ViewComponent::Base
 
   def render_button
     last_status = @mentee_application.mentee_application_states.last.status.to_sym
+    max_index = MenteeApplicationState::STATUSES.keys.length - 2
+    current_index = MenteeApplicationState::STATUSES.keys.index(last_status)
+
+    if current_index < max_index && last_status != :rejected
+      button_to "Promote to next stage", user_mentee_application_promotions_path(@mentee_application),
+        method: :post,
+        class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
+    elsif last_status == :rejected 
+      button_to "Restore Application", user_mentee_application_promotions_path(@mentee_application),
+      method: :post,
+      class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
+    end
+  end
+
+  def render_reject_button
+    last_status = @mentee_application.mentee_application_states.last.status.to_sym
     max_index = MenteeApplicationState::STATUSES.keys.length - 1
     current_index = MenteeApplicationState::STATUSES.keys.index(last_status)
 
-    if current_index < max_index
-      button_to button_text, user_mentee_application_promotions_path(@mentee_application),
+    if !@mentee_application.mentee_application_states.last.rejected?
+        button_to 'Reject', user_mentee_application_rejections_path(@mentee_application),
         method: :post,
         class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
-    else
-      'Accepted'
     end
   end
 
