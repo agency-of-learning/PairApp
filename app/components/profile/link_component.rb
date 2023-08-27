@@ -2,10 +2,10 @@
 
 class Profile::LinkComponent < ViewComponent::Base
   LINK_ICONS = {
-    github_link: 'fa-brands fa-github text-[#181717] hover:bg-[#181717]',
-    linked_in_link: 'fa-brands fa-linkedin-in text-[#0072b1] hover:bg-[#0072b1]',
+    github_link: 'fa-brands fa-github text-neutral hover:bg-neutral',
+    linked_in_link: 'fa-brands fa-linkedin-in text-linkedin-brand hover:bg-linkedin-brand',
     personal_site_link: 'fa-solid fa-link hover:bg-neutral',
-    twitter_link: 'fa-brands fa-twitter text-[#26a7de] hover:bg-[#26a7de]'
+    twitter_link: 'fa-brands fa-twitter text-twitter-brand hover:bg-twitter-brand'
   }.freeze
 
   with_collection_parameter :link_type
