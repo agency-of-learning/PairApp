@@ -26,4 +26,8 @@ class Profile::PictureComponent < ViewComponent::Base
       'placeholder_profile_picture.png'
     end
   end
+
+  def open_to_work?
+    profile.job_search_status == 'open_to_work'
+  end
 end
