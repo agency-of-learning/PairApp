@@ -36,6 +36,10 @@ class UserMenteeApplication::ActionButtonBuilderComponent < ViewComponent::Base
       class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
   end
 
+  def call
+    render_button + render_reject_button
+  end
+
   private
 
   def application_in_final_state?
