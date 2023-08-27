@@ -48,6 +48,11 @@ module.exports = {
       "border-error",
       "bg-success",
       "bg-error",
+      "direct-upload",
+      "direct-upload--pending",
+      "direct-upload__progress",
+      "direct-upload--error",
+      "direct-upload--complete",
     ],
   },
 };

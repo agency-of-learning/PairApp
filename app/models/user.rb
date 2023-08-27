@@ -101,6 +101,10 @@ class User < ApplicationRecord
     ActiveSupport::TimeZone.new(time_zone).tzinfo.identifier
   end
 
+  def current_resume
+    resumes.find_by(current: true)
+  end
+
   enum role: {
     member: 0,
     admin: 1

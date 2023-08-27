@@ -33,11 +33,11 @@ FactoryBot.define do
     slug { user.full_name.parameterize }
 
     transient do
-      attached_picture { false }
+      picture { nil }
     end
 
     after(:build) do |profile, evaluator|
-      next unless evaluator.attached_picture
+      next unless evaluator.picture
 
       profile.picture.attach(
         io: Rails.root.join('spec/fixtures/test_image.png').open,
