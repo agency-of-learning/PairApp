@@ -92,4 +92,16 @@ RSpec.describe User do
       expect(user.full_name).to eq(expected_full_name)
     end
   end
+
+  describe '#blog_slug' do
+    let(:user) { create(:user) }
+
+    before do
+      user.profile.update(slug: 'test-slug')
+    end
+
+    it 'returns the slug from the user profile' do
+      expect(user.blog_slug).to eq 'test-slug'
+    end
+  end
 end

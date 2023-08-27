@@ -104,6 +104,10 @@ class User < ApplicationRecord
   def current_resume
     resumes.find_by(current: true)
   end
+  
+  def blog_slug
+    profile.slug
+  end
 
   enum role: {
     member: 0,

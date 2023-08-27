@@ -1,6 +1,10 @@
 class BlogPostsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
 
+  def index
+    @blog_posts = BlogPost.includes(:user).published.order_newest_first
+  end
+
   def show
     @blog_post = authorize BlogPost.includes(:featured_blog_post).friendly.find(params[:id])
   end
@@ -37,7 +41,7 @@ class BlogPostsController < ApplicationController
     @blog_post = authorize current_user.blog_posts.friendly.find(params[:id])
     @blog_post.destroy!
 
-    redirect_to blog_path(current_user), notice: 'Post deleted!'
+    redirect_to blog_path(current_user.blog_slug), notice: 'Post deleted!'
   end
 
   private
