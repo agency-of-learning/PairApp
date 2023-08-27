@@ -2,7 +2,7 @@
   <div class="relative inline-block w-full object-cover rounded-full">
     <%= image_tag profile_picture_src, class: 'h-auto max-w-full block' %>
     <% if open_to_work? %>
-      <div class="absolute top-0 left-0 w-full object-cover rounded-full">
+      <div class="absolute top-0 left-0 w-full">
         <%= render inline: Rails.root.join('app/assets/images/open_to_work.svg').read %>
       </div>
     <% end %>
