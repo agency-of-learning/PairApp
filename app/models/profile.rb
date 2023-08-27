@@ -50,6 +50,8 @@ class Profile < ApplicationRecord
   WORK_MODELS = %w[onsite hybrid remote].freeze
   validate :work_model_preferences_must_exist, :must_not_duplicate_preferences
 
+  LINK_TYPES = %i[linked_in_link github_link personal_site_link twitter_link].freeze
+
   def work_model_preferences
     super || []
   end
