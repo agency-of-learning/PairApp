@@ -96,12 +96,24 @@ RSpec.describe User do
   describe '#blog_slug' do
     let(:user) { create(:user) }
 
-    before do
-      user.profile.update(slug: 'test-slug')
+    context 'when the profile has a slug' do
+      before do
+        user.profile.update(slug: 'test-slug')
+      end
+
+      it 'returns the slug from the user profile' do
+        expect(user.blog_slug).to eq 'test-slug'
+      end
     end
 
-    it 'returns the slug from the user profile' do
-      expect(user.blog_slug).to eq 'test-slug'
+    context 'when the profile does not have a slug' do
+      before do
+        user.profile.update(slug: nil)
+      end
+
+      it 'returns the id of the user profile' do
+        expect(user.blog_slug).to eq user.profile.id.to_s
+      end
     end
   end
 end
