@@ -102,7 +102,7 @@ class User < ApplicationRecord
   end
 
   def blog_slug
-    profile.slug
+    profile.slug || profile.id
   end
 
   enum role: {
