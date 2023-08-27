@@ -36,6 +36,13 @@ FactoryBot.define do
     work_model_preferences { ['remote'] }
     slug { user.full_name.parameterize }
 
+    trait :with_links do
+      github_link { Faker::Internet.url }
+      linked_in_link { Faker::Internet.url }
+      personal_site_link { Faker::Internet.url }
+      twitter_link { Faker::Internet.url }
+    end
+
     transient do
       attached_picture { false }
     end
