@@ -4,10 +4,14 @@
 #
 #  id                     :bigint           not null, primary key
 #  bio                    :text
+#  github_link            :string
 #  job_search_status      :integer          default("not_job_searching")
 #  job_title              :string
+#  linked_in_link         :string
 #  location               :string
+#  personal_site_link     :string
 #  slug                   :string
+#  twitter_link           :string
 #  work_model_preferences :enum             is an Array
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
