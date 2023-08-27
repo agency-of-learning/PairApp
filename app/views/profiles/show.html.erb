@@ -17,7 +17,7 @@
           <div class="badge badge-secondary badge-outline"><%= preference %></div>
         <% end %>
       </div>
-      <div class="flex gap-3">
+      <div class="flex justify-center sm:justify-start gap-3">
         <%= render Profile::LinkComponent.with_collection(Profile::LINK_TYPES, profile: @profile) %>
       </div>
     </div>
