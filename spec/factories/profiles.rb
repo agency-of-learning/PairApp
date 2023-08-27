@@ -37,10 +37,10 @@ FactoryBot.define do
     slug { user.full_name.parameterize }
 
     trait :with_links do
-      github_link { Faker::Internet.url }
-      linked_in_link { Faker::Internet.url }
+      github_link { Faker::Internet.url(host: 'github.com') }
+      linked_in_link { Faker::Internet.url(host: 'linkedin.com/in') }
       personal_site_link { Faker::Internet.url }
-      twitter_link { Faker::Internet.url }
+      twitter_link { Faker::Internet.url(host: 'twitter.com') }
     end
 
     transient do
