@@ -42,6 +42,22 @@
       <% end %>
       <%= form.text_field :slug, required: true, pattern: '^[\-_a-zA-Z0-9]+$', class: 'input input-primary input-bordered' %>
     </div>
+    <div class="form-control">
+      <%= form.label :linked_in_link, "LinkedIn", class: 'label label-text text-lg' %>
+      <%= form.text_field :linked_in_link, class: 'input input-primary input-bordered' %>
+    </div>
+    <div class="form-control">
+      <%= form.label :github_link, "GitHub", class: 'label label-text text-lg' %>
+      <%= form.text_field :github_link, class: 'input input-primary input-bordered' %>
+    </div>
+    <div class="form-control">
+      <%= form.label :twitter_link, "Twitter", class: 'label label-text text-lg' %>
+      <%= form.text_field :twitter_link, class: 'input input-primary input-bordered' %>
+    </div>
+    <div class="form-control">
+      <%= form.label :personal_site_link, "Personal Site", class: 'label label-text text-lg' %>
+      <%= form.text_field :personal_site_link, class: 'input input-primary input-bordered' %>
+    </div>
     <div class="form-control mb-4">
       <%= form.label :bio, class: 'label label-text text-lg' %>
       <%= form.text_area :bio,
