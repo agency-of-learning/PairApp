@@ -4,10 +4,14 @@
 #
 #  id                     :bigint           not null, primary key
 #  bio                    :text
+#  github_link            :string
 #  job_search_status      :integer          default("not_job_searching")
 #  job_title              :string
+#  linked_in_link         :string
 #  location               :string
+#  personal_site_link     :string
 #  slug                   :string
+#  twitter_link           :string
 #  work_model_preferences :enum             is an Array
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -37,6 +41,16 @@ class Profile < ApplicationRecord
   validates :slug, format: { with: /\A[\w\-]+\z/, message: 'must be alphanumeric with - or _ only' }
   validates :slug, uniqueness: { case_sensitive: false, message: 'already taken' }
 
+  validates :github_link,
+    format: { with: /github.com/, message: 'must be a github link' },
+    allow_blank: true
+  validates :linked_in_link,
+    format: { with: %r{linkedin.com/in}, message: 'must be a linkedin link' },
+    allow_blank: true
+  validates :twitter_link,
+    format: { with: /twitter.com/, message: 'must be a twitter link' },
+    allow_blank: true
+
   enum job_search_status: {
     not_job_searching: 0,
     open_to_opportunities: 1,
@@ -45,6 +59,8 @@ class Profile < ApplicationRecord
 
   WORK_MODELS = %w[onsite hybrid remote].freeze
   validate :work_model_preferences_must_exist, :must_not_duplicate_preferences
+
+  LINK_TYPES = %i[linked_in_link github_link personal_site_link twitter_link].freeze
 
   def work_model_preferences
     super || []
