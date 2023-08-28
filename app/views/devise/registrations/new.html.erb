@@ -1,28 +1,48 @@
-<h2>Sign up</h2>
+<h1 class="text-3xl text-center font-bold">Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="container  max-w-xl mx-auto">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="form-control">
+      <%= f.label :first_name, class: 'label label-text text-lg' %>
+      <%= f.text_field :first_name, autofocus: true, autocomplete: 'given-name', required: true, class: 'input input-bordered' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="form-control">
+      <%= f.label :last_name, class: 'label label-text text-lg' %>
+      <%= f.text_field :last_name, required: true, autocomplete: 'family-name', class: 'input input-bordered' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="form-control">
+      <%= f.label :email, class: 'label label-text text-lg' %>
+      <%= f.email_field :email, autocomplete: "email", class: 'input input-bordered' %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-<%= render "devise/shared/links" %>
+    <div class="form-control">
+      <%= f.label :time_zone, class: 'label label-text text-lg' %>
+      <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.country_zones('US'), {}, {class:"select select-bordered w-full max-w-xs"}) %>
+    </div>
+
+    <div class="form-control">
+      <%= f.label :password, class: 'label label-text text-lg' %> 
+      <%= f.password_field :password, autocomplete: "new-password", class: 'input input-bordered' %>
+      <% if @minimum_password_length %>
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
+
+    <div class="form-control mb-4">
+      <%= f.label :password_confirmation, class: 'label label-text text-lg' %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input input-bordered' %>
+    </div>
+
+    <div class="form-control">
+      <%= f.submit "Sign up", class: 'btn btn-primary mb-4' %>
+      <p>
+        Already have an account?
+        <%= link_to "Log In", new_user_session_path, class: 'link link-secondary' %>
+      </p>
+    </div>
+  <% end %>
+</div>
