@@ -33,17 +33,32 @@ RSpec.describe UserMenteeApplication do
   let(:user) { create(:user) }
   let(:mentee_application) { create(:user_mentee_application) }
 
-  it 'creates a new mentee_application_state with the next status and current_user_id' do
-    initial_state_count = mentee_application.mentee_application_states.count
+  # let!(:initial_state) { create(:mentee_application_state, status: :pending, status_changed_by_id: user, user_mentee_application: mentee_application) }
 
-    allow(mentee_application).to receive(:next_status).and_return('stage_two')
+  # it 'creates a new mentee_application_state with the next status and current_user_id' do
+  #   initial_state_count = mentee_application.mentee_application_states.count
 
-    mentee_application.promote_application(user)
+  #   allow(mentee_application).to receive(:next_status).and_return('stage_two')
 
-    expect(mentee_application.mentee_application_states.count).to eq(initial_state_count + 1)
-    last_state = mentee_application.mentee_application_states.last
+  #   mentee_application.promote_application(user)
 
-    expect(last_state.status).to eq('stage_two')
-    expect(last_state.status_changed_by_id).to eq(user.id)
+  #   expect(mentee_application.mentee_application_states.count).to eq(initial_state_count + 1)
+  #   last_state = mentee_application.mentee_application_states.last
+
+  #   expect(last_state.status).to eq('stage_two')
+  #   expect(last_state.status_changed_by_id).to eq(user.id)
+  # end
+
+  describe '#promote_application' do
+    it 'promotes the application to the next status' do
+      initial_state_count = mentee_application.mentee_application_states.count
+
+      expect { mentee_application.promote_application(user) }.to change { mentee_application.mentee_application_states.count }.by(1)
+
+      last_state = mentee_application.mentee_application_states.last
+      
+      expect(last_state.status).to eq('stage_one')
+      expect(last_state.status_changed_by_id).to eq(user.id)
+    end
   end
 end
