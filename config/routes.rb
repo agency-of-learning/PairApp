@@ -9,7 +9,11 @@ Rails.application.routes.draw do
 
   resources :feedbacks, only: %i[index edit update show]
 
-  devise_for :users, controllers: { invitations: 'invitations' }
+  devise_for :users, controllers: {
+    invitations: 'users/invitations',
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
 
   # Root
   root to: 'landing#index'

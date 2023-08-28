@@ -1,4 +1,4 @@
-class InvitationsController < Devise::InvitationsController
+class Users::InvitationsController < Devise::InvitationsController
   before_action -> { authorize :invitation }
 
   # PUT /users/invitation
