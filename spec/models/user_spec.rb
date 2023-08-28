@@ -17,7 +17,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role                   :integer          default("member"), not null
+#  role                   :integer          default("applicant"), not null
 #  time_zone              :string           default("UTC"), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -50,18 +50,6 @@ RSpec.describe User do
 
     it 'returns an ActiveRecord Relation' do
       expect(user.my_pair_requests).to be_a ActiveRecord::Relation
-    end
-  end
-
-  describe '#role' do
-    let(:user) { build(:user) }
-
-    it 'defaults to member' do
-      expect(user.role).to eq('member')
-    end
-
-    it 'responds to member? properly' do
-      expect(user.member?).to be(true)
     end
   end
 
