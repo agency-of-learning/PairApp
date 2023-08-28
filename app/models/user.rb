@@ -17,7 +17,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role                   :integer          default("member"), not null
+#  role                   :integer          default("applicant"), not null
 #  time_zone              :string           default("UTC"), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -107,6 +107,7 @@ class User < ApplicationRecord
 
   enum role: {
     member: 0,
-    admin: 1
+    admin: 1,
+    applicant: 2
   }
 end
