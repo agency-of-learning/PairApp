@@ -41,7 +41,7 @@ class UserMenteeApplication < ApplicationRecord
   end
 
   def current_state
-    mentee_application_states.last
+    current_state.status
   end
 
   def next_status
