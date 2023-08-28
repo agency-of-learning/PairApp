@@ -12,7 +12,7 @@
   <% end %>
   
   <%= render TableCellComponent.new(container_link: mentee_application) do %>
-    <%= mentee_application.current_status %>
+    <%= mentee_application.current_status.humanize %>
   <% end %>
 
   <%= render(TableCellComponent.new(class_names: "hidden sm:table-cell text-center")) do %>
