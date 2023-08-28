@@ -36,6 +36,8 @@ class UserMenteeApplication < ApplicationRecord
   validates :city, :state, :country, :reason_for_applying, :learned_to_code, :project_experience,
     :available_hours_per_week, presence: true
 
+  after_create :create_initial_application_state
+
   def current_status
     mentee_application_states.last.status
   end
@@ -58,5 +60,12 @@ class UserMenteeApplication < ApplicationRecord
 
   def reject_application(current_user)
     mentee_application_states.build(status: :rejected, status_changed_by_id: current_user.id).save
+  end
+
+
+  private
+
+  def create_initial_application_state
+    mentee_application_states.build(status: :pending)
   end
 end
