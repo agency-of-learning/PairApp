@@ -46,12 +46,5 @@ class UserMenteeApplication::ActionButtonBuilderComponent < ViewComponent::Base
   #   render_button + render_reject_button
   # end
 
-  private
 
-  def application_in_final_state?
-    current_status_index = MenteeApplicationState::STATUSES
-                           .keys.index(@mentee_application.mentee_application_states.last.status.to_sym)
-    last_status_index = MenteeApplicationState::STATUSES.keys.length - 1
-    current_status_index > last_status_index
-  end
 end
