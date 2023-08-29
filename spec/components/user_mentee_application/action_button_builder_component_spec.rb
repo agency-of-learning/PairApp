@@ -4,7 +4,6 @@ require 'rails_helper'
 
 RSpec.describe UserMenteeApplication::ActionButtonBuilderComponent, type: :component do
   let!(:mentee_application) { create(:user_mentee_application) }
-  # let(:component) { described_class.new(mentee_application:) }
 
   context 'when current mentee application has a pending state' do
     it 'renders a Promote and Reject button' do
@@ -29,24 +28,24 @@ RSpec.describe UserMenteeApplication::ActionButtonBuilderComponent, type: :compo
   end
 
   context 'when current mentee application has an accepted status' do
-    it "renders 'Reject' button" do
+    it "renders 'Accepted' text" do
       mentee_application.mentee_application_states.last.accepted!
 
       component = described_class.new(mentee_application:)
       render_inline(component)
 
-      expect(page).to have_button('Reject')
+      expect(page).to have_text('Accepted')
     end
   end
 
   context 'when current mentee application has a rejected status' do
-    it "returns a 'Restore' button" do
+    it "returns  'Rejected' text" do
       mentee_application.mentee_application_states.last.rejected!
 
       component = described_class.new(mentee_application:)
       render_inline(component)
 
-      expect(page).to have_button('Restore Application')
+      expect(page).to have_text('Rejected')
     end
   end
 end
