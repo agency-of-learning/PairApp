@@ -49,4 +49,18 @@ RSpec.describe UserMenteeApplication do
       expect(mentee_application.current_status).to eq('rejected')
     end
   end
+
+  describe "when application is denied" do
+    it 'creates a new application state  record with status_changed_by_id of current_user ' do
+      mentee_application.reject_application(user)
+      expect(mentee_application.mentee_application_states.last.status_changed_by_id).to eq(user.id)
+    end
+  end
+
+  describe 'When application is promoted' do
+    it 'creates a new application state record with status_changed_by_id of current_user' do
+      mentee_application.promote_application(user)
+      expect(mentee_application.mentee_application_states.last.status_changed_by_id).to eq(user.id)
+    end
+  end
 end
