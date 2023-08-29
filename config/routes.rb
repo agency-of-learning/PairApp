@@ -9,11 +9,11 @@ Rails.application.routes.draw do
 
   resources :feedbacks, only: %i[index edit update show]
 
-  devise_for :users, skip: [:registrations], controllers: { invitations: 'invitations' }
-  as :user do
-    get 'users/edit' => 'devise/registrations#edit', as: 'edit_user_registration'
-    put 'users' => 'devise/registrations#update', as: 'user_registration'
-  end
+  devise_for :users, controllers: {
+    invitations: 'users/invitations',
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
 
   # Root
   root to: 'landing#index'
@@ -44,8 +44,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :blogs, only: :show, param: :user_id
-  resources :blog_posts, except: :index
+  resources :blogs, only: :show, param: :slug
+  resources :blog_posts
   resources :featured_blog_posts, only: %i[index create update destroy]
 
   resources :user_mentee_applications, only: %i[index show new create edit update] do

@@ -17,7 +17,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role                   :integer          default("member"), not null
+#  role                   :integer          default("applicant"), not null
 #  time_zone              :string           default("UTC"), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -37,6 +37,7 @@ FactoryBot.define do
     last_name { Faker::Name.last_name }
     email { Faker::Internet.email }
     password { Faker::Internet.password(min_length: 6) }
+    role { User.roles[:member] }
 
     trait :admin do
       role { :admin }

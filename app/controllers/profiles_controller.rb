@@ -8,14 +8,11 @@ class ProfilesController < ApplicationController
   def edit; end
 
   def update
-    respond_to do |format|
-      if @profile.update(profile_params)
-        format.html { redirect_to @profile, success: 'Profile successfully updated!' }
-        format.turbo_stream { flash.now[:notice] = 'Profile successfully updated!' }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.turbo_stream { flash.now[:form_errors] = @profile.errors.full_messages }
-      end
+    if @profile.update(profile_params)
+      redirect_to @profile, success: 'Profile successfully updated!'
+    else
+      flash.now[:form_errors] = @profile.errors.full_messages
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -33,6 +30,10 @@ class ProfilesController < ApplicationController
       :bio,
       :slug,
       :job_search_status,
+      :github_link,
+      :linked_in_link,
+      :personal_site_link,
+      :twitter_link,
       work_model_preferences: []
     )
   end

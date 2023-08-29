@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   def show
-    @author = User.find(params[:user_id])
+    @author = Profile.friendly.find(params[:slug]).user
     blog_posts = @author.blog_posts.order_newest_first
 
     @published_posts = blog_posts.published
