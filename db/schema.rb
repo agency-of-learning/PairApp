@@ -104,7 +104,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_23_001215) do
 
   create_table "mentee_application_states", force: :cascade do |t|
     t.bigint "user_mentee_application_id", null: false
-    t.integer "status"
+    t.integer "status", default: 0, null: false
     t.text "note"
     t.integer "status_changed_by_id"
     t.datetime "created_at", null: false

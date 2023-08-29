@@ -4,7 +4,7 @@
 #
 #  id                         :bigint           not null, primary key
 #  note                       :text
-#  status                     :integer
+#  status                     :integer          default("pending"), not null
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  status_changed_by_id       :integer
