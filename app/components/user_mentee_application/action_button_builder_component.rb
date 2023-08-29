@@ -7,10 +7,6 @@ class UserMenteeApplication::ActionButtonBuilderComponent < ViewComponent::Base
     @mentee_application = mentee_application
   end
 
-  def button_text
-    @mentee_application.mentee_application_states.last.next_status
-  end
-
   def render_button
     if @mentee_application.can_promote?
       render_promote_button
