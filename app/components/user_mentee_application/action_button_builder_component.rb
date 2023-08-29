@@ -15,23 +15,22 @@ class UserMenteeApplication::ActionButtonBuilderComponent < ViewComponent::Base
     if @mentee_application.can_promote?
       render_promote_button
     elsif @mentee_application.rejected?
-      "Rejected"
+      'Rejected'
     elsif @mentee_application.accepted?
-      "Accepted"
+      'Accepted'
     end
   end
 
   def render_promote_button
     button_to 'Promote to next stage', user_mentee_application_promotions_path(@mentee_application),
-              method: :post,
-              class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
+      method: :post,
+      class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
   end
-  
 
   def render_restore_button
     button_to 'Restore Application', user_mentee_application_promotions_path(@mentee_application),
-              method: :post,
-              class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
+      method: :post,
+      class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
   end
 
   def render_reject_button
