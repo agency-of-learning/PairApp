@@ -39,11 +39,11 @@ class UserMenteeApplication < ApplicationRecord
   after_create :create_initial_application_state
 
   def current_status
-    mentee_application_states.last.status
+    current_state.status
   end
 
   def current_state
-    current_state.status
+    mentee_application_states.last
   end
 
   def next_status
