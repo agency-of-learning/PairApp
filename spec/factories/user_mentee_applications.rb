@@ -39,6 +39,5 @@ FactoryBot.define do
     learned_to_code { Faker::Lorem.paragraph }
     project_experience { Faker::Lorem.paragraph }
     reason_for_applying { 'Help with job search' }
-
   end
 end
