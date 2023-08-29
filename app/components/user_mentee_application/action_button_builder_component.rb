@@ -12,19 +12,26 @@ class UserMenteeApplication::ActionButtonBuilderComponent < ViewComponent::Base
   end
 
   def render_button
-    last_status = @mentee_application.mentee_application_states.last.status.to_sym
-    max_index = MenteeApplicationState::STATUSES.keys.length - 2
-    current_index = MenteeApplicationState::STATUSES.keys.index(last_status)
-
-    if current_index < max_index && last_status != :rejected
-      button_to 'Promote to next stage', user_mentee_application_promotions_path(@mentee_application),
-        method: :post,
-        class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
-    elsif last_status == :rejected
-      button_to 'Restore Application', user_mentee_application_promotions_path(@mentee_application),
-        method: :post,
-        class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
+    if @mentee_application.can_promote?
+      render_promote_button
+    elsif @mentee_application.rejected?
+      "Rejected"
+    elsif @mentee_application.accepted?
+      "Accepted"
     end
+  end
+
+  def render_promote_button
+    button_to 'Promote to next stage', user_mentee_application_promotions_path(@mentee_application),
+              method: :post,
+              class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
+  end
+  
+
+  def render_restore_button
+    button_to 'Restore Application', user_mentee_application_promotions_path(@mentee_application),
+              method: :post,
+              class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
   end
 
   def render_reject_button

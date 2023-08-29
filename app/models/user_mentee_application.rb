@@ -46,6 +46,8 @@ class UserMenteeApplication < ApplicationRecord
     current_state.status
   end
 
+  
+
   def next_status
     current_status_index = MenteeApplicationState::STATUSES.keys.index(current_status.to_sym)
     next_status_index = current_status_index.to_i + 1
@@ -63,8 +65,26 @@ class UserMenteeApplication < ApplicationRecord
   end
 
 
-  private
+  def can_promote?
+    current_index = MenteeApplicationState::STATUSES.keys.index(last_status)
+    max_index = MenteeApplicationState::STATUSES.keys.length - 2
+    current_index < max_index && last_status != :rejected
+  end
 
+  def rejected?
+    last_status == :rejected
+  end
+
+  def accepted?
+    last_status == :accepted
+  end
+
+  def last_status
+    mentee_application_states.last&.status&.to_sym
+  end
+
+  
+  private
   def create_initial_application_state
     mentee_application_states.build(status: :pending)
   end
