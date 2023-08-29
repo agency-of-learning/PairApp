@@ -23,12 +23,6 @@ class UserMenteeApplication::ActionButtonBuilderComponent < ViewComponent::Base
       class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
   end
 
-  def render_restore_button
-    button_to 'Restore Application', user_mentee_application_promotions_path(@mentee_application),
-      method: :post,
-      class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
-  end
-
   def render_reject_button
     last_state = @mentee_application.mentee_application_states.last
     return if last_state&.rejected?
