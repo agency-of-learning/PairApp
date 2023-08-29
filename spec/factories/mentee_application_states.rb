@@ -20,7 +20,7 @@
 #
 FactoryBot.define do
   factory :mentee_application_state do
-    association :user_mentee_application
+    user_mentee_application
     status { 1 }
     note { 'MyText' }
     status_changed_by_id { 1 }
