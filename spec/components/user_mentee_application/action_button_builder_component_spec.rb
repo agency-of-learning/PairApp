@@ -39,7 +39,7 @@ RSpec.describe UserMenteeApplication::ActionButtonBuilderComponent, type: :compo
   end
 
   context 'when current mentee application has a rejected status' do
-    it "returns  'Rejected' text" do
+    it "returns 'Rejected' text" do
       mentee_application.mentee_application_states.last.rejected!
 
       component = described_class.new(mentee_application:)
