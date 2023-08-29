@@ -33,32 +33,20 @@ RSpec.describe UserMenteeApplication do
   let(:user) { create(:user) }
   let(:mentee_application) { create(:user_mentee_application) }
 
-  # let!(:initial_state) { create(:mentee_application_state, status: :pending, status_changed_by_id: user, user_mentee_application: mentee_application) }
+  describe '#create' do
+    it 'creates an initial application state' do
+      expect(mentee_application.mentee_application_states.count).to eq(1)
+    end
 
-  # it 'creates a new mentee_application_state with the next status and current_user_id' do
-  #   initial_state_count = mentee_application.mentee_application_states.count
+    it 'sets the initial application state to pending' do
+      expect(mentee_application.current_status).to eq('pending')
+    end
+  end
 
-  #   allow(mentee_application).to receive(:next_status).and_return('stage_two')
-
-  #   mentee_application.promote_application(user)
-
-  #   expect(mentee_application.mentee_application_states.count).to eq(initial_state_count + 1)
-  #   last_state = mentee_application.mentee_application_states.last
-
-  #   expect(last_state.status).to eq('stage_two')
-  #   expect(last_state.status_changed_by_id).to eq(user.id)
-  # end
-
-  describe '#promote_application' do
-    it 'promotes the application to the next status' do
-      initial_state_count = mentee_application.mentee_application_states.count
-
-      expect { mentee_application.promote_application(user) }.to change { mentee_application.mentee_application_states.count }.by(1)
-
-      last_state = mentee_application.mentee_application_states.last
-      
-      expect(last_state.status).to eq('stage_one')
-      expect(last_state.status_changed_by_id).to eq(user.id)
+  describe '#reject_application' do
+    it 'creates a rejected application state' do
+      mentee_application.reject_application(user)
+      expect(mentee_application.current_status).to eq('rejected')
     end
   end
 end
