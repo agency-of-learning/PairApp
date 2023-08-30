@@ -4,15 +4,14 @@ module Resumes
 
     def initialize(user:, params:)
       @user = user
-      @attributes = attributes(params)
+      @attributes = resume_attributes(params)
       @current_resume_id = params[:current_resume_id]
     end
 
     def call!
       ActiveRecord::Base.transaction do
-        # rubocop:disable Rails::SkipsModelValidations
-        user.resumes.update_all(current: false)
-        # rubocop:enable Rails::SkipsModelValidations
+        user.current_resume.update!(current: false)
+
         if attributes[:resume]
           user.resumes.create!(attributes)
           next
@@ -24,7 +23,7 @@ module Resumes
 
     private
 
-    def attributes(params)
+    def resume_attributes(params)
       {
         resume: params[:resume],
         name: params[:resume_name],
