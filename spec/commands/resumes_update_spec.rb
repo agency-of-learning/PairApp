@@ -45,7 +45,7 @@ RSpec.describe Resumes::Update do
 
       it 'sets all other resumes to not current' do
         command.call!
-        expect(existing_resume.reload.current).to eq(false)
+        expect(existing_resume.reload.current).to be(false)
       end
     end
 
@@ -63,14 +63,12 @@ RSpec.describe Resumes::Update do
       end
 
       it 'associates sets the current resume to the new resume' do
-        expect { command.call! }.to change {
-          user.current_resume
-        }.from(newer_resume).to(existing_resume)
+        expect { command.call! }.to change(user, :current_resume).from(newer_resume).to(existing_resume)
       end
 
       it 'sets all other resumes to not current' do
         command.call!
-        expect(newer_resume.reload.current).to eq(false)
+        expect(newer_resume.reload.current).to be(false)
       end
     end
   end

@@ -307,6 +307,8 @@ Rails/HasAndBelongsToMany:
   Enabled: false
 Rails/TimeZone:
   Enabled: false
+Rails/HelperInstanceVariable:
+  Enabled: false
 RSpec/MultipleExpectations:
   Enabled: false
 RSpec/RepeatedExample:

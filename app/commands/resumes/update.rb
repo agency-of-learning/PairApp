@@ -10,8 +10,13 @@ module Resumes
 
     def call!
       ActiveRecord::Base.transaction do
+        # rubocop:disable Rails::SkipsModelValidations
         user.resumes.update_all(current: false)
-        return user.resumes.create!(params) if params[:resume]
+        # rubocop:enable Rails::SkipsModelValidations
+        if params[:resume]
+          user.resumes.create!(params)
+          next
+        end
 
         user.resumes.find_by(id: current_resume_id)&.update!(current: true)
       end
