@@ -8,13 +8,12 @@ class UserMenteeApplication::ActionButtonBuilderComponent < ViewComponent::Base
   end
 
   def render_button
-    if @mentee_application.can_promote?
-      render_promote_button
+    return unless @mentee_application.can_promote?
+    render_promote_button
     # elsif @mentee_application.rejected?
     #   'Rejected'
     # elsif @mentee_application.accepted?
     #   'Accepted'
-    end
   end
 
   def render_promote_button
@@ -22,8 +21,6 @@ class UserMenteeApplication::ActionButtonBuilderComponent < ViewComponent::Base
       method: :post,
       class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
   end
-
-
 
   def render_reject_button
     last_state = @mentee_application.mentee_application_states.last
