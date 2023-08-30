@@ -4,15 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Resumes::Update do
   subject(:command) { described_class.new(user:, params:) }
-
   let(:user) { create(:user) }
-  let(:uploaded_resume) do
-    ActiveStorage::Blob.create_and_upload!(
-      io: Rails.root.join('spec/fixtures/bob_resume.pdf').open,
-      filename: 'bob_resume.pdf',
-      content_type: 'application/pdf'
-    ).signed_id
-  end
 
   describe '#call!' do
     context 'when a new resume is uploaded' do
