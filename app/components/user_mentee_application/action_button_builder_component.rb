@@ -10,10 +10,6 @@ class UserMenteeApplication::ActionButtonBuilderComponent < ViewComponent::Base
   def render_button
     return unless @mentee_application.can_promote?
     render_promote_button
-    # elsif @mentee_application.rejected?
-    #   'Rejected'
-    # elsif @mentee_application.accepted?
-    #   'Accepted'
   end
 
   def render_promote_button
