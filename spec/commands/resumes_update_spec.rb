@@ -19,21 +19,21 @@ RSpec.describe Resumes::Update do
       let!(:existing_resume) { create(:resume, user:) }
       let(:params) do
         ActionController::Parameters.new({
-          profile: { 
+          profile: {
             resume: ActiveStorage::Blob.create_and_upload!(
               io: Rails.root.join('spec/fixtures/bob_resume.pdf').open,
               filename: 'bob_resume.pdf',
               content_type: 'application/pdf'
-            ).signed_id, 
+            ).signed_id,
             resume_name: 'Uploaded resume',
-            current_resume_id: existing_resume.id, 
+            current_resume_id: existing_resume.id
           }
         }).require(:profile).permit(:resume, :resume_name, :current_resume_id)
-      end 
+      end
 
       it 'associates the resume with the user' do
-        expect { command.call! }.to change { 
-          user.resumes.count 
+        expect { command.call! }.to change {
+          user.resumes.count
         }.by(1)
       end
 
@@ -54,10 +54,10 @@ RSpec.describe Resumes::Update do
       let!(:newer_resume) { create(:resume, user:) }
       let(:params) do
         ActionController::Parameters.new({
-          profile: { 
+          profile: {
             resume: nil,
             resume_name: '',
-            current_resume_id: existing_resume.id, 
+            current_resume_id: existing_resume.id
           }
         }).require(:profile).permit(:resume, :resume_name, :current_resume_id)
       end
