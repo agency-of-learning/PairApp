@@ -7,8 +7,6 @@
     <ul class="menu menu-horizontal bg-base-200">
       <li> <%= render(UserMenteeApplication::ActionButtonBuilderComponent.new(mentee_application: @user_mentee_application)) %> </li>
     </ul>
-
-    <%= render( UserMenteeApplication::NoteComponent.new( mentee_application: @user_mentee_application) ) %>
   </section>
 
   <%= render UserMenteeApplication::SectionComponent.new(header_text: "Tell us about your journey") do %>
