@@ -36,6 +36,7 @@ FactoryBot.define do
     job_search_status { Profile.job_search_statuses[:not_job_searching] }
     work_model_preferences { ['remote'] }
     slug { user.full_name.parameterize }
+    visibility { Profile.visibilities[:public] }
 
     trait :with_links do
       github_link { Faker::Internet.url(host: 'github.com') }

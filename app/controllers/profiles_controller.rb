@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
   before_action :find_profile, except: %i[show]
 
   def show
-    @profile = Profile.includes(:user, :picture_blob).friendly.find(params[:id])
+    @profile = authorize Profile.includes(:user, :picture_blob).friendly.find(params[:id])
   end
 
   def edit; end
