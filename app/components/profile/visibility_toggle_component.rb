@@ -17,21 +17,21 @@ class Profile::VisibilityToggleComponent < ViewComponent::Base
   def toggle_button
     button_to(
       'Here',
-      profile_visibility_toggles_path(@profile),
+      profile_visibility_toggles_path(profile),
       class: 'link inline',
       form_class: 'link inline'
     )
   end
 
   def container_color
-    @profile.visibility == 'public' ? 'bg-primary' : 'bg-error'
+    profile.public_visibility? ? 'bg-primary' : 'bg-error'
   end
 
   def opposite_state
-    @profile.visibility == 'public' ? 'private' : 'public'
+    profile.public_visibility? ? 'private' : 'public'
   end
 
   def icon_class_names
-    LOCK_ICONS.fetch(@profile.visibility.to_sym)
+    LOCK_ICONS.fetch(profile.visibility.to_sym)
   end
 end
