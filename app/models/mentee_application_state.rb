@@ -32,11 +32,4 @@ class MenteeApplicationState < ApplicationRecord
   }.freeze
 
   enum status: STATUSES
-
-  def next_status
-    current_status_index = STATUSES.keys.index(status.to_sym)
-    next_status_index = current_status_index.to_i + 1
-
-    STATUSES.keys[next_status_index] if next_status_index < STATUSES.keys.length
-  end
 end
