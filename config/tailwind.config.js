@@ -13,6 +13,10 @@ module.exports = {
       fontFamily: {
         sans: ["Roboto", "Inter var", ...defaultTheme.fontFamily.sans],
       },
+      colors: {
+        "twitter-brand": '#26a7de',
+        "linkedin-brand": '#0072b1',
+      }
     },
   },
   daisyui: {

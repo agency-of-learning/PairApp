@@ -4,10 +4,14 @@
 #
 #  id                     :bigint           not null, primary key
 #  bio                    :text
+#  github_link            :string
 #  job_search_status      :integer          default("not_job_searching")
 #  job_title              :string
+#  linked_in_link         :string
 #  location               :string
+#  personal_site_link     :string
 #  slug                   :string
+#  twitter_link           :string
 #  work_model_preferences :enum             is an Array
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -31,6 +35,13 @@ FactoryBot.define do
     job_search_status { Profile.job_search_statuses[:not_job_searching] }
     work_model_preferences { ['remote'] }
     slug { user.full_name.parameterize }
+
+    trait :with_links do
+      github_link { Faker::Internet.url(host: 'github.com') }
+      linked_in_link { Faker::Internet.url(host: 'linkedin.com/in') }
+      personal_site_link { Faker::Internet.url }
+      twitter_link { Faker::Internet.url(host: 'twitter.com') }
+    end
 
     transient do
       picture { nil }

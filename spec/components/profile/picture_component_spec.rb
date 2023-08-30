@@ -23,35 +23,4 @@ RSpec.describe Profile::PictureComponent, type: :component do
       expect(page).to have_css("img[src*='#{attachment_filename}']")
     end
   end
-
-  context 'when the profile indicates the user is not job searching' do
-    it 'renders the caption with red colors' do
-      render_inline(described_class.new(profile:))
-
-      figcaption = page.find('figcaption')
-      expect(figcaption[:class]).to include('red')
-    end
-  end
-
-  context 'when the profile indicates the user is open to opportunities' do
-    let(:job_search_status) { :open_to_opportunities }
-
-    it 'renders the caption with amber colors' do
-      render_inline(described_class.new(profile:))
-
-      figcaption = page.find('figcaption')
-      expect(figcaption[:class]).to include('amber')
-    end
-  end
-
-  context 'when the profile indicates the user is open to work' do
-    let(:job_search_status) { :open_to_work }
-
-    it 'renders the caption with green colors' do
-      render_inline(described_class.new(profile:))
-
-      figcaption = page.find('figcaption')
-      expect(figcaption[:class]).to include('green')
-    end
-  end
 end

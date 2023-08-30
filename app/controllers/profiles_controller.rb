@@ -4,20 +4,19 @@ class ProfilesController < ApplicationController
   def show; end
 
   def edit
-    @profile_form = ProfileForm.new(profile: @profile, user: current_user)
   end
 
   def update
-    @profile_form = ProfileForm.new(profile: @profile, user: current_user, params: profile_params)
-
-    respond_to do |format|
-      if @profile_form.valid? && Profiles::Update.new(form: @profile_form).call! == :ok
-        flash.now[:notice] = 'Profile successfully updated!'
-        format.html { redirect_to @profile, success: 'Profile successfully updated!' }
-      else
-        flash.now[:form_errors] = @profile_form.errors.full_messages
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    update_records = ActiveRecord::Base.transaction do
+      @profile.update!(profile_params)
+      Resumes::Update.new(user: current_user, params: resume_params).call!
+    end
+    if update_records
+      redirect_to @profile, success: 'Profile successfully updated!'
+    else
+      # using this now misses validations and errors on the resume part of the form.
+      flash.now[:form_errors] = @profile.errors.full_messages
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -35,10 +34,15 @@ class ProfilesController < ApplicationController
       :bio,
       :slug,
       :job_search_status,
-      :resume,
-      :resume_name,
-      :current_resume_id,
+      :github_link,
+      :linked_in_link,
+      :personal_site_link,
+      :twitter_link,
       work_model_preferences: []
     )
+  end
+
+  def resume_params
+    params.require(:profile).permit(:resume, :resume_name, :current_resume_id)
   end
 end

@@ -1,7 +1,7 @@
 <h1 class="text-2xl text-center">Edit Profile</h1>
 
 <div class="max-w-prose px-2 mx-auto my-4">
-  <%= form_for @profile_form, format: :html do |form| %>
+  <%= form_with model: @profile, format: :html do |form| %>
     <div class="form-control">
       <%= form.label :picture, class: 'label label-text text-lg' %>
       <%= form.file_field :picture, direct_upload: true, class: 'file-input file-input-bordered file-input-primary max-w-xs', accept: ['image/png', 'image/jpeg'].join(", ") %>
@@ -22,6 +22,22 @@
     <div class="form-control">
       <%= form.label :location, class: 'label label-text text-lg' %>
       <%= form.text_field :location, class: 'input input-primary input-bordered' %>
+    </div>
+    <div class="form-control">
+      <%= form.label :linked_in_link, "LinkedIn", class: 'label label-text text-lg' %>
+      <%= form.text_field :linked_in_link, class: 'input input-primary input-bordered' %>
+    </div>
+    <div class="form-control">
+      <%= form.label :github_link, "GitHub", class: 'label label-text text-lg' %>
+      <%= form.text_field :github_link, class: 'input input-primary input-bordered' %>
+    </div>
+    <div class="form-control">
+      <%= form.label :twitter_link, "Twitter", class: 'label label-text text-lg' %>
+      <%= form.text_field :twitter_link, class: 'input input-primary input-bordered' %>
+    </div>
+    <div class="form-control">
+      <%= form.label :personal_site_link, "Personal Site", class: 'label label-text text-lg' %>
+      <%= form.text_field :personal_site_link, class: 'input input-primary input-bordered' %>
     </div>
     <div class="divider"></div>
     <div class="form-control">
@@ -57,8 +73,8 @@
       <%= form.label class: 'label label-text text-lg' do %>
         Select a resume to use as your default
       <% end %>
-      <div class="flex space-x-4 my-4">
-        <% @profile_form.resumes.each do |resume| %>
+      <div class="flex flex-wrap space-x-4 my-4">
+        <% current_user.resumes.order(name: :asc).each do |resume| %>
           <div class="flex space-x-2">
             <%= form.radio_button :current_resume_id, resume.id, class: 'radio radio-primary', checked: resume == current_user.current_resume %>
             <%= form.label :current_resume_id, resume.name, class: 'text-md' %>
@@ -70,6 +86,6 @@
       <%= form.label :resume_name, class: 'label label-text text-sm' %>
       <%= form.text_field :resume_name, class: 'input input-primary input-bordered' %>
     </div>
-    <%= form.submit "Update Profile", class: "btn btn-primary mt-4" %>
+    <%= form.submit "Update Profile", class: "btn btn-primary my-4" %>
   <% end %>
 </div>

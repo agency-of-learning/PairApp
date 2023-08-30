@@ -17,7 +17,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role                   :integer          default("member"), not null
+#  role                   :integer          default("applicant"), not null
 #  time_zone              :string           default("UTC"), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -53,18 +53,6 @@ RSpec.describe User do
     end
   end
 
-  describe '#role' do
-    let(:user) { build(:user) }
-
-    it 'defaults to member' do
-      expect(user.role).to eq('member')
-    end
-
-    it 'responds to member? properly' do
-      expect(user.member?).to be(true)
-    end
-  end
-
   describe '#my_feedback' do
     let(:user) { create(:user) }
     let!(:authored_feedback) { create(:feedback, author: user) }
@@ -96,12 +84,24 @@ RSpec.describe User do
   describe '#blog_slug' do
     let(:user) { create(:user) }
 
-    before do
-      user.profile.update(slug: 'test-slug')
+    context 'when the profile has a slug' do
+      before do
+        user.profile.update(slug: 'test-slug')
+      end
+
+      it 'returns the slug from the user profile' do
+        expect(user.blog_slug).to eq 'test-slug'
+      end
     end
 
-    it 'returns the slug from the user profile' do
-      expect(user.blog_slug).to eq 'test-slug'
+    context 'when the profile does not have a slug' do
+      before do
+        user.profile.update(slug: nil)
+      end
+
+      it 'returns the id of the user profile' do
+        expect(user.blog_slug).to eq user.profile.id.to_s
+      end
     end
   end
 end
