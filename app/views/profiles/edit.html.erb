@@ -74,7 +74,7 @@
         Select a resume to use as your default
       <% end %>
       <div class="flex flex-wrap space-x-4 my-4">
-        <% current_user.resumes.order(name: :asc).each do |resume| %>
+        <% current_user.resumes.order(:id).each do |resume| %>
           <div class="flex space-x-2">
             <%= form.radio_button :current_resume_id, resume.id, class: 'radio radio-primary', checked: resume == current_user.current_resume %>
             <%= form.label :current_resume_id, resume.name, class: 'text-md' %>
