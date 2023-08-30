@@ -2,7 +2,9 @@ class ProfilePolicy < ApplicationPolicy
   alias_method :profile, :record
 
   def show?
-    true
+    return true if profile.public_visibility?
+
+    user.present? && (matching_user? || user.admin?)
   end
 
   def update?
@@ -13,5 +15,11 @@ class ProfilePolicy < ApplicationPolicy
     def resolve
       scope.all
     end
+  end
+
+  private
+
+  def matching_user?
+    profile.user_id == user.id
   end
 end

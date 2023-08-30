@@ -20,7 +20,11 @@ Rails.application.routes.draw do
   # Shortcuts
   get 'landing/index'
 
-  resources :profiles, only: %i[show edit update]
+  resources :profiles, only: %i[show edit update] do
+    scope module: :profiles do
+      resources :visibility_toggles, only: :create
+    end
+  end
 
   resources :pair_requests, except: %i[new edit update] do
     scope module: :pair_requests do
