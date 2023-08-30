@@ -9,17 +9,15 @@ module Resumes
     end
 
     def call!
-      update_resume!
+      ActiveRecord::Base.transaction do
+        user.resumes.update_all(current: false)
+        return user.resumes.create!(params) if params[:resume]
+
+        user.resumes.find_by(id: current_resume_id)&.update!(current: true)
+      end
     end
 
     private
-
-    def update_resume!
-      user.resumes.update_all(current: false)
-      return user.resumes.create!(params) if params[:resume]
-
-      user.resumes.find_by(id: current_resume_id)&.update!(current: true)
-    end
 
     def cast_to_attributes(params)
       {
