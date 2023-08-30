@@ -16,9 +16,8 @@
   <% end %>
 
   <%= render(TableCellComponent.new(class_names: "hidden sm:table-cell text-center")) do %>
-    <%= render TableCellComponent.new(container_link: mentee_application, class_names:"hiddent sm:table-cell") do %>
-      <%#= mentee_application.mentee_application_states.last.status %>
-    <% end %>
+
         <%= render(UserMenteeApplication::ActionButtonBuilderComponent.new(mentee_application: mentee_application)) %> <br>
   <% end %>
 </div>
+
