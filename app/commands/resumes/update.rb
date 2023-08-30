@@ -18,7 +18,7 @@ module Resumes
           next
         end
 
-        user.resumes.find_by(id: current_resume_id)&.update!(current: true)
+        user.resumes.find_by(id: current_resume_id).update!(current: true)
       end
     end
 
