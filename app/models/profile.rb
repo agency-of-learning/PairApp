@@ -87,6 +87,10 @@ class Profile < ApplicationRecord
     ]
   end
 
+  def toggle_visibility!
+    private_visibility? ? public_visibility! : private_visibility!
+  end
+
   private
 
   def move_friendly_id_error_to_slug
