@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Profile::PictureComponent, type: :component do
   let(:profile) { build(:profile, job_search_status:) }
-  let(:profile_with_picture) { build(:profile, attached_picture: true) }
+  let(:profile_with_picture) { build(:profile, picture: true) }
   let(:job_search_status) { :not_job_searching }
 
   context 'when the profile does not have an attached image' do
