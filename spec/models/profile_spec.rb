@@ -12,6 +12,7 @@
 #  personal_site_link     :string
 #  slug                   :string
 #  twitter_link           :string
+#  visibility             :integer          default("private"), not null
 #  work_model_preferences :enum             is an Array
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
