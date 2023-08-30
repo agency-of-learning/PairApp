@@ -28,24 +28,24 @@ RSpec.describe UserMenteeApplication::ActionButtonBuilderComponent, type: :compo
   end
 
   context 'when current mentee application has an accepted status' do
-    it "renders 'Accepted' text" do
+    it "renders no text" do
       mentee_application.mentee_application_states.last.accepted!
 
       component = described_class.new(mentee_application:)
       render_inline(component)
 
-      expect(page).to have_text('Accepted')
+      expect(page).to have_text('')
     end
   end
 
   context 'when current mentee application has a rejected status' do
-    it "returns 'Rejected' text" do
+    it "returns no text" do
       mentee_application.mentee_application_states.last.rejected!
 
       component = described_class.new(mentee_application:)
       render_inline(component)
 
-      expect(page).to have_text('Rejected')
+      expect(page).to have_text('')
     end
   end
 end
