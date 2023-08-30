@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Resumes::Update do
   subject(:command) { described_class.new(user:, params:) }
+
   let(:user) { create(:user) }
   let(:uploaded_resume_signed_id) do
     ActiveStorage::Blob.create_and_upload!(
