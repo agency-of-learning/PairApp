@@ -43,7 +43,7 @@ class UserMenteeApplication < ApplicationRecord
   delegate :accepted?, to: :current_state
 
   def current_status
-    current_state.status
+    mentee_application_states.last&.status&.to_sym
   end
 
   def current_state
@@ -68,10 +68,6 @@ class UserMenteeApplication < ApplicationRecord
 
   def can_promote?
     !accepted? && !rejected?
-  end
-
-  def current_status
-    mentee_application_states.last&.status&.to_sym
   end
 
   private
