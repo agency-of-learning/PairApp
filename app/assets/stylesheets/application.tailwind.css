@@ -1,9 +1,10 @@
 /* Roboto Font */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import 'direct_uploads';
 
 .field_with_errors {
   @apply flex [&>input]:input-error;

@@ -19,9 +19,21 @@
 #
 FactoryBot.define do
   factory :resume do
-    user
     name { 'My Resume' }
-    current { true }
-    resume { nil }
+
+    transient do
+      user { false }
+      current { nil }
+    end
+
+    after(:build) do |resume, evaluator|
+      resume.user = evaluator.user || create(:user)
+      resume.current = evaluator.current.nil?
+      resume.resume.attach(
+        io: Rails.root.join('spec/fixtures/bob_resume.pdf').open,
+        filename: 'bob_resume.pdf',
+        content_type: 'application/pdf'
+      )
+    end
   end
 end
