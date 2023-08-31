@@ -25,6 +25,6 @@ FactoryBot.define do
     user_mentee_application
     status { 1 }
     note { 'MyText' }
-    status_changed_by_id { 1 }
+    status_changed_id { association :user }
   end
 end
