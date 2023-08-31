@@ -13,6 +13,7 @@ To set up this project, you need to have the following software installed on you
 - Yarn or Npm
 - [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) (Follow the link for installation instructions)
 
+For detailed instructions on how to install these dependencies, please reference our [Wiki step-by-step guide for installing dependencies on Mac or Windows](https://github.com/agency-of-learning/PairApp/wiki/Step%E2%80%90by%E2%80%90step-instructions-to-install-the-dependencies-of-our-application).
 ## 12factor Approach
 
 This project follows the [12factor methodology](https://12factor.net/) for building software-as-a-service applications. Specifically, this project adheres to the following 12 factors:
