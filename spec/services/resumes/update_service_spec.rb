@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Resumes::Update do
+RSpec.describe Resumes::UpdateService do
   subject(:command) { described_class.new(user:, params:) }
 
   let(:user) { create(:user) }
@@ -25,6 +25,12 @@ RSpec.describe Resumes::Update do
             current_resume_id: existing_resume.id
           }
         }).require(:profile).permit(:resume, :resume_name, :current_resume_id)
+      end
+
+      it 'returns true' do
+        expect { command.call! }.to change {
+          user.resumes.count
+        }.by(1)
       end
 
       it 'associates the resume with the user' do

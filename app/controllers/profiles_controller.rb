@@ -6,17 +6,14 @@ class ProfilesController < ApplicationController
   def edit; end
 
   def update
-    update_records = ActiveRecord::Base.transaction do
+    ActiveRecord::Base.transaction do
       @profile.update!(profile_params)
-      Resumes::Update.new(user: current_user, params: resume_params).call!
+      Resumes::UpdateService.new(user: current_user, params: resume_params).call!
     end
-    if update_records
-      redirect_to @profile, success: 'Profile successfully updated!'
-    else
-      # using this now misses validations and errors on the resume part of the form.
-      flash.now[:form_errors] = @profile.errors.full_messages
-      render :edit, status: :unprocessable_entity
-    end
+    redirect_to @profile, success: 'Profile successfully updated!'
+  rescue StandardError
+    flash.now[:form_errors] = @profile.errors.full_messages
+    render :edit, status: :unprocessable_entity
   end
 
   private
