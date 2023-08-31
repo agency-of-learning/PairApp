@@ -12,6 +12,7 @@
 #  personal_site_link     :string
 #  slug                   :string
 #  twitter_link           :string
+#  visibility             :integer          default("private"), not null
 #  work_model_preferences :enum             is an Array
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -35,6 +36,7 @@ FactoryBot.define do
     job_search_status { Profile.job_search_statuses[:not_job_searching] }
     work_model_preferences { ['remote'] }
     slug { user.full_name.parameterize }
+    visibility { Profile.visibilities[:public] }
 
     trait :with_links do
       github_link { Faker::Internet.url(host: 'github.com') }

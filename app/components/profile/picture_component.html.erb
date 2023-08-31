@@ -1,6 +1,6 @@
 <figure class="rounded-full w-64 h-64 mx-auto sm:mx-0 relative border-2 border-black bg-black mb-2">
   <div class="relative inline-block w-full object-cover rounded-full">
-    <%= image_tag profile_picture_src, class: 'h-auto max-w-full block rounded-full' %>
+    <%= image_tag profile_picture_src, class: 'h-auto max-w-full rounded-full block' %>
     <% if profile.open_to_work? %>
       <div class="absolute top-0 left-0 w-full">
         <%= render inline: Rails.root.join('app/assets/images/open_to_work.svg').read %>

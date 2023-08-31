@@ -1,7 +1,9 @@
 class ProfilesController < ApplicationController
   before_action :find_profile, only: %i[show edit update]
 
-  def show; end
+  def show
+    @profile = authorize Profile.includes(:user, :picture_blob).friendly.find(params[:id])
+  end
 
   def edit; end
 

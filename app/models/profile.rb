@@ -12,6 +12,7 @@
 #  personal_site_link     :string
 #  slug                   :string
 #  twitter_link           :string
+#  visibility             :integer          default("private"), not null
 #  work_model_preferences :enum             is an Array
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -57,6 +58,11 @@ class Profile < ApplicationRecord
     open_to_work: 2
   }
 
+  enum visibility: {
+    private: 0,
+    public: 1
+  }, _suffix: true
+
   WORK_MODELS = %w[onsite hybrid remote].freeze
   validate :work_model_preferences_must_exist, :must_not_duplicate_preferences
 
@@ -79,6 +85,10 @@ class Profile < ApplicationRecord
       :slug,
       %i[slug id]
     ]
+  end
+
+  def toggle_visibility!
+    private_visibility? ? public_visibility! : private_visibility!
   end
 
   private

@@ -12,6 +12,7 @@
 #  personal_site_link     :string
 #  slug                   :string
 #  twitter_link           :string
+#  visibility             :integer          default("private"), not null
 #  work_model_preferences :enum             is an Array
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -64,6 +65,26 @@ RSpec.describe Profile do
       expect { subject.update!(slug: 'invalid.slug') }.to raise_error(ActiveRecord::RecordInvalid)
       expect { subject.update!(slug: 'invalid slug') }.to raise_error(ActiveRecord::RecordInvalid)
       expect { subject.update!(slug: 'invalid|slug') }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
+
+  describe '#toggle_visibility!' do
+    subject(:profile) { create(:profile, visibility:) }
+
+    context 'when the profile is private' do
+      let(:visibility) { :private }
+
+      it 'changes the profile to public' do
+        expect { subject.toggle_visibility! }.to change(subject, :visibility).from('private').to('public')
+      end
+    end
+
+    context 'when the profile is public' do
+      let(:visibility) { :public }
+
+      it 'changes the profile to private' do
+        expect { subject.toggle_visibility! }.to change(subject, :visibility).from('public').to('private')
+      end
     end
   end
 end

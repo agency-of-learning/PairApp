@@ -1,5 +1,6 @@
 <div class="max-w-prose mx-auto">
   <% if policy(@profile).edit? %>
+    <%= render Profile::VisibilityToggleComponent.new(profile: @profile) %>
     <div class="flex justify-center mb-4 px-8 sm:justify-end">
       <%= link_to "Edit Profile", edit_profile_path(@profile), class: 'btn btn-outline btn-sm text-right' %>
     </div>
