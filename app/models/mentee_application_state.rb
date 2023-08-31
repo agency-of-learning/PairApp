@@ -21,7 +21,7 @@
 class MenteeApplicationState < ApplicationRecord
   belongs_to :user_mentee_application
 
-  STATUSES = {
+  enum status: {
     pending: 0,
     stage_one: 1,
     stage_two: 2,
@@ -29,7 +29,5 @@ class MenteeApplicationState < ApplicationRecord
     stage_four: 4,
     accepted: 5,
     rejected: 6
-  }.freeze
-
-  enum status: STATUSES
+  }
 end
