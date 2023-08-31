@@ -23,4 +23,9 @@ class UserMenteeApplication::ActionButtonBuilderComponent < ViewComponent::Base
       method: :post,
       class: 'btn btn-primary capitalize btn-link btn-xs sm:btn-sm hover:no-underline'
   end
+
+  def call
+    concat(render_promote_button)
+    concat(render_reject_button)
+  end
 end

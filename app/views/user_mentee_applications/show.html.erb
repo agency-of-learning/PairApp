@@ -1,7 +1,7 @@
 <div class="max-w-prose mx-auto p-4">
   <section class="flex flex-col mb-3 mb-5 ">
     <div class="mx-auto text-2xl text-red-500 mb-3">
-      <%= @user_mentee_application.current_status.humanize %>
+      <%= @user_mentee_application.current_status.to_s.humanize %>
     </div>
 
     <ul class="menu menu-horizontal bg-base-200">

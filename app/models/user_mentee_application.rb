@@ -38,6 +38,10 @@ class UserMenteeApplication < ApplicationRecord
 
   after_create :create_initial_application_state
 
+  delegate :rejected?, to: :current_state
+
+  delegate :accepted?, to: :current_state
+
   def current_status
     current_state.status
   end
@@ -47,10 +51,11 @@ class UserMenteeApplication < ApplicationRecord
   end
 
   def next_status
-    current_status_index = MenteeApplicationState::STATUSES.keys.index(current_status.to_sym)
+    return if accepted? || rejected?
+    current_status_index = MenteeApplicationState.statuses.keys.index(current_status.to_sym)
     next_status_index = current_status_index.to_i + 1
 
-    MenteeApplicationState::STATUSES.keys.fetch(next_status_index)
+    MenteeApplicationState.statuses.keys.fetch(next_status_index)
   end
 
   def promote_application(user)
@@ -62,18 +67,7 @@ class UserMenteeApplication < ApplicationRecord
   end
 
   def can_promote?
-    current_index = MenteeApplicationState.statuses[current_status.to_s]
-    max_index = MenteeApplicationState.statuses.length - 2
-    current_index < max_index && current_status != :rejected
-  end
-  
-
-  def rejected?
-    current_status == :rejected
-  end
-
-  def accepted?
-    current_status == :accepted
+    !accepted? && !rejected?
   end
 
   def current_status
