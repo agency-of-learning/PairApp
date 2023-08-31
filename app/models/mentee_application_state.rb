@@ -7,15 +7,17 @@
 #  status                     :integer          default("pending"), not null
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
-#  status_changed_by_id       :integer
+#  status_changed_id          :bigint
 #  user_mentee_application_id :bigint           not null
 #
 # Indexes
 #
+#  index_mentee_application_states_on_status_changed_id           (status_changed_id)
 #  index_mentee_application_states_on_user_mentee_application_id  (user_mentee_application_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (status_changed_id => users.id)
 #  fk_rails_...  (user_mentee_application_id => user_mentee_applications.id)
 #
 class MenteeApplicationState < ApplicationRecord

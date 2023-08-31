@@ -59,11 +59,11 @@ class UserMenteeApplication < ApplicationRecord
   end
 
   def promote_application(user)
-    mentee_application_states.build(status: next_status, status_changed_by_id: user.id).save
+    mentee_application_states.build(status: next_status, status_changed_id: user.id).save
   end
 
   def reject_application(user)
-    mentee_application_states.build(status: :rejected, status_changed_by_id: user.id).save
+    mentee_application_states.build(status: :rejected, status_changed_id: user.id).save
   end
 
   def can_promote?
