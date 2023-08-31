@@ -72,7 +72,7 @@ class User < ApplicationRecord
   has_many :blog_posts, dependent: :destroy
 
   has_one :profile, dependent: :destroy
-  has_many :resumes, dependent: :destroy, inverse_of: :user
+  has_many :resumes, dependent: :destroy
   has_one :mentee_application, class_name: 'UserMenteeApplication', dependent: :destroy
   # rubocop:disable Rails/InverseOf
   has_one :current_resume, -> { where(current: true) }, class_name: 'Resume', dependent: nil

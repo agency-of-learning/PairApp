@@ -29,7 +29,7 @@ module Resumes
 
     def resume_attributes(params)
       {
-        resume: params[:resume].blank? ? nil : params[:resume],
+        resume: params[:resume].presence,
         name: params[:resume_name],
         current: true
       }
