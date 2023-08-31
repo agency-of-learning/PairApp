@@ -211,7 +211,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_192517) do
     t.text "additional_information"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status"
     t.index ["user_id"], name: "index_user_mentee_applications_on_user_id"
   end
 
