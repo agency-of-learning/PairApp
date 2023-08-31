@@ -11,7 +11,7 @@ module Resumes
     def call!
       ActiveRecord::Base.transaction do
         # Guard against doing unnecessary work
-        next if user.current_resume.id == current_resume_id && attributes[:resume].blank?
+        next if user.current_resume.id == current_resume_id && attributes[:resume].nil?
         # Updating the current resume is a two step process
         # First need to switch the current resume to false
         user.current_resume.update!(current: false)
@@ -29,7 +29,7 @@ module Resumes
 
     def resume_attributes(params)
       {
-        resume: params[:resume],
+        resume: params[:resume].blank? ? nil : params[:resume],
         name: params[:resume_name],
         current: true
       }
