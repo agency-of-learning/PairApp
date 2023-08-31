@@ -53,12 +53,12 @@ class UserMenteeApplication < ApplicationRecord
     MenteeApplicationState::STATUSES.keys.fetch(next_status_index)
   end
 
-  def promote_application(current_user)
-    mentee_application_states.build(status: next_status, status_changed_by_id: current_user.id).save
+  def promote_application(user)
+    mentee_application_states.build(status: next_status, status_changed_by_id: user.id).save
   end
 
-  def reject_application(current_user)
-    mentee_application_states.build(status: :rejected, status_changed_by_id: current_user.id).save
+  def reject_application(user)
+    mentee_application_states.build(status: :rejected, status_changed_by_id: user.id).save
   end
 
   def can_promote?
