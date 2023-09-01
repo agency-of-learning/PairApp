@@ -29,7 +29,9 @@
 class UserMenteeApplication < ApplicationRecord
   belongs_to :user
   has_many :mentee_application_states, dependent: :destroy
-  has_one :current_state, -> { order(created_at: :desc).limit(1) }, class_name: 'MenteeApplicationState'
+  # rubocop:disable Rails/InverseOf
+  has_one :current_state, -> { order(created_at: :desc).limit(1) }, class_name: 'MenteeApplicationState', dependent: nil
+  # rubocop:enable Rails/InverseOf
 
   validates :available_hours_per_week, numericality: { greater_than: 0, less_than_or_equal_to: 60 }
 
