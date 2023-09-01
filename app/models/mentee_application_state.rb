@@ -33,9 +33,6 @@ class MenteeApplicationState < ApplicationRecord
     rejected: 6
   }
 
-  private
-
-
   def self.next_status(mentee_application)
     current_state = current_state(mentee_application)
 
