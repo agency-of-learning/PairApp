@@ -38,14 +38,14 @@ RSpec.describe UserMenteeApplication do
     end
 
     it 'sets the initial application state to pending' do
-      expect(mentee_application.current_status).to eq("pending")
+      expect(mentee_application.current_status).to eq('pending')
     end
   end
 
   describe '#reject_application' do
     it 'creates a rejected application state' do
       mentee_application.reject_application!(user)
-      expect(mentee_application.current_status).to eq("rejected")
+      expect(mentee_application.current_status).to eq('rejected')
     end
   end
 

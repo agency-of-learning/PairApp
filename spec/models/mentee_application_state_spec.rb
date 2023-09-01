@@ -26,44 +26,57 @@ RSpec.describe MenteeApplicationState do
   describe '.next' do
     context 'when the status is pending' do
       let(:status) { :pending }
+
       it 'returns the next status' do
-        expect(described_class.next(status:)).to eq("stage_one")
+        expect(described_class.next(status:)).to eq('stage_one')
       end
     end
+
     context 'when the status is stage_one' do
       let(:status) { :stage_one }
+
       it 'returns the next status' do
-        expect(described_class.next(status:)).to eq("stage_two")
+        expect(described_class.next(status:)).to eq('stage_two')
       end
     end
+
     context 'when the status is stage_two' do
       let(:status) { :stage_two }
+
       it 'returns the next status' do
-        expect(described_class.next(status:)).to eq("stage_three")
+        expect(described_class.next(status:)).to eq('stage_three')
       end
     end
+
     context 'when the status is stage_three' do
       let(:status) { :stage_three }
+
       it 'returns the next status' do
-        expect(described_class.next(status:)).to eq("stage_four")
+        expect(described_class.next(status:)).to eq('stage_four')
       end
     end
+
     context 'when the status is stage_four' do
       let(:status) { :stage_four }
+
       it 'returns the next status' do
-        expect(described_class.next(status:)).to eq("accepted")
+        expect(described_class.next(status:)).to eq('accepted')
       end
     end
+
     context 'when the status is accepted' do
       let(:status) { :accepted }
+
       it 'returns no next status' do
-        expect(described_class.next(status:)).to eq(nil)
+        expect(described_class.next(status:)).to be_nil
       end
     end
+
     context 'when the status is rejected' do
       let(:status) { :rejected }
+
       it 'returns no next status' do
-        expect(described_class.next(status:)).to eq(nil)
+        expect(described_class.next(status:)).to be_nil
       end
     end
   end
