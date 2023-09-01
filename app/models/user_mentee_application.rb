@@ -49,6 +49,7 @@ class UserMenteeApplication < ApplicationRecord
   end
 
   private
+
   def create_initial_application_state
     mentee_application_states.create(status: :pending)
   end

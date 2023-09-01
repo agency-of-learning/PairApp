@@ -33,13 +33,13 @@ class MenteeApplicationState < ApplicationRecord
     rejected: 6
   }
 
+  private
+
+
   def self.next_status(mentee_application)
     current_state = current_state(mentee_application)
-    
-    # return if current_state.accepted? || current_state.rejected?
-    rails "Can't promote #{self}" unless can_promote?(mentee_application)
 
-    current_status = current_state.status
+    rails "Can't promote #{self}" unless can_promote?(mentee_application)
 
     current_status_index = statuses.keys.index(current_state.status)
     next_status_index = current_status_index.to_i + 1
@@ -56,7 +56,7 @@ class MenteeApplicationState < ApplicationRecord
   end
 
   def self.can_promote?(mentee_application)
-       current_state = current_state(mentee_application)
+    current_state = current_state(mentee_application)
     !current_state.accepted? && !current_state.rejected?
   end
 end
