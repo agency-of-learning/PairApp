@@ -32,4 +32,12 @@ class MenteeApplicationState < ApplicationRecord
     accepted: 5,
     rejected: 6
   }
+
+  class << self
+    # state machine for mentee application
+    def next(status:)
+      return if status == :accepted || status == :rejected
+      statuses.keys[statuses.keys.index(status.to_s) + 1]
+    end
+  end
 end
