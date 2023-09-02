@@ -49,18 +49,14 @@ class UserMenteeApplication < ApplicationRecord
   end
 
   def promote_application!(user)
-    # NOTE: the logic here isn't entirely correct:
-    # it should be setting the `current_state` (update)
-    # and then creating the next state. (create)
-    # Maybe this all could be more simplified by only creating the next state later on.
     next_status = MenteeApplicationState.next(status:)
-    mentee_application_states.build(status: next_status, status_changed_id: user.id).save!
+    mentee_application_states.create!(status: next_status, status_changed_id: user.id)
+    reload
   end
 
   def reject_application!(user)
-    # This one has a similar issue as above.
-    # The only difference is it should also be setting the `current_state` (update)
-    mentee_application_states.build(status: :rejected, status_changed_id: user.id).save!
+    mentee_application_states.create!(status: :rejected, status_changed_id: user.id)
+    reload
   end
 
   private
