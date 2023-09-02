@@ -102,6 +102,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_205928) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "mentee_application_states", force: :cascade do |t|
+    t.bigint "user_mentee_application_id", null: false
+    t.integer "status", default: 0, null: false
+    t.text "note"
+    t.bigint "status_changed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["status_changed_id"], name: "index_mentee_application_states_on_status_changed_id"
+    t.index ["user_mentee_application_id"], name: "index_mentee_application_states_on_user_mentee_application_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.string "recipient_type", null: false
     t.bigint "recipient_id", null: false
@@ -248,6 +259,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_205928) do
   add_foreign_key "featured_blog_posts", "blog_posts"
   add_foreign_key "feedbacks", "users", column: "author_id"
   add_foreign_key "feedbacks", "users", column: "receiver_id"
+  add_foreign_key "mentee_application_states", "user_mentee_applications"
+  add_foreign_key "mentee_application_states", "users", column: "status_changed_id"
   add_foreign_key "pair_requests", "users", column: "author_id"
   add_foreign_key "pair_requests", "users", column: "invitee_id"
   add_foreign_key "profiles", "users"
