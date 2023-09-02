@@ -33,27 +33,34 @@ class MenteeApplicationState < ApplicationRecord
     rejected: 6
   }
 
-  def self.next_status(mentee_application)
-    current_state = current_state(mentee_application)
-
-    rails "Can't promote #{self}" unless can_promote?(mentee_application)
-
-    current_status_index = statuses.keys.index(current_state.status)
-    next_status_index = current_status_index.to_i + 1
-
-    statuses.keys.fetch(next_status_index)
+  class << self
+    # state machine for mentee application
+    def next(status:)
+      return if %i[accepted rejected].include?(status)
+      statuses.keys[statuses.keys.index(status.to_s) + 1]
+    end
   end
 
-  def self.current_state(mentee_application)
-    mentee_application.mentee_application_states.last
-  end
+  # def self.next_status(mentee_application)
+  #   current_state = current_state(mentee_application)
 
-  def self.current_status(mentee_application)
-    mentee_application.mentee_application_states.last&.status&.to_sym
-  end
+  #   rails "Can't promote #{self}" unless can_promote?(mentee_application)
 
-  def self.can_promote?(mentee_application)
-    current_state = current_state(mentee_application)
-    !current_state.accepted? && !current_state.rejected?
+  #   current_status_index = statuses.keys.index(current_state.status)
+  #   next_status_index = current_status_index.to_i + 1
+
+  #   statuses.keys.fetch(next_status_index)
+  # end
+
+  # def self.current_state(mentee_application)
+  #   mentee_application.mentee_application_states.last
+  # end
+
+  # def self.current_status(mentee_application)
+  #   mentee_application.mentee_application_states.last&.status&.to_sym
+  # end
+
+  def can_promote?
+    !accepted? && !rejected?
   end
 end

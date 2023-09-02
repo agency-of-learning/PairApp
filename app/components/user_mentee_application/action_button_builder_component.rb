@@ -8,7 +8,7 @@ class UserMenteeApplication::ActionButtonBuilderComponent < ViewComponent::Base
   end
 
   def render_promote_button
-    return unless MenteeApplicationState.can_promote?(@mentee_application)
+    return unless @mentee_application.current_state.can_promote?
 
     button_to 'Promote to next stage', user_mentee_application_promotions_path(@mentee_application),
       method: :post,
