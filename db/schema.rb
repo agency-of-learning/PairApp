@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_29_205928) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_02_170326) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -102,6 +102,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_205928) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "mentee_application_states", force: :cascade do |t|
+    t.bigint "user_mentee_application_id", null: false
+    t.integer "status", default: 0, null: false
+    t.text "note"
+    t.integer "status_changed_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_mentee_application_id"], name: "index_mentee_application_states_on_user_mentee_application_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.string "recipient_type", null: false
     t.bigint "recipient_id", null: false
@@ -186,6 +196,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_205928) do
     t.index ["user_id"], name: "index_standup_meetings_on_user_id"
   end
 
+  create_table "user_mentee_application_cohorts", force: :cascade do |t|
+    t.daterange "active_date_range", null: false
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_mentee_applications", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "city", null: false
@@ -201,7 +218,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_205928) do
     t.text "additional_information"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status"
+    t.bigint "user_mentee_application_cohort_id"
     t.index ["user_id"], name: "index_user_mentee_applications_on_user_id"
+    t.index ["user_mentee_application_cohort_id"], name: "idx_user_mentee_applications_on_mentee_application_cohort_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -248,11 +268,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_205928) do
   add_foreign_key "featured_blog_posts", "blog_posts"
   add_foreign_key "feedbacks", "users", column: "author_id"
   add_foreign_key "feedbacks", "users", column: "receiver_id"
+  add_foreign_key "mentee_application_states", "user_mentee_applications"
   add_foreign_key "pair_requests", "users", column: "author_id"
   add_foreign_key "pair_requests", "users", column: "invitee_id"
   add_foreign_key "profiles", "users"
   add_foreign_key "resumes", "users"
   add_foreign_key "standup_meetings", "standup_meeting_groups"
   add_foreign_key "standup_meetings", "users"
+  add_foreign_key "user_mentee_applications", "user_mentee_application_cohorts"
   add_foreign_key "user_mentee_applications", "users"
 end
