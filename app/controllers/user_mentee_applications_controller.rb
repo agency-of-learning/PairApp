@@ -22,10 +22,9 @@ class UserMenteeApplicationsController < ApplicationController
       redirect_to user_mentee_application_path(current_user.mentee_application)
     end
 
-    @user_mentee_application = UserMenteeApplication.new(user_mentee_application_params)
+    @user_mentee_application = authorize UserMenteeApplication.new(user_mentee_application_params)
     @user_mentee_application.user = current_user
-
-    authorize @user_mentee_application
+    @user_mentee_application.user_mentee_application_cohort = UserMenteeApplicationCohort.active
 
     respond_to do |format|
       if @user_mentee_application.save
