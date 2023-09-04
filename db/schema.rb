@@ -106,9 +106,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_02_170326) do
     t.bigint "user_mentee_application_id", null: false
     t.integer "status", default: 0, null: false
     t.text "note"
-    t.integer "status_changed_by_id"
+    t.bigint "status_changed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["status_changed_id"], name: "index_mentee_application_states_on_status_changed_id"
     t.index ["user_mentee_application_id"], name: "index_mentee_application_states_on_user_mentee_application_id"
   end
 
@@ -269,6 +270,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_02_170326) do
   add_foreign_key "feedbacks", "users", column: "author_id"
   add_foreign_key "feedbacks", "users", column: "receiver_id"
   add_foreign_key "mentee_application_states", "user_mentee_applications"
+  add_foreign_key "mentee_application_states", "users", column: "status_changed_id"
   add_foreign_key "pair_requests", "users", column: "author_id"
   add_foreign_key "pair_requests", "users", column: "invitee_id"
   add_foreign_key "profiles", "users"
