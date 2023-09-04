@@ -16,16 +16,30 @@ RSpec.describe UserMenteeApplicationCohort do
   describe '#save' do
     let!(:other_active_cohort) { create(:user_mentee_application_cohort, active: true) }
 
-    it 'deactivates other active cohort if cohort to be saved is active' do
-      subject.active = true
-      subject.run_callbacks :save
-      expect(other_active_cohort.reload).not_to be_active
+    context 'when the cohort to be saved is active' do
+      before do
+        subject.active = true
+        subject.run_callbacks :save
+      end
+
+      it 'deactivates other active cohort' do
+        expect(other_active_cohort.reload).not_to be_active
+      end
+
+      it 'keeps the currently saving cohort active' do
+        expect(subject).to be_active
+      end
     end
 
-    it 'does not deactivate other active cohort if cohort to be saved is inactive' do
-      subject.active = false
-      subject.run_callbacks :save
-      expect(other_active_cohort.reload).to be_active
+    context 'when the cohort to be saved is inactive' do
+      before do
+        subject.active = false
+        subject.run_callbacks :save
+      end
+
+      it 'does not deactivate other active cohort if cohort to be saved is inactive' do
+        expect(other_active_cohort.reload).to be_active
+      end
     end
   end
 
