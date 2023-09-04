@@ -28,4 +28,24 @@ RSpec.describe UserMenteeApplicationCohort do
       expect(other_active_cohort.reload).to be_active
     end
   end
+
+  describe '.active' do
+    before do
+      create_list(:user_mentee_application_cohort, 2, active: false)
+    end
+
+    context 'when there is an active cohort' do
+      let!(:active_cohort) { create(:user_mentee_application_cohort, active: true) }
+
+      it 'returns the active cohort' do
+        expect(described_class.active).to eq active_cohort
+      end
+    end
+
+    context 'when there is not an active cohort' do
+      it 'returns nil' do
+        expect(described_class.active).to be_nil
+      end
+    end
+  end
 end

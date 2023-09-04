@@ -15,6 +15,10 @@ class UserMenteeApplicationCohort < ApplicationRecord
 
   after_save :deactivate_other_cohorts!, if: :active?
 
+  def self.active
+    find_by(active: true)
+  end
+
   private
 
   def deactivate_other_cohorts!
