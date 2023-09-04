@@ -11,5 +11,15 @@
 class UserMenteeApplicationCohort < ApplicationRecord
   has_many :user_mentee_applications, dependent: nil
 
-  validates :active_date_range, :active, presence: true
+  validates :active_date_range, presence: true
+
+  after_save :deactivate_other_cohorts!, if: :active?
+
+  private
+
+  def deactivate_other_cohorts!
+    UserMenteeApplicationCohort.excluding(self).find_each do |cohort|
+      cohort.update!(active: false)
+    end
+  end
 end

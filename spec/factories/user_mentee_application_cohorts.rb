@@ -10,6 +10,7 @@
 #
 FactoryBot.define do
   factory :user_mentee_application_cohort do
-    
+    active_date_range { Date.current..2.months.from_now }
+    active { true }
   end
 end
