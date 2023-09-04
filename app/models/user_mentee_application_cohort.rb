@@ -21,9 +21,9 @@ class UserMenteeApplicationCohort < ApplicationRecord
 
   private
 
+  # rubocop: disable Rails/SkipsModelValidations
   def deactivate_other_cohorts!
-    UserMenteeApplicationCohort.excluding(self).find_each do |cohort|
-      cohort.update!(active: false)
-    end
+    UserMenteeApplicationCohort.excluding(self).update_all(active: false)
   end
+  # rubocop: enable Rails/SkipsModelValidations
 end
