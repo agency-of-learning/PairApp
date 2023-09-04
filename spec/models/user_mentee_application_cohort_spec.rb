@@ -5,6 +5,7 @@
 #  id                :bigint           not null, primary key
 #  active            :boolean          default(TRUE), not null
 #  active_date_range :daterange        not null
+#  name              :string           not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #

@@ -200,6 +200,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_02_170326) do
   create_table "user_mentee_application_cohorts", force: :cascade do |t|
     t.daterange "active_date_range", null: false
     t.boolean "active", default: true, null: false
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

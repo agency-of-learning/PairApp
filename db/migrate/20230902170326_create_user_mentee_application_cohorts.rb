@@ -3,6 +3,7 @@ class CreateUserMenteeApplicationCohorts < ActiveRecord::Migration[7.0]
     create_table :user_mentee_application_cohorts do |t|
       t.daterange :active_date_range, null: false
       t.boolean :active, default: true, null: false
+      t.string :name, null: false
 
       t.timestamps
     end

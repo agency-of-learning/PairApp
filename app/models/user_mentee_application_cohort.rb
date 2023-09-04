@@ -5,13 +5,14 @@
 #  id                :bigint           not null, primary key
 #  active            :boolean          default(TRUE), not null
 #  active_date_range :daterange        not null
+#  name              :string           not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
 class UserMenteeApplicationCohort < ApplicationRecord
   has_many :user_mentee_applications, dependent: nil
 
-  validates :active_date_range, presence: true
+  validates :active_date_range, :name, presence: true
 
   after_save :deactivate_other_cohorts!, if: :active?
 
