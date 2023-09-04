@@ -13,7 +13,7 @@ require 'rails_helper'
 RSpec.describe UserMenteeApplicationCohort do
   subject { build(:user_mentee_application_cohort) }
 
-  context 'when saved' do
+  describe '#save' do
     let!(:other_active_cohort) { create(:user_mentee_application_cohort, active: true) }
 
     it 'deactivates other active cohort if cohort to be saved is active' do
