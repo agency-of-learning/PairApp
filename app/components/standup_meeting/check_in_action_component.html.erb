@@ -1,5 +1,5 @@
 <% if standup_meeting.completed? %>
-  <%= link_to "Edit Response", 
+  <%= link_to "Edit", 
               edit_standup_meeting_group_standup_meeting_path(standup_meeting_group, standup_meeting), 
               class: 'btn btn-primary' %>
 <% elsif standup_meeting.persisted? %>

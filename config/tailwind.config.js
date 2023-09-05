@@ -14,9 +14,9 @@ module.exports = {
         sans: ["Roboto", "Inter var", ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        "twitter-brand": '#26a7de',
-        "linkedin-brand": '#0072b1',
-      }
+        "twitter-brand": "#26a7de",
+        "linkedin-brand": "#0072b1",
+      },
     },
   },
   daisyui: {
@@ -48,6 +48,7 @@ module.exports = {
     safelist: [
       "alert-error",
       "alert-success",
+      "text-success",
       "border-success",
       "border-error",
       "bg-success",
