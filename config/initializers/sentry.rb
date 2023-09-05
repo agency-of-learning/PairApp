@@ -9,6 +9,6 @@ Sentry.init do |config|
   # We recommend adjusting this value in production.
   config.traces_sample_rate = 0.5
 
-  config.delayed_job.report_after_job_retries = true
-  config.sidekiq.report_after_job_retries = true
+  # config.delayed_job.report_after_job_retries = true
+  # config.sidekiq.report_after_job_retries = true
 end
