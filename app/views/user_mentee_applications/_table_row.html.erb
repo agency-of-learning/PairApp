@@ -18,7 +18,7 @@
 
   <%= render(TableCellComponent.new(class_names: "hidden sm:table-cell text-center")) do %>
 
-        <%= render(UserMenteeApplication::ActionButtonBuilderComponent.new(mentee_application: mentee_application)) %> <br>
+        <%= render(UserMenteeApplication::ActionButtonBuilderComponent.new(mentee_application:, current_user:)) %> <br>
   <% end %>
 </div>
 
