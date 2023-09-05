@@ -1,16 +1,13 @@
-
-<%# if current_user.admin? %>
+<% if current_user.admin? %>
   <div class="join join-horizontal">
     <% if @mentee_application.current_state.can_promote? %>
       <%= button_to 'Promote to next stage', user_mentee_application_promotions_path(@mentee_application),
           method: :post,
           form_class: 'join-item btn btn-primary capitalize' %>
-    <% end %>
     
-    <% unless @mentee_application.current_state.rejected? %>
       <%= button_to 'Reject', user_mentee_application_rejections_path(@mentee_application),
           method: :post,
           form_class: 'join-item btn btn-error capitalize' %>
     <% end %>
   </div>
-<%# end %>
+<% end %>

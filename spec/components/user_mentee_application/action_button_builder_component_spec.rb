@@ -36,7 +36,7 @@ RSpec.describe UserMenteeApplication::ActionButtonBuilderComponent, type: :compo
         component = described_class.new(mentee_application:, current_user:)
         render_inline(component)
 
-        expect(page).to have_no_text(:all)
+        expect(page).not_to have_button
       end
     end
 
@@ -47,19 +47,19 @@ RSpec.describe UserMenteeApplication::ActionButtonBuilderComponent, type: :compo
         component = described_class.new(mentee_application:, current_user:)
         render_inline(component)
 
-        expect(page).to have_no_text(:all)
+        expect(page).not_to have_button
       end
     end
   end
 
   context 'when the current user is not an admin' do
-    let(:current_user) { create(:user, :admin) }
+    let(:current_user) { create(:user) }
     let(:mentee_application) { create(:user_mentee_application) }
 
     it 'renders nothing' do
       component = described_class.new(mentee_application:, current_user:)
       render_inline(component)
-      expect(page).to have_no_text(:all)
+      expect(page).not_to have_button
     end
   end
 end
