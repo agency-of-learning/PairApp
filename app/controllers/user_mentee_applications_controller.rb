@@ -1,4 +1,5 @@
 class UserMenteeApplicationsController < ApplicationController
+  include ActiveStorage::SetCurrent
   before_action :set_user_mentee_application, only: %i[show]
 
   def index
