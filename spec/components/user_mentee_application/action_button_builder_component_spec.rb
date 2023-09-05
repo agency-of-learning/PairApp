@@ -36,7 +36,7 @@ RSpec.describe UserMenteeApplication::ActionButtonBuilderComponent, type: :compo
         component = described_class.new(mentee_application:, current_user:)
         render_inline(component)
 
-        expect(page.all('button')).to be_empty
+        expect(page).to have_no_text(:all)
       end
     end
 
@@ -47,7 +47,7 @@ RSpec.describe UserMenteeApplication::ActionButtonBuilderComponent, type: :compo
         component = described_class.new(mentee_application:, current_user:)
         render_inline(component)
 
-        expect(page.all('button')).to be_empty
+        expect(page).to have_no_text(:all)
       end
     end
   end
@@ -59,7 +59,7 @@ RSpec.describe UserMenteeApplication::ActionButtonBuilderComponent, type: :compo
     it 'renders nothing' do
       component = described_class.new(mentee_application:, current_user:)
       render_inline(component)
-      expect(page.all('button')).to be_empty
+      expect(page).to have_no_text(:all)
     end
   end
 end
