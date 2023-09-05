@@ -6,6 +6,8 @@
 
 # Ignore DS Store
 .DS-Store
+.DS_Store
+*/**/.DS_Store
 
 # Ignore bundler config.
 /.bundle
