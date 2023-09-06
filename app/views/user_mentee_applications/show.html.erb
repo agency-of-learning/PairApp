@@ -11,16 +11,15 @@
         <p class="text-md p-6">
           Thank you for submitting your application to join us at the <span class="font-semibold">Agency of Learning</span>!<br /><br />
           <% if @user_mentee_application.current_status == 'rejected' %>
-            Unfortunately, we got more applicants than we could admit in this current cohort. Though we know this can feel discouraging, we encourage you to <span class="font-semibold">reapply for the next cohort</span>.
+            Unfortunately you have not been accepted into the upcoming batch. This was a tough decision. We can't make any promises about being admitted on a future application, but we hope that <span class="font-semibold">you reapply for a future batch</span>.
           <% else %>
             We're <span class="font-semibold">currently reviewing applications</span> for the upcoming cohort. We'll be sure to keep you updated on the status of your application!
           <% end %>
         </p>
       <% else %>
-        <%= render(UserMenteeApplication::ActionButtonBuilderComponent.new(
-        mentee_application: @user_mentee_application,
-        current_user:
-      )) %>
+        <%= render UserMenteeApplication::ActionButtonBuilderComponent.new(
+          mentee_application: @user_mentee_application
+        ) %>
       <% end %>
     </span>
     
