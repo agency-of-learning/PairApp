@@ -1,4 +1,5 @@
 class UserMenteeApplicationsController < ApplicationController
+  include ActiveStorage::SetCurrent
   before_action :set_user_mentee_application, only: %i[show]
 
   def index
@@ -34,7 +35,6 @@ class UserMenteeApplicationsController < ApplicationController
     end
     redirect_to @user_mentee_application, notice: 'Application succesfully submitted'
   rescue StandardError
-    abort
     flash.now[:form_errors] = @user_mentee_application.errors.full_messages
     render :new, status: :unprocessable_entity
   end
