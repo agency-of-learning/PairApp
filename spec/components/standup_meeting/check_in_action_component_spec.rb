@@ -20,10 +20,10 @@ RSpec.describe StandupMeeting::CheckInActionComponent, type: :component do
   context 'when the standup meeting is completed' do
     let(:status) { :completed }
 
-    it 'renders an Edit Response link' do
+    it 'renders an Edit link' do
       render_inline(described_class.new(standup_meeting_group:, standup_meeting:, current_user: user))
 
-      expect(page).to have_link('Edit Response')
+      expect(page).to have_link('Edit')
     end
   end
 end
