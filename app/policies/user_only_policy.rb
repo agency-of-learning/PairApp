@@ -1,11 +1,9 @@
 class UserOnlyPolicy
   attr_reader :user
 
-  def initialize(user, _record=nil)
+  def initialize(user, _record = nil)
     @user = user
   end
 
-  def admin?
-    user.admin?
-  end
+  delegate :admin?, to: :user
 end
