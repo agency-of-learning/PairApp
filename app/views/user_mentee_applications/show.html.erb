@@ -1,70 +1,93 @@
-<div class="max-w-prose mx-auto p-4">
-  <section class="flex flex-col mb-3 mb-5 ">
-    <div class="mx-auto text-2xl text-red-500 mb-3">
-      <%= @user_mentee_application.current_status.to_s.humanize %>
+<div class="mx-auto p-4 my-8 max-w-prose">
+  <section class="flex flex-col my-4 mx-auto rounded-md border-2">
+    <div class="inline my-4 mx-auto pt-4">
+      <span class="text-md text-base-content/70">Application Status</span>
+      <span class="text-xl font-bold tracking-wide ml-8">
+        <%= @user_mentee_application.current_status.to_s.humanize %>
+      </span>
     </div>
-
-    <ul class="menu menu-horizontal bg-base-200">
-      <li> <%= render(UserMenteeApplication::ActionButtonBuilderComponent.new(mentee_application: @user_mentee_application)) %> </li>
-    </ul>
+    <span class="pb-4 inline mx-auto">
+      <% if @user_mentee_application.user == current_user %>
+        <p class="text-md p-6">
+          Thank you for submitting your application to join us at the <span class="font-semibold">Agency of Learning</span>!<br /><br />
+          <% if @user_mentee_application.current_status == 'rejected' %>
+            Unfortunately you have not been accepted into the upcoming batch. This was a tough decision. We can't make any promises about being admitted on a future application, but we hope that <span class="font-semibold">you reapply for a future batch</span>.
+          <% else %>
+            We're <span class="font-semibold">currently reviewing applications</span> for the upcoming cohort. We'll be sure to keep you updated on the status of your application!
+          <% end %>
+        </p>
+      <% else %>
+        <%= render UserMenteeApplication::ActionButtonBuilderComponent.new(
+          mentee_application: @user_mentee_application
+        ) %>
+      <% end %>
+    </span>
+    
   </section>
 
   <%= render UserMenteeApplication::SectionComponent.new(header_text: "Tell us about your journey") do %>
     <div class="flex flex-col mb-5">
-      <strong>How did you learn to code?</strong>
+      <label class='label label-text font-semibold'>How did you learn to code?</label>
       <p><%= @user_mentee_application.learned_to_code %></p>
     </div>
 
     <div class="flex flex-col">
-      <strong>Describe a project you’ve worked on that you especially loved or are proud of.</strong>
+      <label class='label label-text font-semibold'>Describe a project you’ve worked on that you especially loved or are proud of.</label>
       <p><%= @user_mentee_application.project_experience %></p>
     </div>
   <% end %>
 
   <%= render UserMenteeApplication::SectionComponent.new(header_text: "Tell us about your interest in the Agency of Learning") do %>
     <div class="flex flex-col mb-5">
-      <strong>Why are you here?</strong>
+      <label class='label label-text font-semibold'>Why are you here?</label>
       <p><%= @user_mentee_application.reason_for_applying %></p>
     </div>
     <div class="flex flex-col mb-5">
-      <strong>How did you hear about The Agency of Learning?</strong>
+      <label class='label label-text font-semibold'>How did you hear about The Agency of Learning?</label>
       <p><%= @user_mentee_application.referral_source %></p>
     </div>
     <div class="flex flex-col">
-      <strong>How many hours per week are you able to commit to The Agency of Learning?</strong>
+      <label class='label label-text font-semibold'>How many hours per week are you able to commit to The Agency of Learning?</label>
       <p><%= @user_mentee_application.available_hours_per_week %></p>
     </div>
   <% end %>
 
   <%= render UserMenteeApplication::SectionComponent.new(header_text: "Current Location Information") do %>
     <div class="flex flex-col">
-      <strong>City:</strong>
+      <label class='label label-text font-semibold'>City:</label>
       <p><%= @user_mentee_application.city %></p>
     </div>
     <div class="flex flex-col">
-      <strong>State:</strong>
+      <label class='label label-text font-semibold'>State:</label>
       <p><%= @user_mentee_application.state %></p>
     </div>
     <div class="flex flex-col">
-      <strong>Country:</strong>
+      <label class='label label-text font-semibold'>Country:</label>
       <p><%= @user_mentee_application.country %></p>
     </div>
   <% end %>
 
   <%= render UserMenteeApplication::SectionComponent.new(header_text: "Job Hunting Information") do %>
     <div class="flex flex-col">
-      <strong>LinkedIn URL:</strong>
+      <label class='label label-text font-semibold'>LinkedIn URL:</label>
       <p><%= @user_mentee_application.linkedin_url %></p>
     </div>
     <div class="flex flex-col">
-      <strong>GitHub URL:</strong>
+      <label class='label label-text font-semibold'>GitHub URL:</label>
       <p><%= @user_mentee_application.github_url %></p>
+    </div>
+  <% end %>
+
+  <%= render UserMenteeApplication::SectionComponent.new(header_text: "Job Hunting Information") do %>
+    <div class="flex flex-col">
+      <label class='label label-text font-semibold'>Resume:</label>
+      <p><%= link_to "View resume", @user_mentee_application.user.current_resume.resume.url, target: '_blank', class: 'link' %></p>
     </div>
   <% end %>
 
   <%= render UserMenteeApplication::SectionComponent.new(header_text: "Additional Information") do %>
     <div class="flex flex-col">
-      <strong>Anything else we should know?</strong>
+      <label class='label label-text font-semibold'>Anything else we should know?</label>
       <p><%= @user_mentee_application.additional_information %></p>
     </div>
   <% end %>
