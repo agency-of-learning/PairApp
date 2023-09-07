@@ -1,0 +1,26 @@
+<h1 class="text-center text-3xl text-bold mb-4">Application Cohorts</h1>
+
+
+<div class="px-2">
+  <div class="table w-full border-2 border-neutral text-md md:text-base">
+    <div class="table-header-group">
+      <div class="table-row font-bold bg-primary divide-x-2 divide-neutral text-primary-content">
+        <%= render TableCellComponent.new.with_content('Name') %>
+        <%= render TableCellComponent.new(class_names: 'hidden sm:table-cell') do %>
+          Start Date
+        <% end %>
+        <%= render TableCellComponent.new(class_names: 'hidden sm:table-cell') do %>
+          End Date
+        <% end %>
+        <%= render TableCellComponent.new.with_content('Status') %>
+        <%= render TableCellComponent.new.with_content('Actions') %>
+      </div>
+    </div>
+    <div class="table-row-group">
+      <%= render "table_row", cohort: @active_cohort if @active_cohort.present? %>
+      <% @inactive_cohorts.each do |cohort| %>
+        <%= render "table_row", cohort: %>
+      <% end %>
+    </div>
+  </div>
+</div>

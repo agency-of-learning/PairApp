@@ -16,6 +16,10 @@ class UserMenteeApplicationCohort < ApplicationRecord
 
   after_save :deactivate_other_cohorts!, if: :active?
 
+  scope :inactive, -> { where(active: false) }
+
+  delegate :begin, :end, to: :active_date_range
+
   def self.active
     find_by(active: true)
   end
