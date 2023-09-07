@@ -1,0 +1,21 @@
+<%= form_with model:[ user_mentee_application ,user_mentee_application.mentee_application_states.new] do |f| %>
+  <div class="form-control">
+    <%= f.label :status, class: 'label label-text text-lg' %>
+    <div class="flex flex-col gap-1">
+      <%= f.collection_radio_buttons :status, [:rejected, MenteeApplicationState.next(status: user_mentee_application.current_status)], :itself, :itself do |b| %>
+        <div class="flex items-center gap-2">
+          <%= b.radio_button(class: "radio radio-primary") %>
+          <%= b.label(class: "label label-text") %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-control mb-4">
+    <%= f.label :note, class: "label label-text text-lg" %>
+    <%= f.text_area :note, class: "textarea textarea-bordered textarea-primary", data: { controller: 'textarea-autogrow' } %>
+  </div>
+
+
+  <%= f.submit class:"btn btn-primary" %>
+<% end %>
