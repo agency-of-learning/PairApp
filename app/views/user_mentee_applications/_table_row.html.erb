@@ -20,6 +20,10 @@
   <% end %>
 
   <%= render(TableCellComponent.new(class_names: "hidden sm:table-cell text-center")) do %>
-    <%= render(UserMenteeApplication::ActionButtonBuilderComponent.new(mentee_application: mentee_application)) %> <br>
+    <%= link_to "Action",
+      new_user_mentee_application_mentee_application_state_path(mentee_application),
+      class: 'link link-primary',
+      data: { turbo_frame: 'modal' }
+    %>
   <% end %>
 </div>
