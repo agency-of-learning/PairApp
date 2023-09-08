@@ -7,9 +7,9 @@ begin
     { first_name: 'User1', last_name: Faker::Name.last_name, email: "user1@aol.com", password: "password", role: "member" },
     { first_name: 'User2', last_name: Faker::Name.last_name, email: "user2@aol.com", password: "password", role: "member" },
     { first_name: 'User3', last_name: Faker::Name.last_name, email: "user3@aol.com", password: "password", role: "member" },
-    { first_name: 'Applicant1', last_name: Faker::Name.last_name, email: "applicant1@aol.com", password: "password", role: "member" },
-    { first_name: 'Applicant2', last_name: Faker::Name.last_name, email: "applicant2@aol.com", password: "password", role: "member" },
-    { first_name: 'Applicant3', last_name: Faker::Name.last_name, email: "applicant3@aol.com", password: "password", role: "member" },
+    { first_name: 'Applicant1', last_name: Faker::Name.last_name, email: "applicant1@aol.com", password: "password", role: "applicant" },
+    { first_name: 'Applicant2', last_name: Faker::Name.last_name, email: "applicant2@aol.com", password: "password", role: "applicant" },
+    { first_name: 'Applicant3', last_name: Faker::Name.last_name, email: "applicant3@aol.com", password: "password", role: "applicant" },
   ]
 
   users = []
