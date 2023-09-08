@@ -5,3 +5,11 @@
     <%= @user_mentee_application.current_status.to_s.humanize %>
   </div>
 <% end %>
+
+<%= turbo_stream.update "#{dom_id(@user_mentee_application)}--status" do %>
+  <%= @user_mentee_application.status %>
+<% end %>
+
+<%= turbo_stream.update "#{dom_id(@user_mentee_application)}--note" do %>
+  <%= @user_mentee_application.current_state.note %>
+<% end %>
