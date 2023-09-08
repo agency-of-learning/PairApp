@@ -1,10 +1,12 @@
 <div class="max-w-prose mx-auto p-4">
   <section class="flex flex-col mb-3 mb-5 ">
-    <div class="mx-auto text-2xl text-red-500 mb-3">
-      <%= @user_mentee_application.current_status.to_s.humanize %>
-    </div>
+    <%= turbo_frame_tag 'application_status' do %>
+      <div class="mx-auto text-2xl text-red-500 mb-3">
+        <%= @user_mentee_application.current_status.to_s.humanize %>
+      </div>
+    <% end %>
 
-    <%= render 'mentee_application_states/form', user_mentee_application: @user_mentee_application %>
+    <%= link_to "Manage Application", new_user_mentee_application_mentee_application_state_path(@user_mentee_application), class: 'link link-primary', data: { turbo_frame: 'modal' } %>
   </section>
 
   <%= render UserMenteeApplication::SectionComponent.new(header_text: "Tell us about your journey") do %>
