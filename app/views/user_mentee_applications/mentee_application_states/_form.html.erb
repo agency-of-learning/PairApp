@@ -1,7 +1,7 @@
 <%= form_with model: [application, state] do |f| %>
   <div class="form-control">
     <%= f.label :status, class: 'label label-text text-lg' %>
-    <div class="flex flex-col gap-1">
+    <div class="flex gap-8">
       <%= f.collection_radio_buttons :status, [:rejected, MenteeApplicationState.next(status: application.current_status)], :itself, :itself do |b| %>
         <div class="flex items-center gap-2">
           <%= b.radio_button(class: "radio radio-primary") %>

@@ -9,7 +9,7 @@
   >
 
     <div
-      class="fixed inset-0 bg-gray-500/75 transition-opacity"
+      class="fixed inset-0 bg-neutral-focus/75 transition-opacity"
       data-modal-target="transitionable"
       data-transition-enter="ease-out duration-300"
       data-transition-enter-start="opacity-0"
@@ -35,16 +35,16 @@
         >
 
           <div class="absolute right-0 top-0 pr-4 pt-4">
-            <button type="button" data-action="click->modal#close" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-500">
+            <button type="button" data-action="click->modal#close" class="rounded-md bg-white text-neutral hover:text-error">
               <i class="fa-solid fa-xmark"></i>
             </button>
           </div>
 
           <div class="pb-5">
-            <h3 class="text-lg font-semibold leading-6 text-gray-900"><%= title %></h3>
+            <h3 class="text-lg font-semibold leading-6 text-neutral"><%= title %></h3>
           </div>
 
-          <div class="flex">
+          <div>
             <%= content %>
           </div>
 
