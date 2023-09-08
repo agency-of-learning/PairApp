@@ -21,7 +21,7 @@ task backfill_applicant_responses: :environment do
   )
   headers = ['#', 'name', 'email', 'reason_for_applying', 'linkedin_url', 'learned_to_code', 'location', 'project_experience',
              'available_hours_per_week', 'referral_source', 'additional_information', 'start_utc', 'submit_utc', 'network_id', 'tags']
-  responses_url = #redacted url 
+  responses_url = #redacted url string 
 
   table = CSV.new(Net::HTTP.get_response(URI(responses_url)).body, headers:, liberal_parsing: true)
   table.each_with_index do |row, idx|
@@ -65,9 +65,7 @@ task backfill_applicant_responses: :environment do
 
   new_user_count = User.where(role: 'applicant').count
   # for testing, make sure to exclude seed applicants
-  new_application_count = UserMenteeApplication.joins(:user).where.not(
-    user: {email: ['applicant1@aol.com', 'applicant2@aol.com', 'applicant3@aol.com']}
-  ).count
+  new_application_count = UserMenteeApplication.count
   begin
     raise StandardError.new('counts unequal') unless new_user_count == new_application_count
   rescue => exception
@@ -84,7 +82,7 @@ task backfill_applicant_responses: :environment do
   puts
   puts 'Completed processing responses.csv!'
 
-  dataclips_url = #redacted url 
+  dataclips_url = #redacted url string 
 
   table = CSV.new(Net::HTTP.get_response(URI(dataclips_url)).body, headers: true, liberal_parsing: true)
   table.each_with_index do |row, _idx|
@@ -128,9 +126,7 @@ task backfill_applicant_responses: :environment do
 
   new_user_count = User.where(role: 'applicant').count
   # for testing, make sure to exclude seed applicants
-  new_application_count = UserMenteeApplication.joins(:user).where.not(
-    user: {email: ['applicant1@aol.com', 'applicant2@aol.com', 'applicant3@aol.com']}
-  ).count
+  new_application_count = UserMenteeApplication.joins(:user).count
   begin
     raise StandardError.new('counts unequal') unless new_user_count == new_application_count
   rescue => exception
