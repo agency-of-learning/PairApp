@@ -6,7 +6,9 @@ class UserMenteeApplications::MenteeApplicationStatesController < ApplicationCon
   end
 
   def create
-    @mentee_application_state = @user_mentee_application.mentee_application_states.build(mentee_application_state_params)
+    @mentee_application_state = @user_mentee_application
+                                .mentee_application_states
+                                .build(mentee_application_state_params)
 
     respond_to do |format|
       if @mentee_application_state.save

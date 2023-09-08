@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe ModalComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:title) { 'Test title' }
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+  it 'renders the title' do
+    render_inline(described_class.new(title:))
+
+    expect(page).to have_content(title)
+  end
 end
