@@ -1,11 +1,5 @@
 <%= turbo_stream.update 'flash', partial: "layouts/flash" %>
 
-<%= turbo_stream.update 'application_status' do %>
-  <div class="mx-auto text-2xl text-red-500 mb-3">
-    <%= @user_mentee_application.current_status.to_s.humanize %>
-  </div>
-<% end %>
-
 <%= turbo_stream.update "#{dom_id(@user_mentee_application)}--status" do %>
   <%= @user_mentee_application.status %>
 <% end %>
