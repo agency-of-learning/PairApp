@@ -28,6 +28,8 @@
         <div id="flash" class="empty:hidden px-4">
           <%= render "layouts/flash" %>
         </div>
+
+        <%= turbo_frame_tag "modal" %>
         <%= yield %>
       </div>
     </div>
