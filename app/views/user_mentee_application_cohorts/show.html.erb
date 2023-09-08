@@ -1,4 +1,6 @@
-<h1 class="text-2xl font-bold mb-4 text-center">User Mentee Applications</h1>
+<h1 class="text-2xl font-bold mb-4 text-center">
+  <%= @cohort.name %> Cohort Applications
+</h1>
 
 <div class="p-2">
   <div class="tabs">
@@ -27,11 +29,9 @@
       </div>
     </div>
     <div class="table-row-group" id='my-pair-requests'>
-      <% UserMenteeApplication.all.each do |mentee_application| %>
-        <%= render "table_row", mentee_application: %>
+      <% @cohort.user_mentee_applications.each do |mentee_application| %>
+        <%= render "user_mentee_applications/table_row", mentee_application: %>
       <% end %>
     </div>
   </div>
 </div>
-
-  

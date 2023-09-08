@@ -1,4 +1,5 @@
 class UserMenteeApplicationsController < ApplicationController
+  include ActiveStorage::SetCurrent
   before_action :set_user_mentee_application, only: %i[show]
 
   def index
@@ -17,24 +18,27 @@ class UserMenteeApplicationsController < ApplicationController
     end
   end
 
+  # rubocop:disable Metrics/AbcSize
   def create
     if current_user.mentee_application.present?
       redirect_to user_mentee_application_path(current_user.mentee_application)
     end
 
-    @user_mentee_application = UserMenteeApplication.new(user_mentee_application_params)
-    @user_mentee_application.user = current_user
-
-    authorize @user_mentee_application
-
-    respond_to do |format|
-      if @user_mentee_application.save
-        format.html { redirect_to @user_mentee_application, notice: 'Application succesfully submitted' }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    @user_mentee_application = authorize UserMenteeApplication.new(
+      user: current_user,
+      user_mentee_application_cohort: UserMenteeApplicationCohort.active,
+      **user_mentee_application_params
+    )
+    ActiveRecord::Base.transaction do
+      @user_mentee_application.save!
+      current_user.resumes.create!(resume: resume_params[:resume], name: resume_params[:resume_name], current: true)
     end
+    redirect_to @user_mentee_application, notice: 'Application succesfully submitted'
+  rescue StandardError
+    flash.now[:form_errors] = @user_mentee_application.errors.full_messages
+    render :new, status: :unprocessable_entity
   end
+  # rubocop:enable Metrics/AbcSize
 
   def update; end
 
@@ -50,5 +54,9 @@ class UserMenteeApplicationsController < ApplicationController
       :country, :github_url, :learned_to_code, :linkedin_url,
       :project_experience, :reason_for_applying, :referral_source, :state
     )
+  end
+
+  def resume_params
+    params.require(:user_mentee_application).permit(:resume, :resume_name)
   end
 end

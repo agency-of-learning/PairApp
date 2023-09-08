@@ -52,7 +52,14 @@ Rails.application.routes.draw do
   resources :blog_posts
   resources :featured_blog_posts, only: %i[index create update destroy]
 
-  resources :user_mentee_applications, only: %i[index show new create edit update]
+  resources :user_mentee_application_cohorts, only: %i[index show]
+  resources :user_mentee_applications, only: %i[index show new create edit update] do
+    scope module: :user_mentee_applications do
+      resources :acceptances, only: :create
+      resources :rejections, only: :create
+      resource :promotions, only: :create
+    end
+  end
 
   scope controller: :static do
     get :faq
