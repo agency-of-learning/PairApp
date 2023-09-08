@@ -19,6 +19,8 @@ task backfill_applicant_responses: :environment do
   )
   headers = ['#', 'name', 'email', 'reason_for_applying', 'linkedin_url', 'learned_to_code', 'location', 'project_experience',
              'available_hours_per_week', 'referral_source', 'additional_information', 'start_utc', 'submit_utc', 'network_id', 'tags']
+  responses_url = # URL string redacted  
+
   table = CSV.new(Net::HTTP.get_response(URI(responses_url)).body, headers:, liberal_parsing: true)
   table.each_with_index do |row, idx|
     next if idx.zero? # skip header row
@@ -58,6 +60,8 @@ task backfill_applicant_responses: :environment do
 
   puts
   puts 'Completed processing responses.csv!'
+
+  dataclips_url = # URL string redacted 
 
   table = CSV.new(Net::HTTP.get_response(URI(dataclips_url)).body, headers: true, liberal_parsing: true)
   table.each_with_index do |row, _idx|
