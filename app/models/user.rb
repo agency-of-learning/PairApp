@@ -83,7 +83,7 @@ class User < ApplicationRecord
 
   after_create :create_profile!
 
-  scope :members, -> { where(role: [:member, :admin]) }
+  scope :members, -> { where(role: %i[member admin]) }
 
   def self.invite!(attributes = {}, invited_by = nil, options = {}, &)
     default_name = { first_name: 'First', last_name: 'Last' }
