@@ -33,10 +33,6 @@ class MenteeApplicationState < ApplicationRecord
     rejected: 6
   }
 
-  def can_promote?
-    !accepted? && !rejected?
-  end
-
   class << self
     # state machine for mentee application
     def next(status:)

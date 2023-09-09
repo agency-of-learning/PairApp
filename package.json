@@ -7,6 +7,7 @@
     "@rails/activestorage": "^7.0.7-2",
     "daisyui": "^2.51.6",
     "dayjs": "^1.11.9",
+    "el-transition": "^0.0.7",
     "esbuild": "^0.17.19",
     "flatpickr": "^4.6.13",
     "stimulus-flatpickr": "^3.0.0-0",

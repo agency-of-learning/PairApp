@@ -58,6 +58,7 @@ Rails.application.routes.draw do
       resources :acceptances, only: :create
       resources :rejections, only: :create
       resource :promotions, only: :create
+      resources :mentee_application_states, only: %i[new create]
     end
   end
 
