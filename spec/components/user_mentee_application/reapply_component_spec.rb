@@ -12,7 +12,7 @@ RSpec.describe UserMenteeApplication::ReapplyCtaComponent, type: :component do
   end
 
   context 'when the active cohort is present' do
-    let(:user_mentee_application_cohort) { create(:user_mentee_application_cohort) }
+    let(:user_mentee_application_cohort) { build_stubbed(:user_mentee_application_cohort) }
 
     context 'when the last application is absent' do
       it 'renders a link to apply' do
@@ -23,7 +23,7 @@ RSpec.describe UserMenteeApplication::ReapplyCtaComponent, type: :component do
     end
 
     context 'when the latest application is for the current cohort' do
-      let(:last_application) { build(:user_mentee_application, user_mentee_application_cohort:) }
+      let(:last_application) { build_stubbed(:user_mentee_application, user_mentee_application_cohort:) }
 
       it 'renders nothing' do
         render_inline(described_class.new(active_cohort: user_mentee_application_cohort, last_application:))
@@ -33,7 +33,7 @@ RSpec.describe UserMenteeApplication::ReapplyCtaComponent, type: :component do
     end
 
     context 'when the latest application is not for the current cohort' do
-      let(:last_application) { build(:user_mentee_application) }
+      let(:last_application) { build_stubbed(:user_mentee_application) }
 
       it 'renders a link to reapply' do
         render_inline(described_class.new(active_cohort: user_mentee_application_cohort, last_application:))

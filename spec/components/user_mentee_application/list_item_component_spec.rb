@@ -16,12 +16,13 @@ RSpec.describe UserMenteeApplication::ListItemComponent, type: :component do
   end
 
   context 'when there is a cohort for the application' do
-    let(:user_mentee_application_cohort) { build(:user_mentee_application_cohort, name: 'Test Cohort') }
+    let(:cohort_name) { 'Test Cohort' }
+    let(:user_mentee_application_cohort) { build(:user_mentee_application_cohort, name: cohort_name) }
 
-    it "renders with the content 'Application for Test Cohort'" do
+    it "renders with the content 'Application for <cohort_name>'" do
       render_inline(described_class.new(mentee_application:))
 
-      expect(page).to have_content('Application for Test Cohort')
+      expect(page).to have_content("Application for #{cohort_name}")
     end
   end
 end
