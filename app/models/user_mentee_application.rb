@@ -65,6 +65,12 @@ class UserMenteeApplication < ApplicationRecord
     reload
   end
 
+  def active?
+    return false if user_mentee_application_cohort.blank?
+
+    user_mentee_application_cohort.active?
+  end
+
   private
 
   def create_initial_application_state

@@ -66,4 +66,32 @@ RSpec.describe UserMenteeApplication do
       expect(mentee_application.current_state.status_changed_id).to eq(user.id)
     end
   end
+
+  describe '#active?' do
+    subject { build_stubbed(:user_mentee_application, user_mentee_application_cohort: cohort) }
+
+    context 'when the mentee application belongs to an active cohort' do
+      let(:cohort) { build_stubbed(:user_mentee_application_cohort, active: true) }
+
+      it 'is active' do
+        expect(subject).to be_active
+      end
+    end
+
+    context "when the mentee applicatios doesn't belong to a cohort" do
+      let(:cohort) { nil }
+
+      it 'is not active' do
+        expect(subject).not_to be_active
+      end
+    end
+
+    context 'when the mentee application belongs to an inactive cohort' do
+      let(:cohort) { build_stubbed(:user_mentee_application_cohort, active: false) }
+
+      it 'is not active' do
+        expect(subject).not_to be_active
+      end
+    end
+  end
 end
