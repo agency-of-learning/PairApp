@@ -71,6 +71,10 @@ class UserMenteeApplication < ApplicationRecord
     user_mentee_application_cohort.active?
   end
 
+  def in_review?
+    !accepted? && !rejected?
+  end
+
   private
 
   def create_initial_application_state

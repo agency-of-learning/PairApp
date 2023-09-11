@@ -94,4 +94,34 @@ RSpec.describe UserMenteeApplication do
       end
     end
   end
+
+  describe '#in_review?' do
+    before do
+      create(:mentee_application_state, status:, user_mentee_application: mentee_application)
+    end
+
+    context 'when the status is accepted' do
+      let(:status) { :accepted }
+
+      it 'is not in review' do
+        expect(mentee_application).not_to be_in_review
+      end
+    end
+
+    context 'when the status is rejected' do
+      let(:status) { :rejected }
+
+      it 'is not in review' do
+        expect(mentee_application).not_to be_in_review
+      end
+    end
+
+    context 'when the status is not rejected or accepted' do
+      let(:status) { :stage_one }
+
+      it 'is in review' do
+        expect(mentee_application).to be_in_review
+      end
+    end
+  end
 end
