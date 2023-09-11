@@ -24,6 +24,10 @@ class UserMenteeApplicationCohort < ApplicationRecord
     find_by(active: true)
   end
 
+  def application_for_user?(user)
+    user_mentee_applications.exists?(user:)
+  end
+
   private
 
   # rubocop: disable Rails/SkipsModelValidations
