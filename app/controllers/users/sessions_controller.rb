@@ -6,6 +6,6 @@ class Users::SessionsController < Devise::SessionsController
   def after_sign_in_path_for(user)
     return super(user) unless user.applicant?
 
-    user.mentee_application || new_user_mentee_application_path
+    user_mentee_applications_path
   end
 end

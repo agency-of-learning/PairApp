@@ -4,6 +4,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_sign_up_path_for(_resource)
-    new_user_mentee_application_path
+    user_mentee_applications_path
   end
 end
