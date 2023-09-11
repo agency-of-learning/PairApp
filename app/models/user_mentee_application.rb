@@ -50,6 +50,8 @@ class UserMenteeApplication < ApplicationRecord
 
   delegate :accepted?, :rejected?, :status, to: :current_state
 
+  scope :order_newest_first, -> { order(created_at: :desc) }
+
   def current_status
     status
   end
