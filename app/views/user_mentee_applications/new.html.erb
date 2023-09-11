@@ -68,7 +68,7 @@
 
       <div class="flex flex-col form-control">
         <%= form.label :resume, class: 'label label-text' %>
-        <%= form.file_field :resume, direct_upload: true, class: 'file-input file-input-bordered file-input-primary max-w-xs', accept: 'application/pdf', required: true %>
+        <%= form.file_field :resume, direct_upload: true, class: 'file-input file-input-bordered file-input-primary max-w-xs', accept: 'application/pdf' %>
         <%= form.hidden_field :resume_name, class: 'input input-primary input-bordered', value: 'application_resume' %>
       </div>
     <% end %>
@@ -82,7 +82,4 @@
 
     <%= form.submit "Submit", class: 'btn btn-primary btn-wide mx-auto mt-5 mb-5' %>
   </div>
-
-
-
 <% end %>

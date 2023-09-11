@@ -31,7 +31,9 @@ class UserMenteeApplicationsController < ApplicationController
     )
     ActiveRecord::Base.transaction do
       @user_mentee_application.save!
-      current_user.resumes.create!(resume: resume_params[:resume], name: resume_params[:resume_name], current: true)
+      if resume_params[:resume].present?
+        current_user.resumes.create!(resume: resume_params[:resume], name: resume_params[:resume_name], current: true)
+      end
     end
     redirect_to @user_mentee_application, notice: 'Application succesfully submitted'
   rescue StandardError

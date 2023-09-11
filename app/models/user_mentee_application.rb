@@ -48,6 +48,7 @@ class UserMenteeApplication < ApplicationRecord
   after_create :create_initial_application_state
 
   delegate :accepted?, :rejected?, :status, to: :current_state
+  delegate :current_resume, to: :user
 
   def current_status
     status
