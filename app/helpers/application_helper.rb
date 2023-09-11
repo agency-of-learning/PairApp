@@ -40,14 +40,6 @@ module ApplicationHelper
   end
   # rubocop:enable Style/PerceivedComplexity
 
-  def render_navbar
-    if current_page?(root_path)
-      render(partial: 'layouts/landing_navbar')
-    else
-      render partial: 'layouts/navbar'
-    end
-  end
-
   def background_color
     'bg-[#2C2E36]' if current_page?(root_path)
   end

@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   # Shortcuts
   get 'landing/index'
 
+  resources :dashboards, only: :index
+
   resources :profiles, only: %i[show edit update] do
     scope module: :profiles do
       resources :visibility_toggles, only: :create
