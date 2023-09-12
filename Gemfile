@@ -50,6 +50,7 @@ group :development do
   gem 'letter_opener_web', '~> 2.0'
   gem 'sassc-rails'
   gem 'web-console'
+  gem 'rails-erd'
 end
 
 group :test do
@@ -65,7 +66,5 @@ end
 gem 'pundit', '~> 2.3'
 
 gem 'tailwindcss-rails', '~> 2.0'
-
-gem 'jsbundling-rails', '~> 1.1'
 
 gem 'pagy', '~> 6.0'
