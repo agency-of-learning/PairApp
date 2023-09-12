@@ -14,7 +14,6 @@
 #  reason_for_applying               :text             not null
 #  referral_source                   :string
 #  state                             :string           not null
-#  status                            :integer
 #  created_at                        :datetime         not null
 #  updated_at                        :datetime         not null
 #  user_id                           :bigint           not null
@@ -49,6 +48,7 @@ class UserMenteeApplication < ApplicationRecord
   after_create :create_initial_application_state
 
   delegate :accepted?, :rejected?, :status, to: :current_state
+  delegate :current_resume, to: :user
 
   def current_status
     status
