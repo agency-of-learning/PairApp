@@ -18,7 +18,7 @@
 #  created_at                        :datetime         not null
 #  updated_at                        :datetime         not null
 #  user_id                           :bigint           not null
-#  user_mentee_application_cohort_id :bigint
+#  user_mentee_application_cohort_id :bigint           not null
 #
 # Indexes
 #
@@ -32,7 +32,7 @@
 #
 class UserMenteeApplication < ApplicationRecord
   belongs_to :user
-  belongs_to :user_mentee_application_cohort, optional: true
+  belongs_to :user_mentee_application_cohort
 
   has_many :mentee_application_states, dependent: :destroy
   # rubocop:disable Rails/InverseOf
