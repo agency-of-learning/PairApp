@@ -3,4 +3,8 @@ class MenteeApplicationMailerPreview < ActionMailer::Preview
   def notify_for_acceptance
     MenteeApplicationMailer.with(recipient: User.last).notify_for_acceptance
   end
+
+  def notify_for_rejection
+    MenteeApplicationMailer.with(recipient: User.last).notify_for_rejection
+  end
 end

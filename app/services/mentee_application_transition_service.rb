@@ -58,10 +58,15 @@ module MenteeApplicationTransitionService
   def invoke_side_effects(application, promote_transition, user)
     case promote_transition
     when :accepted then accepted_side_effects(application, user)
+    when :rejected then rejected_side_effects(application, user)
     end
   end
 
   def accepted_side_effects(application, _user)
     MenteeApplication::AcceptanceNotification.deliver(application.user)
+  end
+
+  def rejected_side_effects(application, _user)
+    MenteeApplication::RejectionNotification.deliver(application.user)
   end
 end

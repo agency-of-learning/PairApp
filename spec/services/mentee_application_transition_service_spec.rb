@@ -104,7 +104,12 @@ RSpec.describe MenteeApplicationTransitionService do
           application_received.reload.current_status
         }.from('application_received').to('rejected')
       end
-      it 'enqueues a rejection mailer'
+
+      it 'enqueues a rejection mailer' do
+        expect {
+          described_class.reject!(application: application_received, user: reviewer)
+        }.to have_enqueued_mail(MenteeApplicationMailer, :notify_for_rejection)
+      end
     end
 
     context 'when the coding challenge has been sent' do
@@ -123,7 +128,12 @@ RSpec.describe MenteeApplicationTransitionService do
           coding_challenge_received.reload.current_status
         }.from('coding_challenge_received').to('rejected')
       end
-      it 'enqueues a rejection mailer'
+
+      it 'enqueues a rejection mailer' do
+        expect {
+          described_class.reject!(application: coding_challenge_received, user: reviewer)
+        }.to have_enqueued_mail(MenteeApplicationMailer, :notify_for_rejection)
+      end
     end
 
     context 'when the coding challenge has been approved' do
@@ -150,7 +160,12 @@ RSpec.describe MenteeApplicationTransitionService do
           phone_screen_completed.reload.current_status
         }.from('phone_screen_completed').to('rejected')
       end
-      it 'enqueues a rejection mailer'
+
+      it 'enqueues a rejection mailer' do
+        expect {
+          described_class.reject!(application: phone_screen_completed, user: reviewer)
+        }.to have_enqueued_mail(MenteeApplicationMailer, :notify_for_rejection)
+      end
     end
 
     context 'when the application has been accepted' do
