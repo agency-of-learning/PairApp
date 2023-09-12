@@ -4,7 +4,7 @@
 #
 #  id                         :bigint           not null, primary key
 #  note                       :text
-#  status                     :integer          default("pending"), not null
+#  status                     :integer          default("application_received"), not null
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  status_changed_id          :bigint
@@ -24,40 +24,48 @@ require 'rails_helper'
 
 RSpec.describe MenteeApplicationState do
   describe '.next' do
-    context 'when the status is pending' do
-      let(:status) { :pending }
+    context 'when the status is application_received' do
+      let(:status) { :application_received }
 
       it 'returns the next status' do
-        expect(described_class.next(status:)).to eq('stage_one')
+        expect(described_class.next(status:)).to eq('coding_challenge_sent')
       end
     end
 
-    context 'when the status is stage_one' do
-      let(:status) { :stage_one }
+    context 'when the status is coding_challenge_sent' do
+      let(:status) { :coding_challenge_sent }
 
       it 'returns the next status' do
-        expect(described_class.next(status:)).to eq('stage_two')
+        expect(described_class.next(status:)).to eq('coding_challenge_received')
       end
     end
 
-    context 'when the status is stage_two' do
-      let(:status) { :stage_two }
+    context 'when the status is coding_challenge_received' do
+      let(:status) { :coding_challenge_received }
 
       it 'returns the next status' do
-        expect(described_class.next(status:)).to eq('stage_three')
+        expect(described_class.next(status:)).to eq('coding_challenge_approved')
       end
     end
 
-    context 'when the status is stage_three' do
-      let(:status) { :stage_three }
+    context 'when the status is coding_challenge_approved' do
+      let(:status) { :coding_challenge_approved }
 
       it 'returns the next status' do
-        expect(described_class.next(status:)).to eq('stage_four')
+        expect(described_class.next(status:)).to eq('phone_screen_scheduled')
       end
     end
 
-    context 'when the status is stage_four' do
-      let(:status) { :stage_four }
+    context 'when the status is phone_screen_scheduled' do
+      let(:status) { :phone_screen_scheduled }
+
+      it 'returns the next status' do
+        expect(described_class.next(status:)).to eq('phone_screen_completed')
+      end
+    end
+
+    context 'when the status is phone_screen_completed' do
+      let(:status) { :phone_screen_completed }
 
       it 'returns the next status' do
         expect(described_class.next(status:)).to eq('accepted')

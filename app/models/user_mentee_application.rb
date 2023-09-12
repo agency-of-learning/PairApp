@@ -68,6 +68,6 @@ class UserMenteeApplication < ApplicationRecord
   private
 
   def create_initial_application_state
-    mentee_application_states.create(status: :pending)
+    mentee_application_states.create(status: :application_received)
   end
 end

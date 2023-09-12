@@ -4,7 +4,7 @@
 #
 #  id                         :bigint           not null, primary key
 #  note                       :text
-#  status                     :integer          default("pending"), not null
+#  status                     :integer          default("application_received"), not null
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  status_changed_id          :bigint
@@ -24,13 +24,14 @@ class MenteeApplicationState < ApplicationRecord
   belongs_to :user_mentee_application
 
   enum status: {
-    pending: 0,
-    stage_one: 1,
-    stage_two: 2,
-    stage_three: 3,
-    stage_four: 4,
-    accepted: 5,
-    rejected: 6
+    application_received: 0,
+    coding_challenge_sent: 1,
+    coding_challenge_received: 2,
+    coding_challenge_approved: 3,
+    phone_screen_scheduled: 4,
+    phone_screen_completed: 5,
+    accepted: 6,
+    rejected: 7
   }
 
   class << self

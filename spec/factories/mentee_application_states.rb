@@ -4,7 +4,7 @@
 #
 #  id                         :bigint           not null, primary key
 #  note                       :text
-#  status                     :integer          default("pending"), not null
+#  status                     :integer          default("application_received"), not null
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  status_changed_id          :bigint
@@ -23,8 +23,33 @@
 FactoryBot.define do
   factory :mentee_application_state do
     user_mentee_application
-    status { 1 }
+    status { 0 }
     note { 'MyText' }
     status_changed_id { association :user }
+
+    trait :application_received do
+      status { :application_received }
+    end
+    trait :coding_challenge_sent do
+      status { :coding_challenge_sent }
+    end
+    trait :coding_challenge_received do
+      status { :coding_challenge_received }
+    end
+    trait :coding_challenge_approved do
+      status { :coding_challenge_approved }
+    end
+    trait :phone_screen_scheduled do
+      status { :phone_screen_scheduled }
+    end
+    trait :phone_screen_completed do
+      status { :phone_screen_completed }
+    end
+    trait :accepted do
+      status { :accepted }
+    end
+    trait :rejected do
+      status { :rejected }
+    end
   end
 end
