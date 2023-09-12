@@ -1,5 +1,6 @@
 class MenteeApplicationMailer < ApplicationMailer
   def notify_for_acceptance
+    @application = params[:application]
     mail(subject: 'Welcome to the Agency of Learning!')
   end
 

@@ -1,1 +1,11 @@
-<p>Congratulations!</p>
+
+<div style='display: block; max-width: 36rem; margin: 0 auto; padding-top: 4rem;'>
+  <p><%= @recipient.full_name %>,</p>
+  <p>
+    We are pleased to welcome you to the <strong>Agency of Learning</strong>!
+  </p>
+
+  <p>
+    Your cohort begins on <%= @application.user_mentee_application_cohort&.begin&.to_fs(:long) %>. Please send an email to <a href="mailto:dave@agencyoflearning.com?subject=Accept Invitation to Join Agency of Learning">dave@agencyoflearning.com</a> confirming your interest to join us in the program. We're excited to start working with you!
+  </p>
+</div>
