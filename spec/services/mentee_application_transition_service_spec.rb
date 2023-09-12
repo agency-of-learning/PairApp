@@ -32,7 +32,10 @@ RSpec.describe MenteeApplicationTransitionService do
     end
 
     context 'when the phone screen has been completed' do
-      it 'promotes the application to the next status'
+      it 'promotes the application to the next status' do
+        described_class.promote!(application: phone_screen_completed, user: reviewer)
+        expect(phone_screen_completed.reload.current_status).to eq('accepted')
+      end
     end
 
     context 'when the application has been accepted' do

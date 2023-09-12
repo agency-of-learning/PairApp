@@ -22,6 +22,7 @@
 #
 class MenteeApplicationState < ApplicationRecord
   belongs_to :user_mentee_application
+  belongs_to :status_changed, class_name: 'User', optional: true
 
   enum status: {
     application_received: 0,

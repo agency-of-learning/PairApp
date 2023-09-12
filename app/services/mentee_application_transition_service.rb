@@ -37,6 +37,8 @@ module MenteeApplicationTransitionService
   def promote!(application:, user:, note: nil)
     status = application.current_status.to_sym
     raise InvalidTransitionError unless STATUS_TRANSITION_MAPPING[status][:valid_transitions].include? :promote
+    promote_transition = STATUS_TRANSITION_MAPPING[status][:promote_transition]
+    application.mentee_application_states.create!(status: promote_transition, status_changed: user, note:)
     true
   end
 end
