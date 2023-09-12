@@ -14,7 +14,6 @@
 #  reason_for_applying               :text             not null
 #  referral_source                   :string
 #  state                             :string           not null
-#  status                            :integer
 #  created_at                        :datetime         not null
 #  updated_at                        :datetime         not null
 #  user_id                           :bigint           not null
@@ -50,6 +49,7 @@ class UserMenteeApplication < ApplicationRecord
 
   delegate :accepted?, :rejected?, :status, to: :current_state
   delegate :active?, to: :user_mentee_application_cohort
+  delegate :current_resume, to: :user
 
   scope :order_newest_first, -> { order(created_at: :desc) }
 

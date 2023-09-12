@@ -79,13 +79,12 @@
       <label class='label label-text font-semibold'>GitHub URL:</label>
       <p><%= @user_mentee_application.github_url %></p>
     </div>
-  <% end %>
-
-  <%= render UserMenteeApplication::SectionComponent.new(header_text: "Job Hunting Information") do %>
-    <div class="flex flex-col">
-      <label class='label label-text font-semibold'>Resume:</label>
-      <p><%= link_to "View resume", @user_mentee_application.user.current_resume.resume.url, target: '_blank', class: 'link' %></p>
-    </div>
+    <% if @user_mentee_application.current_resume %>
+      <div class="flex flex-col">
+        <label class='label label-text font-semibold'>Resume:</label>
+        <p><%= link_to "View resume", @user_mentee_application.current_resume.resume.url, target: '_blank', class: 'link' %></p>
+      </div>
+    <% end %>
   <% end %>
 
   <%= render UserMenteeApplication::SectionComponent.new(header_text: "Additional Information") do %>
