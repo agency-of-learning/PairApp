@@ -313,7 +313,9 @@ RSpec/MultipleExpectations:
   Enabled: false
 RSpec/RepeatedExample:
   Enabled: false
-RSpec/FilePath:
+RSpec/SpecFilePathFormat:
+  Enabled: false
+RSpec/SpecFilePathSuffix:
   Enabled: false
 RSpec/RepeatedDescription:
   Exclude:
