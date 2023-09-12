@@ -78,14 +78,6 @@ RSpec.describe UserMenteeApplication do
       end
     end
 
-    context "when the mentee applicatios doesn't belong to a cohort" do
-      let(:cohort) { nil }
-
-      it 'is not active' do
-        expect(subject).not_to be_active
-      end
-    end
-
     context 'when the mentee application belongs to an inactive cohort' do
       let(:cohort) { build_stubbed(:user_mentee_application_cohort, active: false) }
 

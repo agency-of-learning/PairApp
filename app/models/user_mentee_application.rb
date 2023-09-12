@@ -49,6 +49,7 @@ class UserMenteeApplication < ApplicationRecord
   after_create :create_initial_application_state
 
   delegate :accepted?, :rejected?, :status, to: :current_state
+  delegate :active?, to: :user_mentee_application_cohort
 
   scope :order_newest_first, -> { order(created_at: :desc) }
 
@@ -65,12 +66,6 @@ class UserMenteeApplication < ApplicationRecord
   def reject_application!(user)
     mentee_application_states.create!(status: :rejected, status_changed_id: user.id)
     reload
-  end
-
-  def active?
-    return false if user_mentee_application_cohort.blank?
-
-    user_mentee_application_cohort.active?
   end
 
   def in_review?

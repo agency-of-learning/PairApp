@@ -21,7 +21,6 @@ class UserMenteeApplication::ReapplyCtaComponent < ViewComponent::Base
   def application_not_in_cohort?
     return true if last_application.blank?
 
-    application_cohort_id = last_application.user_mentee_application_cohort_id
-    application_cohort_id.blank? || (application_cohort_id != active_cohort.id)
+    last_application.user_mentee_application_cohort_id != active_cohort.id
   end
 end

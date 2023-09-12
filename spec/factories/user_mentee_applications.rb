@@ -33,6 +33,7 @@
 FactoryBot.define do
   factory :user_mentee_application do
     user
+    user_mentee_application_cohort
 
     available_hours_per_week { 10 }
     city { Faker::Address.city }

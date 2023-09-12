@@ -12,6 +12,6 @@ class UserMenteeApplication::ListItemComponent < ViewComponent::Base
   def link_text
     application_cohort = mentee_application.user_mentee_application_cohort
 
-    "Application for #{application_cohort&.name || 'The Agency of Learning'}"
+    "Application for #{application_cohort.name}"
   end
 end
