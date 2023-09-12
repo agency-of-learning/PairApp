@@ -1,0 +1,5 @@
+<p><%= @user.full_name %>,</p>
+
+<p>Thank you for Applying to AOL.com you'll receive your dvd over the mail soon <%#= @user_mentee_application.name %></p>
+
+<p>Link for your application <%= link_to "Here", user_mentee_application_url(@user = @user_mentee_application.user) %>.</p>
