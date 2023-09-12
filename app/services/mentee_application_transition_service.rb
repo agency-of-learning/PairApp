@@ -57,9 +57,14 @@ module MenteeApplicationTransitionService
 
   def invoke_side_effects(application, promote_transition, _reviewer)
     case promote_transition
+    when :coding_challenge_sent then code_challenge_side_effects(application)
     when :accepted then accepted_side_effects(application)
     when :rejected then rejected_side_effects(application)
     end
+  end
+
+  def code_challenge_side_effects(application)
+    MenteeApplication::CodeChallengeNotification.deliver(application.user)
   end
 
   def accepted_side_effects(application)

@@ -23,6 +23,12 @@ RSpec.describe MenteeApplicationTransitionService do
           application_received.reload.current_status
         }.from('application_received').to('coding_challenge_sent')
       end
+
+      it 'enqueues an accepted mailer' do
+        expect {
+          described_class.promote!(application: application_received, reviewer:)
+        }.to have_enqueued_mail(MenteeApplicationMailer, :notify_for_code_challenge)
+      end
     end
 
     context 'when the coding challenge has been sent' do

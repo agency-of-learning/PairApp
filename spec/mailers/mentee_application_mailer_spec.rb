@@ -23,4 +23,14 @@ RSpec.describe MenteeApplicationMailer do
       expect(mail.from).to eq(['no_reply@agencyoflearning.com'])
     end
   end
+
+  describe '#notify_for_code_challenge' do
+    subject(:mail) { described_class.with(recipient:).notify_for_code_challenge }
+
+    it 'renders the headers' do
+      expect(mail.subject).to eq('Moving forward in the application process for the Agency of Learning')
+      expect(mail.to).to eq([recipient.email])
+      expect(mail.from).to eq(['no_reply@agencyoflearning.com'])
+    end
+  end
 end

@@ -7,4 +7,8 @@ class MenteeApplicationMailer < ApplicationMailer
   def notify_for_rejection
     mail(subject: 'Update on your application to the Agency of Learning')
   end
+
+  def notify_for_code_challenge
+    mail(subject: 'Moving forward in the application process for the Agency of Learning')
+  end
 end

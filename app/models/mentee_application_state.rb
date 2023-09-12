@@ -22,7 +22,9 @@
 #
 class MenteeApplicationState < ApplicationRecord
   belongs_to :user_mentee_application
+  # rubocop:disable Rails/InverseOf
   belongs_to :reviewer, class_name: 'User', foreign_key: :status_changed_id, optional: true
+  # rubocop:enable Rails/InverseOf
 
   enum status: {
     application_received: 0,
