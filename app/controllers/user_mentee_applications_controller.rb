@@ -65,7 +65,10 @@ class UserMenteeApplicationsController < ApplicationController
   end
 
   def send_notifications
-    UserMenteeApplication::ApplicationSubmissionNotification.with(user_mentee_application: @user_mentee_application).deliver(@user_mentee_application.user)
-    UserMenteeApplication::ApplicationSubmissionAlert.with(user_mentee_application: @user_mentee_application).deliver(User.admin)
+    UserMenteeApplication::ApplicationSubmissionNotification
+      .with(user_mentee_application: @user_mentee_application).deliver(@user_mentee_application.user)
+
+    UserMenteeApplication::ApplicationSubmissionAlert
+      .with(user_mentee_application: @user_mentee_application).deliver(User.admin)
   end
 end
