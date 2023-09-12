@@ -20,7 +20,8 @@ module MenteeApplicationTransitionService
       promote_transition: :phone_screen_scheduled
     },
     phone_screen_scheduled: {
-      valid_transitions: [:promote]
+      valid_transitions: [:promote],
+      promote_transition: :phone_screen_completed
     },
     phone_screen_completed: {
       valid_transitions: %i[promote reject],

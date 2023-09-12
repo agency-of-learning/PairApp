@@ -16,19 +16,53 @@ RSpec.describe MenteeApplicationTransitionService do
 
   describe '.promote!' do
     context 'when the application has been received' do
-      it 'promotes the application to the next status'
+      it 'promotes the application to the next status' do
+        expect {
+          described_class.promote!(application: application_received, user: reviewer)
+        }.to change {
+          application_received.reload.current_status
+        }.from('application_received').to('coding_challenge_sent')
+      end
     end
 
     context 'when the coding challenge has been sent' do
-      it 'promotes the application to the next status'
+      it 'promotes the application to the next status' do
+        expect {
+          described_class.promote!(application: coding_challenge_sent, user: reviewer)
+        }.to change {
+          coding_challenge_sent.reload.current_status
+        }.from('coding_challenge_sent').to('coding_challenge_received')
+      end
     end
 
     context 'when the coding challenge has been received' do
-      it 'promotes the application to the next status'
+      it 'promotes the application to the next status' do
+        expect {
+          described_class.promote!(application: coding_challenge_received, user: reviewer)
+        }.to change {
+          coding_challenge_received.reload.current_status
+        }.from('coding_challenge_received').to('coding_challenge_approved')
+      end
+    end
+
+    context 'when the coding challenge has been approvode' do
+      it 'promotes the application to the next status' do
+        expect {
+          described_class.promote!(application: coding_challenge_approved, user: reviewer)
+        }.to change {
+          coding_challenge_approved.reload.current_status
+        }.from('coding_challenge_approved').to('phone_screen_scheduled')
+      end
     end
 
     context 'when the phone screen has been scheduled' do
-      it 'promotes the application to the next status'
+      it 'promotes the application to the next status' do
+        expect {
+          described_class.promote!(application: phone_screen_scheduled, user: reviewer)
+        }.to change {
+          phone_screen_scheduled.reload.current_status
+        }.from('phone_screen_scheduled').to('phone_screen_completed')
+      end
     end
 
     context 'when the phone screen has been completed' do
