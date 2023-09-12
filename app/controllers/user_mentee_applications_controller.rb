@@ -35,6 +35,8 @@ class UserMenteeApplicationsController < ApplicationController
         current_user.resumes.create!(resume: resume_params[:resume], name: resume_params[:resume_name], current: true)
       end
     end
+    send_notifications
+
     redirect_to @user_mentee_application, notice: 'Application succesfully submitted'
   rescue StandardError
     flash.now[:form_errors] = @user_mentee_application.errors.full_messages
@@ -60,5 +62,9 @@ class UserMenteeApplicationsController < ApplicationController
 
   def resume_params
     params.require(:user_mentee_application).permit(:resume, :resume_name)
+  end
+
+  def send_notifications
+    UserMenteeApplication::ApplicationSubmissionNotification.with(user_mentee_application: @user_mentee_application).deliver(@user_mentee_application.user)
   end
 end
