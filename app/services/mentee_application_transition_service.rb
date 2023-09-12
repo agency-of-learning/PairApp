@@ -1,6 +1,6 @@
 module MenteeApplicationTransitionService
   class InvalidTransitionError < StandardError; end
-  module_function
+  extend self
 
   STATUS_TRANSITION_MAPPING = {
     application_received: {
@@ -39,6 +39,19 @@ module MenteeApplicationTransitionService
     raise InvalidTransitionError unless STATUS_TRANSITION_MAPPING[status][:valid_transitions].include? :promote
     promote_transition = STATUS_TRANSITION_MAPPING[status][:promote_transition]
     application.mentee_application_states.create!(status: promote_transition, status_changed: user, note:)
+    invoke_side_effects(application, promote_transition, user)
     true
+  end
+
+  private
+
+  def invoke_side_effects(application, promote_transition, user)
+    case promote_transition
+    when :accepted then accepted_side_effects(application, user)
+    end
+  end
+
+  def accepted_side_effects(application, _user)
+    MenteeApplication::AcceptanceNotification.deliver(application.user)
   end
 end

@@ -36,6 +36,12 @@ RSpec.describe MenteeApplicationTransitionService do
         described_class.promote!(application: phone_screen_completed, user: reviewer)
         expect(phone_screen_completed.reload.current_status).to eq('accepted')
       end
+
+      it 'enqueues an accepted mailer' do
+        expect {
+          described_class.promote!(application: phone_screen_completed, user: reviewer)
+        }.to have_enqueued_mail(MenteeApplicationMailer, :notify_for_acceptance)
+      end
     end
 
     context 'when the application has been accepted' do
