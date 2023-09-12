@@ -44,6 +44,11 @@ module MenteeApplicationTransitionService
     true
   end
 
+  def reject!(application:, user:, note: nil)
+    status = application.current_status.to_sym
+    raise InvalidTransitionError unless STATUS_TRANSITION_MAPPING[status][:valid_transitions].include? :reject
+  end
+
   private
 
   def invoke_side_effects(application, promote_transition, user)

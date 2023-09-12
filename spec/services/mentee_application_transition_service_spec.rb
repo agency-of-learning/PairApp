@@ -45,7 +45,7 @@ RSpec.describe MenteeApplicationTransitionService do
       end
     end
 
-    context 'when the coding challenge has been approvode' do
+    context 'when the coding challenge has been approved' do
       it 'promotes the application to the next status' do
         expect {
           described_class.promote!(application: coding_challenge_approved, user: reviewer)
@@ -90,6 +90,63 @@ RSpec.describe MenteeApplicationTransitionService do
       it 'raises an invalid transition error' do
         expect {
           described_class.promote!(application: rejected, user: reviewer)
+        }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
+      end
+    end
+  end
+
+  describe '.reject!' do
+    context 'when the application has been received' do
+      it 'rejects the application'
+      it 'enqueues a rejection mailer'
+    end
+
+    context 'when the coding challenge has been sent' do
+      it 'raises an invalid transition error' do
+        expect {
+          described_class.reject!(application: coding_challenge_sent, user: reviewer)
+        }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
+      end
+    end
+
+    context 'when the coding challenge has been received' do
+      it 'rejects the application'
+      it 'enqueues a rejection mailer'
+    end
+
+    context 'when the coding challenge has been approved' do
+      it 'raises an invalid transition error' do
+        expect {
+          described_class.reject!(application: coding_challenge_approved, user: reviewer)
+        }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
+      end
+    end
+
+    context 'when the phone screen has been scheduled' do
+      it 'raises an invalid transition error' do
+        expect {
+          described_class.reject!(application: phone_screen_scheduled, user: reviewer)
+        }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
+      end
+    end
+
+    context 'when the phone screen has been completed' do
+      it 'rejects the application'
+      it 'enqueues a rejection mailer'
+    end
+
+    context 'when the application has been accepted' do
+      it 'raises an invalid transition error' do
+        expect {
+          described_class.reject!(application: accepted, user: reviewer)
+        }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
+      end
+    end
+
+    context 'when the application has been rejected' do
+      it 'raises an invalid transition error' do
+        expect {
+          described_class.reject!(application: rejected, user: reviewer)
         }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
       end
     end
