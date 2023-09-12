@@ -35,27 +35,27 @@ module MenteeApplicationTransitionService
     }
   }.freeze
 
-  def promote!(application:, user:, note: nil)
+  def promote!(application:, reviewer:, note: nil)
     status = application.current_status.to_sym
     raise InvalidTransitionError unless STATUS_TRANSITION_MAPPING[status][:valid_transitions].include? :promote
     promote_transition = STATUS_TRANSITION_MAPPING[status][:promote_transition]
-    application.mentee_application_states.create!(status: promote_transition, status_changed: user, note:)
-    invoke_side_effects(application, promote_transition, user)
+    application.mentee_application_states.create!(status: promote_transition, reviewer:, note:)
+    invoke_side_effects(application, promote_transition, reviewer)
     true
   end
 
-  def reject!(application:, user:, note: nil)
+  def reject!(application:, reviewer:, note: nil)
     status = application.current_status.to_sym
     raise InvalidTransitionError unless STATUS_TRANSITION_MAPPING[status][:valid_transitions].include? :reject
     promote_transition = :rejected
-    application.mentee_application_states.create!(status: promote_transition, status_changed: user, note:)
-    invoke_side_effects(application, promote_transition, user)
+    application.mentee_application_states.create!(status: promote_transition, reviewer:, note:)
+    invoke_side_effects(application, promote_transition, reviewer)
     true
   end
 
   private
 
-  def invoke_side_effects(application, promote_transition, _user)
+  def invoke_side_effects(application, promote_transition, _reviewer)
     case promote_transition
     when :accepted then accepted_side_effects(application)
     when :rejected then rejected_side_effects(application)

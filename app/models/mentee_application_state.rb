@@ -22,7 +22,7 @@
 #
 class MenteeApplicationState < ApplicationRecord
   belongs_to :user_mentee_application
-  belongs_to :status_changed, class_name: 'User', optional: true
+  belongs_to :reviewer, class_name: 'User', foreign_key: :status_changed_id, optional: true
 
   enum status: {
     application_received: 0,
