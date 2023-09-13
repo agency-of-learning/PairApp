@@ -1,37 +1,26 @@
-<h1 class="text-2xl font-bold mb-4 text-center">User Mentee Applications</h1>
+<h1 class="text-2xl font-bold mb-4 text-center">My Applications</h1>
 
-<div class="p-2">
-  <div class="tabs">
-    <%= link_to 'In Review', "#", class:"tab tab-lifted tab-active" %>
-    <%= link_to 'Accepted', "#", class:"tab tab-lifted" %>
-    <%= link_to 'Denied', "#", class:"tab tab-lifted" %>
-  </div>
-  <div class="table w-full border-2 border-base-content text-md md:text-base">
-    <div class="table-header-group">
-      <div class="table-row font-bold bg-primary divide-x-2 divide-base-content text-base-100">
-        <%= render TableCellComponent.new(class_names: 'table-cell text-center') do %>
-          Name
-        <% end %>
-        <%= render TableCellComponent.new(class_names: 'table-cell text-center') do %>
-          Submission Date
-        <% end %>
-        <%= render TableCellComponent.new(class_names: 'table-cell text-center') do %>
-          Notes
-        <% end %>
-        <%= render TableCellComponent.new(class_names: 'table-cell text-center') do %>
-          Status
-        <% end %>
-        <%= render TableCellComponent.new(class_names: 'hidden sm:table-cell text-center') do %>
-          Actions
-        <% end %>
-      </div>
-    </div>
-    <div class="table-row-group" id='my-pair-requests'>
-      <% UserMenteeApplication.all.each do |mentee_application| %>
-        <%= render "table_row", mentee_application: %>
+<div class="p-2 sm:p-0">
+  <div class="mx-auto max-w-sm">
+    <%= render UserMenteeApplication::ReapplyCtaComponent.new(
+      active_cohort: @active_cohort,
+      last_application: @most_recent_application
+    ) %>
+
+    <% if @most_recent_application&.active? && @most_recent_application&.in_review? %>
+      <h2 class="text-xl font-bold mb-2">In Review</h2>
+      <ul>
+        <%= render UserMenteeApplication::ListItemComponent.new(mentee_application: @most_recent_application) %>
+      </ul>
+    <% end %>
+
+
+    <h2 class="text-xl font-bold mb-2">Past Applications</h2>
+    <ul>
+      <% @user_mentee_applications.each do |mentee_application| %>
+        <% next if mentee_application.active? && mentee_application.in_review? %>
+        <%= render UserMenteeApplication::ListItemComponent.new(mentee_application:) %>
       <% end %>
-    </div>
+    </ul>
   </div>
 </div>
-
-  
