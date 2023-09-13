@@ -45,27 +45,6 @@ RSpec.describe UserMenteeApplication do
     end
   end
 
-  describe '#reject_application!' do
-    before do
-      mentee_application.reject_application!(user)
-    end
-
-    it 'creates a rejected application state' do
-      expect(mentee_application.current_status).to eq('rejected')
-    end
-
-    it 'creates a new application state record with status_changed_by_id of current_user' do
-      expect(mentee_application.current_state.status_changed_id).to eq(user.id)
-    end
-  end
-
-  describe '#promote_application!' do
-    it 'creates a new application state record with status_changed_by_id of current_user' do
-      mentee_application.promote_application!(user)
-      expect(mentee_application.current_state.status_changed_id).to eq(user.id)
-    end
-  end
-
   describe '#active?' do
     subject { build_stubbed(:user_mentee_application, user_mentee_application_cohort: cohort) }
 

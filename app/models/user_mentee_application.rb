@@ -57,17 +57,6 @@ class UserMenteeApplication < ApplicationRecord
     status
   end
 
-  def promote_application!(user)
-    next_status = MenteeApplicationState.next(status:)
-    mentee_application_states.create!(status: next_status, status_changed_id: user.id)
-    reload
-  end
-
-  def reject_application!(user)
-    mentee_application_states.create!(status: :rejected, status_changed_id: user.id)
-    reload
-  end
-
   def in_review?
     !accepted? && !rejected?
   end

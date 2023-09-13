@@ -40,12 +40,4 @@ class MenteeApplicationState < ApplicationRecord
   def valid_transitions
     MenteeApplicationTransitionService.valid_transitions(status:)
   end
-
-  class << self
-    # state machine for mentee application
-    def next(status:)
-      return if %i[accepted rejected].include?(status)
-      statuses.keys[statuses.keys.index(status.to_s) + 1]
-    end
-  end
 end
