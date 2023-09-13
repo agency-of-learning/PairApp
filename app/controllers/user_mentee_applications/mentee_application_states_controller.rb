@@ -9,6 +9,7 @@ class UserMenteeApplications::MenteeApplicationStatesController < ApplicationCon
     )
   end
 
+  # rubocop:disable Metrics/AbcSize
   def create
     respond_to do |format|
       MenteeApplicationTransitionService.call(
@@ -30,6 +31,7 @@ class UserMenteeApplications::MenteeApplicationStatesController < ApplicationCon
       format.turbo_stream { flash.now[:alert] = e.full_message }
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 
