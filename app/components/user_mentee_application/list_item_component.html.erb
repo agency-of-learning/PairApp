@@ -1,0 +1,5 @@
+<li class="border-2 flex flex-col p-4 mb-8 gap-2 shadow-lg">
+  <%= link_to link_text, mentee_application, class: 'font-bold text-lg text-secondary underline hover:no-underline' %>
+  <p>Status: <%= mentee_application.status.humanize %></p>
+  <p>Submitted: <%= mentee_application.created_at.to_fs(:slash_format) %></p>
+</li>

@@ -17,7 +17,7 @@
 #  created_at                        :datetime         not null
 #  updated_at                        :datetime         not null
 #  user_id                           :bigint           not null
-#  user_mentee_application_cohort_id :bigint
+#  user_mentee_application_cohort_id :bigint           not null
 #
 # Indexes
 #
@@ -32,6 +32,7 @@
 FactoryBot.define do
   factory :user_mentee_application do
     user
+    user_mentee_application_cohort
 
     available_hours_per_week { 10 }
     city { Faker::Address.city }
