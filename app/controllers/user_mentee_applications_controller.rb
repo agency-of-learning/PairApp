@@ -1,18 +1,26 @@
 class UserMenteeApplicationsController < ApplicationController
   include ActiveStorage::SetCurrent
-  before_action :set_user_mentee_application, only: %i[show]
+  before_action :set_active_cohort, only: %i[index new create]
 
   def index
-    @user_mentee_application = authorize UserMenteeApplication.all
+    @user_mentee_applications = current_user
+                                .mentee_applications
+                                .order_newest_first
+                                .includes(
+                                  :user_mentee_application_cohort,
+                                  :mentee_application_states
+                                )
+
+    @most_recent_application = @user_mentee_applications.first
   end
 
   def show
-    authorize @user_mentee_application
+    @user_mentee_application = authorize UserMenteeApplication.find(params[:id])
   end
 
   def new
-    if current_user.mentee_application.present?
-      redirect_to user_mentee_application_path(current_user.mentee_application)
+    if @active_cohort.application_for_user?(current_user)
+      redirect_to user_mentee_applications_path
     else
       @user_mentee_application = UserMenteeApplication.new
     end
@@ -20,13 +28,10 @@ class UserMenteeApplicationsController < ApplicationController
 
   # rubocop:disable Metrics/AbcSize
   def create
-    if current_user.mentee_application.present?
-      redirect_to user_mentee_application_path(current_user.mentee_application)
-    end
+    redirect_to user_mentee_applications_path if @active_cohort.application_for_user?(current_user)
 
-    @user_mentee_application = authorize UserMenteeApplication.new(
-      user: current_user,
-      user_mentee_application_cohort: UserMenteeApplicationCohort.active,
+    @user_mentee_application = authorize current_user.mentee_applications.new(
+      user_mentee_application_cohort: @active_cohort,
       **user_mentee_application_params
     )
     ActiveRecord::Base.transaction do
@@ -48,8 +53,8 @@ class UserMenteeApplicationsController < ApplicationController
 
   private
 
-  def set_user_mentee_application
-    @user_mentee_application = UserMenteeApplication.find(params[:id])
+  def set_active_cohort
+    @active_cohort = UserMenteeApplicationCohort.active
   end
 
   def user_mentee_application_params

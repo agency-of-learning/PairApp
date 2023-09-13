@@ -17,7 +17,7 @@
 #  created_at                        :datetime         not null
 #  updated_at                        :datetime         not null
 #  user_id                           :bigint           not null
-#  user_mentee_application_cohort_id :bigint
+#  user_mentee_application_cohort_id :bigint           not null
 #
 # Indexes
 #
@@ -31,7 +31,8 @@
 #
 FactoryBot.define do
   factory :user_mentee_application do
-    user
+    user { association :user, :applicant }
+    user_mentee_application_cohort
 
     available_hours_per_week { 10 }
     city { Faker::Address.city }
@@ -41,5 +42,59 @@ FactoryBot.define do
     learned_to_code { Faker::Lorem.paragraph }
     project_experience { Faker::Lorem.paragraph }
     reason_for_applying { 'Help with job search' }
+
+    trait :with_resume do
+      after(:create) do |user_mentee_application|
+        create(:resume, user: user_mentee_application.user, current: true)
+      end
+    end
+
+    trait :application_received do
+      after(:create) do |user_mentee_application|
+        create(:mentee_application_state, :application_received, user_mentee_application:)
+      end
+    end
+
+    trait :coding_challenge_sent do
+      after(:create) do |user_mentee_application|
+        create(:mentee_application_state, :coding_challenge_sent, user_mentee_application:)
+      end
+    end
+
+    trait :coding_challenge_received do
+      after(:create) do |user_mentee_application|
+        create(:mentee_application_state, :coding_challenge_received, user_mentee_application:)
+      end
+    end
+
+    trait :coding_challenge_approved do
+      after(:create) do |user_mentee_application|
+        create(:mentee_application_state, :coding_challenge_approved, user_mentee_application:)
+      end
+    end
+
+    trait :phone_screen_scheduled do
+      after(:create) do |user_mentee_application|
+        create(:mentee_application_state, :phone_screen_scheduled, user_mentee_application:)
+      end
+    end
+
+    trait :phone_screen_completed do
+      after(:create) do |user_mentee_application|
+        create(:mentee_application_state, :phone_screen_completed, user_mentee_application:)
+      end
+    end
+
+    trait :accepted do
+      after(:create) do |user_mentee_application|
+        create(:mentee_application_state, :accepted, user_mentee_application:)
+      end
+    end
+
+    trait :rejected do
+      after(:create) do |user_mentee_application|
+        create(:mentee_application_state, :rejected, user_mentee_application:)
+      end
+    end
   end
 end

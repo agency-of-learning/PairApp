@@ -17,7 +17,7 @@
 #  created_at                        :datetime         not null
 #  updated_at                        :datetime         not null
 #  user_id                           :bigint           not null
-#  user_mentee_application_cohort_id :bigint
+#  user_mentee_application_cohort_id :bigint           not null
 #
 # Indexes
 #
@@ -40,29 +40,79 @@ RSpec.describe UserMenteeApplication do
       expect(mentee_application.mentee_application_states.count).to eq(1)
     end
 
-    it 'sets the initial application state to pending' do
-      expect(mentee_application.current_status).to eq('pending')
+    it 'sets the initial application state to application_received' do
+      expect(mentee_application.current_status).to eq('application_received')
     end
   end
 
-  describe '#reject_application' do
-    it 'creates a rejected application state' do
+  describe '#reject_application!' do
+    before do
       mentee_application.reject_application!(user)
+    end
+
+    it 'creates a rejected application state' do
       expect(mentee_application.current_status).to eq('rejected')
     end
-  end
 
-  describe 'when application is denied' do
     it 'creates a new application state record with status_changed_by_id of current_user' do
-      mentee_application.reject_application!(user)
       expect(mentee_application.current_state.status_changed_id).to eq(user.id)
     end
   end
 
-  describe 'When application is promoted' do
+  describe '#promote_application!' do
     it 'creates a new application state record with status_changed_by_id of current_user' do
       mentee_application.promote_application!(user)
       expect(mentee_application.current_state.status_changed_id).to eq(user.id)
+    end
+  end
+
+  describe '#active?' do
+    subject { build_stubbed(:user_mentee_application, user_mentee_application_cohort: cohort) }
+
+    context 'when the mentee application belongs to an active cohort' do
+      let(:cohort) { build_stubbed(:user_mentee_application_cohort, active: true) }
+
+      it 'is active' do
+        expect(subject).to be_active
+      end
+    end
+
+    context 'when the mentee application belongs to an inactive cohort' do
+      let(:cohort) { build_stubbed(:user_mentee_application_cohort, active: false) }
+
+      it 'is not active' do
+        expect(subject).not_to be_active
+      end
+    end
+  end
+
+  describe '#in_review?' do
+    before do
+      create(:mentee_application_state, status:, user_mentee_application: mentee_application)
+    end
+
+    context 'when the status is accepted' do
+      let(:status) { :accepted }
+
+      it 'is not in review' do
+        expect(mentee_application).not_to be_in_review
+      end
+    end
+
+    context 'when the status is rejected' do
+      let(:status) { :rejected }
+
+      it 'is not in review' do
+        expect(mentee_application).not_to be_in_review
+      end
+    end
+
+    context 'when the status is not rejected or accepted' do
+      let(:status) { :application_received }
+
+      it 'is in review' do
+        expect(mentee_application).to be_in_review
+      end
     end
   end
 end

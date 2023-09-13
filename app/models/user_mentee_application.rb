@@ -17,7 +17,7 @@
 #  created_at                        :datetime         not null
 #  updated_at                        :datetime         not null
 #  user_id                           :bigint           not null
-#  user_mentee_application_cohort_id :bigint
+#  user_mentee_application_cohort_id :bigint           not null
 #
 # Indexes
 #
@@ -31,7 +31,7 @@
 #
 class UserMenteeApplication < ApplicationRecord
   belongs_to :user
-  belongs_to :user_mentee_application_cohort, optional: true
+  belongs_to :user_mentee_application_cohort
 
   has_many :mentee_application_states, dependent: :destroy
   # rubocop:disable Rails/InverseOf
@@ -48,7 +48,10 @@ class UserMenteeApplication < ApplicationRecord
   after_create :create_initial_application_state
 
   delegate :accepted?, :rejected?, :status, to: :current_state
+  delegate :active?, to: :user_mentee_application_cohort
   delegate :current_resume, to: :user
+
+  scope :order_newest_first, -> { order(created_at: :desc) }
 
   def current_status
     status
@@ -65,9 +68,13 @@ class UserMenteeApplication < ApplicationRecord
     reload
   end
 
+  def in_review?
+    !accepted? && !rejected?
+  end
+
   private
 
   def create_initial_application_state
-    mentee_application_states.create(status: :pending)
+    mentee_application_states.create(status: :application_received)
   end
 end

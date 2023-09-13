@@ -63,4 +63,30 @@ RSpec.describe UserMenteeApplicationCohort do
       end
     end
   end
+
+  describe '#application_for_user?' do
+    subject { create(:user_mentee_application_cohort) }
+
+    let(:user) { create(:user) }
+
+    context 'when the given user does not have an application with the cohort' do
+      before do
+        create(:user_mentee_application, user_mentee_application_cohort: subject)
+      end
+
+      it 'returns false' do
+        expect(subject.application_for_user?(user)).to be false
+      end
+    end
+
+    context 'when the given user does have an application with the cohort' do
+      before do
+        create(:user_mentee_application, user_mentee_application_cohort: subject, user:)
+      end
+
+      it 'returns true' do
+        expect(subject.application_for_user?(user)).to be true
+      end
+    end
+  end
 end

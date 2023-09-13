@@ -81,9 +81,15 @@ begin
 
   puts "Seeding a user_mentee_application..."
 
+  cohort = UserMenteeApplicationCohort.create!(
+    name: 'Original',
+    active_date_range: Date.today..3.months.from_now
+  )
+
   user_mentee_application_data = [
     {
       user_id: users[4].id,
+      user_mentee_application_cohort: cohort,
       city: Faker::Address.city,
       state: Faker::Address.state,
       country: Faker::Address.country,
@@ -98,6 +104,7 @@ begin
     },
     {
       user_id: users[5].id,
+      user_mentee_application_cohort: cohort,
       city: Faker::Address.city,
       state: Faker::Address.state,
       country: Faker::Address.country,
@@ -112,6 +119,7 @@ begin
     },
     {
       user_id: users[6].id,
+      user_mentee_application_cohort: cohort,
       city: Faker::Address.city,
       state: Faker::Address.state,
       country: Faker::Address.country,

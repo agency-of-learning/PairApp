@@ -11,10 +11,13 @@ gem 'devise_invitable'
 gem 'friendly_id', '~> 5.4.0'
 gem 'image_processing', '~> 1.2'
 gem 'jbuilder'
+gem 'jsbundling-rails', '~> 1.1'
 gem 'noticed'
+gem 'pagy', '~> 6.0'
 gem 'paper_trail'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
+gem 'pundit', '~> 2.3'
 gem 'rails', '~> 7.0.4', '>= 7.0.4.2'
 gem 'ranked-model'
 gem 'redis', '~> 4.0'
@@ -26,6 +29,7 @@ gem 'sentry-ruby'
 gem 'sidekiq'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
+gem 'tailwindcss-rails', '~> 2.0'
 gem 'turbo-rails'
 gem 'view_component'
 
@@ -48,6 +52,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'letter_opener'
   gem 'letter_opener_web', '~> 2.0'
+  gem 'rails-erd'
   gem 'sassc-rails'
   gem 'web-console'
 end
@@ -61,11 +66,3 @@ group :test do
   gem 'simplecov-cobertura'
   gem 'webdrivers'
 end
-
-gem 'pundit', '~> 2.3'
-
-gem 'tailwindcss-rails', '~> 2.0'
-
-gem 'jsbundling-rails', '~> 1.1'
-
-gem 'pagy', '~> 6.0'
