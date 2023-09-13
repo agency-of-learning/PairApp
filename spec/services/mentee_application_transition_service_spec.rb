@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe MenteeApplicationTransitionService do
   let(:reviewer) { create(:user) }
-  let(:user) { create(:user) }
+  let(:user) { create(:user, :applicant) }
   let(:application_received) { create(:user_mentee_application, :application_received, user:) }
   let(:coding_challenge_sent) { create(:user_mentee_application, :coding_challenge_sent, user:) }
   let(:coding_challenge_received) { create(:user_mentee_application, :coding_challenge_received, user:) }
@@ -81,6 +81,12 @@ RSpec.describe MenteeApplicationTransitionService do
         expect {
           described_class.promote!(application: phone_screen_completed, reviewer:)
         }.to have_enqueued_mail(MenteeApplicationMailer, :notify_for_acceptance)
+      end
+
+      it "updates the applicant's role to member" do
+        expect {
+          described_class.promote!(application: phone_screen_completed, reviewer:)
+        }.to change { phone_screen_completed.user.role }.from('applicant').to('member')
       end
     end
 

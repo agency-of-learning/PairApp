@@ -108,7 +108,7 @@ RSpec.describe UserMenteeApplication do
     end
 
     context 'when the status is not rejected or accepted' do
-      let(:status) { :stage_one }
+      let(:status) { :application_received }
 
       it 'is in review' do
         expect(mentee_application).to be_in_review

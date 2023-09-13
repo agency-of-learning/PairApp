@@ -69,6 +69,7 @@ module MenteeApplicationTransitionService
 
   def accepted_side_effects(application)
     MenteeApplication::AcceptanceNotification.with(application:).deliver(application.user)
+    application.user.update!(role: User.roles[:member])
   end
 
   def rejected_side_effects(application)

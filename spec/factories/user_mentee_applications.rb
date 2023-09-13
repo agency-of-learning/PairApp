@@ -31,7 +31,7 @@
 #
 FactoryBot.define do
   factory :user_mentee_application do
-    user
+    user { association :user, :applicant }
     user_mentee_application_cohort
 
     available_hours_per_week { 10 }
