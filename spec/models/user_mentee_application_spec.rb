@@ -40,8 +40,8 @@ RSpec.describe UserMenteeApplication do
       expect(mentee_application.mentee_application_states.count).to eq(1)
     end
 
-    it 'sets the initial application state to pending' do
-      expect(mentee_application.current_status).to eq('pending')
+    it 'sets the initial application state to application_received' do
+      expect(mentee_application.current_status).to eq('application_received')
     end
   end
 
@@ -108,7 +108,7 @@ RSpec.describe UserMenteeApplication do
     end
 
     context 'when the status is not rejected or accepted' do
-      let(:status) { :stage_one }
+      let(:status) { :application_received }
 
       it 'is in review' do
         expect(mentee_application).to be_in_review

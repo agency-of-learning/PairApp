@@ -40,7 +40,11 @@ FactoryBot.define do
     role { User.roles[:member] }
 
     trait :admin do
-      role { :admin }
+      role { User.roles[:admin] }
+    end
+
+    trait :applicant do
+      role { User.roles[:applicant] }
     end
   end
 end
