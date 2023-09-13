@@ -35,6 +35,22 @@ module MenteeApplicationTransitionService
     }
   }.freeze
 
+  def call(application:, reviewer:, action:, note: nil)
+    status = application.current_status.to_sym
+    # enforce that the action is cast to a symbol before performing guard clause
+    action = action.to_sym
+    raise InvalidTransitionError unless STATUS_TRANSITION_MAPPING[status][:valid_transitions].include? action
+    transition_status = action == :reject ? :rejected : STATUS_TRANSITION_MAPPING[status][:promote_transition]
+    application.mentee_application_states.create!(status: transition_status, reviewer:, note:)
+    # handle side effects
+    case transition_status
+    when :coding_challenge_sent then code_challenge_side_effects(application)
+    when :accepted then accepted_side_effects(application)
+    when :rejected then rejected_side_effects(application)
+    end
+    true
+  end
+
   def promote!(application:, reviewer:, note: nil)
     status = application.current_status.to_sym
     raise InvalidTransitionError unless STATUS_TRANSITION_MAPPING[status][:valid_transitions].include? :promote

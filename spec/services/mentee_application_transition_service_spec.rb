@@ -196,4 +196,203 @@ RSpec.describe MenteeApplicationTransitionService do
       end
     end
   end
+
+  describe '.call' do
+    context 'when the action is :promote' do
+      let(:action) { :promote }
+
+      context 'when the application has been received' do
+        it 'promotes the application to the next status' do
+          expect {
+            described_class.call(application: application_received, reviewer:, action:)
+          }.to change {
+            application_received.reload.current_status
+          }.from('application_received').to('coding_challenge_sent')
+        end
+
+        it 'enqueues an accepted mailer' do
+          expect {
+            described_class.call(application: application_received, reviewer:, action:)
+          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_for_code_challenge)
+        end
+      end
+
+      context 'when the coding challenge has been sent' do
+        it 'promotes the application to the next status' do
+          expect {
+            described_class.call(application: coding_challenge_sent, reviewer:, action:)
+          }.to change {
+            coding_challenge_sent.reload.current_status
+          }.from('coding_challenge_sent').to('coding_challenge_received')
+        end
+      end
+
+      context 'when the coding challenge has been received' do
+        it 'promotes the application to the next status' do
+          expect {
+            described_class.call(application: coding_challenge_received, reviewer:, action:)
+          }.to change {
+            coding_challenge_received.reload.current_status
+          }.from('coding_challenge_received').to('coding_challenge_approved')
+        end
+      end
+
+      context 'when the coding challenge has been approved' do
+        it 'promotes the application to the next status' do
+          expect {
+            described_class.call(application: coding_challenge_approved, reviewer:, action:)
+          }.to change {
+            coding_challenge_approved.reload.current_status
+          }.from('coding_challenge_approved').to('phone_screen_scheduled')
+        end
+      end
+
+      context 'when the phone screen has been scheduled' do
+        it 'promotes the application to the next status' do
+          expect {
+            described_class.call(application: phone_screen_scheduled, reviewer:, action:)
+          }.to change {
+            phone_screen_scheduled.reload.current_status
+          }.from('phone_screen_scheduled').to('phone_screen_completed')
+        end
+      end
+
+      context 'when the phone screen has been completed' do
+        it 'promotes the application to the next status' do
+          described_class.call(application: phone_screen_completed, reviewer:, action:)
+          expect(phone_screen_completed.reload.current_status).to eq('accepted')
+        end
+
+        it 'enqueues an accepted mailer' do
+          expect {
+            described_class.call(application: phone_screen_completed, reviewer:, action:)
+          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_for_acceptance)
+        end
+
+        it "updates the applicant's role to member" do
+          expect {
+            described_class.call(application: phone_screen_completed, reviewer:, action:)
+          }.to change { phone_screen_completed.user.role }.from('applicant').to('member')
+        end
+      end
+
+      context 'when the application has been accepted' do
+        it 'raises an invalid transition error' do
+          expect {
+            described_class.call(application: accepted, reviewer:, action:)
+          }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
+        end
+      end
+
+      context 'when the application has been rejected' do
+        it 'raises an invalid transition error' do
+          expect {
+            described_class.call(application: rejected, reviewer:, action:)
+          }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
+        end
+      end
+    end
+
+    context 'when the action is :reject' do
+      let(:action) { :reject }
+
+      context 'when the application has been received' do
+        it 'rejects the application' do
+          expect {
+            described_class.call(application: application_received, reviewer:, action:)
+          }.to change {
+            application_received.reload.current_status
+          }.from('application_received').to('rejected')
+        end
+
+        it 'enqueues a rejection mailer' do
+          expect {
+            described_class.call(application: application_received, reviewer:, action:)
+          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_for_rejection)
+        end
+      end
+
+      context 'when the coding challenge has been sent' do
+        it 'raises an invalid transition error' do
+          expect {
+            described_class.call(application: coding_challenge_sent, reviewer:, action:)
+          }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
+        end
+      end
+
+      context 'when the coding challenge has been received' do
+        it 'rejects the application' do
+          expect {
+            described_class.call(application: coding_challenge_received, reviewer:, action:)
+          }.to change {
+            coding_challenge_received.reload.current_status
+          }.from('coding_challenge_received').to('rejected')
+        end
+
+        it 'enqueues a rejection mailer' do
+          expect {
+            described_class.call(application: coding_challenge_received, reviewer:, action:)
+          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_for_rejection)
+        end
+      end
+
+      context 'when the coding challenge has been approved' do
+        it 'raises an invalid transition error' do
+          expect {
+            described_class.call(application: coding_challenge_approved, reviewer:, action:)
+          }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
+        end
+      end
+
+      context 'when the phone screen has been scheduled' do
+        it 'raises an invalid transition error' do
+          expect {
+            described_class.call(application: phone_screen_scheduled, reviewer:, action:)
+          }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
+        end
+      end
+
+      context 'when the phone screen has been completed' do
+        it 'rejects the application' do
+          expect {
+            described_class.call(application: phone_screen_completed, reviewer:, action:)
+          }.to change {
+            phone_screen_completed.reload.current_status
+          }.from('phone_screen_completed').to('rejected')
+        end
+
+        it 'enqueues a rejection mailer' do
+          expect {
+            described_class.call(application: phone_screen_completed, reviewer:, action:)
+          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_for_rejection)
+        end
+      end
+
+      context 'when the application has been accepted' do
+        it 'raises an invalid transition error' do
+          expect {
+            described_class.call(application: accepted, reviewer:, action:)
+          }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
+        end
+      end
+
+      context 'when the application has been rejected' do
+        it 'raises an invalid transition error' do
+          expect {
+            described_class.call(application: rejected, reviewer:, action:)
+          }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
+        end
+      end
+    end
+  end
+
+  describe '.valid_transitions' do
+    it 'returns the valid transitions for the current status' do
+      MenteeApplicationState.statuses.each_key do |status|
+        expect(
+          MenteeApplicationTransitionService.valid_transitions(status:)
+        ).to eq MenteeApplicationTransitionService::STATUS_TRANSITION_MAPPING[status.to_sym][:valid_transitions]
+      end
+    end
+  end
 end
