@@ -2,10 +2,9 @@ class UserMenteeApplications::MenteeApplicationStatesController < ApplicationCon
   before_action :load_user_mentee_application
 
   def new
-    @mentee_application_state = @user_mentee_application.mentee_application_states.build
     @form = MenteeApplicationStateForm.new(
       current_state: @user_mentee_application.current_state,
-      application_state: @mentee_application_state
+      application_state: @user_mentee_application.mentee_application_states.build
     )
   end
 
