@@ -84,6 +84,6 @@ class UserMenteeApplication < ApplicationRecord
       .with(user_mentee_application: self).deliver(user)
 
     UserMenteeApplication::ApplicationSubmissionAlert
-      .with(user_mentee_application: self).deliver(User.admin)
+      .with(user_mentee_application: self).deliver(User.super_admins)
   end
 end
