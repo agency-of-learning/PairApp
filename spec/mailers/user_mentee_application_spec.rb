@@ -8,7 +8,7 @@ RSpec.describe UserMenteeApplicationMailer do
     subject(:mail) { described_class.with(application:, recipient:).notify_for_application_submission }
 
     it 'renders the headers' do
-      expect(mail.subject).to eq('Mentee Application Submitted')
+      expect(mail.subject).to eq('Woohoo! Your Application’s In - Agency of Learning.')
       expect(mail.to).to eq([recipient.email])
       expect(mail.from).to eq(['no_reply@agencyoflearning.com'])
     end
