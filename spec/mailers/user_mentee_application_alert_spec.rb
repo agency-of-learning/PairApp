@@ -10,7 +10,7 @@ RSpec.describe UserMenteeApplicationAlertMailer do
     end
 
     it 'renders the headers' do
-      expect(mail.subject).to eq('New Mentee Application Submitted')
+      expect(mail.subject).to eq('New Application submission!')
       expect(mail.to).to eq([recipient.email])
       expect(mail.from).to eq(['no_reply@agencyoflearning.com'])
     end
