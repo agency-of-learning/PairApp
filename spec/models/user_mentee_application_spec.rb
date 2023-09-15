@@ -35,6 +35,9 @@ RSpec.describe UserMenteeApplication do
   let(:user) { create(:user) }
   let(:mentee_application) { create(:user_mentee_application) }
 
+  # let!(:daniel) { create(:user, email: 'daniel@agencyoflearning.com') }
+  # let!(:dave) { create(:user, email: 'dave@agencyoflearning.com') }
+
   describe '#create' do
     it 'creates an initial application state' do
       expect(mentee_application.mentee_application_states.count).to eq(1)
@@ -113,6 +116,22 @@ RSpec.describe UserMenteeApplication do
       it 'is in review' do
         expect(mentee_application).to be_in_review
       end
+    end
+  end
+
+  describe 'Notification and Alert Enqueueing on Creation' do
+    before do
+      ActiveJob::Base.queue_adapter.enqueued_jobs = []
+      create(:user, email: 'daniel@agencyoflearning.com')
+      create(:user, email: 'dave@agencyoflearning.com')
+    end
+
+    it 'enqueues application submission notifications after create commit' do
+      expect {
+        create(:user_mentee_application)
+      }.to have_enqueued_mail(UserMenteeApplicationMailer, :notify_for_application_submission)
+        .and have_enqueued_mail(UserMenteeApplicationAlertMailer,
+          :notify_for_application_submission).exactly(User.super_admins.count).times
     end
   end
 end
