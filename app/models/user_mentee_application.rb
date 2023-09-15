@@ -46,7 +46,7 @@ class UserMenteeApplication < ApplicationRecord
     :available_hours_per_week, presence: true
 
   after_create :create_initial_application_state
-  after_commit :send_notifications
+  after_create_commit :send_notifications
 
   delegate :accepted?, :rejected?, :status, to: :current_state
   delegate :active?, to: :user_mentee_application_cohort
