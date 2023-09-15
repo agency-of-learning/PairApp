@@ -1,12 +1,7 @@
 class UserMenteeApplications::MenteeApplicationStatesController < ApplicationController
   before_action :load_user_mentee_application
 
-  def new
-    @form = MenteeApplicationStateForm.new(
-      current_state: @user_mentee_application.current_state,
-      application_state: @user_mentee_application.mentee_application_states.build
-    )
-  end
+  def new; end
 
   # rubocop:disable Metrics/AbcSize
   def create
@@ -14,7 +9,7 @@ class UserMenteeApplications::MenteeApplicationStatesController < ApplicationCon
       MenteeApplicationTransitionService.call(
         application: @user_mentee_application,
         reviewer: current_user,
-        action: application_state_params[:action].to_sym,
+        action: application_state_params[:reviewer_action].to_sym,
         note: application_state_params[:note]
       )
       @user_mentee_application.reload
@@ -25,9 +20,9 @@ class UserMenteeApplications::MenteeApplicationStatesController < ApplicationCon
     rescue MenteeApplicationTransitionService::InvalidTransitionError => e
       format.html do
         redirect_to new_user_mentee_applications_mentee_application_state_path(@user_mentee_application),
-          alert: e.full_message
+          alert: e.message
       end
-      format.turbo_stream { flash.now[:alert] = e.full_message }
+      format.turbo_stream { flash.now[:alert] = e.message }
     end
   end
   # rubocop:enable Metrics/AbcSize
@@ -40,8 +35,7 @@ class UserMenteeApplications::MenteeApplicationStatesController < ApplicationCon
 
   def application_state_params
     params
-      .require(:mentee_application_state)
-      .permit(:action, :note)
+      .permit(:reviewer_action, :note)
       .merge(status_changed_id: current_user.id)
   end
 end

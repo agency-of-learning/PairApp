@@ -1,36 +1,36 @@
-<%= form_with model: [application, form], validate: true do |f| %>
+<%= form_tag user_mentee_application_mentee_application_states_path(application), method: :post do %>
   <div class="form-control mb-4">
     <h3 class="label text-md font-semibold ml-1">
       Applicant's Status
     </h3>
-    <span class="justify-between items-center px-2"><%= t("status_description.#{form.current_status}").html_safe %></span>
+    <span class="justify-between items-center px-2"><%= t("status_description.#{current_state.status}").html_safe %></span>
   </div>
   <div class="form-control mb-4">
     <h3 class="label text-md font-semibold">
       Instructions
     </h3>
-    <span class="justify-between items-center px-2"><%= t("acceptance_criteria.#{form.current_status}").html_safe %></span>
+    <span class="justify-between items-center px-2"><%= t("acceptance_criteria.#{current_state.status}").html_safe %></span>
   </div>
-  <% if form.action_options.count > 1 %>
+  <% if current_state.valid_transitions.count > 1 %>
     <div class="form-control">
-      <%= f.label :action, class: 'label text-md font-semibold' %>
-      <div class="flex gap-8" data-controller="radio-collection-validator">
-        <%= f.collection_radio_buttons :action, form.action_options.map(&:to_s), :itself, :humanize, {}, required: true do |b| %>
+      <%= label_tag :reviewer_action, "Action", class: 'label text-md font-semibold' %>
+      <div class="flex gap-8">
+        <% current_state.valid_transitions.each do |option| %>
           <div class="flex items-center gap-2">
-            <%= b.radio_button(class: "radio radio-primary") %>
-            <%= b.label(class: "label label-text text-lg") %>
+            <%= radio_button_tag :reviewer_action, option, false, class: "radio radio-primary", required: true %>
+            <%= label_tag "reviewer_action_#{option}", option.to_s.humanize, class: "label label-text text-lg" %>
           </div>
         <% end %>
       </div>
     </div>
   <% else %>
-    <%= f.hidden_field :action, value: form.action_options.first %>
+    <%= hidden_field_tag :reviewer_action, current_state.valid_transitions.first %>
   <% end %>
 
   <div class="form-control mb-4">
-    <%= f.label :note, class: "label text-md font-semibold" %>
-    <%= f.text_area :note, class: "textarea textarea-bordered textarea-primary", data: { controller: 'textarea-autogrow' } %>
+    <%= label_tag :note, "Note", class: "label text-md font-semibold" %>
+    <%= text_area_tag :note, "", class: "textarea textarea-bordered textarea-primary", data: { controller: 'textarea-autogrow' } %>
   </div>
 
-  <%= f.submit class:"btn btn-primary" %>
+  <%= submit_tag "Update", class: "btn btn-primary" %>
 <% end %>

@@ -211,5 +211,11 @@ RSpec.describe MenteeApplicationTransitionService do
         ).to eq MenteeApplicationTransitionService::STATUS_TRANSITION_MAPPING[status.to_sym][:valid_transitions]
       end
     end
+
+    it 'raises an invalid status error if the status is not part of the state machine' do
+      expect {
+        described_class.valid_transitions(status: 'cheese')
+      }.to raise_error MenteeApplicationTransitionService::InvalidStatusError
+    end
   end
 end

@@ -1,5 +1,6 @@
 module MenteeApplicationTransitionService
   class InvalidTransitionError < StandardError; end
+  class InvalidStatusError < StandardError; end
   extend self
 
   STATUS_TRANSITION_MAPPING = {
@@ -52,7 +53,10 @@ module MenteeApplicationTransitionService
   end
 
   def valid_transitions(status:)
-    MenteeApplicationTransitionService::STATUS_TRANSITION_MAPPING[status.to_sym][:valid_transitions]
+    # enforce that the action is cast to a symbol before performing guard clause
+    status = status.to_sym
+    raise InvalidStatusError if STATUS_TRANSITION_MAPPING[status].nil?
+    STATUS_TRANSITION_MAPPING[status][:valid_transitions]
   end
 
   private
