@@ -202,27 +202,32 @@
     
   
     <!-- CTA -->
-    <div class="text-neutral-content flex justify-left items-center p-5 w-full">
-      <div class="w-full sm:w-3/4 sm:pl-8">
+    <div class="text-neutral-content px-4 sm:px-0 flex items-center w-full mb-4">
+      <div class="w-full sm:w-3/4">
         <%= cta_button("Become a Member", new_user_registration_path) %>
       </div>
     </div>
 
+    <hr class="border-t-1 border-primary-content/50 mb-10">
+
       <!-- Footer -->
-    <footer class="footer footer-center p-10 text-primary-content">
+    <footer class="footer footer-center text-primary-content">
       <div>
-        <div class="grid grid-flow-col gap-5">
         <ul class="flex space-x-4">
-          <li class="w-10 h-10 rounded-full flex items-center justify-center bg-[#38D68E] hover:scale-110 transform transition-transform">
-            <i class="fa-brands fa-twitter fa-xl" style="color: #363942"></i>
+          <li class="w-10 h-10 rounded-full flex items-center justify-center bg-primary hover:scale-110 transform transition-transform">
+            <%= link_to "https://twitter.com/agencyoflearn", class: "w-full py-2" do %>
+              <i class="fa-brands fa-twitter fa-xl text-neutral justify-self-center self-center place-self-center"></i>
+            <% end %>
           </li>
-          <li class="w-10 h-10 rounded-full flex items-center justify-center bg-[#38D68E] hover:scale-110 transform transition-transform">
-            <i class="fa-solid fa-envelope fa-xl" style="color: #363942"></i>
+          <li class="w-10 h-10 rounded-full flex items-center justify-center bg-primary hover:scale-110 transform transition-transform">
+            <%= link_to "mailto:dave@agencyoflearning.com", class: "w-full py-2" do %>
+              <i class="fa-solid fa-envelope fa-xl text-neutral"></i>
+            <% end %>
           </li>
         </ul>
       </div>
       
-      <div class="mt-5">
+      <div class="mb-16">
         <%= image_tag "aol_logo.png",
          width:"104px",
          alt:"The Agency of Learning logo"
