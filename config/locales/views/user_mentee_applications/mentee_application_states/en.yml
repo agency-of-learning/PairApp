@@ -1,0 +1,22 @@
+en:
+  status_description:
+    application_received: "We received the application and it is awaiting reviewal."
+    coding_challenge_sent: "We sent out the code challenge and are awaiting the applicant's response (the typeform submission)."
+    coding_challenge_received: "We received the code challenge submission, but have yet to review the submission."
+    coding_challenge_approved: "We've approved the code challenge submission and are awaiting the applicant's response to schedule a phone screen."
+    phone_screen_scheduled: "We've scheduled a phone screen with the applicant."
+    phone_screen_completed: "We've completed the phone screen"
+  acceptance_criteria:
+    application_received: "<p>After reviewing, click promote to send the applicant a code challenge. </p>
+      <p>If you choose to promote, please include why you think the applicant is a good fit for AOL in the note.</p>
+    "
+    coding_challenge_sent: "In the note, please include the link for the applicant's response (i.e. typeform url) to the code challenge."
+    coding_challenge_received: "
+      <p>Please review the code challenge submission. </p>
+      <p>If you choose to promote, please reference aspects of the grading rubric that suggest that the applicant is a good fit for AOL in the note.</p>"
+    coding_challenge_approved: "Please include details about who the applicant is scheduled to talk to and when in the note."
+    phone_screen_scheduled: "Please leave any notes on what was discussed during the call, questions asked, etc."
+    phone_screen_completed: "
+      <p>This is the final step in the process -- either the applicant gets admitted or rejected.</p>
+      <p>Please include any final thoughts on why the applicant should be approved or rejected in the note.</p>
+    "
