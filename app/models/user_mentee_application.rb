@@ -40,7 +40,7 @@ class UserMenteeApplication < ApplicationRecord
                           }, class_name: 'MenteeApplicationState', dependent: nil
   # rubocop:enable Rails/InverseOf
 
-  validates :available_hours_per_week, numericality: { greater_than: 0, less_than_or_equal_to: 60 }
+  validates :available_hours_per_week, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 60 }
 
   validates :city, :state, :country, :reason_for_applying, :learned_to_code, :project_experience,
     :available_hours_per_week, presence: true
