@@ -1,10 +1,10 @@
 <%= turbo_frame_tag "new_request_form" do %>
-  <%= form_with(model: pair_request, class: 'p-4 mx-auto border-2 border-primary rounded-md flex flex-col') do |form| %>
+  <%= form_with(model: pair_request, class: 'p-4 mx-auto border-2 border-neutral rounded-md flex flex-col') do |form| %>
     <div id="form-container" class='flex flex-col space-y-4 xl:space-y-0 xl:max-w-full xl:inline-flex xl:justify-around xl:space-x-4 xl:flex-row object-contain' data-controller="pair-requests-form">  
       <div class="flex justify-between space-x-4 align-middle items-center ">
          <%= form.label :invitee_id, class: "label label-text" %>
          <%= form.select :invitee_id, nil, { :include_blank => "Please select" }, { class: "select select-primary", data: { action: "change->pair-requests-form#onClick", "pair-requests-form-target" => "inviteeInfo"}} do %>
-          <% User.excluding(current_user).each do |invitee| %>
+          <% User.members.excluding(current_user).each do |invitee| %>
             <%= tag.option(invitee.full_name, value: invitee.id, data: { "time-zone-identifier" => invitee.time_zone_identifier, "time-zone-display-name" => invitee.time_zone, "user-time-zone" => current_user.time_zone_identifier}) %>
           <% end %>
         <% end %>

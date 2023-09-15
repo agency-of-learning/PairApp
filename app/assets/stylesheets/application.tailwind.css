@@ -1,7 +1,37 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Roboto Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import 'direct_uploads';
 
 .field_with_errors {
   @apply flex [&>input]:input-error;
+}
+
+/* Tailwind Trix Editor */
+
+.trix-content h1 {
+  @apply text-xl leading-5 font-bold mb-2;
+}
+
+.trix-content a {
+  @apply underline hover:no-underline hover:text-primary;
+}
+
+.trix-content ul {
+  @apply list-disc pl-4;
+}
+
+.trix-content ol {
+  @apply list-decimal pl-4;
+}
+
+.trix-content code {
+  @apply bg-[#eee] py-1;
+}
+
+trix-toolbar {
+  @apply sticky top-0 z-50 bg-base-100;
 }

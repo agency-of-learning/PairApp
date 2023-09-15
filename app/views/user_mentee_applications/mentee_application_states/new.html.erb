@@ -1,0 +1,6 @@
+<%= render ModalComponent.new(title: 'Manage Application') do %>
+  <%= render "form",
+    application: @user_mentee_application,
+    current_state: @user_mentee_application.current_state
+  %>
+<% end %>

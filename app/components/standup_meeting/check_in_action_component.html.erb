@@ -1,0 +1,13 @@
+<% if standup_meeting.completed? %>
+  <%= link_to "Edit", 
+              edit_standup_meeting_group_standup_meeting_path(standup_meeting_group, standup_meeting), 
+              class: 'btn btn-primary' %>
+<% elsif standup_meeting.persisted? %>
+  <%= link_to "Check in",
+              edit_standup_meeting_group_standup_meeting_path(standup_meeting_group, standup_meeting), 
+              class: 'btn btn-primary' %>
+<% else %>
+  <%= button_to "Check in",
+                standup_meeting_group_standup_meetings_path(standup_meeting_group, meeting_date: standup_meeting.meeting_date),
+                class: 'btn btn-primary' %>
+<% end %>

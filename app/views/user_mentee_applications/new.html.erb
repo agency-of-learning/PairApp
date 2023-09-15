@@ -1,0 +1,85 @@
+<h1 class="text-center font-bold text-3xl my-8">
+  Welcome, <%= current_user.first_name %>!
+</h1>
+
+<%= form_with model: @user_mentee_application, local: true, html: { class: 'max-w-prose mx-auto' } do |form| %>
+  <div class='flex flex-col ml-5 mr-5'>
+    <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Tell us about your journey') do %>
+      <div class="flex flex-col mb-5">
+        <%= form.label :learned_to_code, 'How did you learn to code?', class: 'label-text mb-1' %>
+        <%= form.text_area :learned_to_code, class: 'textarea textarea-bordered', required: true, data: { controller: 'textarea-autogrow' } %>
+      </div>
+      <div class="flex flex-col form-control">
+        <%= form.label :project_experience, "Describe a project you’ve worked on that you especially loved or are proud of.",  class: 'label-text mb-1' %>
+        <%= form.text_area :project_experience, class: 'textarea textarea-bordered', required: true, data: { controller: 'textarea-autogrow' } %>
+      </div>
+    <% end %>
+
+    <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Tell us about your interest in the Agency of Learning') do %>
+      <div class="flex flex-col mb-5">
+        <%= form.label :reason_for_applying, 'Why are you here?', class: 'label-text mb-1' %>
+        <%= form.select :reason_for_applying, options_for_select(UserMenteeApplicationsHelper::REASONS_FOR_APPLYING), {}, class: 'select select-bordered', required: true %>
+      </div>
+
+      <div class="flex flex-col form-control">
+        <%= form.label :referral_source, 'How did you hear about The Agency of Learning?', class: 'label-text mb-1' %>
+        <%= form.text_field :referral_source, class: 'input input-bordered mb-2' %>
+      </div>
+
+      <div class="flex flex-col form-control items-start">
+        <%= form.label :available_hours_per_week, 'How many hours per week are you able to commit to The Agency of Learning?', class: 'label-text mb-1' %>
+        <%= form.number_field :available_hours_per_week,
+          min: 0,
+          max: 60,
+          value: @user_mentee_application.available_hours_per_week.presence || 0,
+          class: 'input input-bordered',
+          required: true
+        %>
+      </div>
+    <% end %>
+
+    <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Current Location Information') do %>
+      <div class="flex flex-col form-control">
+        <%= form.label :city, class: 'label-text mb-1' %>
+        <%= form.text_field :city, class: 'input input-bordered mb-2', required: true %>
+      </div>
+
+      <div class="flex flex-col form-control">
+        <%= form.label :state, class: 'label-text mb-1' %>
+        <%= form.text_field :state, class: 'input input-bordered mb-2', required: true %>
+      </div>
+
+      <div class="flex flex-col form-control">
+        <%= form.label :country, class: 'label-text mb-1' %>
+        <%= form.text_field :country, class: 'input input-bordered mb-2', required: true %>
+      </div>
+    <% end %>
+
+    <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Job Hunting Information') do %>
+      <div class="flex flex-col form-control">
+        <%= form.label :linkedin_url, class: 'label-text mb-1' %>
+        <%= form.text_field :linkedin_url, class: 'input input-bordered mb-2' %>
+      </div>
+
+      <div class="flex flex-col form-control">
+        <%= form.label :github_url, class: 'label-text mb-1' %>
+        <%= form.text_field :github_url, class: 'input input-bordered mb-2' %>
+      </div>
+
+      <div class="flex flex-col form-control">
+        <%= form.label :resume, class: 'label label-text' %>
+        <%= form.file_field :resume, direct_upload: true, class: 'file-input file-input-bordered file-input-primary max-w-xs', accept: 'application/pdf' %>
+        <%= form.hidden_field :resume_name, class: 'input input-primary input-bordered', value: 'application_resume' %>
+      </div>
+    <% end %>
+
+    <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Additional Information') do %>
+      <div class="flex flex-col form-control">
+        <%= form.label :additional_information, 'Anything else we should know?', class: 'label-text mb-1' %>
+        <%= form.text_area :additional_information, class: 'textarea textarea-bordered', data: { controller: 'textarea-autogrow' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit "Submit", class: 'btn btn-primary btn-wide mx-auto mt-5 mb-5' %>
+  </div>
+<% end %>

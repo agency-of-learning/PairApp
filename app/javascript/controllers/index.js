@@ -4,9 +4,12 @@
 
 import { application } from './application';
 
-import PairRequestsFormController from './pair_requests_form_controller';
-
 import LinkBuilderController from './link_builder_controller';
 
-application.register('pair-requests-form', PairRequestsFormController);
+import ModalController from './modal_controller';
+
+import PairRequestsFormController from './pair_requests_form_controller';
+
 application.register('link-builder', LinkBuilderController);
+application.register('modal', ModalController);
+application.register('pair-requests-form', PairRequestsFormController);

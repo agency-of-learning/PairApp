@@ -1,0 +1,36 @@
+<%= form_tag user_mentee_application_mentee_application_states_path(application), method: :post do %>
+  <div class="form-control mb-4">
+    <h3 class="label text-md font-semibold ml-1">
+      Applicant's Status
+    </h3>
+    <span class="justify-between items-center px-2"><%= t("status_description.#{current_state.status}").html_safe %></span>
+  </div>
+  <div class="form-control mb-4">
+    <h3 class="label text-md font-semibold">
+      Instructions
+    </h3>
+    <span class="justify-between items-center px-2"><%= t("acceptance_criteria.#{current_state.status}").html_safe %></span>
+  </div>
+  <% if current_state.valid_transitions.count > 1 %>
+    <div class="form-control">
+      <%= label_tag :reviewer_action, "Action", class: 'label text-md font-semibold' %>
+      <div class="flex gap-8">
+        <% current_state.valid_transitions.each do |option| %>
+          <div class="flex items-center gap-2">
+            <%= radio_button_tag :reviewer_action, option, false, class: "radio radio-primary", required: true %>
+            <%= label_tag "reviewer_action_#{option}", option.to_s.humanize, class: "label label-text text-lg" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <%= hidden_field_tag :reviewer_action, current_state.valid_transitions.first %>
+  <% end %>
+
+  <div class="form-control mb-4">
+    <%= label_tag :note, "Note", class: "label text-md font-semibold" %>
+    <%= text_area_tag :note, "", class: "textarea textarea-bordered textarea-primary", data: { controller: 'textarea-autogrow' } %>
+  </div>
+
+  <%= submit_tag "Update", class: "btn btn-primary" %>
+<% end %>

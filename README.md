@@ -13,6 +13,7 @@ To set up this project, you need to have the following software installed on you
 - Yarn or Npm
 - [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) (Follow the link for installation instructions)
 
+For detailed instructions on how to install these dependencies, please reference our [Wiki step-by-step guide for installing dependencies on Mac or Windows](https://github.com/agency-of-learning/PairApp/wiki/Step%E2%80%90by%E2%80%90step-instructions-to-install-the-dependencies-of-our-application).
 ## 12factor Approach
 
 This project follows the [12factor methodology](https://12factor.net/) for building software-as-a-service applications. Specifically, this project adheres to the following 12 factors:
@@ -61,23 +62,28 @@ bin/dev
 This will start the development server, the asset compiling for CSS and JS, and background worker. Open your web browser and go to http://localhost:3000 to see the application running.
 
 ## Working with Devise Invitable
+
 If you need to work with the user registration/invitation process, follow these steps:
 
 1. Make sure you are logged out of the application.
 
 2. Open a Rails console session:
+
 ```bash
 rails console
 ```
+
 3. In the console, run the following command to invite a user:
-```bash 
+
+```bash
 User.invite!(email: <some_test_email>)
 ```
-4. The `letter_opener` gem should open a new tab in your browser with an invite link. If it doesn't, you can manually access the letter opener by opening http://localhost:3000/letter_opener.
+
+4. You can access the letter by opening http://localhost:3000/letter_opener (dev only).
 
 5. Click the invite link to get to the sign-up page where you can set a password. This will create a fully active account with the provided email and password.
 
-Note: This flow is only necessary if you're building something around the user registration/invitation process. If you just want to create users, you can use User.create(**attrs) as usual.
+Note: This flow is only necessary if you're building something around the user registration/invitation process. If you just want to create users, you can use User.create(\*\*attrs) as usual.
 
 ## Contributing
 
@@ -94,25 +100,30 @@ git checkout -b your-feature-branch-name
 ```bash
 git add .
 git commit -m "Add your commit message here"
-``` 
-3. Running Tests
-```bash
-  bundle exec rspec
 ```
 
-4. Cleaning up before pushing
+3. Running Pre-Flight Checks
+
+In order to pass our continuous integration, your PR will need to pass the RSpec test suite and lint for both Ruby and JavaScript. We've rolled all of this into one command you can run to make sure everything is in order before submitting a PR.
+
 ```bash
-# lint ruby code
+bin/checks
+```
+
+For linting errors, you can pass a flag to Rubocop and/or ESLint to have the tool try to autocorrect any linting offenses:
+
+```bash
+# for Rubocop
 bundle exec rubocop -a
 
-# lint javascript code
+# for ESLint
 yarn eslint --fix
 ```
 
-5. Push your changes to origin:
+4. Push your changes to origin:
 
 ```bash
 git push origin your-feature-branch-name
 ```
 
-6. Create a new pull request on the original repository and wait for the maintainer to review and merge your changes.
+5. Create a new pull request on the original repository and wait for the maintainer to review and merge your changes.

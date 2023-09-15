@@ -26,6 +26,20 @@ RSpec.describe StandupMeetingGroup::DetermineMissingStandupMeetingsWorker do
       end
     end
 
+    context 'when the current day is on a weekend' do
+      let(:current_date) { Date.parse('2020-01-01').sunday }
+
+      before do
+        create(:standup_meeting_group_user, user:, standup_meeting_group:)
+      end
+
+      it 'does not create any additional jobs' do
+        expect(StandupMeeting::CreateDraftWorker).not_to receive(:perform_async)
+
+        described_class.new.perform(0, 60)
+      end
+    end
+
     context 'when a standup_meeting_group does not have standup_meetings and is within timeframe' do
       before do
         create(:standup_meeting_group_user, user:, standup_meeting_group:)

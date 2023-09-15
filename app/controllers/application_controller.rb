@@ -19,8 +19,14 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:accept_invitation, keys: %i[time_zone first_name last_name])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[time_zone first_name last_name])
+    devise_post_actions = %i[accept_invitation account_update sign_up]
+
+    devise_post_actions.each do |action|
+      devise_parameter_sanitizer.permit(
+        action,
+        keys: %i[time_zone first_name last_name]
+      )
+    end
   end
 
   private

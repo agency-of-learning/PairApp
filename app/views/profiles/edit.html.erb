@@ -1,0 +1,92 @@
+<h1 class="text-2xl text-center">Edit Profile</h1>
+
+<div class="max-w-prose px-2 mx-auto my-4">
+  <%= form_with model: @profile, format: :html do |form| %>
+    <div class="form-control">
+      <%= form.label :picture, class: 'label label-text text-lg' %>
+      <%= form.file_field :picture, direct_upload: true, class: 'file-input file-input-bordered file-input-primary max-w-xs', accept: ['image/png', 'image/jpeg'].join(", ") %>
+    </div>
+    <div class="form-control">
+      <%= form.label :slug, class: 'label label-text text-lg' do %>
+        Profile slug (alphanumeric with - and _ only)
+      <% end %>
+      <%= form.text_field :slug, required: true, pattern: '^[\-_a-zA-Z0-9]+$', class: 'input input-primary input-bordered' %>
+    </div>
+    <div class="form-control mb-4">
+      <%= form.label :bio, class: 'label label-text text-lg' %>
+      <%= form.text_area :bio,
+        class: 'textarea textarea-bordered textarea-primary',
+        data: { controller: 'textarea-autogrow' } 
+      %>
+    </div>
+    <div class="form-control">
+      <%= form.label :location, class: 'label label-text text-lg' %>
+      <%= form.text_field :location, class: 'input input-primary input-bordered' %>
+    </div>
+    <div class="form-control">
+      <%= form.label :linked_in_link, "LinkedIn", class: 'label label-text text-lg' %>
+      <%= form.text_field :linked_in_link, class: 'input input-primary input-bordered' %>
+    </div>
+    <div class="form-control">
+      <%= form.label :github_link, "GitHub", class: 'label label-text text-lg' %>
+      <%= form.text_field :github_link, class: 'input input-primary input-bordered' %>
+    </div>
+    <div class="form-control">
+      <%= form.label :twitter_link, "Twitter", class: 'label label-text text-lg' %>
+      <%= form.text_field :twitter_link, class: 'input input-primary input-bordered' %>
+    </div>
+    <div class="form-control">
+      <%= form.label :personal_site_link, "Personal Site", class: 'label label-text text-lg' %>
+      <%= form.text_field :personal_site_link, class: 'input input-primary input-bordered' %>
+    </div>
+    <div class="divider"></div>
+    <div class="form-control">
+      <%= form.label :job_search_status, class: 'label label-text text-lg' %>
+      <div class="flex flex-col gap-1">
+        <%= form.collection_radio_buttons :job_search_status, Profile.job_search_statuses.keys, :itself, :humanize do |b| %>
+          <div class="flex items-center gap-2">
+            <%= b.radio_button(class: "radio radio-primary") %>
+            <%= b.label(class: "label label-text") %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-control">
+      <%= form.label :work_model_preferences, class: 'label label-text text-lg' %>
+      <div class="flex gap-8">
+      <%= form.collection_check_boxes :work_model_preferences, Profile::WORK_MODELS, :itself, :itself  do |b| %>
+        <div class="flex items-center gap-2">
+          <%= b.check_box(class: "checkbox") %>
+          <%= b.label(class: "label label-text capitalize") %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+    <div class="form-control">
+      <%= form.label :job_title, class: 'label label-text text-lg' %>
+      <%= form.text_field :job_title, class: 'input input-primary input-bordered' %>
+    </div>
+    
+    <div class="divider"></div>
+    <div class="form-control">
+      <%= form.label :resume, class: 'label label-text text-xl' %>
+      <%= form.label class: 'label label-text text-lg' do %>
+        Select a resume to use as your default
+      <% end %>
+      <div class="flex flex-wrap space-x-4 my-4">
+        <% current_user.resumes.order(:id).each do |resume| %>
+          <div class="flex space-x-2">
+            <%= form.radio_button :current_resume_id, resume.id, class: 'radio radio-primary', checked: resume == current_user.current_resume %>
+            <%= form.label :current_resume_id, resume.name, class: 'text-md' %>
+          </div>
+        <% end %>
+      </div>
+      <div class="divider px-8">or</div>
+      <%= form.file_field :resume, direct_upload: true, class: 'file-input file-input-bordered file-input-primary max-w-xs', accept: 'application/pdf' %>
+      <%= form.label :resume_name, class: 'label label-text text-sm' %>
+      <%= form.text_field :resume_name, class: 'input input-primary input-bordered' %>
+    </div>
+    <%= form.submit "Update Profile", class: "btn btn-primary my-4" %>
+    <%= link_to "Cancel", @profile, class: "btn btn-secondary my-4" %>
+  <% end %>
+</div>

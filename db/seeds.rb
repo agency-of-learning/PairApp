@@ -3,10 +3,13 @@ begin
   puts "Seeding users..."
 
   user_data = [
-    { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: "admin@user.com", password: "password", role: "admin" },
-    { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: "user1@user.com", password: "password", role: "member" },
-    { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: "user2@user.com", password: "password", role: "member" },
-    { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: "user3@user.com", password: "password", role: "member" }
+    { first_name: 'Admin', last_name: Faker::Name.last_name, email: "admin@aol.com", password: "password", role: "admin" },
+    { first_name: 'User1', last_name: Faker::Name.last_name, email: "user1@aol.com", password: "password", role: "member" },
+    { first_name: 'User2', last_name: Faker::Name.last_name, email: "user2@aol.com", password: "password", role: "member" },
+    { first_name: 'User3', last_name: Faker::Name.last_name, email: "user3@aol.com", password: "password", role: "member" },
+    { first_name: 'Applicant1', last_name: Faker::Name.last_name, email: "applicant1@aol.com", password: "password", role: "applicant" },
+    { first_name: 'Applicant2', last_name: Faker::Name.last_name, email: "applicant2@aol.com", password: "password", role: "applicant" },
+    { first_name: 'Applicant3', last_name: Faker::Name.last_name, email: "applicant3@aol.com", password: "password", role: "applicant" },
   ]
 
   users = []
@@ -21,7 +24,6 @@ begin
   puts "Users seeded successfully!"
 
   puts "Seeding pair requests..."
-
   pair_request_data = [
     { status: "pending", author: users[1], invitee: users[2], when: 1.day.from_now, duration: 30.minutes },
     { status: "pending", author: users[1], invitee: users[3], when: 1.day.from_now, duration: 30.minutes },
@@ -58,9 +60,6 @@ begin
     end
   end
 
-  puts "Seeding completed pair requests with feedbacks..."
-
-
   puts "Seeding a Standup Meeting Group"
   standup_meeting_group = StandupMeetingGroup.create!(
     name: 'PairApp',
@@ -78,6 +77,68 @@ begin
     end
   end
   puts "Completed seeding standup meeting group!"
+
+
+  puts "Seeding a user_mentee_application..."
+
+  cohort = UserMenteeApplicationCohort.create!(
+    name: 'Original',
+    active_date_range: Date.today..3.months.from_now
+  )
+
+  user_mentee_application_data = [
+    {
+      user_id: users[4].id,
+      user_mentee_application_cohort: cohort,
+      city: Faker::Address.city,
+      state: Faker::Address.state,
+      country: Faker::Address.country,
+      reason_for_applying: Faker::Lorem.paragraph, 
+      linkedin_url: Faker::Internet.url, 
+      github_url: Faker::Internet.url, 
+      learned_to_code: Faker::Lorem.paragraph, 
+      project_experience: Faker::Lorem.paragraph, 
+      available_hours_per_week: 10, 
+      referral_source: Faker::Lorem.paragraph, 
+      additional_information: Faker::Lorem.paragraph
+    },
+    {
+      user_id: users[5].id,
+      user_mentee_application_cohort: cohort,
+      city: Faker::Address.city,
+      state: Faker::Address.state,
+      country: Faker::Address.country,
+      reason_for_applying: Faker::Lorem.paragraph,
+      linkedin_url: Faker::Internet.url,
+      github_url: Faker::Internet.url,
+      learned_to_code: Faker::Lorem.paragraph,
+      project_experience: Faker::Lorem.paragraph,
+      available_hours_per_week: 10,
+      referral_source: Faker::Lorem.paragraph,
+      additional_information: Faker::Lorem.paragraph
+    },
+    {
+      user_id: users[6].id,
+      user_mentee_application_cohort: cohort,
+      city: Faker::Address.city,
+      state: Faker::Address.state,
+      country: Faker::Address.country,
+      reason_for_applying: Faker::Lorem.paragraph,
+      linkedin_url: Faker::Internet.url,
+      github_url: Faker::Internet.url,
+      learned_to_code: Faker::Lorem.paragraph,
+      project_experience: Faker::Lorem.paragraph,
+      available_hours_per_week: 10,
+      referral_source: Faker::Lorem.paragraph,
+      additional_information: Faker::Lorem.paragraph
+    }
+  ]
+
+  UserMenteeApplication.transaction do
+    user_mentee_application_data.each do |data|
+      UserMenteeApplication.create!(data)
+    end
+  end
 
 rescue StandardError => e
   puts "Error occurred while seeding: #{e.message}"

@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+tool_commands = {
+  'Rubocop' => 'bundle exec rubocop',
+  'ESLint' => 'yarn eslint',
+  'RSpec' => 'bundle exec rspec'
+}
+
+results = {}
+
+tool_commands.each do |name, command|
+  puts "\n#{name}:"
+  results[name] = system command
+end
+
+longest_command_name_length = tool_commands.keys.map(&:size).max
+
+puts "\n== Final Results =="
+results.each do |name, result|
+  justified_name = name.ljust(longest_command_name_length + 1)
+  puts "#{justified_name}" "#{result ? '✅' : '❌'}"
+end
+
+if results.values.all?
+  puts 'All pre-flight checks passing! 🎉'
+else
+  puts 'Failing pre-flight checks! 😭'
+end

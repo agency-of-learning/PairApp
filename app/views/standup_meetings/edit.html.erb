@@ -1,7 +1,20 @@
 <div class="max-w-4xl mx-auto">
+  <div class="text-sm breadcrumbs px-8">
+    <ul>
+      <li><%= link_to @standup_meeting_group %></li> 
+      <li>
+        <%= link_to(
+          @standup_meeting.meeting_date,
+          standup_meeting_group_standup_meetings_path(@standup_meeting_group, @standup_meeting)
+        ) %>
+      </li>
+      <li>Check-In</li>
+    </ul>
+  </div>
+
   <div class="p-8 flex justify-between ">
     <h1 class="text-3xl font-bold">Get-up, Standup!</h1>
-    <%= link_to 'Back', :back, class: 'link text-primary text-lg mt-2' %>
+    <%= link_to 'Back', :back, class: 'link text-lg mt-2' %>
   </div>
   <div class="divider"></div>
 

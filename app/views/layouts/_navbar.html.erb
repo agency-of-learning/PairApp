@@ -8,14 +8,25 @@
       <li>
         <%= link_to "Home", root_path %>
       </li>
+      <li>
+        <%= link_to 'Featured Blog', featured_blog_posts_path %>
+      </li>
+      <li>
+        <%= link_to "FAQ", faq_path %>
+      </li>
+
       <% if !user_signed_in? %>
         <li>
-          <%= link_to "FAQ", faq_path %>
+          <%= link_to 'Login', new_user_session_path, class: "btn btn-primary text-primary-content" %>
         </li>
       <% end %>
-      <% if user_signed_in? %>
+
+      <% if user_signed_in? && (current_user.member? || current_user.admin?) %>
         <li>
-          <%= link_to 'My Account', edit_user_registration_path %>
+          <%= link_to 'My Blog', blog_path(current_user.blog_slug) %>
+        </li>
+        <li>
+          <%= link_to 'Agency Blog', blog_posts_path %>
         </li>
         <li>
           <%= link_to 'Pair Requests', pair_requests_path %>
@@ -31,12 +42,14 @@
             <%= link_to 'Invite New User', new_user_invitation_path %>
           </li>
         <% end %>
+      <% end %>
+
+      <% if user_signed_in? %>
         <li>
-          <%= link_to 'Logout', destroy_user_session_path, class: "btn btn-primary text-white" %>
+          <%= link_to 'My Account', edit_user_registration_path %>
         </li>
-      <% else %>
         <li>
-          <%= link_to 'Login', new_user_session_path, class: "btn btn-primary text-white" %>
+          <%= link_to 'Logout', destroy_user_session_path, class: "btn btn-primary text-primary-content" %>
         </li>
       <% end %>
     </ul>
@@ -50,17 +63,26 @@
         <li>
           <%= link_to "Home", root_path %>
         </li>
+        <li>
+          <%= link_to 'Featured Blog', featured_blog_posts_path %>
+        </li>
+        <li>
+          <%= link_to "FAQ", faq_path %>
+        </li>
         <% if !user_signed_in? %>
           <li>
-            <%= link_to "FAQ", faq_path %>
+            <%= link_to 'Login', new_user_session_path %>
           </li>
         <% end %>
-        <% if user_signed_in? %>
+        <% if user_signed_in? && (current_user.member? || current_user.admin?) %>
           <li>
             <%= link_to 'Standups', standup_meeting_groups_path %>
           </li>
           <li>
-            <%= link_to 'My Account', edit_user_registration_path %>
+            <%= link_to 'My Blog', blog_path(current_user.blog_slug) %>
+          </li>
+          <li>
+            <%= link_to 'Agency Blog', blog_posts_path %>
           </li>
           <li>
             <%= link_to 'Pair Requests', pair_requests_path %>
@@ -73,12 +95,13 @@
               <%= link_to 'Invite New User', new_user_invitation_path %>
             </li>
           <% end %>
+        <% end %>
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to 'My Account', edit_user_registration_path %>
+          </li>
           <li>
             <%= link_to 'Logout', destroy_user_session_path %>
-          </li>
-        <% else %>
-          <li>
-            <%= link_to 'Login', new_user_session_path %>
           </li>
         <% end %>
       </ul>

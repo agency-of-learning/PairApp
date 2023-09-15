@@ -17,7 +17,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role                   :integer          default("member"), not null
+#  role                   :integer          default("applicant"), not null
 #  time_zone              :string           default("UTC"), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -37,6 +37,8 @@ class User < ApplicationRecord
   # NOTE: we will want to add confirmable later on. Will require sendgrid setup (or w/e client we use.)
   devise :invitable, :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable
+
+  has_many :notifications, as: :recipient, dependent: :destroy
 
   has_many :authored_pair_requests,
     class_name: 'PairRequest',
@@ -67,12 +69,23 @@ class User < ApplicationRecord
   has_many :standup_meetings, dependent: :destroy
   has_many :standup_meeting_groups, through: :standup_meeting_groups_users
 
+  has_many :blog_posts, dependent: :destroy
+
   has_one :profile, dependent: :destroy
+  has_many :resumes, dependent: :destroy
+
+  has_many :mentee_applications, class_name: 'UserMenteeApplication', dependent: :destroy
+
+  # rubocop:disable Rails/InverseOf
+  has_one :current_resume, -> { where(current: true) }, class_name: 'Resume', dependent: nil
+  # rubocop:enable Rails/InverseOf
 
   validates :first_name, presence: true
   validates :last_name, presence: true
 
   after_create :create_profile!
+
+  scope :members, -> { where(role: %i[member admin]) }
 
   def self.invite!(attributes = {}, invited_by = nil, options = {}, &)
     default_name = { first_name: 'First', last_name: 'Last' }
@@ -95,8 +108,13 @@ class User < ApplicationRecord
     ActiveSupport::TimeZone.new(time_zone).tzinfo.identifier
   end
 
+  def blog_slug
+    profile.slug || profile.id
+  end
+
   enum role: {
     member: 0,
-    admin: 1
+    admin: 1,
+    applicant: 2
   }
 end

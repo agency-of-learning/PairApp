@@ -307,11 +307,15 @@ Rails/HasAndBelongsToMany:
   Enabled: false
 Rails/TimeZone:
   Enabled: false
+Rails/HelperInstanceVariable:
+  Enabled: false
 RSpec/MultipleExpectations:
   Enabled: false
 RSpec/RepeatedExample:
   Enabled: false
-RSpec/FilePath:
+RSpec/SpecFilePathFormat:
+  Enabled: false
+RSpec/SpecFilePathSuffix:
   Enabled: false
 RSpec/RepeatedDescription:
   Exclude:
@@ -324,7 +328,7 @@ RSpec/MultipleMemoizedHelpers:
   Enabled: false
 RSpec/NestedGroups:
   Enabled: false
-Rspec/MessageSpies:
+RSpec/MessageSpies:
   EnforcedStyle: receive
 Rails/UnknownEnv:
   Environments:

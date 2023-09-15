@@ -25,6 +25,7 @@ class PairRequest < ApplicationRecord
   # NOTE: might modify this to only save for specific scenarios like when changing from
   # draft -> completed. Want to noodle on this a bit.
   has_paper_trail
+  has_noticed_notifications
 
   belongs_to :author, class_name: 'User'
   belongs_to :invitee, class_name: 'User'
@@ -34,7 +35,8 @@ class PairRequest < ApplicationRecord
   validates :when,
     presence: true,
     inclusion: { in: (Date.current..(Date.current + 1.month)),
-                 message: 'field must not be in the past or more than 1 month into the future' }
+                 message: 'field must not be in the past or more than 1 month into the future' },
+    if: -> { pending? }
   validates :duration, presence: true, numericality: { greater_than_or_equal_to: 5.minutes }
   validates :status, presence: true
 

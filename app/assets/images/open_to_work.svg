@@ -1,0 +1,15 @@
+<svg version="1.1"
+  viewBox='0 0 100 100'
+  xmlns="http://www.w3.org/2000/svg" class='rounded-full'>
+  <linearGradient id="Gradient2" x1="0" x2="0" y1="0" y2="1">
+    <stop offset="0%" stop-color="#38d68e" stop-opacity="0" />
+    <stop offset="50%" stop-color="#38d68e" />
+    <stop offset="90%" stop-color="#38d68e" />
+    <stop offset="100%" stop-color="#38d68e"  stop-opacity="0"/>
+  </linearGradient>
+  <path id="text-path-0" d="M 98.592 238.486 C 82.418 244.562 155.421 453.67 392.959 388.795"></path>
+  <path style="fill: url(#Gradient2)" d="M -0.08 -2.896 L 14.807 15.448 C 14.807 15.448 4.799 61.403 41.578 82.811 C 67.899 98.132 99.889 75.049 99.889 75.049 L 100.034 105.591 L 0.229 105.478 L -0.08 -2.896 Z"></path>
+  <text style="fill: rgb(236, 253, 243); font-family: Arial, sans-serif; font-size: 38px; font-weight: 700; white-space: pre;" transform="matrix(0.271828, 0, 0, 0.271828, -19.355154, -10.013632)">
+    <textPath href="#text-path-0">Open to work</textPath>
+  </text>
+</svg>

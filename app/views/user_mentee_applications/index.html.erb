@@ -1,0 +1,26 @@
+<h1 class="text-2xl font-bold mb-4 text-center">My Applications</h1>
+
+<div class="p-2 sm:p-0">
+  <div class="mx-auto max-w-sm">
+    <%= render UserMenteeApplication::ReapplyCtaComponent.new(
+      active_cohort: @active_cohort,
+      last_application: @most_recent_application
+    ) %>
+
+    <% if @most_recent_application&.active? && @most_recent_application&.in_review? %>
+      <h2 class="text-xl font-bold mb-2">In Review</h2>
+      <ul>
+        <%= render UserMenteeApplication::ListItemComponent.new(mentee_application: @most_recent_application) %>
+      </ul>
+    <% end %>
+
+
+    <h2 class="text-xl font-bold mb-2">Past Applications</h2>
+    <ul>
+      <% @user_mentee_applications.each do |mentee_application| %>
+        <% next if mentee_application.active? && mentee_application.in_review? %>
+        <%= render UserMenteeApplication::ListItemComponent.new(mentee_application:) %>
+      <% end %>
+    </ul>
+  </div>
+</div>

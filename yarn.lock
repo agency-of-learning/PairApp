@@ -259,6 +259,27 @@
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-7.0.4.tgz#70a3ca56809f7aaabb80af2f9c01ae51e1a8ed41"
   integrity sha512-tz4oM+Zn9CYsvtyicsa/AwzKZKL+ITHWkhiu7x+xF77clh2b4Rm+s6xnOgY/sGDWoFWZmtKsE95hxBPkgQQNnQ==
 
+"@rails/actiontext@^7.0.6":
+  version "7.0.6"
+  resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-7.0.6.tgz#42b2b275ce6b24031242c731828de9c02d58b53f"
+  integrity sha512-WHHkYmypUjlo6fvNxfKRluuHmIxZCEoK+g/hBsufoxvjvWSBx61qu0Xq0tCrGUYd4mUZ/kk8OqP96/UBI3vS/w==
+  dependencies:
+    "@rails/activestorage" ">= 7.0.0-alpha1"
+
+"@rails/activestorage@>= 7.0.0-alpha1":
+  version "7.0.6"
+  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-7.0.6.tgz#8b762e7142eb8332541dffa0f841d7a5026f64fd"
+  integrity sha512-sLr5Uj8cnWkX9lLV7wk8mIVFt6XFOJR7mAXm0QmDnrR/YGMF4Ho5tcVRUHzlyAisRQcHp6D0zHSVgOUukF8OHg==
+  dependencies:
+    spark-md5 "^3.0.1"
+
+"@rails/activestorage@^7.0.7-2":
+  version "7.0.7-2"
+  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-7.0.7-2.tgz#20b5a1625ff3362641106a9c6dd75f40a9aac887"
+  integrity sha512-N2znffEOw7Ek3dmWrCCLU5yLTtyJ8pNofu9knYMFiJJo0CQetd4ja2ducZeoSKucM6k4FzRGQ/ca3TK2Hon5mA==
+  dependencies:
+    spark-md5 "^3.0.1"
+
 "@types/json5@^0.0.29":
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
@@ -571,6 +592,11 @@ doctrine@^3.0.0:
   integrity sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==
   dependencies:
     esutils "^2.0.2"
+
+el-transition@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/el-transition/-/el-transition-0.0.7.tgz#714fd47aa46fc2ff3df7d59e789271aa09f247d0"
+  integrity sha512-a23pEa7ahqLmBIEqtxi8CdL6CRLF52ZoAwawDFTD1IDkegrL4iValQAj6IMEgIEXPSrXZtx/Nr/ej6ebov4uoA==
 
 es-abstract@^1.19.0, es-abstract@^1.20.4:
   version "1.22.1"
@@ -1684,6 +1710,11 @@ source-map-js@^1.0.2:
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
 
+spark-md5@^3.0.1:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/spark-md5/-/spark-md5-3.0.2.tgz#7952c4a30784347abcee73268e473b9c0167e3fc"
+  integrity sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==
+
 stimulus-flatpickr@^3.0.0-0:
   version "3.0.0-0"
   resolved "https://registry.yarnpkg.com/stimulus-flatpickr/-/stimulus-flatpickr-3.0.0-0.tgz#af9bfa70bd1b74654312580101387c9d13ee32f2"
@@ -1826,6 +1857,11 @@ to-regex-range@^5.0.1:
   integrity sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
   dependencies:
     is-number "^7.0.0"
+
+trix@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/trix/-/trix-2.0.5.tgz#f54880ab38e24d47829a04e04afaf03a8607f772"
+  integrity sha512-OiCbDf17F7JahEwhyL1MvK9DxAAT1vkaW5sn+zpwfemZAcc4RfQB4ku18/1mKP58LRwBhjcy+6TBho7ciXz52Q==
 
 ts-interface-checker@^0.1.9:
   version "0.1.13"
