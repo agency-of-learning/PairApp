@@ -46,7 +46,7 @@ class UserMenteeApplication < ApplicationRecord
     :available_hours_per_week, presence: true
 
   after_create :create_initial_application_state
-  after_create_commit :send_notifications
+  after_create_commit :send_application_submission_notifications
 
   delegate :accepted?, :rejected?, :status, to: :current_state
   delegate :active?, to: :user_mentee_application_cohort
@@ -79,7 +79,7 @@ class UserMenteeApplication < ApplicationRecord
     mentee_application_states.create(status: :application_received)
   end
 
-  def send_notifications
+  def send_application_submission_notifications
     UserMenteeApplication::ApplicationSubmissionNotification
       .with(user_mentee_application: self).deliver(user)
 
