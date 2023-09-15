@@ -26,13 +26,13 @@
         <%= form.text_field :referral_source, class: 'input input-bordered mb-2' %>
       </div>
 
-      <div class="flex flex-col form-control">
+      <div class="flex flex-col form-control items-start">
         <%= form.label :available_hours_per_week, 'How many hours per week are you able to commit to The Agency of Learning?', class: 'label-text mb-1' %>
         <%= form.number_field :available_hours_per_week,
-          min: 1,
+          min: 0,
           max: 60,
-          value: @user_mentee_application.available_hours_per_week.presence || 1,
-          class: 'input input-sm input-bordered',
+          value: @user_mentee_application.available_hours_per_week.presence || 0,
+          class: 'input input-bordered',
           required: true
         %>
       </div>
