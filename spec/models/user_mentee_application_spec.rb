@@ -94,4 +94,20 @@ RSpec.describe UserMenteeApplication do
       end
     end
   end
+
+  describe 'Notification and Alert Enqueueing on Creation' do
+    before do
+      ActiveJob::Base.queue_adapter.enqueued_jobs = []
+      create(:user, email: 'daniel@agencyoflearning.com')
+      create(:user, email: 'dave@agencyoflearning.com')
+    end
+
+    it 'enqueues application submission notifications after create commit' do
+      expect {
+        create(:user_mentee_application)
+      }.to have_enqueued_mail(UserMenteeApplicationMailer, :notify_for_application_submission)
+        .and have_enqueued_mail(UserMenteeApplicationAlertMailer,
+          :notify_for_application_submission).exactly(User.super_admins.count).times
+    end
+  end
 end
