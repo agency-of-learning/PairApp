@@ -35,9 +35,6 @@ RSpec.describe UserMenteeApplication do
   let(:user) { create(:user) }
   let(:mentee_application) { create(:user_mentee_application) }
 
-  # let!(:daniel) { create(:user, email: 'daniel@agencyoflearning.com') }
-  # let!(:dave) { create(:user, email: 'dave@agencyoflearning.com') }
-
   describe '#create' do
     it 'creates an initial application state' do
       expect(mentee_application.mentee_application_states.count).to eq(1)
