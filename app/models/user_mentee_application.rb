@@ -80,8 +80,7 @@ class UserMenteeApplication < ApplicationRecord
   end
 
   def send_application_submission_notifications
-    UserMenteeApplication::ApplicationSubmissionNotification
-      .with(user_mentee_application: self).deliver(user)
+    UserMenteeApplication::ApplicationSubmissionNotification.with(user_mentee_application: self).deliver(user)
 
     UserMenteeApplication::ApplicationSubmissionAlert
       .with(user_mentee_application: self).deliver(User.super_admins)

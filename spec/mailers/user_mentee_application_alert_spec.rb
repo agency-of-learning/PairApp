@@ -5,7 +5,9 @@ RSpec.describe UserMenteeApplicationAlertMailer do
   let(:recipient) { application.user }
 
   describe '#notify_for_application_submission' do
-    subject(:mail) { described_class.with(application:, recipient:).notify_for_application_submission }
+    subject(:mail) do
+      described_class.with(user_mentee_application: application, recipient:).notify_for_application_submission
+    end
 
     it 'renders the headers' do
       expect(mail.subject).to eq('New Application submission!')
