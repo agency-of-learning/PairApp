@@ -1,24 +1,31 @@
 class UserMenteeApplications::MenteeApplicationStatesController < ApplicationController
   before_action :load_user_mentee_application
 
-  def new
-    @mentee_application_state = @user_mentee_application.mentee_application_states.build
-  end
+  def new; end
 
+  # rubocop:disable Metrics/AbcSize
   def create
-    @mentee_application_state = @user_mentee_application
-                                .mentee_application_states
-                                .build(mentee_application_state_params)
-
     respond_to do |format|
-      if @mentee_application_state.save
-        format.html { redirect_to user_mentee_applications_path }
-        format.turbo_stream { flash.now[:notice] = "Application updated to #{@mentee_application_state.status}" }
-      else
-        format.html { render :new, status: :unprocessable_entity }
+      MenteeApplicationTransitionService.call(
+        application: @user_mentee_application,
+        reviewer: current_user,
+        action: application_state_params[:reviewer_action].to_sym,
+        note: application_state_params[:note]
+      )
+      @user_mentee_application.reload
+      format.html { redirect_to user_mentee_applications_path }
+      format.turbo_stream do
+        flash.now[:notice] = "Application updated to #{@user_mentee_application.current_state.status.humanize.downcase}"
       end
+    rescue MenteeApplicationTransitionService::InvalidTransitionError => e
+      format.html do
+        redirect_to new_user_mentee_applications_mentee_application_state_path(@user_mentee_application),
+          alert: e.message
+      end
+      format.turbo_stream { flash.now[:alert] = e.message }
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 
@@ -26,10 +33,9 @@ class UserMenteeApplications::MenteeApplicationStatesController < ApplicationCon
     @user_mentee_application = UserMenteeApplication.find(params[:user_mentee_application_id])
   end
 
-  def mentee_application_state_params
+  def application_state_params
     params
-      .require(:mentee_application_state)
-      .permit(:status, :note)
+      .permit(:reviewer_action, :note)
       .merge(status_changed_id: current_user.id)
   end
 end

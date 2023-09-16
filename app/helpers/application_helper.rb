@@ -8,7 +8,7 @@ module ApplicationHelper
     timestamp.strftime('%B %d, %Y at %l:%M %p')
   end
 
-  # rubocop:disable Style/PerceivedComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def pagy_nav(pagy, pagy_id: nil, link_extra: '', **vars)
     p_id   = %[ id="#{pagy_id}"] if pagy_id
     link   = pagy_link_proc(pagy, link_extra:)
@@ -38,7 +38,7 @@ module ApplicationHelper
             end
     html << %[</nav>]
   end
-  # rubocop:enable Style/PerceivedComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 
   def background_color
     'bg-[#2C2E36]' if current_page?(root_path)

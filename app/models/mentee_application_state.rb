@@ -37,11 +37,7 @@ class MenteeApplicationState < ApplicationRecord
     rejected: 7
   }
 
-  class << self
-    # state machine for mentee application
-    def next(status:)
-      return if %i[accepted rejected].include?(status)
-      statuses.keys[statuses.keys.index(status.to_s) + 1]
-    end
+  def valid_transitions
+    MenteeApplicationTransitionService.valid_transitions(status:)
   end
 end

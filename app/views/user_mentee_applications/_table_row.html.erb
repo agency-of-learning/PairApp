@@ -15,15 +15,19 @@
   
   <%= render TableCellComponent.new(container_link: mentee_application) do %>
     <%= turbo_frame_tag "#{dom_id(mentee_application)}--status" do %>
-      <%= mentee_application.status %>
+      <%= mentee_application.status.humanize %>
     <% end %>
   <% end %>
 
   <%= render(TableCellComponent.new(class_names: "hidden sm:table-cell text-center")) do %>
-    <%= link_to "Action",
-      new_user_mentee_application_mentee_application_state_path(mentee_application),
-      class: 'link link-primary',
-      data: { turbo_frame: 'modal' }
-    %>
+    <%= turbo_frame_tag "#{dom_id(mentee_application)}--action" do %>
+      <% if mentee_application.in_review? %>
+        <%= link_to "Action",
+          new_user_mentee_application_mentee_application_state_path(mentee_application),
+          class: 'link link-primary',
+          data: { turbo_frame: 'modal' }
+        %>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
