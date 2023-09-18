@@ -116,6 +116,7 @@ class User < ApplicationRecord
   enum role: {
     member: 0,
     admin: 1,
-    applicant: 2
+    applicant: 2,
+    moderator: 3
   }
 end
