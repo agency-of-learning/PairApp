@@ -9,7 +9,11 @@ class MenteeApplicationMailerPreview < ActionMailer::Preview
     MenteeApplicationMailer.with(recipient: User.last).notify_for_rejection
   end
 
-  def notify_for_code_challenge
-    MenteeApplicationMailer.with(recipient: User.last).notify_for_code_challenge
+  def notify_for_code_challenge_sent
+    MenteeApplicationMailer.with(recipient: User.last).notify_for_code_challenge_sent
+  end
+
+  def notify_for_code_challenge_approved
+    MenteeApplicationMailer.with(recipient: User.last).notify_for_code_challenge_approved
   end
 end
