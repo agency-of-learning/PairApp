@@ -42,6 +42,11 @@
             <%= link_to 'Invite New User', new_user_invitation_path %>
           </li>
         <% end %>
+        <% if policy(:user_only).admin? %>
+          <li>
+            <%= link_to 'Applications', user_mentee_application_cohorts_path %>
+          </li>
+        <% end %>
       <% end %>
 
       <% if user_signed_in? %>
@@ -93,6 +98,11 @@
           <% if policy(:invitation).new? %>
             <li>
               <%= link_to 'Invite New User', new_user_invitation_path %>
+            </li>
+          <% end %>
+          <% if policy(:user_only).admin? %>
+            <li>
+              <%= link_to 'Applications', user_mentee_application_cohorts_path %>
             </li>
           <% end %>
         <% end %>
