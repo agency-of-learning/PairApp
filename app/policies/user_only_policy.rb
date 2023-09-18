@@ -6,5 +6,5 @@ class UserOnlyPolicy
   end
 
   # the delegate method forwards the admin? method call @user's admin? method
-  delegate :admin?, to: :user
+  delegate :admin?, :applicant?, to: :user
 end
