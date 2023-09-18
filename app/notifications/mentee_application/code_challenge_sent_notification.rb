@@ -3,10 +3,10 @@
 # MenteeApplication::CodeChallengeNotification.with(post: @post).deliver_later(current_user)
 # MenteeApplication::CodeChallengeNotification.with(post: @post).deliver(current_user)
 
-class MenteeApplication::CodeChallengeNotification < Noticed::Base
+class MenteeApplication::CodeChallengeSentNotification < Noticed::Base
   deliver_by :email,
     mailer: 'MenteeApplicationMailer',
-    method: :notify_for_code_challenge,
+    method: :notify_for_code_challenge_sent,
     enqueue: true
 
   # Add required params
