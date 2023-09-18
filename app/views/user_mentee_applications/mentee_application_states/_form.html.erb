@@ -3,13 +3,13 @@
     <h3 class="label text-md font-semibold ml-1">
       Applicant's Status
     </h3>
-    <span class="justify-between items-center px-2"><%= t("status_description.#{current_state.status}").html_safe %></span>
+    <span class="justify-between items-center px-2"><%= t("#{current_state.status}.status_description").html_safe %></span>
   </div>
   <div class="form-control mb-4">
     <h3 class="label text-md font-semibold">
       Instructions
     </h3>
-    <span class="justify-between items-center px-2"><%= t("acceptance_criteria.#{current_state.status}").html_safe %></span>
+    <span class="justify-between items-center px-2"><%= t("#{current_state.status}.acceptance_criteria").html_safe %></span>
   </div>
   <% if current_state.valid_transitions.count > 1 %>
     <div class="form-control">
@@ -18,7 +18,7 @@
         <% current_state.valid_transitions.each do |option| %>
           <div class="flex items-center gap-2">
             <%= radio_button_tag :reviewer_action, option, false, class: "radio radio-primary", required: true %>
-            <%= label_tag "reviewer_action_#{option}", option.to_s.humanize, class: "label label-text text-lg" %>
+            <%= label_tag "reviewer_action_#{option}", t("#{current_state.status}.#{option.to_s}"), class: "label label-text text-lg" %>
           </div>
         <% end %>
       </div>
