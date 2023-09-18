@@ -7,6 +7,18 @@ RSpec.describe UserMenteeApplicationPolicy, type: :policy do
   let(:random_user) { build(:user) }
   let(:admin) { build(:user, :admin) }
   let(:moderator) { build(:user, :moderator) }
+  let(:applicant) { build(:user, :applicant) }
+
+  permissions :index? do
+    it 'allows access to applicant' do
+      expect(subject).to permit(applicant, StandupMeeting)
+    end
+
+    it 'denies access to non-applicants' do
+      expect(subject).not_to permit(admin, StandupMeeting)
+      expect(subject).not_to permit(random_user, StandupMeeting)
+    end
+  end
 
   permissions :show? do
     let!(:user_mentee_application) { create(:user_mentee_application, user:) }

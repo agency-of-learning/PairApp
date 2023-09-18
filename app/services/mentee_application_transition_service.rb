@@ -45,7 +45,8 @@ module MenteeApplicationTransitionService
     application.mentee_application_states.create!(status: transition_status, reviewer:, note:)
     # handle side effects
     case transition_status
-    when :coding_challenge_sent then code_challenge_side_effects(application)
+    when :coding_challenge_sent then code_challenge_sent_side_effects(application)
+    when :coding_challenge_approved then coding_challenge_approved_side_effects(application)
     when :accepted then accepted_side_effects(application)
     when :rejected then rejected_side_effects(application)
     end
@@ -61,8 +62,12 @@ module MenteeApplicationTransitionService
 
   private
 
-  def code_challenge_side_effects(application)
-    MenteeApplication::CodeChallengeNotification.deliver(application.user)
+  def code_challenge_sent_side_effects(application)
+    MenteeApplication::CodeChallengeSentNotification.deliver(application.user)
+  end
+
+  def coding_challenge_approved_side_effects(application)
+    MenteeApplication::CodeChallengeApprovedNotification.deliver(application.user)
   end
 
   def accepted_side_effects(application)
