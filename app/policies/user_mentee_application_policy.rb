@@ -1,6 +1,6 @@
 class UserMenteeApplicationPolicy < ApplicationPolicy
   def index?
-    user.admin?
+    user.applicant?
   end
 
   def show?
