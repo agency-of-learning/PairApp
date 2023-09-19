@@ -4,7 +4,7 @@ class UserMenteeApplicationPolicy < ApplicationPolicy
   end
 
   def show?
-    applicant_reviewer? || matching_user?
+    user.application_reviewer? || matching_user?
   end
 
   def new?
@@ -23,9 +23,5 @@ class UserMenteeApplicationPolicy < ApplicationPolicy
 
   def matching_user?
     record.user_id == user.id
-  end
-
-  def applicant_reviewer?
-    user.admin? || user.moderator?
   end
 end
