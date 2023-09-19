@@ -50,4 +50,8 @@ class ApplicationPolicy
 
     attr_reader :user, :scope
   end
+
+  def application_reviewer?
+    user.admin? || user.moderator?
+  end
 end

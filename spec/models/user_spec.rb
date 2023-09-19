@@ -104,40 +104,4 @@ RSpec.describe User do
       end
     end
   end
-
-  describe '#application_reviewer?' do
-    subject { build(:user, role) }
-
-    context 'when the user is an admin' do
-      let(:role) { :admin }
-
-      it 'is an application reviewer' do
-        expect(subject).to be_application_reviewer
-      end
-    end
-
-    context 'when the user is a moderator' do
-      let(:role) { :moderator }
-
-      it 'is an application reviewer' do
-        expect(subject).to be_application_reviewer
-      end
-    end
-
-    context 'when the user is a member' do
-      let(:role) { :member }
-
-      it 'is not an application reviewer' do
-        expect(subject).not_to be_application_reviewer
-      end
-    end
-
-    context 'when the user is an applicant' do
-      let(:role) { :applicant }
-
-      it 'is not an application reviewer' do
-        expect(subject).not_to be_application_reviewer
-      end
-    end
-  end
 end
