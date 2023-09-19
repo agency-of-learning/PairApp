@@ -3,7 +3,7 @@ class UserMenteeApplicationsController < ApplicationController
   before_action :set_active_cohort, only: %i[index new create]
 
   def index
-    authorize :user_only_policy, :applicant?
+    authorize :user_only, :applicant?
     @user_mentee_applications = current_user
                                 .mentee_applications
                                 .order_newest_first

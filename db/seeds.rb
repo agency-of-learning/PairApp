@@ -4,6 +4,7 @@ begin
 
   user_data = [
     { first_name: 'Admin', last_name: Faker::Name.last_name, email: "admin@aol.com", password: "password", role: "admin" },
+    { first_name: 'Mod', last_name: Faker::Name.last_name, email: "mod@aol.com", password: "password", role: "moderator" },
     { first_name: 'User1', last_name: Faker::Name.last_name, email: "user1@aol.com", password: "password", role: "member" },
     { first_name: 'User2', last_name: Faker::Name.last_name, email: "user2@aol.com", password: "password", role: "member" },
     { first_name: 'User3', last_name: Faker::Name.last_name, email: "user3@aol.com", password: "password", role: "member" },

@@ -18,7 +18,9 @@
             We're <span class="font-semibold">currently reviewing applications</span> for the upcoming cohort. We'll be sure to keep you updated on the status of your application!
           <% end %>
         </p>
-      <% else %>
+      <% end %>
+
+      <% if policy(:user_only).application_reviewer? %>
         <%= turbo_frame_tag "#{dom_id(@user_mentee_application)}--manage" do %>
           <% if @user_mentee_application.in_review? %>
             <%= link_to "Manage Application",

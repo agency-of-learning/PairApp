@@ -4,7 +4,7 @@ class UserMenteeApplicationPolicy < ApplicationPolicy
   end
 
   def show?
-    user.admin? || matching_user?
+    application_reviewer? || matching_user?
   end
 
   def new?
