@@ -34,14 +34,17 @@ FactoryBot.define do
     user { association :user, :applicant }
     user_mentee_application_cohort
 
+    learned_to_code { Faker::Lorem.paragraph }
+    project_experience { Faker::Lorem.paragraph }
+    reason_for_applying { 'Help with job search' }
+
     available_hours_per_week { 10 }
     city { Faker::Address.city }
     state { Faker::Address.state }
     country { Faker::Address.country }
 
-    learned_to_code { Faker::Lorem.paragraph }
-    project_experience { Faker::Lorem.paragraph }
-    reason_for_applying { 'Help with job search' }
+    github_url { 'https://github.com/user' }
+    linkedin_url { 'https://www.linkedin.com/in/user/' }
 
     trait :with_resume do
       after(:create) do |user_mentee_application|
