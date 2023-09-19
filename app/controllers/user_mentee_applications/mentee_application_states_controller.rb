@@ -1,5 +1,6 @@
 class UserMenteeApplications::MenteeApplicationStatesController < ApplicationController
   before_action :load_user_mentee_application
+  before_action -> { authorize :user_only, :application_reviewer? }
 
   def new; end
 
