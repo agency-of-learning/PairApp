@@ -119,4 +119,8 @@ class User < ApplicationRecord
     applicant: 2,
     moderator: 3
   }
+
+  def application_reviewer?
+    admin? || moderator?
+  end
 end
