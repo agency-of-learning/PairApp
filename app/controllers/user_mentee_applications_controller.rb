@@ -31,7 +31,7 @@ class UserMenteeApplicationsController < ApplicationController
         city: latest_application&.city,
         state: latest_application&.state,
         country: latest_application&.country,
-        learned_to_code: latest_application&.learned_to_code,
+        learned_to_code: latest_application&.learned_to_code
       )
     end
   end
