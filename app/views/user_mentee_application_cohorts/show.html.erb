@@ -4,7 +4,7 @@
 
 <div class="p-2">
   <div class="tabs">
-    <%= link_to 'In Review', user_mentee_application_cohort_path(@cohort, filter: "application_received" ) , class:"tab tab-lifted tab-active" %>
+    <%= link_to 'In Review', user_mentee_application_cohort_path(@cohort, filter: "in_review" ) , class:"tab tab-lifted tab-active" %>
     <%= link_to 'Accepted', user_mentee_application_cohort_path(@cohort, filter: "accepted") , class:"tab tab-lifted" %>
     <%= link_to  "rejected", user_mentee_application_cohort_path(@cohort, filter: "rejected" ), class:"tab tab-lifted" %>
   </div>
