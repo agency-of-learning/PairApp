@@ -8,7 +8,21 @@ class UserMenteeApplicationCohortsController < ApplicationController
 
   def show
     @cohort = UserMenteeApplicationCohort
-              .includes(:user_mentee_applications)
-              .find(params[:id])
-  end
+                .includes(user_mentee_applications: :mentee_application_states)
+                .find(params[:id])
+
+    if params[:filter]
+      if params[:filter] == 'in_review'
+        @filtered_applications = @cohort.user_mentee_applications.select do |application|
+          application.in_review?
+        end
+      else
+        @filtered_applications = @cohort.user_mentee_applications.select do |application|
+          application.current_status == params[:filter]
+        end
+      end
+    else
+      @filtered_applications = @cohort.user_mentee_applications
+    end
+  end  
 end
