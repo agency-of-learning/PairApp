@@ -59,8 +59,7 @@ begin
   puts 'Seeding completed pair requests with feedback drafts...'
 
   completed_pair_request_data = Array.new(5) do
-    author, invitee = users.sample(2)
-    { status: 'completed', author:, invitee:, when: 30.minutes.ago, duration: 30.minutes }
+    generate_pair_request_data(users:, status: 'completed', pair_date: 30.minutes.ago)
   end
 
   PairRequest.transaction do
