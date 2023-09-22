@@ -15,7 +15,7 @@ To set up this project, you need to have the following software installed on you
 
 For detailed instructions on how to install these dependencies, please reference our [Wiki step-by-step guide for installing dependencies on Mac or Windows](https://github.com/agency-of-learning/PairApp/wiki/Step%E2%80%90by%E2%80%90step-instructions-to-install-the-dependencies-of-our-application).
 
-You can view open issues [here](https://github.com/orgs/agency-of-learning/projects/1/views/1)
+You can view open issues [here](https://github.com/orgs/agency-of-learning/projects/1/views/1).
 
 ## Getting Started
 
@@ -46,6 +46,8 @@ bin/dev
 ```
 
 This will start the development server, the asset compiling for CSS and JS, and background worker. Open your web browser and go to http://localhost:3000 to see the application running.
+
+**Please reference [our wiki](https://github.com/agency-of-learning/PairApp/wiki) for more information about the project and our development practices.**
 
 ## Contributing
 
