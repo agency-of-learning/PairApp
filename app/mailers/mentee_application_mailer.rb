@@ -1,4 +1,6 @@
 class MenteeApplicationMailer < ApplicationMailer
+  default from: 'dave@agencyoflearning.com'
+
   def notify_for_acceptance
     @application = params[:application]
     mail(subject: 'Welcome to the Agency of Learning!')
