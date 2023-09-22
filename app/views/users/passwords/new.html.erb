@@ -1,21 +1,20 @@
+<h2 class="text-3xl text-center font-bold mb-2">Forgot Your Passowrd?</h2>
 
-<div class="container mx-auto max-w-lg">
-  <h2 class="text-2xl">Forgot your password?</h2>
-
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'mb-4' }) do |f| %>
+<div class="max-w-xl mx-auto px-4">
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="form-control">
-      <%= f.label :email, class: 'label label-text' %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input input-outline' %>
+    <div class="form-control mb-4">
+      <%= f.label :email, class: 'label label-text text-lg' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input input-bordered' %>
     </div>
 
-    <div class="form-control mt-4">
-      <%= f.submit "Send me reset password instructions", class: 'btn btn-primary btn-outline' %>
+    <div>
+      <%= f.submit "Send me reset password instructions", class: 'btn btn-primary mb-4' %>
     </div>
   <% end %>
 
-  <span class="block mx-auto">
+  <div class="underline mt-2">
     <%= render "devise/shared/links" %> 
-  </span>
+  </div>
 </div>
