@@ -20,10 +20,10 @@
   <h4>Reset your password</h4>
   <ol>
     <li>
-      Navigate to <a href="https://pair.agencyoflearning.com/users/sign_in">the agency's pair application sign in form</a>
+      Navigate to <%= link_to "the agency's pair application sign in form", new_user_session_url %>
     </li>
     <li>
-      Click on the <a href="https://pair.agencyoflearning.com/users/password/new">Forgot your Password</a> link
+      Click on the <%= link_to "Forgot your Password", new_user_password_url %> link
     </li>
     <li>
       Enter your email address: <strong><%= @recipient.email %></strong>
@@ -52,6 +52,6 @@
     Best,
   </p>
   <p>
-    Dave Paola | <a href="https://pair.agencyoflearning.com">Agency of Learning</a>
+    Dave Paola | <%= link_to "Agency of Learning", root_url %>
   </p>
 </div>

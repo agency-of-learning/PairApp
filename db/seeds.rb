@@ -6,9 +6,9 @@ def generate_user_data(role:, idx:)
   { first_name: role.capitalize, last_name: Faker::Name.last_name, email:, password: 'password', role: }
 end
 
-def generate_pair_request_data(users:, status:)
+def generate_pair_request_data(users:, status:, pair_date: nil)
   author, invitee = users.sample(2)
-  pair_date = [1, 2, 3, 4].sample.day.from_now
+  pair_date ||= [1, 2, 3, 4].sample.day.from_now
   { status:, author:, invitee:, when: pair_date, duration: 30.minutes }
 end
 
@@ -46,7 +46,7 @@ begin
   5.times do
     pair_request_data.push(generate_pair_request_data(status: 'pending', users:))
     pair_request_data.push(generate_pair_request_data(status: 'rejected', users:))
-    pair_request_data.push(generate_pair_request_data(status: 'accepted', users:))
+    pair_request_data.push(generate_pair_request_data(status: 'accepted', users:, pair_date: Time.now))
   end
 
   PairRequest.transaction do
