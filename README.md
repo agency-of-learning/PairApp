@@ -14,22 +14,8 @@ To set up this project, you need to have the following software installed on you
 - [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) (Follow the link for installation instructions)
 
 For detailed instructions on how to install these dependencies, please reference our [Wiki step-by-step guide for installing dependencies on Mac or Windows](https://github.com/agency-of-learning/PairApp/wiki/Step%E2%80%90by%E2%80%90step-instructions-to-install-the-dependencies-of-our-application).
-## 12factor Approach
 
-This project follows the [12factor methodology](https://12factor.net/) for building software-as-a-service applications. Specifically, this project adheres to the following 12 factors:
-
-- **Codebase:** One codebase tracked in version control, many deploys
-- **Dependencies:** Explicitly declare and isolate dependencies
-- **Config:** Store config in the environment
-- **Backing services:** Treat backing services as attached resources
-- **Build, release, run:** Strictly separate build and run stages
-- **Processes:** Execute the app as one or more stateless processes
-- **Port binding:** Export services via port binding
-- **Concurrency:** Scale out via the process model
-- **Disposability:** Maximize robustness with fast startup and graceful shutdown
-- **Dev/prod parity:** Keep development, staging, and production as similar as possible
-- **Logs:** Treat logs as event streams
-- **Admin processes:** Run admin/management tasks as one-off processes
+You can view open issues [here](https://github.com/orgs/agency-of-learning/projects/1/views/1)
 
 ## Getting Started
 
@@ -60,30 +46,6 @@ bin/dev
 ```
 
 This will start the development server, the asset compiling for CSS and JS, and background worker. Open your web browser and go to http://localhost:3000 to see the application running.
-
-## Working with Devise Invitable
-
-If you need to work with the user registration/invitation process, follow these steps:
-
-1. Make sure you are logged out of the application.
-
-2. Open a Rails console session:
-
-```bash
-rails console
-```
-
-3. In the console, run the following command to invite a user:
-
-```bash
-User.invite!(email: <some_test_email>)
-```
-
-4. You can access the letter by opening http://localhost:3000/letter_opener (dev only).
-
-5. Click the invite link to get to the sign-up page where you can set a password. This will create a fully active account with the provided email and password.
-
-Note: This flow is only necessary if you're building something around the user registration/invitation process. If you just want to create users, you can use User.create(\*\*attrs) as usual.
 
 ## Contributing
 
