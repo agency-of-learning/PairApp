@@ -1,0 +1,57 @@
+
+<div style='display: block; max-width: 40rem; margin: 0 auto; padding-top: 4rem; line-height: 1.3rem; padding: 0.25rem'>
+  <p>Dear <%= @recipient.full_name %>,</p>
+  <p>
+    Thank you for previously expressing interest to join us at the Agency of Learning.
+  </p>
+
+  <p>
+    We are currently opening our upcoming <%= @active_cohort_name %> cohort to early-career developers with some experience using Ruby on Rails to join us. In particular, we are looking for applicants residing in North America who can devote at least 10 hours per week to the Agency.
+  </p>
+
+  <p>
+    Given your previous interest, we wanted to invite you to <strong>reapply to the Agency of Learning</strong>. To speed things up, we've filled in your reapplication form with information from your previous application.
+  </p>
+
+  <p>
+    To reapply, please follow these steps:
+  </p>
+
+  <h4>Reset your password</h4>
+  <ol>
+    <li>
+      Navigate to <a href="https://pair.agencyoflearning.com/users/sign_in">the agency's pair application sign in form</a>
+    </li>
+    <li>
+      Click on the <a href="https://pair.agencyoflearning.com/users/password/new">Forgot your Password</a> link
+    </li>
+    <li>
+      Enter your email address: <strong><%= @recipient.email %></strong>
+    </li>
+    <li>
+      Once the password reset email enters your inbox, follow the link and reset your password to log in to the Agency's portal
+    </li>
+  </ol>
+  <h4>Submit a new application</h4>
+  <ol>
+    <li>
+      At the top of the page, you should see a button inviting you to <strong>"Click to Reapply"</strong>.
+    </li>
+    <li>
+      Fill out the form
+    </li>
+    <li>
+      Submit
+    </li>
+  </ol>
+  
+  <p>
+    We look forward to reviewing your application! 
+  </p>
+  <p>
+    Best,
+  </p>
+  <p>
+    Dave Paola | <a href="https://pair.agencyoflearning.com">Agency of Learning</a>
+  </p>
+</div>
