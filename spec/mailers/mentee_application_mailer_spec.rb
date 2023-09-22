@@ -50,7 +50,7 @@ RSpec.describe MenteeApplicationMailer do
     it 'renders the headers' do
       expect(mail.subject).to eq('Invitation to Apply to the Agency of Learning')
       expect(mail.to).to eq([recipient.email])
-      expect(mail.from).to eq(['no_reply@agencyoflearning.com'])
+      expect(mail.from).to eq(['dave@agencyoflearning.com'])
     end
   end
 end
