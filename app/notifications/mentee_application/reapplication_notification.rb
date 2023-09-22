@@ -9,11 +9,5 @@ class MenteeApplication::ReapplicationNotification < Noticed::Base
     method: :notify_for_reapplication,
     enqueue: true
 
-  # Add required params
-  #
   param :active_cohort_name
-
-  def active_cohort_name
-    params[:active_cohort_name]
-  end
 end
