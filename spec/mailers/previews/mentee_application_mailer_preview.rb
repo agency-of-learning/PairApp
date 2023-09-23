@@ -16,4 +16,9 @@ class MenteeApplicationMailerPreview < ActionMailer::Preview
   def notify_for_code_challenge_approved
     MenteeApplicationMailer.with(recipient: User.last).notify_for_code_challenge_approved
   end
+
+  def notify_for_reapplication
+    MenteeApplicationMailer.with(recipient: User.last,
+      active_cohort_name: UserMenteeApplicationCohort.active.name).notify_for_reapplication
+  end
 end
