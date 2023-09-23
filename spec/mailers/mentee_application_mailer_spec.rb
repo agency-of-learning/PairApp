@@ -11,6 +11,7 @@ RSpec.describe MenteeApplicationMailer do
       expect(mail.subject).to eq('Welcome to the Agency of Learning!')
       expect(mail.to).to eq([recipient.email])
       expect(mail.from).to eq(['dave@agencyoflearning.com'])
+      expect(mail.bcc).to eq(['dave@agencyoflearning.com'])
     end
   end
 
@@ -21,6 +22,7 @@ RSpec.describe MenteeApplicationMailer do
       expect(mail.subject).to eq('Update on your application to the Agency of Learning')
       expect(mail.to).to eq([recipient.email])
       expect(mail.from).to eq(['dave@agencyoflearning.com'])
+      expect(mail.bcc).to eq(['dave@agencyoflearning.com'])
     end
   end
 
@@ -31,6 +33,7 @@ RSpec.describe MenteeApplicationMailer do
       expect(mail.subject).to eq('Moving forward in the application process for the Agency of Learning')
       expect(mail.to).to eq([recipient.email])
       expect(mail.from).to eq(['dave@agencyoflearning.com'])
+      expect(mail.bcc).to eq(['dave@agencyoflearning.com'])
     end
   end
 
@@ -41,6 +44,7 @@ RSpec.describe MenteeApplicationMailer do
       expect(mail.subject).to eq('Moving forward in the application process for the Agency of Learning')
       expect(mail.to).to eq([recipient.email])
       expect(mail.from).to eq(['dave@agencyoflearning.com'])
+      expect(mail.bcc).to eq(['dave@agencyoflearning.com'])
     end
   end
 end

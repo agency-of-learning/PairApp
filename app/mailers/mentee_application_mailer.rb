@@ -1,5 +1,5 @@
 class MenteeApplicationMailer < ApplicationMailer
-  default from: 'dave@agencyoflearning.com'
+  default from: 'dave@agencyoflearning.com', bcc: 'dave@agencyoflearning.com'
 
   def notify_for_acceptance
     @application = params[:application]
