@@ -9,7 +9,7 @@
       <%= f.label :password, "New password", class: "label label-text text-lg" %>
       <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'input input-bordered' %>
       <% if @minimum_password_length %>
-        <em><%= @minimum_password_length %> characters minimum</em>
+        <span class="italic"><%= @minimum_password_length %> characters minimum</span>
       <% end %>
     </div>
 
