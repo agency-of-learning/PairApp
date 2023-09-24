@@ -4,23 +4,26 @@ require 'rails_helper'
 
 RSpec.describe Profile::PictureComponent, type: :component do
   let(:profile) { build(:profile, job_search_status:) }
-  let(:profile_with_picture) { build(:profile, picture: true) }
-  let(:job_search_status) { :not_job_searching }
 
-  context 'when the profile does not have an attached image' do
-    it 'renders the placeholder profile picture' do
+  context 'when the profile is not job searching' do
+    let(:job_search_status) { :not_job_searching }
+
+    it 'does not render with the Open to Work svg' do
       render_inline(described_class.new(profile:))
 
-      expect(page).to have_css("img[src*='placeholder_profile_picture']")
+      expect(page).not_to have_selector('svg')
+      expect(page).not_to have_content('Open to work')
     end
   end
 
-  context 'when the profile has an attached image' do
-    it 'renders an image with the attached file src' do
-      render_inline(described_class.new(profile: profile_with_picture))
+  context 'when the profile is open to work' do
+    let(:job_search_status) { :open_to_work }
 
-      attachment_filename = profile_with_picture.picture.filename
-      expect(page).to have_css("img[src*='#{attachment_filename}']")
+    it "renders with the 'Open to Work' svg overlay" do
+      render_inline(described_class.new(profile:))
+
+      expect(page).to have_selector('svg')
+      expect(page).to have_content('Open to work')
     end
   end
 end
