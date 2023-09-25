@@ -3,10 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe Navigation::ApplicantComponent, type: :component do
-  let(:moderator) { create(:user, :moderator) }
+  let(:applicant) { create(:user, :applicant) }
 
   before do
-    render_inline(described_class.new(current_user: moderator))
+    render_inline(described_class.new(current_user: applicant))
   end
 
   it 'renders a link to the applications portal' do
