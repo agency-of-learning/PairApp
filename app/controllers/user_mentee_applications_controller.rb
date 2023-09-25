@@ -3,7 +3,7 @@ class UserMenteeApplicationsController < ApplicationController
   before_action :set_active_cohort, only: %i[index new create]
 
   def index
-    authorize :user_only_policy, :applicant?
+    authorize :user_only, :applicant?
     @user_mentee_applications = current_user
                                 .mentee_applications
                                 .order_newest_first
@@ -23,7 +23,16 @@ class UserMenteeApplicationsController < ApplicationController
     if @active_cohort.application_for_user?(current_user)
       redirect_to user_mentee_applications_path
     else
-      @user_mentee_application = UserMenteeApplication.new
+      latest_application = current_user.mentee_applications.last
+      @user_mentee_application = UserMenteeApplication.new(
+        github_url: latest_application&.github_url,
+        linkedin_url: latest_application&.linkedin_url,
+        referral_source: latest_application&.referral_source,
+        city: latest_application&.city,
+        state: latest_application&.state,
+        country: latest_application&.country,
+        learned_to_code: latest_application&.learned_to_code
+      )
     end
   end
 

@@ -1,4 +1,3 @@
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'container max-w-md mx-auto' } ) do |f| %>
   <h2 class='text-3xl mb-4'>Log in</h2>
   <div class="form-control">
@@ -11,21 +10,25 @@
     <%= f.password_field :password, autocomplete: "current-password", class: 'input input-bordered' %>
   </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="form-control">
-      <label class="label cursor-pointer justify-start space-x-4 pt-4">
+  <div class="form-control flex flex-row items-center justify-between mb-2">
+    <% if devise_mapping.rememberable? %>
+      <label class="label cursor-pointer justify-start space-x-4">
         <%= f.label :remember_me, class: 'label label-text text-lg' %> 
         <%= f.check_box :remember_me, class: 'checkbox' %>
       </label>
-    </div>
-  <% end %>
-
-  <div class="form-control mb-8">
-    <%= render "devise/shared/links" %>
+    <% end %>
+    <% if devise_mapping.recoverable? %>
+      <div>
+        <%= link_to "Forgot your password?", new_password_path(resource_name), class: 'label label-text text-lg underline hover:no-underline' %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="form-control">
+  <div class="form-control mb-4">
     <%= f.submit "Log in", class: 'btn btn-primary' %>
   </div>
-<% end %>
 
+  <div class="underline mt-2 flex gap-2 items-center">
+    <%= render "users/shared/links" %>
+  </div>
+<% end %>

@@ -21,7 +21,7 @@
         </li>
       <% end %>
 
-      <% if user_signed_in? && (current_user.member? || current_user.admin?) %>
+      <% if user_signed_in? && (current_user.member? || current_user.admin? || current_user.moderator?) %>
         <li>
           <%= link_to 'My Blog', blog_path(current_user.blog_slug) %>
         </li>
@@ -42,7 +42,7 @@
             <%= link_to 'Invite New User', new_user_invitation_path %>
           </li>
         <% end %>
-        <% if policy(:user_only).admin? %>
+        <% if policy(:user_only).application_reviewer? %>
           <li>
             <%= link_to 'Applications', user_mentee_application_cohorts_path %>
           </li>
@@ -79,7 +79,7 @@
             <%= link_to 'Login', new_user_session_path %>
           </li>
         <% end %>
-        <% if user_signed_in? && (current_user.member? || current_user.admin?) %>
+        <% if user_signed_in? && (current_user.member? || current_user.admin? || current_user.moderator?) %>
           <li>
             <%= link_to 'Standups', standup_meeting_groups_path %>
           </li>
@@ -100,7 +100,7 @@
               <%= link_to 'Invite New User', new_user_invitation_path %>
             </li>
           <% end %>
-          <% if policy(:user_only).admin? %>
+          <% if policy(:user_only).application_reviewer? %>
             <li>
               <%= link_to 'Applications', user_mentee_application_cohorts_path %>
             </li>
