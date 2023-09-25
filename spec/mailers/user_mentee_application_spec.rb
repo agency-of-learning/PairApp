@@ -11,7 +11,8 @@ RSpec.describe UserMenteeApplicationMailer do
     it 'renders the headers' do
       expect(mail.subject).to eq('Woohoo! Your Application’s In - Agency of Learning.')
       expect(mail.to).to eq([recipient.email])
-      expect(mail.from).to eq(['no_reply@agencyoflearning.com'])
+      expect(mail.from).to eq(['dave@agencyoflearning.com'])
+      expect(mail.bcc).to eq(['dave@agencyoflearning.com'])
     end
   end
 end

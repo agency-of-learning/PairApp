@@ -10,7 +10,8 @@ RSpec.describe MenteeApplicationMailer do
     it 'renders the headers' do
       expect(mail.subject).to eq('Welcome to the Agency of Learning!')
       expect(mail.to).to eq([recipient.email])
-      expect(mail.from).to eq(['no_reply@agencyoflearning.com'])
+      expect(mail.from).to eq(['dave@agencyoflearning.com'])
+      expect(mail.bcc).to eq(['dave@agencyoflearning.com'])
     end
   end
 
@@ -20,7 +21,8 @@ RSpec.describe MenteeApplicationMailer do
     it 'renders the headers' do
       expect(mail.subject).to eq('Update on your application to the Agency of Learning')
       expect(mail.to).to eq([recipient.email])
-      expect(mail.from).to eq(['no_reply@agencyoflearning.com'])
+      expect(mail.from).to eq(['dave@agencyoflearning.com'])
+      expect(mail.bcc).to eq(['dave@agencyoflearning.com'])
     end
   end
 
@@ -30,7 +32,8 @@ RSpec.describe MenteeApplicationMailer do
     it 'renders the headers' do
       expect(mail.subject).to eq('Moving forward in the application process for the Agency of Learning')
       expect(mail.to).to eq([recipient.email])
-      expect(mail.from).to eq(['no_reply@agencyoflearning.com'])
+      expect(mail.from).to eq(['dave@agencyoflearning.com'])
+      expect(mail.bcc).to eq(['dave@agencyoflearning.com'])
     end
   end
 
@@ -40,7 +43,18 @@ RSpec.describe MenteeApplicationMailer do
     it 'renders the headers' do
       expect(mail.subject).to eq('Moving forward in the application process for the Agency of Learning')
       expect(mail.to).to eq([recipient.email])
-      expect(mail.from).to eq(['no_reply@agencyoflearning.com'])
+      expect(mail.from).to eq(['dave@agencyoflearning.com'])
+      expect(mail.bcc).to eq(['dave@agencyoflearning.com'])
+    end
+  end
+
+  describe '#notify_for_reapplication' do
+    subject(:mail) { described_class.with(recipient:, active_cohort_name: 'Fall 2023').notify_for_reapplication }
+
+    it 'renders the headers' do
+      expect(mail.subject).to eq('Invitation to Apply to the Agency of Learning')
+      expect(mail.to).to eq([recipient.email])
+      expect(mail.from).to eq(['dave@agencyoflearning.com'])
     end
   end
 end

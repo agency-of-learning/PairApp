@@ -110,4 +110,52 @@ RSpec.describe UserMenteeApplication do
           :notify_for_application_submission).exactly(User.super_admins.count).times
     end
   end
+
+  describe '#available_hours_per_week' do
+    it 'is valid' do
+      expect(mentee_application).to be_valid
+    end
+
+    context 'when available hours per week is not within valid range' do
+      subject { build_stubbed(:user_mentee_application, available_hours_per_week:) }
+
+      let(:available_hours_per_week) { -1 }
+
+      it 'is invalid' do
+        expect(subject).not_to be_valid
+      end
+    end
+  end
+
+  describe '#github_url' do
+    it 'is valid' do
+      expect(mentee_application).to be_valid
+    end
+
+    context 'when a github_url is not entered' do
+      subject { build_stubbed(:user_mentee_application, github_url:) }
+
+      let(:github_url) { 'https://www.example.com' }
+
+      it 'is invalid' do
+        expect(subject).not_to be_valid
+      end
+    end
+  end
+
+  describe '#linkedin_url' do
+    it 'is valid' do
+      expect(mentee_application).to be_valid
+    end
+
+    context 'when a github_url is not entered' do
+      subject { build_stubbed(:user_mentee_application, linkedin_url:) }
+
+      let(:linkedin_url) { 'https://www.example.com' }
+
+      it 'is invalid' do
+        expect(subject).not_to be_valid
+      end
+    end
+  end
 end
