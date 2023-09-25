@@ -25,7 +25,7 @@ class UserMenteeApplicationCohortsController < ApplicationController
         applications.filter { |application| application.current_status == params[:filter] }
       end
     else
-      applications
+      applications.filter(&:in_review?)
     end
   end
 end
