@@ -36,6 +36,7 @@ class Profile < ApplicationRecord
 
   has_one_attached :picture do |attachable|
     attachable.variant :square, resize_to_fill: [256, 256]
+    attachable.variant :icon, resize_to_fill: [48, 48]
   end
 
   validates :picture, content_type: ['image/png', 'image/jpeg']
