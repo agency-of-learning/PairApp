@@ -20,9 +20,9 @@ class UserMenteeApplicationCohortsController < ApplicationController
     if params[:filter]
       case params[:filter]
       when 'in_review'
-        applications.select(&:in_review?)
+        applications.filter(&:in_review?)
       else
-        applications.select { |application| application.current_status == params[:filter] }
+        applications.filter { |application| application.current_status == params[:filter] }
       end
     else
       applications
