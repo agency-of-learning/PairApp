@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Navigation::ContainerComponent < ViewComponent::Base
+class NavigationContainerComponent < ViewComponent::Base
   renders_many :primary_links, ->(text:, path:) { tag.li link_to(text, path) }
   renders_many :dropdown_links, ->(text:, path:, **opts) { tag.li link_to(text, path), **opts }
 

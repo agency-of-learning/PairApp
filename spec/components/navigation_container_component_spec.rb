@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Navigation::ContainerComponent, type: :component do
+RSpec.describe NavigationContainerComponent, type: :component do
   let(:component) { described_class.new(home_path: root_path) }
 
   before do
