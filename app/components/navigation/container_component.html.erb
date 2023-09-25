@@ -1,0 +1,45 @@
+<div class="drawer">
+  <input id="nav-drawer" type="checkbox" class="drawer-toggle" /> 
+  <div class="drawer-content flex flex-col">
+    <div class="w-full navbar bg-base-100">
+      <div class="flex-none lg:hidden">
+        <label for="nav-drawer" class="btn btn-square btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </label>
+      </div> 
+      <div class="flex-1 px-2 mx-2 flex gap-8 ">
+        <div class="hidden lg:block">
+          <%= link_to 'Agency of Learning', home_path %>
+          <ul class="menu menu-horizontal space-x-2 px-1">
+            <% primary_links.each do |link| %>
+              <%= link %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <% if render_dropdown? %>
+        <div class="dropdown dropdown-end dropdown-bottom flex">
+          <label tabindex="0" class="btn btn-ghost">
+            <%= profile_picture %>
+          </label>
+          <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 shadow bg-base-300 rounded-box w-52">
+            <% dropdown_links.each do |link| %>
+              <%= link %>
+            <% end %>
+          </ul>
+        </div>
+      <% else %>
+        <%= link_to "Login", new_user_session_path, class: 'btn btn-primary text-primary-content' %>
+      <% end %>
+    </div>
+    <%= page_content %>
+  </div> 
+  <div class="drawer-side">
+    <label for="nav-drawer" class="drawer-overlay"></label> 
+    <ul class="menu p-4 w-80 min-h-full bg-base-200">
+      <% primary_links.each do |link| %>
+        <%= link %>
+      <% end %>
+    </ul>
+  </div>
+</div>
