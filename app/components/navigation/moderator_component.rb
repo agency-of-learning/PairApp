@@ -20,8 +20,8 @@ class Navigation::ModeratorComponent < NavigationComponent
     [
       { text: 'My Profile', path: profile_path(user) },
       { text: 'Feedback', path: feedbacks_path },
-      { text: 'My Blog', path: blog_path(user.blog_slug), class: 'border-b border-neutral' },
-      { text: 'Account Settings', path: edit_user_registration_path },
+      { text: 'My Blog', path: blog_path(user.blog_slug), class: 'border-b border-neutral pb-1' },
+      { text: 'Account Settings', path: edit_user_registration_path, class: 'mt-1' },
       { text: 'Logout', path: destroy_user_session_path }
     ]
   end
