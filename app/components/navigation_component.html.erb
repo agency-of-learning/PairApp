@@ -1,0 +1,13 @@
+<%= render NavigationContainerComponent.new(home_path:) do |component| %>
+  <% if profile_dropdown_image.present? %>
+    <% component.with_profile_picture { profile_dropdown_image } %>
+  <% end %>
+
+  <% component.with_primary_links(primary_links) %>
+
+  <% component.with_dropdown_links(dropdown_links) %>
+
+  <% component.with_page_content do %>
+    <%= content %>
+  <% end %>
+<% end %>
