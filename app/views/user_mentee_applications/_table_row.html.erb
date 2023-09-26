@@ -15,7 +15,7 @@
   
   <%= render TableCellComponent.new(container_link: mentee_application) do %>
     <%= turbo_frame_tag "#{dom_id(mentee_application)}--status" do %>
-      <%= mentee_application.mentee_application_states.last.status.humanize %>
+      <%= mentee_application.current_state.status.humanize %>
     <% end %>
   <% end %>
 
