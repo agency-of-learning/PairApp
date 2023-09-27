@@ -137,8 +137,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_24_160010) do
     t.index ["invitee_id"], name: "index_pair_requests_on_invitee_id"
   end
 
-# Could not dump table "profiles" because of following StandardError
-#   Unknown type 'work_models_enum' for column 'work_model_preferences'
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "bio"
+    t.string "job_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "location"
+    t.integer "job_search_status", default: 0
+    t.enum "work_model_preferences", array: true, enum_type: "work_models_enum"
+    t.string "slug"
+    t.string "twitter_link"
+    t.string "linked_in_link"
+    t.string "github_link"
+    t.string "personal_site_link"
+    t.integer "visibility", default: 0, null: false
+    t.index ["slug"], name: "index_profiles_on_slug", unique: true
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
 
   create_table "resumes", force: :cascade do |t|
     t.bigint "user_id", null: false
