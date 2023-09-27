@@ -4,7 +4,7 @@ class Navigation::GuestComponent < NavigationComponent
   private
 
   def home_path
-    landing_index_path
+    root_path
   end
 
   def primary_links
