@@ -22,16 +22,16 @@
   </head>
   <body>
     <div class="min-h-full <%= background_color %>">
-      <%= render "layouts/navbar" %>
+      <%= render NavigationComponent.for(current_user:) do %>
+        <div class="container mx-auto">
+          <div id="flash" class="empty:hidden px-4">
+            <%= render "layouts/flash" %>
+          </div>
 
-      <div class="container mx-auto">
-        <div id="flash" class="empty:hidden px-4">
-          <%= render "layouts/flash" %>
+          <%= turbo_frame_tag "modal" %>
+          <%= yield %>
         </div>
-
-        <%= turbo_frame_tag "modal" %>
-        <%= yield %>
-      </div>
+      <% end %>
     </div>
   </body>
 </html>

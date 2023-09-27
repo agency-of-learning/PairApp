@@ -1,16 +1,60 @@
-
-<div style='display: block; max-width: 36rem; margin: 0 auto; padding-top: 4rem;'>
-  <p><%= @recipient.full_name %>,</p>
+<style>
+  .discord-channel {
+    font-weight: bold;
+  };
+</style>
+<div style='display: block; max-width: 40rem; margin: 0 auto; padding-top: 4rem; line-height: 1.33rem;'>
+  <p>Hey <%= @recipient.first_name %>,</p>
   <p>
-    🎉🎉🎉 We are pleased to welcome you to the <strong>Agency of Learning</strong>! 🎉🎉🎉
+    🎉🎉🎉 I am thrilled to offer you membership to the <strong>Agency of Learning</strong>! 🎉🎉🎉
   </p>
 
   <p>
     To get started, please:
-    <ol>
+    <ul>
       <li>Create a <a href="https://www.discord.com/">Discord account</a>, if you don't already have one</li>
-      <li>Join our discord channel here: <a href="https://discord.gg/bkpkhvjQCk">https://discord.gg/bkpkhvjQCk</a></li>
-    </ol>  
-    We're excited to start working with you!
+      <li>Join our discord channel here: <a href="<%=ENV['JOIN_AOL_DISCORD_URL']%>"><%=ENV['JOIN_AOL_DISCORD_URL']%></a></li>
+    </ul> 
   </p>
+<hr />
+  <h3>Some Tips</h3>
+  <ol>
+    <li style='margin-bottom: 0.5rem'>Introduce yourself in <code class='discord-channel'>#introductions</code> and update your nickname to include your time zone. For example, I'm <code>dave @ EST</code>. This makes it fast and easy for others to see when you're around.</li>
+    <li style='margin-bottom: 0.5rem'>Join the <code class='discord-channel'>#jobs</code> channel. We post our job listings there and perform periodic resume review as well.</li>
+    <li style='margin-bottom: 0.5rem'>Browse our tracks - <code class='discord-channel'>#casa</code>, <code class='discord-channel'>#pairapp</code>, <code class='discord-channel'>#challenge-accepted</code>, <code class='discord-channel'>#contract-work</code>, and <code class='discord-channel'>#startups</code>.</li>
+    <li style='margin-bottom: 0.5rem'>For the <code class='discord-channel'>#casa</code> track: daily standups are at 11:30PT with <code>@cody</code>.</li>
+    <li style='margin-bottom: 0.5rem'>For the <code class='discord-channel'>#pair-app</code> track: <code>@daniel</code> runs async standup, with plenty of opportunity for design and architecture discussions</li>
+    <li style='margin-bottom: 0.5rem'>Find a pair programming partner and get started</li>
+  </ol>
+  <hr />
+  <h3>The Four Rules</h3>
+  <p>
+    As a member of The Agency, you are committing yourself to cultiving the following in yourself. You hereby pledge to <strong>do your absolute best</strong> to demonstrate and grow in the following ways:
+  </p>
+  <p>
+    <strong>Be proactive</strong>. Don't wait for others to ask before you take action on something that needs to be done. Proactive people are a joy to work with, especially for managers, because they tend to be self-managing people. Being proactive means you have to use your head to think about how you manage your time, what your priorities are, and what's best for the team and yourself. As an engineer, you want to care deeply about the right way to do something - to build, to maintain, to fix. But if you aspire to be a great team member, you also need to make sure that you're thinking about the more important question of: <strong>what's the right thing to do</strong>?
+  </p>
+  <p>
+    <strong>Be well rounded</strong>. The very best team members are those who empathize with their teammates. Do not fall into the trap of adversarial thinking, and pay attention to your language. If you start talking about “they” or “them”, who are giving out the requirements and you are obeying, hard-check yourself and just start calling the entire team “we”. Well rounded engineers know how to wear more than one hat. You should want to not just build the software, but be a part of the decision makers, and also lead a small team through its implementation. The more well rounded you are, the more valuable you will be in the job market.
+  </p>
+  <p>
+    <strong>Be independent</strong>. If you can't get yourself unstuck, you're screwed. Cultivate tenacity. Foster the desire to get it done, even if you dislike the approach. Perfect is the enemy of good enough. If your team lead isn't around for you to ping when you have a question, you must make progress anyway. You do not stop when you hit an obstacle. You blow through the obstacle.
+  </p>
+  <p>
+    <strong>Be hungry</strong>. You can confidently, shamelessly manifest and demonstrate the growth mindset. Constantly look for tickets to work on, improvements to make, PRs to review, feedback to reflect on, technical video to watch, chapter to read in POODR. You can always go one step further.
+  </p>
+  <hr />
+  <h3>Will I get a job?</h3>
+  <p>
+    Nobody is guaranteed a job, not even the mentors or leaders. Landing a job is something that we can help you with, but the work will be on your shoulders.
+  </p>
+  <p>
+    We have a small list of hiring partners that we periodically send our available candidates to. In order to be included in this list, you must demonstrate that you have competency in our four rules as outlined above.
+  </p>
+  <hr />
+  <p>That's it! If you ever have feedback or questions, please feel free to DM me anytime 🙂</p>
+    <p>If you have ideas on how to improve The Agency, we'd love it if you would post it in <code class='discord-channel'>#feedback-for-the-agency</code> channel. We really want this to be an amazing place.</p>
+  </p>
+  <p>Happy hacking!</p>
+  <p>Dave Paola | <a href="https://pair.agencyoflearning.com/">The Agency of Learning</a></p>
 </div>
