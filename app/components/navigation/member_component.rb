@@ -17,7 +17,7 @@ class Navigation::MemberComponent < NavigationComponent
 
   def dropdown_links
     [
-      { text: 'My Profile', path: profile_path(user) },
+      { text: 'My Profile', path: profile_path(user.profile) },
       { text: 'Feedback', path: feedbacks_path },
       { text: 'My Blog', path: blog_path(user.blog_slug), class: 'border-b border-neutral pb-1' },
       { text: 'Account Settings', path: edit_user_registration_path, class: 'mt-1' },
