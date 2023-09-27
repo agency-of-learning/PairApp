@@ -30,4 +30,8 @@
       <% end %>
     <% end %>
   <% end %>
+
+  <%= render TableCellComponent.new(container_link: mentee_application)  do %>
+    <%= mentee_application.last_action_created_at.to_fs(:slash_format) %>
+  <%end %>
 </div>
