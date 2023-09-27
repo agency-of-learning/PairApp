@@ -18,7 +18,7 @@ class Navigation::AdminComponent < NavigationComponent
 
   def dropdown_links
     [
-      { text: 'My Profile', path: profile_path(user) },
+      { text: 'My Profile', path: profile_path(user.profile) },
       { text: 'Feedback', path: feedbacks_path },
       { text: 'My Blog', path: blog_path(user.blog_slug), class: 'border-b border-neutral pb-1' },
       { text: 'Invite New User', path: new_user_invitation_path, class: 'border-b border-neutral pb-1 mt-1' },
