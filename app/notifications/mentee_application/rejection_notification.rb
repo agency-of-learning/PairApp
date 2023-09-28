@@ -6,7 +6,7 @@
 class MenteeApplication::RejectionNotification < Noticed::Base
   deliver_by :email,
     mailer: 'MenteeApplicationMailer',
-    method: :notify_for_rejection,
+    method: :notify_applicant_of_rejection,
     enqueue: true
 
   # Add required params

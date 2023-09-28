@@ -30,7 +30,7 @@ RSpec.describe MenteeApplicationTransitionService do
         it 'enqueues an accepted mailer' do
           expect {
             described_class.call(application: application_received, reviewer:, action:)
-          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_for_code_challenge_sent)
+          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_applicant_of_code_challenge_sent)
         end
       end
 
@@ -56,7 +56,7 @@ RSpec.describe MenteeApplicationTransitionService do
         it 'enqueues a mailer notifying to schedule an interview' do
           expect {
             described_class.call(application: coding_challenge_received, reviewer:, action:)
-          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_for_code_challenge_approved)
+          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_applicant_of_code_challenge_approved)
         end
       end
 
@@ -89,7 +89,7 @@ RSpec.describe MenteeApplicationTransitionService do
         it 'enqueues an accepted mailer' do
           expect {
             described_class.call(application: phone_screen_completed, reviewer:, action:)
-          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_for_acceptance)
+          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_applicant_of_acceptance)
         end
 
         it "updates the applicant's role to member" do
@@ -131,7 +131,7 @@ RSpec.describe MenteeApplicationTransitionService do
         it 'enqueues a rejection mailer' do
           expect {
             described_class.call(application: application_received, reviewer:, action:)
-          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_for_rejection)
+          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_applicant_of_rejection)
         end
       end
 
@@ -155,7 +155,7 @@ RSpec.describe MenteeApplicationTransitionService do
         it 'enqueues a rejection mailer' do
           expect {
             described_class.call(application: coding_challenge_received, reviewer:, action:)
-          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_for_rejection)
+          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_applicant_of_rejection)
         end
       end
 
@@ -187,7 +187,7 @@ RSpec.describe MenteeApplicationTransitionService do
         it 'enqueues a rejection mailer' do
           expect {
             described_class.call(application: phone_screen_completed, reviewer:, action:)
-          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_for_rejection)
+          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_applicant_of_rejection)
         end
       end
 
