@@ -2,7 +2,7 @@ class StandupMeeting::DraftCreationNotification < Noticed::Base
   deliver_by :database
   deliver_by :email,
     mailer: 'StandupMeetingMailer',
-    method: :notify_for_draft_create
+    method: :notify_member_of_daily_meeting
 
   param :standup_meeting
 end

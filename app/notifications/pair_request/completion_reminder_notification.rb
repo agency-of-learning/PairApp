@@ -4,7 +4,7 @@ class PairRequest::CompletionReminderNotification < Noticed::Base
 
   deliver_by :email,
     mailer: 'PairRequestMailer',
-    method: :remind_for_completion,
+    method: :notify_author_of_concluded_pairing_session,
     delay: :now_to_end_of_meeting,
     if: :pair_request_accepted?
 
