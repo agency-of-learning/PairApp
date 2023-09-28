@@ -7,7 +7,7 @@
 @import 'direct_uploads';
 
 .field_with_errors {
-  @apply flex [&>input]:input-error;
+  @apply flex [&>input]:input-error [&>input]:w-full;
 }
 
 /* Tailwind Trix Editor */
