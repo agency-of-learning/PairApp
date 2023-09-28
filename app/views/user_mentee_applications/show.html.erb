@@ -79,11 +79,11 @@
   <%= render UserMenteeApplication::SectionComponent.new(header_text: "Job Hunting Information") do %>
     <div class="flex flex-col">
       <label class='label label-text font-semibold'>LinkedIn URL:</label>
-      <p><%= @user_mentee_application.linkedin_url %></p>
+      <a href="<%= @user_mentee_application.linkedin_url %>" target="_blank"><%= @user_mentee_application.linkedin_url %></a>
     </div>
     <div class="flex flex-col">
       <label class='label label-text font-semibold'>GitHub URL:</label>
-      <p><%= @user_mentee_application.github_url %></p>
+      <a href="<%= @user_mentee_application.github_url %>" target="_blank"><%= @user_mentee_application.github_url %></a>
     </div>
     <% if @user_mentee_application.current_resume %>
       <div class="flex flex-col">
