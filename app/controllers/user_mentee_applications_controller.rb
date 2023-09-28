@@ -12,6 +12,7 @@ class UserMenteeApplicationsController < ApplicationController
                                   :mentee_application_states
                                 )
 
+    @user_past_applications = @user_mentee_applications.past
     @most_recent_application = @user_mentee_applications.first
   end
 
