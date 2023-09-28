@@ -33,7 +33,7 @@
 
   <%= render TableCellComponent.new(container_link: mentee_application)  do %>
     <%= turbo_frame_tag "#{dom_id(mentee_application)}--last_action_at" do %>
-      <%= mentee_application.last_action_created_at.to_fs(:slash_format) %>
+      <%= mentee_application.last_action_created_at.to_formatted_s(:slash_format_with_time) %>
     <% end %>
   <%end %>
 </div>
