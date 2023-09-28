@@ -21,17 +21,19 @@ RSpec.describe PairRequestMailer do
     it 'renders the headers' do
       expect(mail.subject).to eq('Pair Request Accepted')
       expect(mail.to).to eq([recipient.email])
-      expect(mail.from).to eq(["no_reply@agencyoflearning.com"])
+      expect(mail.from).to eq(['no_reply@agencyoflearning.com'])
     end
   end
 
   describe '#notify_invitee_of_completed_pairing_session' do
-    subject(:mail) { described_class.with(recipient:, pair_request: completed_pair_request).notify_invitee_of_completed_pairing_session }
+    subject(:mail) do
+      described_class.with(recipient:, pair_request: completed_pair_request).notify_invitee_of_completed_pairing_session
+    end
 
     it 'renders the headers' do
       expect(mail.subject).to eq('Pair Request Completed')
       expect(mail.to).to eq([recipient.email])
-      expect(mail.from).to eq(["no_reply@agencyoflearning.com"])
+      expect(mail.from).to eq(['no_reply@agencyoflearning.com'])
     end
   end
 
@@ -41,7 +43,7 @@ RSpec.describe PairRequestMailer do
     it 'renders the headers' do
       expect(mail.subject).to eq('Mark Pair Request as Completed')
       expect(mail.to).to eq([recipient.email])
-      expect(mail.from).to eq(["no_reply@agencyoflearning.com"])
+      expect(mail.from).to eq(['no_reply@agencyoflearning.com'])
     end
   end
 end

@@ -1,6 +1,6 @@
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.describe StandupMeetingMailer, type: :mailer do
+RSpec.describe StandupMeetingMailer do
   let(:standup_meeting) { create(:standup_meeting) }
   let(:recipient) { standup_meeting.user }
 
@@ -10,7 +10,7 @@ RSpec.describe StandupMeetingMailer, type: :mailer do
     it 'renders the headers' do
       expect(mail.subject).to eq("#{standup_meeting.group.name} - Standup Meeting Reminder")
       expect(mail.to).to eq([recipient.email])
-      expect(mail.from).to eq(["no_reply@agencyoflearning.com"])
+      expect(mail.from).to eq(['no_reply@agencyoflearning.com'])
     end
   end
 end
