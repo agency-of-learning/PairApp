@@ -18,7 +18,12 @@
     <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Tell us about your interest in the Agency of Learning') do %>
       <div class="flex flex-col mb-5">
         <%= form.label :reason_for_applying, 'Why are you here?', class: 'label-text mb-1' %>
-        <%= form.select :reason_for_applying, options_for_select(UserMenteeApplicationsHelper::REASONS_FOR_APPLYING), {}, class: 'select select-bordered', required: true %>
+        <%= form.collection_select :reason_for_applying,
+          UserMenteeApplicationsHelper::REASONS_FOR_APPLYING, :itself, :itself,
+          {},
+          class: 'select select-bordered',
+          required: true
+        %>
       </div>
 
       <div class="flex flex-col form-control">
