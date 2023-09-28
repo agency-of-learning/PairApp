@@ -57,6 +57,8 @@ class UserMenteeApplication < ApplicationRecord
   after_create_commit :send_application_submission_notifications
 
   delegate :accepted?, :rejected?, :status, to: :current_state
+  delegate :created_at, to: :current_state, prefix: 'last_action'
+
   delegate :active?, to: :user_mentee_application_cohort
   delegate :current_resume, to: :user
 
