@@ -17,13 +17,9 @@ class UserMenteeApplicationCohortsController < ApplicationController
   private
 
   def filter_applications(applications)
-    if params[:filter]
-      case params[:filter]
-      when 'in_review'
-        applications.filter(&:in_review?)
-      else
-        applications.filter { |application| application.current_status == params[:filter] }
-      end
+    case params[:filter]
+    when 'accepted', 'rejected'
+      applications.filter { |application| application.current_status == params[:filter] }
     else
       applications.filter(&:in_review?)
     end
