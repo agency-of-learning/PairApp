@@ -1,7 +1,7 @@
 class StandupMeetingMailer < ApplicationMailer
   before_action :set_standup_meeting
 
-  def notify_for_draft_create
+  def notify_member_of_daily_meeting
     mail(subject: "#{@standup_meeting_group.name} - Standup Meeting Reminder")
   end
 
