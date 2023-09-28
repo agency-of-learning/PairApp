@@ -29,7 +29,9 @@
   </div>
 
   <div class="flex gap-6 justify-center">
-    <button class="btn btn-sm">View Resume</button>
+    <% if @profile.user.current_resume %>
+      <%= link_to "View Resume", url_for(@profile.user.current_resume.resume), class: "btn btn-sm", target: '_blank' %>
+    <% end %>
     <%= link_to "#{@profile.user.first_name}'s Blog",
       blog_path(@profile.user.blog_slug),
       class: 'btn btn-primary btn-sm'
