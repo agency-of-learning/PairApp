@@ -62,6 +62,8 @@ class UserMenteeApplication < ApplicationRecord
 
   scope :order_newest_first, -> { order(created_at: :desc) }
 
+  alias_method :cohort, :user_mentee_application_cohort
+
   def current_status
     status
   end
@@ -77,9 +79,7 @@ class UserMenteeApplication < ApplicationRecord
   end
 
   def send_application_submission_notifications
-    UserMenteeApplication::ApplicationSubmissionNotification.with(user_mentee_application: self).deliver(user)
-
-    UserMenteeApplication::ApplicationSubmissionAlert
-      .with(user_mentee_application: self).deliver(User.super_admins)
+    MenteeApplication::ApplicantSubmissionNotification.with(application: self).deliver(user)
+    MenteeApplication::AdminSubmissionNotification.with(application: self).deliver(User.super_admins)
   end
 end

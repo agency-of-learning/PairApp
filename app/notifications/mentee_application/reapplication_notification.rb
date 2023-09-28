@@ -6,7 +6,7 @@
 class MenteeApplication::ReapplicationNotification < Noticed::Base
   deliver_by :email,
     mailer: 'MenteeApplicationMailer',
-    method: :notify_for_reapplication,
+    method: :notify_applicant_to_reapply,
     enqueue: true
 
   param :active_cohort_name

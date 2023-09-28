@@ -6,6 +6,6 @@
 class MenteeApplication::CodeChallengeApprovedNotification < Noticed::Base
   deliver_by :email,
     mailer: 'MenteeApplicationMailer',
-    method: :notify_for_code_challenge_approved,
+    method: :notify_applicant_of_code_challenge_approved,
     enqueue: true
 end

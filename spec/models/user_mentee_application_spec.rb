@@ -105,9 +105,9 @@ RSpec.describe UserMenteeApplication do
     it 'enqueues application submission notifications after create commit' do
       expect {
         create(:user_mentee_application)
-      }.to have_enqueued_mail(UserMenteeApplicationMailer, :notify_for_application_submission)
-        .and have_enqueued_mail(UserMenteeApplicationAlertMailer,
-          :notify_for_application_submission).exactly(User.super_admins.count).times
+      }.to have_enqueued_mail(MenteeApplicationMailer, :notify_applicant_of_submission)
+        .and have_enqueued_mail(MenteeApplicationMailer,
+          :notify_admin_of_submission).exactly(User.super_admins.count).times
     end
   end
 

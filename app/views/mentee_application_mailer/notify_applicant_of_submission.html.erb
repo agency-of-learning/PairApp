@@ -1,0 +1,15 @@
+<div style='display: block; max-width: 36rem; margin: 0 auto; padding-top: 4rem;'>
+  <p>Hey <%= @recipient.full_name %>,</p>
+
+  <p>We’ve received your application! Thanks so much for taking the time to apply for the Agency of Learning's <%= @application.cohort.name %> cohort.</p>
+
+  <p>Our admissions crew is diving into your application.</p>
+
+  <p>Though we will email you with any updates, you can always log in and <%= link_to 'review the status of your application', user_mentee_application_url(@application) %>.</p>
+  
+  <p>Cheers to learning and growing together!</p>
+  <p>Best,</p>
+  <p>Dave Paola | <%= link_to "Agency of Learning", root_url %></p>
+  
+  <p>If you have any questions or concerns, feel free to reply to this email!</p>
+</div>
