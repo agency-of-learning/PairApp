@@ -1,10 +1,10 @@
 en:
   application_received:
     status_description: "We received the application and it is awaiting reviewal."
-    acceptance_criteria: "<p>After reviewing, click promote:</p>
-      <ol>
-      <li> to send an email to the applicant with the code challenge </li>
-      </ol>
+    acceptance_criteria:
+      "<p>After reviewing, click <strong>promote</strong> to:</p>
+      <p> - send an email to the applicant <strong>with a link to the code challenge</strong> </p>
+      <br />
       <p>If you choose to promote, please include why you think the applicant is a good fit for AOL in the note.</p>"
   coding_challenge_sent:
     status_description: "We sent out the code challenge and are awaiting the applicant's response (the typeform submission)."
@@ -13,10 +13,9 @@ en:
     status_description: "We received the code challenge submission, but have yet to review the submission."
     acceptance_criteria: "
       <p>Please review the code challenge submission. </p>
-      <p>After reviewing, click promote:</p>
-      <ol>
-      <li> to send an email to the applicant to schedule a phone screen </li>
-      </ol>
+      <p>After reviewing, click <strong>promote</strong> to:</p>
+      <p> - send an email to the applicant to <strong>schedule a phone screen</strong> </p>
+      <br />
       <p>If you choose to promote, please reference aspects of the grading rubric that suggest that the applicant is a good fit for AOL in the note.</p>"
   coding_challenge_approved:
     status_description: "We've approved the code challenge submission and are awaiting the applicant's response to schedule a phone screen."
