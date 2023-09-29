@@ -61,13 +61,6 @@ class UserMenteeApplication < ApplicationRecord
   delegate :current_resume, to: :user
 
   scope :order_newest_first, -> { order(created_at: :desc) }
-  scope :past, -> do
-    joins(:current_state, :user_mentee_application_cohort)
-    .where(
-      current_state: {status: [:accepted, :rejected]},
-      user_mentee_application_cohort: {active: false}
-    )
-  end
 
   def current_status
     status

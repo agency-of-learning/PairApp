@@ -15,10 +15,11 @@
     <% end %>
 
 
-    <% if @user_past_applications.present? %>
+    <% if @user_mentee_applications.present? %>
       <h2 class="text-xl font-bold mb-2">Past Applications</h2>
       <ul>
-        <% @user_past_applications.each do |mentee_application| %>
+        <% @user_mentee_applications.each do |mentee_application| %>
+          <% next if mentee_application.active? && mentee_application.in_review? %>
           <%= render UserMenteeApplication::ListItemComponent.new(mentee_application:) %>
         <% end %>
       </ul>
