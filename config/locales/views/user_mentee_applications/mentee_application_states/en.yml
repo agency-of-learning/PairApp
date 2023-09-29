@@ -2,7 +2,9 @@ en:
   application_received:
     status_description: "We received the application and it is awaiting reviewal."
     acceptance_criteria:
-      "<p>After reviewing, click promote to send the applicant a code challenge. </p>
+      "<p>After reviewing, click <strong>promote</strong> to:</p>
+      <p> - send an email to the applicant <strong>with a link to the code challenge</strong> </p>
+      <br />
       <p>If you choose to promote, please include why you think the applicant is a good fit for AOL in the note.</p>"
   coding_challenge_sent:
     status_description: "We sent out the code challenge and are awaiting the applicant's response (the typeform submission)."
@@ -11,6 +13,9 @@ en:
     status_description: "We received the code challenge submission, but have yet to review the submission."
     acceptance_criteria: "
       <p>Please review the code challenge submission. </p>
+      <p>After reviewing, click <strong>promote</strong> to:</p>
+      <p> - send an email to the applicant to <strong>schedule a phone screen</strong> </p>
+      <br />
       <p>If you choose to promote, please reference aspects of the grading rubric that suggest that the applicant is a good fit for AOL in the note.</p>"
   coding_challenge_approved:
     status_description: "We've approved the code challenge submission and are awaiting the applicant's response to schedule a phone screen."
@@ -21,6 +26,6 @@ en:
   phone_screen_completed:
     status_description: "We've completed the phone screen"
     acceptance_criteria: "
-      <p>This is the final step in the process -- either the applicant gets admitted or rejected.</p>
+      <p>This is the <strong>final step</strong> in the process -- either the applicant gets admitted or rejected.</p>
       <p>Please include any final thoughts on why the applicant should be approved or rejected in the note.</p>"
     promote: "Accept"
