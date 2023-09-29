@@ -4,7 +4,7 @@ class UserMenteeApplicationsController < ApplicationController
 
   def index
     authorize :user_only, :applicant?
-    @user_mentee_applications = current_user
+    user_mentee_applications = current_user
                                 .mentee_applications
                                 .order_newest_first
                                 .includes(
@@ -12,7 +12,10 @@ class UserMenteeApplicationsController < ApplicationController
                                   :mentee_application_states
                                 )
 
-    @most_recent_application = @user_mentee_applications.first
+    @user_past_applications = user_mentee_applications
+                                .reject { |application| application.active? && application.in_review? }
+
+    @most_recent_application = user_mentee_applications.first
   end
 
   def show
