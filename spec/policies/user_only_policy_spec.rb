@@ -36,16 +36,4 @@ RSpec.describe UserOnlyPolicy, type: :policy do
       expect(subject).not_to permit(applicant_user)
     end
   end
-
-  permissions :show_back_button? do
-    it 'denies access if user is not admin' do
-      expect(subject).not_to permit(member_user)
-      expect(subject).not_to permit(applicant_user)
-      expect(subject).not_to permit(moderator_user)
-    end
-
-    it 'grants access if user is admin' do
-      expect(subject).to permit(admin_user)
-    end
-  end
 end

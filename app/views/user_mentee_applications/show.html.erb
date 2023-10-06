@@ -1,5 +1,5 @@
 <div class="mx-auto p-4 my-8 max-w-prose">
-  <% if policy(:UserOnly).show_back_button? %>
+  <% if policy(:UserOnly).admin? %>
     <%= link_to 'Back', user_mentee_application_cohort_path(@user_mentee_application.cohort) %>
   <% end %>
 
