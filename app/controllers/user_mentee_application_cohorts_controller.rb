@@ -18,7 +18,7 @@ class UserMenteeApplicationCohortsController < ApplicationController
 
   def filter_applications(applications)
     case params[:filter]
-    when 'accepted', 'rejected'
+    when 'accepted', 'rejected', 'application_received'
       applications.filter { |application| application.current_status == params[:filter] }
     else
       applications.filter(&:in_review?)
