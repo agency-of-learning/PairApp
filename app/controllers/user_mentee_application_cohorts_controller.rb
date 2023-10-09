@@ -21,7 +21,7 @@ class UserMenteeApplicationCohortsController < ApplicationController
     when 'accepted', 'rejected', 'application_received'
       applications.filter { |application| application.current_status == params[:filter] }
     else
-      applications.filter(&:in_review?)
+      applications.filter { |application| application.current_status == 'application_received'}
     end
   end
 end
