@@ -36,4 +36,8 @@ class MenteeApplicationMailer < ApplicationMailer
     @active_cohort_name = params[:active_cohort_name]
     mail(subject: 'Invitation to Apply to the Agency of Learning')
   end
+
+  def notify_applicant_of_withdrawal
+    mail(subject: 'Withdrawn application for the Agency of Learning')
+  end
 end
