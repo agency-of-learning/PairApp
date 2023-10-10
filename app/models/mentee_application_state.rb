@@ -34,7 +34,8 @@ class MenteeApplicationState < ApplicationRecord
     phone_screen_scheduled: 4,
     phone_screen_completed: 5,
     accepted: 6,
-    rejected: 7
+    rejected: 7,
+    withdrawn: 8
   }
 
   def valid_transitions

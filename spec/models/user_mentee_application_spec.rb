@@ -86,6 +86,14 @@ RSpec.describe UserMenteeApplication do
       end
     end
 
+    context 'when the status is withdrawn' do
+      let(:status) { :withdrawn }
+
+      it 'is not in review' do
+        expect(mentee_application).not_to be_in_review
+      end
+    end
+
     context 'when the status is not rejected or accepted' do
       let(:status) { :application_received }
 
