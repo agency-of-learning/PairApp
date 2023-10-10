@@ -207,6 +207,122 @@ RSpec.describe MenteeApplicationTransitionService do
         end
       end
     end
+
+    context 'when the action is withdrawn' do
+      let(:action) { :withdrawn }
+
+      context 'when the application has been received' do
+        it 'withdraws the application' do
+          expect {
+            described_class.call(application: application_received, reviewer:, action:)
+          }.to change {
+            application_received.reload.current_status
+          }.from('application_received').to('withdrawn')
+        end
+
+        it 'enqueues a withdrawal mailer' do
+          expect {
+            described_class.call(application: application_received, reviewer:, action:)
+          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_applicant_of_withdrawal)
+        end
+      end
+
+      context 'when the coding challenge has been sent' do
+        it 'withdraws the application' do
+          expect {
+            described_class.call(application: coding_challenge_sent, reviewer:, action:)
+          }.to change {
+            coding_challenge_sent.reload.current_status
+          }.from('coding_challenge_sent').to('withdrawn')
+        end
+
+        it 'enqueues a withdrawal mailer' do
+          expect {
+            described_class.call(application: coding_challenge_sent, reviewer:, action:)
+          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_applicant_of_withdrawal)
+        end
+      end
+
+      context 'when the coding challenge has been received' do
+        it 'withdraws the application' do
+          expect {
+            described_class.call(application: coding_challenge_received, reviewer:, action:)
+          }.to change {
+            coding_challenge_received.reload.current_status
+          }.from('coding_challenge_received').to('withdrawn')
+        end
+
+        it 'enqueues a withdrawal mailer' do
+          expect {
+            described_class.call(application: coding_challenge_received, reviewer:, action:)
+          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_applicant_of_withdrawal)
+        end
+      end
+
+      context 'when the coding challenge has been approved' do
+        it 'withdraws the application' do
+          expect {
+            described_class.call(application: coding_challenge_approved, reviewer:, action:)
+          }.to change {
+            coding_challenge_approved.reload.current_status
+          }.from('coding_challenge_approved').to('withdrawn')
+        end
+
+        it 'enqueues a withdrawal mailer' do
+          expect {
+            described_class.call(application: coding_challenge_approved, reviewer:, action:)
+          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_applicant_of_withdrawal)
+        end
+      end
+
+      context 'when the phone screen has been scheduled' do
+        it 'withdraws the application' do
+          expect {
+            described_class.call(application: phone_screen_scheduled, reviewer:, action:)
+          }.to change {
+            phone_screen_scheduled.reload.current_status
+          }.from('phone_screen_scheduled').to('withdrawn')
+        end
+
+        it 'enqueues a withdrawal mailer' do
+          expect {
+            described_class.call(application: phone_screen_scheduled, reviewer:, action:)
+          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_applicant_of_withdrawal)
+        end
+      end
+
+      context 'when the phone screen has been completed' do
+        it 'withdraws the application' do
+          expect {
+            described_class.call(application: phone_screen_completed, reviewer:, action:)
+          }.to change {
+            phone_screen_completed.reload.current_status
+          }.from('phone_screen_completed').to('withdrawn')
+        end
+
+        it 'enqueues a withdrawal mailer' do
+          expect {
+            described_class.call(application: phone_screen_completed, reviewer:, action:)
+          }.to have_enqueued_mail(MenteeApplicationMailer, :notify_applicant_of_withdrawal)
+        end
+      end
+
+      context 'when the application has been accepted' do
+        it 'raises an invalid transition error' do
+          expect {
+            described_class.call(application: accepted, reviewer:, action:)
+          }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
+        end
+      end
+
+      context 'when the application has been rejected' do
+        it 'raises an invalid transition error' do
+          expect {
+            described_class.call(application: rejected, reviewer:, action:)
+          }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
+        end
+      end
+    end
   end
 
   describe '.valid_transitions' do
