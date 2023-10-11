@@ -119,7 +119,7 @@ RSpec.describe MenteeApplicationTransitionService do
       context 'when the application has been withdrawn' do
         it 'raises an invalid transition error' do
           expect {
-            described_class.call(application: rejected, reviewer:, action:)
+            described_class.call(application: withdrawn, reviewer:, action:)
           }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
         end
       end
