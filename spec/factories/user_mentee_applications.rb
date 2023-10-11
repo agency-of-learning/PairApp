@@ -99,5 +99,11 @@ FactoryBot.define do
         create(:mentee_application_state, :rejected, user_mentee_application:)
       end
     end
+
+    trait :withdrawn do
+      after(:create) do |user_mentee_application|
+        create(:mentee_application_state, :rejected, user_mentee_application:)
+      end
+    end
   end
 end

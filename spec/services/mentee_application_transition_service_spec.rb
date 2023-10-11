@@ -11,6 +11,7 @@ RSpec.describe MenteeApplicationTransitionService do
   let(:coding_challenge_approved) { create(:user_mentee_application, :coding_challenge_approved, user:) }
   let(:phone_screen_scheduled) { create(:user_mentee_application, :phone_screen_scheduled, user:) }
   let(:phone_screen_completed) { create(:user_mentee_application, :phone_screen_completed, user:) }
+  let(:withdrawn) { create(:user_mentee_application, :withdrawn, user:) }
   let(:accepted) { create(:user_mentee_application, :accepted, user:) }
   let(:rejected) { create(:user_mentee_application, :rejected, user:) }
 
@@ -108,6 +109,14 @@ RSpec.describe MenteeApplicationTransitionService do
       end
 
       context 'when the application has been rejected' do
+        it 'raises an invalid transition error' do
+          expect {
+            described_class.call(application: rejected, reviewer:, action:)
+          }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
+        end
+      end
+
+      context 'when the application has been withdrawn' do
         it 'raises an invalid transition error' do
           expect {
             described_class.call(application: rejected, reviewer:, action:)
@@ -319,6 +328,14 @@ RSpec.describe MenteeApplicationTransitionService do
         it 'raises an invalid transition error' do
           expect {
             described_class.call(application: rejected, reviewer:, action:)
+          }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
+        end
+      end
+
+      context 'when the application has been withdrawn' do
+        it 'raises an invalid transition error' do
+          expect {
+            described_class.call(application: withdrawn, reviewer:, action:)
           }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
         end
       end
