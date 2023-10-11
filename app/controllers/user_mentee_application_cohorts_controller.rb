@@ -19,7 +19,10 @@ class UserMenteeApplicationCohortsController < ApplicationController
   def filter_applications(applications)
     case params[:filter]
     when 'accepted', 'rejected', 'application_received'
+      # binding.pry
       applications.filter { |application| application.current_status == params[:filter] }
+    when 'in_review'
+      applications.filter { |application| application.in_review? }
     else
       applications.filter { |application| application.current_status == 'application_received' }
     end
