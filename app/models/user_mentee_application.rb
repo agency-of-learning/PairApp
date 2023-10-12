@@ -71,7 +71,7 @@ class UserMenteeApplication < ApplicationRecord
   end
 
   def in_review?
-    %w[accepted rejected withdrawn].none?(current_status)
+    %w[application_received accepted rejected withdrawn].none?(current_status)
   end
 
   private
