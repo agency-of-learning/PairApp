@@ -21,7 +21,7 @@
 
   <%= render(TableCellComponent.new(class_names: "hidden sm:table-cell text-center")) do %>
     <%= turbo_frame_tag "#{dom_id(mentee_application)}--action" do %>
-      <% if mentee_application.in_review? %>
+      <% if mentee_application.action_available? %>
         <%= link_to "Action",
           new_user_mentee_application_mentee_application_state_path(mentee_application),
           class: 'link link-primary',
