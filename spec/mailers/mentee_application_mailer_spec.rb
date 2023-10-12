@@ -83,4 +83,17 @@ RSpec.describe MenteeApplicationMailer do
       expect(mail.bcc).to eq(['dave@agencyoflearning.com'])
     end
   end
+
+  describe '#notify_applicant_of_withdrawal' do
+    subject(:mail) do
+      described_class.with(application:, recipient:).notify_applicant_of_withdrawal
+    end
+
+    it 'renders the headers' do
+      expect(mail.subject).to eq('Withdrawn application for the Agency of Learning')
+      expect(mail.to).to eq([recipient.email])
+      expect(mail.from).to eq(['dave@agencyoflearning.com'])
+      expect(mail.bcc).to eq(['dave@agencyoflearning.com'])
+    end
+  end
 end
