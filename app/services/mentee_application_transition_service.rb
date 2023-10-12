@@ -5,33 +5,36 @@ module MenteeApplicationTransitionService
 
   STATUS_TRANSITION_MAPPING = {
     application_received: {
-      valid_transitions: %i[promote reject],
+      valid_transitions: %i[promote reject withdrawn],
       promote_transition: :coding_challenge_sent
     },
     coding_challenge_sent: {
-      valid_transitions: [:promote],
+      valid_transitions: %i[promote withdrawn],
       promote_transition: :coding_challenge_received
     },
     coding_challenge_received: {
-      valid_transitions: %i[promote reject],
+      valid_transitions: %i[promote reject withdrawn],
       promote_transition: :coding_challenge_approved
     },
     coding_challenge_approved: {
-      valid_transitions: [:promote],
+      valid_transitions: %i[promote withdrawn],
       promote_transition: :phone_screen_scheduled
     },
     phone_screen_scheduled: {
-      valid_transitions: [:promote],
+      valid_transitions: %i[promote withdrawn],
       promote_transition: :phone_screen_completed
     },
     phone_screen_completed: {
-      valid_transitions: %i[promote reject],
+      valid_transitions: %i[promote reject withdrawn],
       promote_transition: :accepted
     },
     accepted: {
       valid_transitions: []
     },
     rejected: {
+      valid_transitions: []
+    },
+    withdrawn: {
       valid_transitions: []
     }
   }.freeze
@@ -41,7 +44,12 @@ module MenteeApplicationTransitionService
     # enforce that the action is cast to a symbol before performing guard clause
     action = action.to_sym
     raise InvalidTransitionError unless STATUS_TRANSITION_MAPPING[status][:valid_transitions].include? action
-    transition_status = action == :reject ? :rejected : STATUS_TRANSITION_MAPPING[status][:promote_transition]
+    transition_status = case action
+                        when :reject then :rejected
+                        when :withdrawn then :withdrawn
+                        else STATUS_TRANSITION_MAPPING[status][:promote_transition]
+                        end
+
     application.mentee_application_states.create!(status: transition_status, reviewer:, note:)
     # handle side effects
     case transition_status
@@ -49,6 +57,7 @@ module MenteeApplicationTransitionService
     when :coding_challenge_approved then coding_challenge_approved_side_effects(application)
     when :accepted then accepted_side_effects(application)
     when :rejected then rejected_side_effects(application)
+    when :withdrawn then withdrawn_side_effects(application)
     end
     true
   end
@@ -77,5 +86,9 @@ module MenteeApplicationTransitionService
 
   def rejected_side_effects(application)
     MenteeApplication::RejectionNotification.deliver(application.user)
+  end
+
+  def withdrawn_side_effects(application)
+    MenteeApplication::WithdrawalNotification.deliver(application.user)
   end
 end
