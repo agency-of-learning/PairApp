@@ -9,7 +9,7 @@
 <% end %>
 
 <%= turbo_stream.update "#{dom_id(@user_mentee_application)}--action" do %>
-  <% if @user_mentee_application.in_review? %>
+  <% if @user_mentee_application.in_review?  ||  @user_mentee_application.application_received? %>
     <%= link_to "Action",
       new_user_mentee_application_mentee_application_state_path(@user_mentee_application),
       class: 'link link-primary',
@@ -19,7 +19,7 @@
 <% end %>
 
 <%= turbo_stream.update "#{dom_id(@user_mentee_application)}--manage" do %>
-  <% if @user_mentee_application.in_review? %>
+  <% if @user_mentee_application.in_review? || @user_mentee_application.application_received? %>
     <%= link_to "Manage Application",
       new_user_mentee_application_mentee_application_state_path(@user_mentee_application),
       class: 'link link-primary',
