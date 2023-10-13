@@ -93,12 +93,64 @@ RSpec.describe UserMenteeApplication do
         expect(mentee_application).not_to be_in_review
       end
     end
+  end
 
-    context 'when the status is not rejected or accepted' do
+  describe '#action_available?' do
+    before do
+      create(:mentee_application_state, status:, user_mentee_application: mentee_application)
+    end
+
+    context 'when the status is application_received' do
+      let(:status) { :application_received }
+
+      it 'is available' do
+        expect(mentee_application.action_available?).to be true
+      end
+    end
+
+    context "when the status is 'in_review" do
       let(:status) { :coding_challenge_sent }
 
-      it 'is in review' do
-        expect(mentee_application).to be_in_review
+      it 'is available' do
+        expect(mentee_application.action_available?).to be true
+      end
+    end
+
+    context 'when the status is accepted' do
+      let(:status) { :accepted }
+
+      it 'is available' do
+        expect(mentee_application.action_available?).to be false
+      end
+    end
+
+    context 'when the status is rejected' do
+      let(:status) { :rejected }
+
+      it 'is available' do
+        expect(mentee_application.action_available?).to be false
+      end
+    end
+
+    context 'when the status is withdrawn' do
+      let(:status) { :withdrawn }
+
+      it 'is available' do
+        expect(mentee_application.action_available?).to be false
+      end
+    end
+  end
+
+  describe '#application_received?' do
+    before do
+      create(:mentee_application_state, status:, user_mentee_application: mentee_application)
+    end
+
+    context 'when the status is application_received' do
+      let(:status) { :application_received }
+
+      it 'is available' do
+        expect(mentee_application.application_received?).to be true
       end
     end
   end

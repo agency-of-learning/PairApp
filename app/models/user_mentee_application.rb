@@ -74,6 +74,14 @@ class UserMenteeApplication < ApplicationRecord
     %w[application_received accepted rejected withdrawn].none?(current_status)
   end
 
+  def application_received?
+    current_status == 'application_received'
+  end
+
+  def action_available?
+    current_state.valid_transitions.present?
+  end
+
   private
 
   def create_initial_application_state
