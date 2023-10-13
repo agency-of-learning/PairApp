@@ -141,6 +141,20 @@ RSpec.describe UserMenteeApplication do
     end
   end
 
+  describe '#application_received?' do
+    before do
+      create(:mentee_application_state, status:, user_mentee_application: mentee_application)
+    end
+
+    context 'when the status is application_received' do
+      let(:status) { :application_received }
+
+      it 'is available' do
+        expect(mentee_application.application_received?).to be true
+      end
+    end
+  end
+
   describe 'Notification and Alert Enqueueing on Creation' do
     before do
       ActiveJob::Base.queue_adapter.enqueued_jobs = []
