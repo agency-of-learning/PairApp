@@ -6,8 +6,7 @@
       active_cohort: @active_cohort,
       last_application: @most_recent_application
     ) %>
-
-    <% if @most_recent_application&.active? && @most_recent_application&.in_review? %>
+    <% if @most_recent_application&.active? && @most_recent_application&.in_review? || @most_recent_application&.application_received? %>
       <h2 class="text-xl font-bold mb-2">In Review</h2>
       <ul>
         <%= render UserMenteeApplication::ListItemComponent.new(mentee_application: @most_recent_application) %>
