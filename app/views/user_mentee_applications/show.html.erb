@@ -36,15 +36,6 @@
         <% end %>
       <% end %>
     </span>
-    <% if policy(:user_only).application_reviewer? && @user_mentee_application.in_review? %>
-      <span class="pb-4 inline mx-auto">
-        <%= button_to "Withdraw Application",
-          user_mentee_application_withdrawals_path(@user_mentee_application),
-          class: 'link link-error',
-          data: { turbo_confirm: 'Are you sure you want to withdraw this application?' }
-        %>
-      </span>
-    <% end %>
   </section>
 
   <%= render UserMenteeApplication::SectionComponent.new(header_text: "Tell us about your journey") do %>

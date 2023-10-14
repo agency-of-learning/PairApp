@@ -59,7 +59,6 @@ Rails.application.routes.draw do
   resources :user_mentee_applications, only: %i[index show new create edit update] do
     scope module: :user_mentee_applications do
       resources :mentee_application_states, only: %i[new create]
-      resources :withdrawals, only: :create
     end
   end
 
