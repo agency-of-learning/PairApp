@@ -12,6 +12,16 @@
           <% end %>
         </span>
     </div>
+
+    <% if policy(:user_only).application_reviewer? %>
+      <span class="p-4 inline mx-auto">
+        <span class="font-bold">Reviewer Note:</span>
+        <%= turbo_frame_tag "#{dom_id(@user_mentee_application)}--note" do %>
+          <%= @user_mentee_application.current_state.note %>
+        <% end %>
+      </span>
+    <% end %>
+
     <span class="pb-4 inline mx-auto">
       <% if @user_mentee_application.user == current_user %>
         <p class="text-md p-6">
