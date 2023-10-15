@@ -1,4 +1,4 @@
-<div class="table-row odd:bg-base-100 even:bg-base-200 hover:bg-base-300 divide-x-2 divide-base-content">
+<div class="table-row odd:bg-base-100 even:bg-base-200 hover:bg-base-300 divide-x-2 divide-base-content" id=<%= "#{dom_id(mentee_application)}--row" %>>
   <%= render TableCellComponent.new(container_link: mentee_application) do %>
     <%= mentee_application.user.first_name %>
   <% end %>
@@ -8,32 +8,24 @@
   <% end %>
 
   <%= render TableCellComponent.new(container_link: mentee_application) do %>
-    <%= turbo_frame_tag "#{dom_id(mentee_application)}--note" do %>
-      <%= mentee_application.current_state&.note %>
-    <% end %>
+    <%= mentee_application.current_state&.note %>
   <% end %>
-  
+
   <%= render TableCellComponent.new(container_link: mentee_application) do %>
-    <%= turbo_frame_tag "#{dom_id(mentee_application)}--status" do %>
-      <%= mentee_application.current_state.status.humanize %>
-    <% end %>
+    <%= mentee_application.current_state.status.humanize %>
   <% end %>
 
   <%= render(TableCellComponent.new(class_names: "hidden sm:table-cell text-center")) do %>
-    <%= turbo_frame_tag "#{dom_id(mentee_application)}--action" do %>
-      <% if mentee_application.action_available? %>
-        <%= link_to "Action",
-          new_user_mentee_application_mentee_application_state_path(mentee_application),
-          class: 'link link-primary',
-          data: { turbo_frame: 'modal' }
-        %>
-      <% end %>
+    <% if mentee_application.action_available? %>
+      <%= link_to "Action",
+        new_user_mentee_application_mentee_application_state_path(mentee_application),
+        class: 'link link-primary',
+        data: { turbo_frame: 'modal' }
+      %>
     <% end %>
   <% end %>
 
   <%= render TableCellComponent.new(container_link: mentee_application)  do %>
-    <%= turbo_frame_tag "#{dom_id(mentee_application)}--last_action_at" do %>
-      <%= mentee_application.last_action_created_at.to_formatted_s(:slash_format_with_time) %>
-    <% end %>
+    <%= mentee_application.last_action_created_at.to_formatted_s(:slash_format_with_time) %>
   <%end %>
 </div>
