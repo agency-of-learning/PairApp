@@ -63,6 +63,7 @@ class UserMenteeApplication < ApplicationRecord
   delegate :current_resume, to: :user
 
   scope :order_newest_first, -> { order(created_at: :desc) }
+  scope :order_by_latest_updated, -> { order(updated_at: :desc) }
 
   alias_method :cohort, :user_mentee_application_cohort
 

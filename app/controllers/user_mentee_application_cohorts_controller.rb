@@ -11,7 +11,9 @@ class UserMenteeApplicationCohortsController < ApplicationController
               .includes(user_mentee_applications: :mentee_application_states)
               .find(params[:id])
 
-    @filtered_applications = filter_applications(@cohort.user_mentee_applications)
+    @filtered_applications = filter_applications(
+      @cohort.user_mentee_applications.order_by_latest_updated
+    )
   end
 
   private
