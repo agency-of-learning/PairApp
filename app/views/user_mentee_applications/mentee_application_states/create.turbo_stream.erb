@@ -1,4 +1,9 @@
-<%= turbo_stream.update 'flash', partial: "layouts/flash" %>
+<%= turbo_stream.remove "#{dom_id(@user_mentee_application)}--row" %>
+
+<%= turbo_stream.prepend "user_mentee_applications",
+  partial: "user_mentee_applications/table_row",
+  locals: { mentee_application: @user_mentee_application }
+%>
 
 <%= turbo_stream.update "#{dom_id(@user_mentee_application)}--status" do %>
   <%= @user_mentee_application.status.humanize %>
@@ -6,16 +11,6 @@
 
 <%= turbo_stream.update "#{dom_id(@user_mentee_application)}--note" do %>
   <%= @user_mentee_application.current_state.note %>
-<% end %>
-
-<%= turbo_stream.update "#{dom_id(@user_mentee_application)}--action" do %>
-  <% if @user_mentee_application.in_review?  ||  @user_mentee_application.application_received? %>
-    <%= link_to "Action",
-      new_user_mentee_application_mentee_application_state_path(@user_mentee_application),
-      class: 'link link-primary',
-      data: { turbo_frame: 'modal' }
-    %>
-  <% end %>
 <% end %>
 
 <%= turbo_stream.update "#{dom_id(@user_mentee_application)}--manage" do %>
