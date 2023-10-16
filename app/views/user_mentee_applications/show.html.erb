@@ -48,6 +48,17 @@
     </span>
   </section>
 
+  <% if policy(:user_only).application_reviewer? %>
+    <div class="mb-4">
+      <dl>
+        <dd class="font-bold after:content-[':']">Applicant Name</dd>
+        <dt class="mb-2"><%= @user_mentee_application.user.full_name %></dt>
+        <dd class="font-bold after:content-[':']">Email</dd>
+        <dt><%= @user_mentee_application.user.email %></dt>
+      </dl>
+    </div>
+  <% end %>
+
   <%= render UserMenteeApplication::SectionComponent.new(header_text: "Tell us about your journey") do %>
     <div class="flex flex-col mb-5">
       <label class='label label-text font-semibold'>How did you learn to code?</label>
