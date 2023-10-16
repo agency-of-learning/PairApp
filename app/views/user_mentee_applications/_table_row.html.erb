@@ -7,7 +7,7 @@
     <%= mentee_application.created_at.to_fs(:slash_format) %>
   <% end %>
 
-  <%= render TableCellComponent.new(container_link: mentee_application) do %>
+  <%= render TableCellComponent.new do %>
     <%= mentee_application.current_state&.note %>
   <% end %>
 
