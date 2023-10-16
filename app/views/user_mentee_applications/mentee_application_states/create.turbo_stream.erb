@@ -9,6 +9,10 @@
   <%= @user_mentee_application.status.humanize %>
 <% end %>
 
+<%= turbo_stream.update "#{dom_id(@user_mentee_application)}--note" do %>
+  <%= @user_mentee_application.current_state.note %>
+<% end %>
+
 <%= turbo_stream.update "#{dom_id(@user_mentee_application)}--manage" do %>
   <% if @user_mentee_application.in_review? || @user_mentee_application.application_received? %>
     <%= link_to "Manage Application",
