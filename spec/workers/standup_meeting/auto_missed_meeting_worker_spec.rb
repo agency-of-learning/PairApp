@@ -15,7 +15,6 @@ RSpec.describe StandupMeeting::AutoMissedMeetingWorker do
     end
 
     it "changes the status to 'missed' for old draft meetings" do
-      described_class.new.perform
       old_draft_meeting.reload
       expect(old_draft_meeting.status).to eq 'missed'
     end
