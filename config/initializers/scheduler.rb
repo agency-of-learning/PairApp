@@ -17,3 +17,7 @@ end
 s.every '15m' do
   StandupMeetingGroup::DetermineMissingStandupMeetingsWorker.perform_async(0, 60)
 end
+
+s.every '24h' do
+  StandupMeeting::AutoMissedMeetingWorker.perform_async
+end
