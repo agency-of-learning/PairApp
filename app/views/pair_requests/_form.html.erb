@@ -4,7 +4,7 @@
       <div class="flex justify-between space-x-4 align-middle items-center ">
          <%= form.label :invitee_id, class: "label label-text" %>
          <%= form.select :invitee_id, nil, { :include_blank => "Please select" }, { class: "select select-primary", data: { action: "change->pair-requests-form#onClick", "pair-requests-form-target" => "inviteeInfo"}} do %>
-          <% User.members.excluding(current_user).each do |invitee| %>
+          <% User.agents.excluding(current_user).each do |invitee| %>
             <%= tag.option(invitee.full_name, value: invitee.id, data: { "time-zone-identifier" => invitee.time_zone_identifier, "time-zone-display-name" => invitee.time_zone, "user-time-zone" => current_user.time_zone_identifier}) %>
           <% end %>
         <% end %>
