@@ -49,13 +49,13 @@
 
     <div class="flex flex-col lg:flex-row justify-evenly" data-tabs-target="panel">
       <%= render StandupMeeting::MeetingColumnComponent.new(title: "Previous Work Day") do |component| %>
-        <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@completed_meetings, content_type: :yesterday_work_description) %>
+        <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@completed_meetings, content_type: :yesterdays_description) %>
       <% end %>
       <%= render StandupMeeting::MeetingColumnComponent.new(title: "Today's Work Day") do |component| %>
-        <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@completed_meetings, content_type: :today_work_description) %>
+        <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@completed_meetings, content_type: :todays_description) %>
       <% end %>
       <%= render StandupMeeting::MeetingColumnComponent.new(title: "Blockers") do |component| %>
-        <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@completed_meetings, content_type: :blockers_description) %>
+        <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@completed_meetings, content_type: :blockers) %>
       <% end %>
     </div>
     <div class="hidden" data-tabs-target="panel">
