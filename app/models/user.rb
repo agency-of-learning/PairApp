@@ -85,7 +85,15 @@ class User < ApplicationRecord
 
   after_create :create_profile!
 
-  scope :members, -> { where(role: %i[member admin]) }
+  enum role: {
+    member: 0,
+    admin: 1,
+    applicant: 2,
+    moderator: 3
+  }
+  AGENT_ROLES = %w[member admin moderator].freeze
+
+  scope :agents, -> { where(role: AGENT_ROLES) }
   scope :super_admins, -> { where(email: ['daniel@agencyoflearning.com', 'dave@agencyoflearning.com']) }
 
   def self.invite!(attributes = {}, invited_by = nil, options = {}, &)
@@ -112,11 +120,4 @@ class User < ApplicationRecord
   def blog_slug
     profile.slug || profile.id
   end
-
-  enum role: {
-    member: 0,
-    admin: 1,
-    applicant: 2,
-    moderator: 3
-  }
 end
