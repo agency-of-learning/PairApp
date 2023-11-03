@@ -35,6 +35,8 @@ cd PairApp
 
 3. Run the setup script. This will install dependencies and create, migrate, and seed the database.
 
+Note: The `Preparing database` step may fail with a `LoadError`. Issue may be resolved by installing the dependencies manually after checking that they do not exist on paths excluded in the ones as reported by the error. At least one error report with an M1 mac was due to missing `glib` and `vips`.
+
 ```bash
 bin/setup
 ```
