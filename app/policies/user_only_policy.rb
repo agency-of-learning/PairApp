@@ -2,6 +2,8 @@ class UserOnlyPolicy < ApplicationPolicy
   attr_reader :user
 
   def agent?
+    return false if user.nil?
+
     User::AGENT_ROLES.include?(user.role)
   end
 

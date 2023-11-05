@@ -1,6 +1,7 @@
 class UserMenteeApplicationsController < ApplicationController
   include ActiveStorage::SetCurrent
   before_action :set_active_cohort, only: %i[index new create]
+  skip_before_action :only_authorize_agent
 
   def index
     authorize :user_only, :applicant?

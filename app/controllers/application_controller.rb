@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  before_action :only_authorize_agent
+
   # PaperTrail helper for getting current_user
   before_action :set_paper_trail_whodunnit
 
@@ -40,5 +42,9 @@ class ApplicationController < ActionController::Base
 
     flash[:alert] = t "#{policy_name}.#{exception.query}", scope: 'pundit', default: :default
     redirect_back(fallback_location: root_path)
+  end
+
+  def only_authorize_agent
+    authorize :user_only, :agent?
   end
 end
