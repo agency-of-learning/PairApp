@@ -1,5 +1,6 @@
 class FeaturedBlogPostsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
+  skip_before_action :only_authorize_agent, only: :index
 
   def index
     @featured_blog_posts = FeaturedBlogPost.in_rank_order.blog_posts

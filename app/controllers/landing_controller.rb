@@ -1,5 +1,6 @@
 class LandingController < ApplicationController
   skip_before_action :authenticate_user!
+  skip_before_action :only_authorize_agent
 
   def index
     if current_user.blank?

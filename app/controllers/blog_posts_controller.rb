@@ -1,5 +1,6 @@
 class BlogPostsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
+  skip_before_action :only_authorize_agent, only: :show
 
   def index
     @blog_posts = BlogPost.includes(:user).published.order_newest_first
