@@ -45,13 +45,16 @@ class Profile < ApplicationRecord
 
   validates :github_link,
     format: { with: /github.com/, message: 'must be a github link' },
-    allow_blank: true
+    allow_blank: true,
+    url: true
   validates :linked_in_link,
     format: { with: %r{linkedin.com/in}, message: 'must be a linkedin link' },
-    allow_blank: true
+    allow_blank: true,
+    url: true
   validates :twitter_link,
     format: { with: /twitter.com/, message: 'must be a twitter link' },
-    allow_blank: true
+    allow_blank: true,
+    url: true
 
   enum job_search_status: {
     not_job_searching: 0,
