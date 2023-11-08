@@ -47,11 +47,13 @@ class UserMenteeApplication < ApplicationRecord
 
   validates :github_url,
     format: { with: %r{/github.com/}, message: 'must be a github url' },
-    allow_blank: true
+    allow_blank: true,
+    url: true
 
   validates :linkedin_url,
     format: { with: %r{linkedin.com/in}, message: 'must be a linkedin url' },
-    allow_blank: true
+    allow_blank: true,
+    url: true
 
   after_create :create_initial_application_state
   after_create_commit :send_application_submission_notifications
