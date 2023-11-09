@@ -1,4 +1,4 @@
-<div class="table-row odd:bg-base-100 even:bg-base-200 hover:bg-base-300 divide-x-2 divide-base-content">
+ <div class="table-row odd:bg-base-100 even:bg-base-200 hover:bg-base-300 divide-x-2 divide-base-content">
   <%= render TableCellComponent.new.with_content(cohort.name) %>
   <%= render TableCellComponent.new(class_names: 'hidden sm:table-cell') do %>
     <%= cohort.begin.to_fs(:slash_format) %>
@@ -10,4 +10,4 @@
   <%= render TableCellComponent.new do %>
     <%= link_to 'View', cohort, class: 'link link-primary' %>
   <% end %>
-</div>
+</div> 
