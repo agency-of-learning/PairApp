@@ -29,6 +29,10 @@ class StandupMeeting < ApplicationRecord
   belongs_to :standup_meeting_group, inverse_of: :standup_meetings
   belongs_to :user
 
+  has_rich_text :yesterday_work_description
+  has_rich_text :today_work_description
+  has_rich_text :blockers_description
+
   alias_method :group, :standup_meeting_group
 
   validates :meeting_date, presence: true

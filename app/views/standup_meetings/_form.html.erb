@@ -10,22 +10,24 @@
         <%= standup_meeting.meeting_date %>
       </span>
     </div>
+
     <div class="flex flex-col justify-between space-y-2">
       <%= form.label :yesterday_work_description, '1. What did you work on yesterday? (or last working day)', class: 'mb-4 md:mb-0' %>
-      <%= form.text_area :yesterday_work_description, required: true, class: 'textarea-lg textarea-primary textarea', placeholder: 'e.g., Got the first version of feature X up in a draft PR' %>
+      <%= form.rich_text_area :yesterday_work_description,  required: true, class: 'textarea-lg textarea-primary textarea trix-content', placeholder: 'e.g., Got the first version of feature X up in a draft PR' %>
     </div>
     <div class="flex flex-col justify-between space-y-2">
-      <%= form.label :today_work_description, '2. What do you plan on working on today?', class: 'mb-4 md:mb-0' %>
-      <%= form.text_area :today_work_description, required: true, class: 'textarea-lg textarea-primary textarea', placeholder: "e.g., 1. Review some outstanding PRs\n2. Push forward on second feature" %>
+      <%= form.label :today_work_description,  '2. What do you plan on working on today?', class: 'mb-4 md:mb-0' %>
+      <%= form.rich_text_area :today_work_description,  required: true, class: 'textarea-lg textarea-primary textarea trix-content', placeholder: "e.g., 1. Review some outstanding PRs\n2. Push forward on second feature" %>
     </div>
     <div class="flex flex-col justify-between space-y-2">
-      <%= form.label :blockers_description, '3. Do you have any blockers? (Leave empty if none)', class: 'mb-4 md:mb-0'%>
-      <%= form.text_area :blockers_description, class: 'textarea-lg textarea-primary textarea', placeholder: 'e.g., Wireframes for third feature are still not complete' %>
+      <%= form.label :blockers_description,  '3. Do you have any blockers? (Leave empty if none)', class: 'mb-4 md:mb-0' %>
+      <%= form.rich_text_area :blockers_description,  required: true, class: 'textarea-lg textarea-primary textarea trix-content' %>
     </div>
+    
     <div class="flex flex-row-reverse space-x-4">
       <%= form.hidden_field :status, value: :completed %>
       <%= form.submit "Check-in", class: 'btn btn-primary' %>
-      
+
     <% end %>
       
       <%= render StandupMeeting::SkipButtonComponent.new(standup_meeting_group:, standup_meeting:, current_user:) %>
