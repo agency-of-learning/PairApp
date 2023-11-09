@@ -10,7 +10,7 @@ RSpec.describe Navigation::AdminComponent, type: :component do
   end
 
   it 'renders a link to the applications portal' do
-    expect(page).to have_link('Applications Portal', href: user_mentee_application_cohorts_path)
+    expect(page).to have_link('Applications Portal', href: admin_user_mentee_application_cohorts_path)
   end
 
   it 'renders a link to invite new users' do
