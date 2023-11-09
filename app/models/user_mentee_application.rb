@@ -31,7 +31,7 @@
 #
 class UserMenteeApplication < ApplicationRecord
   belongs_to :user
-  belongs_to :user_mentee_application_cohort, class_name: 'Admin::UserMenteeApplicationCohort', foreign_key: :user_mentee_application_cohort_id
+  belongs_to :user_mentee_application_cohort, class_name: 'Admin::UserMenteeApplicationCohort'
 
   has_many :mentee_application_states, dependent: :destroy
   # rubocop:disable Rails/InverseOf

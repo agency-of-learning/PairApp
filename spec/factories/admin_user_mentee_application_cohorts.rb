@@ -10,7 +10,7 @@
 #  updated_at        :datetime         not null
 #
 FactoryBot.define do
-  factory :user_mentee_application_cohort, class: Admin::UserMenteeApplicationCohort do
+  factory :user_mentee_application_cohort, class: 'Admin::UserMenteeApplicationCohort' do
     name { Faker::Lorem.word }
     active_date_range { Date.current..2.months.from_now }
     active { true }
