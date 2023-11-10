@@ -11,7 +11,7 @@
 #
 require 'rails_helper'
 
-RSpec.describe Admin::UserMenteeApplicationCohort do
+RSpec.describe UserMenteeApplicationCohort do
   subject { build(:user_mentee_application_cohort) }
 
   describe '#save' do

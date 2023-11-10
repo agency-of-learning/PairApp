@@ -9,7 +9,7 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
-class Admin::UserMenteeApplicationCohort < ApplicationRecord
+class UserMenteeApplicationCohort < ApplicationRecord
   has_many :user_mentee_applications, dependent: nil
 
   validates :active_date_range, :name, presence: true
@@ -32,7 +32,7 @@ class Admin::UserMenteeApplicationCohort < ApplicationRecord
 
   # rubocop: disable Rails/SkipsModelValidations
   def deactivate_other_cohorts!
-    Admin::UserMenteeApplicationCohort.excluding(self).update_all(active: false)
+    UserMenteeApplicationCohort.excluding(self).update_all(active: false)
   end
   # rubocop: enable Rails/SkipsModelValidations
 end

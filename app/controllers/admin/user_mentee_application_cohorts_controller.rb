@@ -2,12 +2,12 @@ class Admin::UserMenteeApplicationCohortsController < ApplicationController
   before_action -> { authorize :user_only, :application_reviewer? }
 
   def index
-    @active_cohort = Admin::UserMenteeApplicationCohort.active
-    @inactive_cohorts = Admin::UserMenteeApplicationCohort.inactive
+    @active_cohort = UserMenteeApplicationCohort.active
+    @inactive_cohorts = UserMenteeApplicationCohort.inactive
   end
 
   def show
-    @cohort = Admin::UserMenteeApplicationCohort
+    @cohort = UserMenteeApplicationCohort
               .includes(user_mentee_applications: :mentee_application_states)
               .find(params[:id])
 
