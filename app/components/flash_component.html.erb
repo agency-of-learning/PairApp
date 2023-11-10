@@ -1,4 +1,4 @@
-<div class="animate-appear-then-fade">
+<div class="animate-appear-then-fade" data-controller="removal" data-action="animationend->removal#remove" >
   <div class="max-w-6xl mx-auto alert text-primary-content-dark shadow-lg mb-8 <%= theme %>" role="alert" data-controller="alert" data-alert-show-class="translate-x-0 opacity-100" data-alert-hide-class="translate-x-full opacity-0">
     <% if type == :form_errors %>
       <div class="flex flex-col items-start">

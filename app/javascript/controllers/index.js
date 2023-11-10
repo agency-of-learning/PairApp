@@ -10,6 +10,9 @@ import ModalController from './modal_controller';
 
 import PairRequestsFormController from './pair_requests_form_controller';
 
+import RemovalController from './removal';
+
 application.register('link-builder', LinkBuilderController);
 application.register('modal', ModalController);
 application.register('pair-requests-form', PairRequestsFormController);
+application.register('removal', RemovalController);
