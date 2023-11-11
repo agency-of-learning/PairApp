@@ -4,11 +4,11 @@
 
 <div class="p-2">
   <div class="tabs">
-    <%= link_to  "Received", user_mentee_application_cohort_path(@cohort, filter: "application_received" ), class:"tab tab-lifted #{'tab-active' if params[:filter] == 'application_received' || params[:filter].nil? }" %>
-    <%= link_to 'In Review', user_mentee_application_cohort_path(@cohort, filter: "in_review" ) , class:"tab tab-lifted #{'tab-active' if params[:filter] == 'in_review'  } " %>
-    <%= link_to 'Accepted', user_mentee_application_cohort_path(@cohort, filter: "accepted") , class:"tab tab-lifted #{'tab-active' if params[:filter] == 'accepted'}" %>
-    <%= link_to  "Rejected", user_mentee_application_cohort_path(@cohort, filter: "rejected" ), class:"tab tab-lifted #{'tab-active' if params[:filter] == 'rejected' }" %>
-    <%= link_to  "Withdrawn", user_mentee_application_cohort_path(@cohort, filter: "withdrawn" ), class:"tab tab-lifted #{'tab-active' if params[:filter] == 'withdrawn' }" %>
+    <%= link_to  "Received", admin_user_mentee_application_cohort_path(@cohort, filter: "application_received" ), class:"tab tab-lifted #{'tab-active' if params[:filter] == 'application_received' || params[:filter].nil? }" %>
+    <%= link_to 'In Review', admin_user_mentee_application_cohort_path(@cohort, filter: "in_review" ) , class:"tab tab-lifted #{'tab-active' if params[:filter] == 'in_review'  } " %>
+    <%= link_to 'Accepted', admin_user_mentee_application_cohort_path(@cohort, filter: "accepted") , class:"tab tab-lifted #{'tab-active' if params[:filter] == 'accepted'}" %>
+    <%= link_to  "Rejected", admin_user_mentee_application_cohort_path(@cohort, filter: "rejected" ), class:"tab tab-lifted #{'tab-active' if params[:filter] == 'rejected' }" %>
+    <%= link_to  "Withdrawn", admin_user_mentee_application_cohort_path(@cohort, filter: "withdrawn" ), class:"tab tab-lifted #{'tab-active' if params[:filter] == 'withdrawn' }" %>
   </div>
   <div class="table w-full border-2 border-base-content text-md md:text-base">
     <div class="table-header-group">

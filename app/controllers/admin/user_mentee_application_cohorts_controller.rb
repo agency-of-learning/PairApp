@@ -1,4 +1,4 @@
-class UserMenteeApplicationCohortsController < ApplicationController
+class Admin::UserMenteeApplicationCohortsController < ApplicationController
   before_action -> { authorize :user_only, :application_reviewer? }
 
   def index

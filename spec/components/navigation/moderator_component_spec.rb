@@ -10,6 +10,6 @@ RSpec.describe Navigation::ModeratorComponent, type: :component do
   end
 
   it 'renders a link to the applications portal' do
-    expect(page).to have_link('Applications Portal', href: user_mentee_application_cohorts_path)
+    expect(page).to have_link('Applications Portal', href: admin_user_mentee_application_cohorts_path)
   end
 end
