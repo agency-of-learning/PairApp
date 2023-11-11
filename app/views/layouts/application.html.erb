@@ -24,7 +24,7 @@
     <div class="min-h-full <%= background_color %>">
       <%= render NavigationComponent.for(current_user:) do %>
         <div class="container mx-auto">
-          <div id="flash" class="empty:hidden px-4">
+          <div id="flash" class="empty:hidden fixed top-9 left-1/2 -translate-x-1/2">
             <%= render "layouts/flash" %>
           </div>
 
