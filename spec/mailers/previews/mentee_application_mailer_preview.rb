@@ -29,7 +29,7 @@ class MenteeApplicationMailerPreview < ActionMailer::Preview
 
   def notify_applicant_to_reapply
     MenteeApplicationMailer.with(recipient: User.last,
-      active_cohort_name: Admin::UserMenteeApplicationCohort.active.name).notify_applicant_to_reapply
+      active_cohort_name: UserMenteeApplicationCohort.active.name).notify_applicant_to_reapply
   end
 
   def notify_applicant_of_withdrawal

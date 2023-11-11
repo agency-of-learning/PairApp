@@ -67,7 +67,7 @@ class UserMenteeApplicationsController < ApplicationController
   private
 
   def set_active_cohort
-    @active_cohort = Admin::UserMenteeApplicationCohort.active
+    @active_cohort = UserMenteeApplicationCohort.active
   end
 
   def user_mentee_application_params

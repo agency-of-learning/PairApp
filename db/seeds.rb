@@ -89,12 +89,12 @@ begin
   puts 'Seeding a user_mentee_application...'
 
   # Current upcoming cohort
-  active_cohort = Admin::UserMenteeApplicationCohort.create!(
+  active_cohort = UserMenteeApplicationCohort.create!(
     name: 'Fall 2023',
     active_date_range: Time.zone.today..3.months.from_now
   )
 
-  original_cohort = Admin::UserMenteeApplicationCohort.create!(
+  original_cohort = UserMenteeApplicationCohort.create!(
     name: 'Original',
     active_date_range: 3.months.ago..Date.yesterday,
     active: false
