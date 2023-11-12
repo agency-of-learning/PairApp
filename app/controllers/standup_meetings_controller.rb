@@ -1,4 +1,11 @@
 class StandupMeetingsController < ApplicationController
+  
+  def show
+    @standup_meeting = StandupMeeting.includes(:standup_meeting_group).find(params[:id])
+    @standup_meeting_group = @standup_meeting.standup_meeting_group
+    authorize @standup_meeting
+  end
+  
   # rubocop:disable Metrics/AbcSize
   def index
     begin

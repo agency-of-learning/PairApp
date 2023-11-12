@@ -38,6 +38,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :standup_meeting, only: %i[index show]
+
   resources :standup_meeting_groups do
     scope module: :standup_meeting_groups do
       resources :joins, only: %i[create destroy]

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_15_020025) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_10_224001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_15_020025) do
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_blog_posts_on_slug", unique: true
     t.index ["user_id"], name: "index_blog_posts_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.string "commentable_type", null: false
+    t.bigint "commentable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "featured_blog_posts", force: :cascade do |t|
@@ -186,8 +197,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_15_020025) do
   create_table "standup_meetings", force: :cascade do |t|
     t.bigint "standup_meeting_group_id", null: false
     t.bigint "user_id", null: false
-    t.text "yesterday_work_description"
-    t.text "today_work_description"
     t.text "blockers_description"
     t.date "meeting_date", null: false
     t.integer "status", default: 0, null: false
@@ -266,6 +275,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_15_020025) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blog_posts", "users"
+  add_foreign_key "comments", "users"
   add_foreign_key "featured_blog_posts", "blog_posts"
   add_foreign_key "feedbacks", "users", column: "author_id"
   add_foreign_key "feedbacks", "users", column: "receiver_id"
