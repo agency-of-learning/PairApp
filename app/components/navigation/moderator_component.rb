@@ -12,7 +12,7 @@ class Navigation::ModeratorComponent < NavigationComponent
       { text: 'Standups', path: standup_meeting_groups_path },
       { text: 'Pair Requests', path: pair_requests_path },
       { text: 'Agency Blog', path: blog_posts_path },
-      { text: 'Applications Portal', path: user_mentee_application_cohorts_path }
+      { text: 'Applications Portal', path: admin_user_mentee_application_cohorts_path }
     ]
   end
 

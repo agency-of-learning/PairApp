@@ -17,6 +17,15 @@ module.exports = {
         "twitter-brand": "#26a7de",
         "linkedin-brand": "#0072b1",
       },
+      keyframes: {
+        "appear-then-fade": {
+          "0%, 100%": { opacity: 0 },
+          "5%, 60%": { opacity: 1 },
+        },
+      },
+      animation: {
+        "appear-then-fade": "appear-then-fade 5s both"
+      }
     },
   },
   daisyui: {
