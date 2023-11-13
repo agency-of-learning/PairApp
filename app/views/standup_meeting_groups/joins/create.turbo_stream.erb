@@ -1,3 +1,5 @@
+<%= turbo_stream.update "flash", partial: "layouts/flash" %>
+
 <%= turbo_stream.prepend 'my-standup-meeting-groups' do %>
   <%= render StandupMeetingGroup::JoinedCardComponent.new(standup_meeting_group: @standup_meeting_group, current_user: current_user) %>
 <% end %>
