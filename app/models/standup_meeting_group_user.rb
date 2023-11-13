@@ -20,6 +20,8 @@ class StandupMeetingGroupUser < ApplicationRecord
   belongs_to :user
 
   validates :user_id,
-            uniqueness: { scope: :standup_meeting_group_id,
-                          message: "already a member of the standup group" }
+    uniqueness: {
+      scope: :standup_meeting_group_id,
+      message: 'already a member of the standup group'
+    }
 end

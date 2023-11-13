@@ -8,9 +8,8 @@ class StandupMeetingGroups::JoinsController < ApplicationController
 
     authorize @standup_meeting_group_user, policy_class: StandupMeetingGroup::JoinPolicy
 
-    if @standup_meeting_group_user.save
-      flash.now[:notice] = "You have joined #{@standup_meeting_group.name}!"
-    end
+    join_message = "You have joined #{@standup_meeting_group.name}!"
+    flash.now[:notice] = join_message if @standup_meeting_group_user.save
   end
 
   def destroy
