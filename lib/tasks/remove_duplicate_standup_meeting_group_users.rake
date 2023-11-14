@@ -1,5 +1,5 @@
-namespace :standup_meeting_group_user d
-  desc 'Remove duplicate standup meeting group users' do
+namespace :standup_meeting_group_user do
+  desc 'Remove duplicate standup meeting group users'
 
   task remove_duplicate_records: :environment  do
     # Remove duplicate records.
