@@ -45,4 +45,10 @@ class StandupMeeting < ApplicationRecord
   }
 
   scope :for_member, ->(user, group) { where(user:, standup_meeting_group: group) }
+
+  def yesterday_comments
+    StandupMeetingComment.joins(:rich_text)
+                         .where(action_text_rich_texts: { record_id: id, record_type: 'StandupMeeting',
+                                                          name: 'yesterday_work_description' })
+  end
 end
