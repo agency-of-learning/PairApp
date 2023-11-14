@@ -1,12 +1,5 @@
 class MakeIndexesUniqueForStandupMeetingGroupUsers < ActiveRecord::Migration[7.0]
   def change
-    # Remove duplicate records.
-    unique_ids = StandupMeetingGroupUser.group(
-      :standup_meeting_group_id, :user_id
-    ).pluck('MIN(id)')
-
-    StandupMeetingGroupUser.where.not(id: unique_ids).delete_all
-
     change_table :standup_meeting_groups_users do |t|
       # Keep the old indexes until new ones are added for safety.
       t.rename_index :index_smg_users_on_smg_id_and_user_id,
