@@ -19,9 +19,11 @@ class StandupMeetingGroupUser < ApplicationRecord
   belongs_to :standup_meeting_group
   belongs_to :user
 
+  # rubocop:disable Rails/UniqueValidationWithoutIndex
   validates :user_id,
     uniqueness: {
       scope: :standup_meeting_group_id,
       message: 'already a member of the standup group'
     }
+  # rubocop:enable Rails/UniqueValidationWithoutIndex
 end
