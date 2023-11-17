@@ -27,7 +27,7 @@ RSpec.describe StandupMeetingGroupUser do
     it 'does not allow the user to join the same standup meeting group again' do
       expect {
         described_class.create(user:, standup_meeting_group:)
-      }.not_to change(StandupMeetingGroupUser, :count)
+      }.not_to change(described_class, :count)
     end
 
     it 'allows the user to join a different standup meeting group' do
