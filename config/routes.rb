@@ -68,4 +68,14 @@ Rails.application.routes.draw do
   scope controller: :static do
     get :faq
   end
+
+  resources :standup_meetings do
+    member do
+      get 'yesterday_work'
+      get 'today_work'
+      get 'blockers'
+    end
+
+    resources :comments, only: [:create]
+  end
 end

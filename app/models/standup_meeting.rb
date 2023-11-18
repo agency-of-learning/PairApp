@@ -41,5 +41,9 @@ class StandupMeeting < ApplicationRecord
     missed: 3
   }
 
+  has_many :yesterday_work_comments, as: :commentable, class_name: 'Comment'
+  has_many :today_work_comments, as: :commentable, class_name: 'Comment'
+  has_many :blockers_comments, as: :commentable, class_name: 'Comment'
+
   scope :for_member, ->(user, group) { where(user:, standup_meeting_group: group) }
 end

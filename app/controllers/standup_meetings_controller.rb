@@ -46,4 +46,10 @@ class StandupMeetingsController < ApplicationController
       )
     end
   end
+
+  def yesterday_work
+    @standup_meeting = StandupMeeting.find(params[:id])
+    @comments = @standup_meeting.yesterday_work_comments
+    # similar setup for other fields
+  end
 end

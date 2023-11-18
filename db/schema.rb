@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_12_234325) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_17_222541) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_12_234325) do
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_blog_posts_on_slug", unique: true
     t.index ["user_id"], name: "index_blog_posts_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.string "commentable_type", null: false
+    t.bigint "commentable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
   end
 
   create_table "featured_blog_posts", force: :cascade do |t|

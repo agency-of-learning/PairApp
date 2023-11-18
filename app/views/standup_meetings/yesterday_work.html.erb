@@ -1,0 +1,18 @@
+<!-- app/views/standup_meetings/yesterday_work.html.erb -->
+<h3>Yesterday's Work Description</h3>
+<p><%= @standup_meeting.yesterday_work_description.body %></p>
+
+<%= form_with(model: [@standup_meeting, Comment.new], url: standup_meeting_comments_path(@standup_meeting), method: :post) do |form| %>
+  <%= form.hidden_field :commentable_type, value: 'YesterdayWork' %>
+  <%= form.text_area :body %>
+  <%= form.submit 'Post Comment' %>
+<% end %>
+
+
+<!-- New code to display comments -->
+<h4>Comments:</h4>
+<% @comments.each do |comment| %>
+  <div class="comment">
+    <p><%= comment.body %></p>
+  </div>
+<% end %>
