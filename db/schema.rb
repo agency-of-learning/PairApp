@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_14_200314) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_18_212205) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -109,6 +109,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_14_200314) do
     t.bigint "status_changed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug", "user_mentee_application_id"], name: "index_on_slug_and_user_mentee_application_id", unique: true
     t.index ["status_changed_id"], name: "index_mentee_application_states_on_status_changed_id"
     t.index ["user_mentee_application_id"], name: "index_mentee_application_states_on_user_mentee_application_id"
   end

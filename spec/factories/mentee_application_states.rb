@@ -4,6 +4,7 @@
 #
 #  id                         :bigint           not null, primary key
 #  note                       :text
+#  slug                       :string
 #  status                     :integer          default("application_received"), not null
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
@@ -14,6 +15,7 @@
 #
 #  index_mentee_application_states_on_status_changed_id           (status_changed_id)
 #  index_mentee_application_states_on_user_mentee_application_id  (user_mentee_application_id)
+#  index_on_slug_and_user_mentee_application_id                   (slug,user_mentee_application_id) UNIQUE
 #
 # Foreign Keys
 #
