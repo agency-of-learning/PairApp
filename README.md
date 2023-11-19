@@ -68,6 +68,8 @@ git add .
 git commit -m "Add your commit message here"
 ```
 
+  If you are pairing with someone, you may want to do pair commits. Check [our wiki](https://github.com/agency-of-learning/PairApp/wiki/Pair-Commits) on how to do it.
+
 3. Running Pre-Flight Checks
 
 In order to pass our continuous integration, your PR will need to pass the RSpec test suite and lint for both Ruby and JavaScript. We've rolled all of this into one command you can run to make sure everything is in order before submitting a PR.
