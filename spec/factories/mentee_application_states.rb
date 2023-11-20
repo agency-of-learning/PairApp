@@ -27,7 +27,7 @@ FactoryBot.define do
     user_mentee_application
     status { 0 }
     note { 'MyText' }
-    status_changed_id { association :user }
+    slug { status }
 
     trait :application_received do
       status { :application_received }
