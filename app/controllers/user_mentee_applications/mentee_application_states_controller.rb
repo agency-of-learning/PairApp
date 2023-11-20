@@ -1,6 +1,10 @@
 class UserMenteeApplications::MenteeApplicationStatesController < ApplicationController
   before_action :load_user_mentee_application
-  before_action -> { authorize :user_only, :application_reviewer? }
+  before_action -> { authorize :user_only, :application_reviewer? }, only: %i[new create]
+
+  def show
+    @mentee_application_state = @user_mentee_application.mentee_application_states.friendly.find(params[:id])
+  end
 
   def new; end
 
