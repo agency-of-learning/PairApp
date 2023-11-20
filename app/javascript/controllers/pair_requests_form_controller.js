@@ -48,7 +48,7 @@ export default class extends Controller {
   }
 
   setInviteeSchedule(timeZoneIdentifier, time, timeZoneDisplayName) {
-    const result = dayjs(time).tz(timeZoneIdentifier).format('MM/DD/YYYY, hh:mm A');
+    const result = dayjs(time).tz(timeZoneIdentifier).format('YYYY-MM-DD, hh:mm a');
     this.inviteeTzTarget.textContent = (`(${timeZoneDisplayName})`);
     this.inviteeTarget.textContent = (`${result}`);
   }
