@@ -1,5 +1,4 @@
 <div class="mx-auto p-4 my-8 max-w-prose">
-    <%= link_to 'Back', admin_user_mentee_application_cohort_path(@user_mentee_application.cohort) %>
 
   <section class="flex flex-col my-4 mx-auto rounded-md border-2">
     <div class="inline my-4 mx-auto pt-4">
@@ -11,35 +10,16 @@
         </span>
     </div>
 
-      <span class="p-4 inline mx-auto">
-        <span class="font-bold">Reviewer Note:</span>
-        <%= turbo_frame_tag "#{dom_id(@user_mentee_application)}--note" do %>
-          <%= @user_mentee_application.current_state.note %>
-        <% end %>
-      </span>
-
     <span class="pb-4 inline mx-auto">
-  
-        <%= turbo_frame_tag "#{dom_id(@user_mentee_application)}--manage" do %>
-          <% if @user_mentee_application.in_review? || @user_mentee_application.application_received? %>
-            <%= link_to "Manage Application",
-              new_admin_user_mentee_application_mentee_application_state_path(@user_mentee_application),
-              class: 'link link-primary',
-              data: { turbo_frame: 'modal' }
-            %>
+        <p class="text-md p-6">
+          Thank you for submitting your application to join us at the <span class="font-semibold">Agency of Learning</span>!<br /><br />
+          <% if @user_mentee_application.current_status == 'rejected' %>
+            Unfortunately you have not been accepted into the upcoming batch. This was a tough decision. We can't make any promises about being admitted on a future application, but we hope that <span class="font-semibold">you reapply for a future batch</span>.
+          <% else %>
+            We're <span class="font-semibold">currently reviewing applications</span> for the upcoming cohort. We'll be sure to keep you updated on the status of your application!
           <% end %>
-        <% end %>
-    </span>
-  </section>
-
-    <div class="mb-4">
-      <dl>
-        <dd class="font-bold after:content-[':']">Applicant Name</dd>
-        <dt class="mb-2"><%= @user_mentee_application.user.full_name %></dt>
-        <dd class="font-bold after:content-[':']">Email</dd>
-        <dt><%= @user_mentee_application.user.email %></dt>
-      </dl>
-    </div>
+        </p>
+ </section>
 
   <%= render UserMenteeApplication::SectionComponent.new(header_text: "Tell us about your journey") do %>
     <div class="flex flex-col mb-5">
