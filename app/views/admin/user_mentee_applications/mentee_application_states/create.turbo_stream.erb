@@ -1,7 +1,7 @@
 <%= turbo_stream.remove "#{dom_id(@user_mentee_application)}--row" %>
 
 <%= turbo_stream.prepend "user_mentee_applications",
-  partial: "user_mentee_applications/table_row",
+  partial: "admin/user_mentee_applications/table_row",
   locals: { mentee_application: @user_mentee_application }
 %>
 
