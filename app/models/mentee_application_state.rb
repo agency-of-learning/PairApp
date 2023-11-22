@@ -41,4 +41,20 @@ class MenteeApplicationState < ApplicationRecord
   def valid_transitions
     MenteeApplicationTransitionService.valid_transitions(status:)
   end
+
+  def future_state
+    MenteeApplicationTransitionService.future_state(status:)
+  end
+
+  def next_state
+    user_mentee_application.mentee_application_states.where('created_at > ?', created_at).order(:created_at).first
+  end
+
+  def previous_state
+    user_mentee_application.mentee_application_states.where('created_at < ?', created_at).order(:created_at).last
+  end
+
+  def to_param
+    status
+  end
 end

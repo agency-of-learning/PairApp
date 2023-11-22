@@ -69,6 +69,11 @@ module MenteeApplicationTransitionService
     STATUS_TRANSITION_MAPPING[status][:valid_transitions]
   end
 
+  def future_state(status:)
+    status = status.to_sym
+    STATUS_TRANSITION_MAPPING[status][:promote_transition]
+  end
+
   private
 
   def code_challenge_sent_side_effects(application)
