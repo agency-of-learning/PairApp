@@ -1,0 +1,12 @@
+<h1> Hello World </h1>
+Current State: <%= @state.status.humanize %>
+
+<% if @next_state.present? %>
+  The next state is <%= link_to @next_state.status.humanize, user_mentee_application_mentee_application_state_path(user_mentee_application_id: @user_mentee_application.id, status_name: @next_state) %>
+<% else %>
+  The next state is <%= @state.future_state.to_s.humanize %>
+<% end %>
+
+<% if @previous_state.present? %>
+  The previous state is <%= link_to @previous_state.status.humanize, user_mentee_application_mentee_application_state_path(user_mentee_application_id: @user_mentee_application.id, status_name: @previous_state) %>
+<% end %>
