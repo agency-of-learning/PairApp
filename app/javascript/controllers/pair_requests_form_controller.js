@@ -18,8 +18,12 @@ export default class extends Controller {
   onClick() {
     if (this.inviterRequestTimeTarget.value && this.inviteeIsSelected) {
       const { timeZoneIdentifier, timeZoneDisplayName } = this.setTimeZones();
+      let time = this.datetimeValue;
 
-      this.setInviteeSchedule(timeZoneIdentifier, this.datetimeValue, timeZoneDisplayName);
+      if (time === '') {
+        time = this.inviterRequestTimeTarget.value;
+      }
+      this.setInviteeSchedule(timeZoneIdentifier, time, timeZoneDisplayName);
     } else {
       this.inviteeTzTarget.textContent = '';
       this.inviteeTarget.textContent = '';

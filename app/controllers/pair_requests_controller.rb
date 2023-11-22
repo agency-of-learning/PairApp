@@ -4,6 +4,7 @@ class PairRequestsController < ApplicationController
   # GET /pair_requests or /pair_requests.json
   def index
     @pair_request = PairRequest.new
+    @pair_request.when = Time.current.to_fs(:year_month_day_24h_time)
     filter = params[:filter] == 'past' ? :past : :upcoming
     @pair_requests = policy_scope(PairRequest).public_send(filter).order_by_status.order_by_date
   end
