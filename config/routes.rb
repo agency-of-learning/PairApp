@@ -57,13 +57,14 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :user_mentee_application_cohorts, only: %i[index show]
-  end
-
-  resources :user_mentee_applications, only: %i[index show new create edit update] do
-    scope module: :user_mentee_applications do
-      resources :mentee_application_states, only: %i[new create]
+    resources :user_mentee_applications, only: %i[show] do
+      scope module: :user_mentee_applications do
+        resources :mentee_application_states, only: %i[new create]
+      end
     end
   end
+
+  resources :user_mentee_applications, only: %i[index show new create edit update]
 
   scope controller: :static do
     get :faq
