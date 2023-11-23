@@ -19,14 +19,14 @@
       <fieldset class="border border-neutral rounded-md p-4">
         <legend>When</legend>
         
-        <div class="grid grid-cols-3">
+        <div class="grid grid-cols-4">
           <%= form.label :when, "My time zone: ", class: "inline-block label label-text pr-2.5" %>
           <p class="label label-text grow break-words"><%= current_user.time_zone %></p>
-          <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date", "pair-requests-form-target" => "inviterRequestTime", "pair-requests-form-datetime-value" => ""}, class: "input input-primary input-md w-max" %>
+          <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date", "pair-requests-form-target" => "inviterRequestTime", "pair-requests-form-datetime-value" => ""}, class: "input input-primary input-md w-max col-span-2 justify-self-end" %>
       
           <p class="label label-text">Invitee's time zone: </p>
           <p data-pair-requests-form-target="inviteeTz" class="label label-text break-words w-full"></p>
-          <strong class="label label-text w-full inline-block text-right" id="invitee" data-value="" data-pair-requests-form-target="invitee"></strong>
+          <strong class="label label-text w-full inline-block text-right col-span-2 justify-self-end" id="invitee" data-value="" data-pair-requests-form-target="invitee"></strong>
         </div>
       </fieldset>
 
