@@ -8,6 +8,7 @@
     <div class="tabs">
       <%= link_to 'Upcoming', pair_requests_path(filter: 'upcoming'), data: { turbo_action: 'advance' }, class:"tab tab-lifted #{'tab-active' if params[:filter] == 'upcoming' || params[:filter].nil? }" %>
       <%= link_to 'Past', pair_requests_path(filter: 'past'), data: { turbo_action: 'advance' }, class:"tab tab-lifted #{'tab-active' if params[:filter] == 'past'}"  %>
+      <p class="px-2 pb-1 label-text">All dates and times below in: <b><%= current_user.time_zone %></b></p>
     </div>
     <div class="table w-full border-2 border-neutral text-md md:text-base">
       <div class="table-header-group">
