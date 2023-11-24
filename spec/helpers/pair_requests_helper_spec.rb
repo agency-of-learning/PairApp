@@ -10,7 +10,7 @@ RSpec.describe PairRequestsHelper do
       let(:duration) { 30.minutes }
 
       it 'outputs in the expected format' do
-        expected_output = '<p>June 10, 2023</p><p>11:40am - 12:10pm</p>'
+        expected_output = '<p>June 10, 2023</p><p>11:40 am - 12:10 pm</p>'
         expect(format_request_date(pair_request)).to eq(expected_output)
       end
     end
@@ -20,7 +20,7 @@ RSpec.describe PairRequestsHelper do
       let(:duration) { 60.minutes }
 
       it 'outputs in the expected format' do
-        expected_output = '<p>August 1, 2023</p><p>3:12pm - 4:12pm</p>'
+        expected_output = '<p>August 1, 2023</p><p>3:12 pm - 4:12 pm</p>'
         expect(format_request_date(pair_request)).to eq(expected_output)
       end
     end
