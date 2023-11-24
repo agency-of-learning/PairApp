@@ -7,7 +7,7 @@
         <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6">Partner</div>
         <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6"><%= pair_request.partner_for(user).full_name %></div>
         <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6">When</div>
-        <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6"><%= format_request_date(pair_request) %></div>
+        <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6"><%= format_request_date(pair_request)%><%= user.time_zone %></div>
         <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6">Duration</div>
         <div class="even:font-bold lg:even:mr-12 lg:odd:mr-6"><%= format_duration_minutes(pair_request) %></div>
       </div>
