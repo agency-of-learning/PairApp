@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_14_200314) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_27_185636) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -165,6 +165,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_14_200314) do
     t.index ["user_id"], name: "index_resumes_on_user_id"
   end
 
+  create_table "standup_meeting_comments", force: :cascade do |t|
+    t.string "name"
+    t.bigint "standup_meeting_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["standup_meeting_id"], name: "index_standup_meeting_comments_on_standup_meeting_id"
+  end
+
   create_table "standup_meeting_groups", force: :cascade do |t|
     t.string "name", null: false
     t.boolean "active", default: true, null: false
@@ -272,6 +280,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_14_200314) do
   add_foreign_key "pair_requests", "users", column: "invitee_id"
   add_foreign_key "profiles", "users"
   add_foreign_key "resumes", "users"
+  add_foreign_key "standup_meeting_comments", "standup_meetings"
   add_foreign_key "standup_meetings", "standup_meeting_groups"
   add_foreign_key "standup_meetings", "users"
   add_foreign_key "user_mentee_applications", "user_mentee_application_cohorts"

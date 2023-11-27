@@ -23,6 +23,8 @@
 class StandupMeeting < ApplicationRecord
   has_noticed_notifications
 
+  has_many :standup_meeting_comments, dependent: :destroy
+
   belongs_to :standup_meeting_group, inverse_of: :standup_meetings
   belongs_to :user
 
