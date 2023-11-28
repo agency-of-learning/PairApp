@@ -28,6 +28,8 @@ class StandupMeeting < ApplicationRecord
   belongs_to :standup_meeting_group, inverse_of: :standup_meetings
   belongs_to :user
 
+  # after_update :create_default_comments
+
   has_rich_text :yesterday_work_description
   has_rich_text :today_work_description
   has_rich_text :blockers_description
@@ -44,4 +46,12 @@ class StandupMeeting < ApplicationRecord
   }
 
   scope :for_member, ->(user, group) { where(user:, standup_meeting_group: group) }
+
+  private
+
+  def create_default_comments
+    standup_meeting_comments.create(name: 'yesterday_work_description')
+    standup_meeting_comments.create(name: 'today_work_description')
+    standup_meeting_comments.create(name: 'blockers_description')
+  end
 end

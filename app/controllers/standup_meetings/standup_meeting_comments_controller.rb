@@ -1,0 +1,2 @@
+class StandupMeeting::MeetingUpdateCommentController < ApplicationController
+end
