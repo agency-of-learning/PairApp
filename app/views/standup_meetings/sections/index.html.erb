@@ -1,0 +1,20 @@
+<h1><%= @section.humanize.titleize %></h1>
+<h2><%= @standup_meeting.section_content(@section) %></h2>
+
+
+<%= form_with model:[@standup_meeting, StandupMeetingComment.new] do |f| %>
+  <%= f.hidden_field :name, value: @section %>
+
+  <div class="flex flex-col justify-between space-y-2">
+    <%= f.label :content %>
+    <%= f.rich_text_area :content %>
+  </div>
+  <%= f.submit class:"btn btn-accent"%>
+<% end %>
+
+<h1>Comments</h1>
+<%= @standup_meeting.comments(@section).count %>
+
+<% @standup_meeting.comments(@section).each do |f| %>
+  <%= f.content %>
+<% end %>

@@ -5,8 +5,5 @@
   <div class="divider my-1 "></div>
   <%= tag.span(standup_content, class: "grow whitespace-pre-line") %>
   
-<%#= link_to 'New Comment', new_standup_meeting_standup_meeting_comment_path(standup_meeting_id: @standup_meeting.id, section: @content_type) %>
-<%# link_to 'Comment', standup_meeting_standup_meeting_comment_path(standup_meeting_id: @standup_meeting.id, standup_meeting_comment_id: @standup_meeting_comment.id ) , class:'' %>
-<%#= link_to 'View Comment', standup_meeting_standup_meeting_comment_path(standup_meeting_id: @standup_meeting.id, id: @standup_meeting.standup_meeting_comments.first.id) %>
-<%= link_to "View Comments", standup_meeting_path(@standup_meeting) %>
+  <%= link_to "Comments", standup_meeting_sections_path(standup_meeting_id: @standup_meeting.id, section: content_type), class:''  %>
 </div>

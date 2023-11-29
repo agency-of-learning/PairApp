@@ -77,5 +77,8 @@ Rails.application.routes.draw do
 
   resources :standup_meetings do
     resources :standup_meeting_comments
+    scope module: :standup_meetings do
+      resources :sections, only: %i[create show index]
+    end
   end
 end
