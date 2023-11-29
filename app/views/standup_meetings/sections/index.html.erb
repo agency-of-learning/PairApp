@@ -1,7 +1,6 @@
 <h1><%= @section.humanize.titleize %></h1>
 <h2><%= @standup_meeting.section_content(@section) %></h2>
 
-
 <%= form_with model:[@standup_meeting, StandupMeetingComment.new] do |f| %>
   <%= f.hidden_field :name, value: @section %>
 

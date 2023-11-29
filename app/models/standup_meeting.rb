@@ -59,12 +59,4 @@ class StandupMeeting < ApplicationRecord
       blockers_description
     end
   end
-
-  private
-
-  def create_default_comments
-    standup_meeting_comments.create(name: 'yesterday_work_description')
-    standup_meeting_comments.create(name: 'today_work_description')
-    standup_meeting_comments.create(name: 'blockers_description')
-  end
 end

@@ -24,6 +24,7 @@ class StandupMeetingsController < ApplicationController
   end
 
   # rubocop:enable Metrics/AbcSize
+
   def edit
     @standup_meeting = StandupMeeting.includes(:standup_meeting_group).find(params[:id])
     @standup_meeting_group = @standup_meeting.standup_meeting_group
@@ -38,10 +39,6 @@ class StandupMeetingsController < ApplicationController
       meeting_date: params[:meeting_date]
     )
     if @standup_meeting.save
-      @standup_meeting.standup_meeting_comments.create(name: 'yesterday_work_description')
-      @standup_meeting.standup_meeting_comments.create(name: 'today_work_description')
-      @standup_meeting.standup_meeting_comments.create(name: 'blocker_description')
-
       redirect_to edit_standup_meeting_group_standup_meeting_path(@standup_meeting_group, @standup_meeting)
     else
       redirect_back_or_to(
