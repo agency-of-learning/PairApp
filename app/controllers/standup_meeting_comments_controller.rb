@@ -1,6 +1,5 @@
 class StandupMeetingCommentsController < ApplicationController
   before_action :set_standup_meeting
-  def index; end
 
   def show
     @standup_meeting_comment = StandupMeetingComment.find(params[:id])

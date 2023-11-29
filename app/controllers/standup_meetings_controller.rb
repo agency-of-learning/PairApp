@@ -24,11 +24,6 @@ class StandupMeetingsController < ApplicationController
   end
 
   # rubocop:enable Metrics/AbcSize
-  def show
-    @standup_meeting = StandupMeeting.find(params[:id])
-    @yesterday_work_description = @standup_meeting.yesterday_work_description
-  end
-
   def edit
     @standup_meeting = StandupMeeting.includes(:standup_meeting_group).find(params[:id])
     @standup_meeting_group = @standup_meeting.standup_meeting_group

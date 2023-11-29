@@ -2,10 +2,6 @@ require 'sidekiq/web'
 require 'admin_constraint'
 
 Rails.application.routes.draw do
-  # get 'standup_meeting_comments/show'
-  # get 'standup_meeting_comments/new'
-  # get 'standup_meeting_comments/index'
-  # get 'standup_meeting_comments/edit'
   resources :standup_meeting_comments, only: %i[index show new create edit update]
   constraints(AdminConstraint) do
     mount Sidekiq::Web => '/sidekiq'
