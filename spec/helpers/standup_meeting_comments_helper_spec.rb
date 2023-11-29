@@ -10,6 +10,6 @@ require 'rails_helper'
 #     end
 #   end
 # end
-RSpec.describe StandupMeetingCommentsHelper, type: :helper do
+RSpec.describe StandupMeetingCommentsHelper do
   pending "add some examples to (or delete) #{__FILE__}"
 end
