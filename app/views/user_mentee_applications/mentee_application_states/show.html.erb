@@ -1,12 +1,16 @@
-<h1> Hello World </h1>
-Current State: <%= @state.status.humanize %>
+<h1 class="text-xl font-bold"><%= current_user.full_name %></h1>
+<h2 class="text-lg">Application Status</h2>
 
-<% if @next_state.present? %>
-  The next state is <%= link_to @next_state.status.humanize, user_mentee_application_mentee_application_state_path(user_mentee_application_id: @user_mentee_application.id, status_name: @next_state) %>
-<% else %>
-  The next state is <%= @state.future_state.to_s.humanize %>
-<% end %>
+<div>
+  <% if @previous_state.present? %>
+    <p>The previous state is <%= link_to @previous_state.status.humanize, user_mentee_application_mentee_application_state_path(user_mentee_application_id: @user_mentee_application.id, status_name: @previous_state) %></p>
+  <% end %>
 
-<% if @previous_state.present? %>
-  The previous state is <%= link_to @previous_state.status.humanize, user_mentee_application_mentee_application_state_path(user_mentee_application_id: @user_mentee_application.id, status_name: @previous_state) %>
-<% end %>
+  <p>Current State: <%= @state.status.humanize %></p>
+
+  <% if @next_state.present? %>
+    <p>The next state is <%= link_to @next_state.status.humanize, user_mentee_application_mentee_application_state_path(user_mentee_application_id: @user_mentee_application.id, status_name: @next_state) %></p>
+  <% else %>
+    <p>The next state is <%= @state.future_state.to_s.humanize %></p>
+  <% end %>
+</div>
