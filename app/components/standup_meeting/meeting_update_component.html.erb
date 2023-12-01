@@ -5,5 +5,9 @@
   <div class="divider my-1 "></div>
   <%= tag.span(standup_content, class: "grow whitespace-pre-line") %>
   
-  <%= link_to "Comments", standup_meeting_sections_path(standup_meeting_id: @standup_meeting.id, section: content_type), class:''  %>
+<%= link_to standup_meeting_sections_path(standup_meeting_id: @standup_meeting.id, section: content_type), class: '' do %>
+  <i class="fas fa-comments"></i> Comments
+<% end %>
+
+  
 </div>
