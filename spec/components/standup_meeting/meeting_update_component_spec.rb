@@ -9,7 +9,7 @@ RSpec.describe StandupMeeting::MeetingUpdateComponent, type: :component do
     let(:yesterday_work_description) { 'Lorem ipsum' }
     let(:today_work_description) { 'Sit amet' }
     let(:standup_meeting) do
-      build(:standup_meeting, yesterday_work_description:, today_work_description:)
+      create(:standup_meeting, yesterday_work_description:, today_work_description:)
     end
 
     it "renders yesterday's content when passed the yesterday content type" do
