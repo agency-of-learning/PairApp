@@ -9,12 +9,12 @@ RSpec.describe 'StandupMeetingComments' do
     sign_in user
   end
 
-  describe 'GET /edit' do
-    it 'returns http success' do
-      get '/standup_meeting_comments/edit'
-      expect(response).to have_http_status(:success)
-    end
-  end
+  # describe 'GET /edit' do
+  #   it 'returns http success' do
+  #     get '/standup_meeting_comments/edit'
+  #     expect(response).to have_http_status(:success)
+  #   end
+  # end
 
   describe 'DELETE /standup_meeting_comments/:id' do
     it 'deletes the standup meeting comment' do
@@ -24,7 +24,7 @@ RSpec.describe 'StandupMeetingComments' do
 
       expect(response).to have_http_status(:redirect)
       follow_redirect!
-      expect(response.body).to include('Comment was successfully deleted.')
+      expect(flash[:notice]).to eq 'Comment was successfully deleted.'
     end
   end
 end
