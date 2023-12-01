@@ -25,6 +25,7 @@ class StandupMeetingCommentsController < ApplicationController
 
   def create
     @standup_meeting_comment = @standup_meeting.standup_meeting_comments.new(standup_meeting_comment_params)
+    @standup_meeting_comment.user = current_user
     if @standup_meeting_comment.save
       redirect_to @standup_meeting_comment, notice: 'Comment was successfully created.'
     else

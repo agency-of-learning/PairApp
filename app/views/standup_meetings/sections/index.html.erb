@@ -11,7 +11,7 @@
   <% @standup_meeting.comments(@section).each do |comment| %>
     <div class="flex-1 border rounded-lg leading-relaxed mb-3">
       <div class="bg-gray-100 px-3 py-1 rounded-t-lg">
-        <strong class="text-sm font-semibold">Username</strong> <span class="text-xs text-gray-500">2 hours ago</span>
+        <strong class="text-sm font-semibold"><%= comment.user.first_name %></strong> <span class="text-xs text-gray-500"><%= time_ago_in_words(comment.created_at) %></span>
       </div>
 
       <div class="mt-2 mx-2">
