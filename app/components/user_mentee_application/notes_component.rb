@@ -18,4 +18,8 @@ class UserMenteeApplication::NotesComponent < ViewComponent::Base
     end
     status_and_notes
   end
+
+  def current_status
+    @mentee_application.current_status.to_s.humanize
+  end
 end
