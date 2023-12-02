@@ -14,6 +14,7 @@ class StandupMeetingCommentsController < ApplicationController
 
   def destroy
     @standup_meeting_comment = StandupMeetingComment.find(params[:id])
+    authorize @standup_meeting_comment
     respond_to do |format|
       if @standup_meeting_comment.destroy
         format.html do
