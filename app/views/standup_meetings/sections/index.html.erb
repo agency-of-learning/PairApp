@@ -24,9 +24,7 @@
       
       <div class="mt-4 flex justify-end m-2 text-xs text-gray-500">
         <div class="text-sm hover:text-blue-600 cursor-pointer mr-2">Edit</div>
-        <div class="text-sm hover:text-blue-600 cursor-pointer"><%#= link_to "Delete", standup_meeting_standup_meeting_comment(comment), method:   %></div>
-        <%= link_to 'Delete', standup_meeting_standup_meeting_comment_path(@standup_meeting, comment), method: :delete, data: { turbo_method: :delete } %>
-
+        <div class="text-sm hover:text-blue-600 cursor-pointer">        <%= link_to 'Delete', standup_meeting_standup_meeting_comment_path(@standup_meeting, comment), method: :delete, data: { turbo_method: :delete } %></div>
       </div>
     </div>
   <% end %>
