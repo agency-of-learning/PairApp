@@ -1,5 +1,20 @@
-<div class="pb-5">
-  <h3 class="text-lg font-semibold">Reviewer notes</h3>
-</div>
 
-<%= select_tag "status", options_for_select(status_and_notes.keys, current_status), class: "select select-primary"%>
+<div class="text-md text-base-content/70 mb-3">Reviewer Notes</div>
+
+<div data-controller="select" data-select-notes-value="<%= status_and_notes.to_json %>">
+  <div>
+    <span class="mr-2">Status</span>
+    <%= select_tag "status",
+                    options_for_select(status_and_notes.keys, current_status),
+                    class: "select select-primary",
+                    data: { action:
+                      "change->select#onChange",
+                      "select-target" => "selectTag",
+                    } %>
+  </div>
+
+  <div class="flex gap-2 items-center mt-4">
+    <span class="mr-2">Note</span>
+    <p data-select-target="result" class="border-dotted border-2 rounded-md p-2"></p>
+  </div>
+</div>
