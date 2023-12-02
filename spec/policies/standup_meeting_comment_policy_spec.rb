@@ -4,7 +4,6 @@ RSpec.describe StandupMeetingCommentPolicy, type: :policy do
   subject { described_class }
 
   let(:member) { build(:user) }
-  # let(:not_author_member) { build(:user) }
 
   let(:not_owned_comment) { build(:standup_meeting_comment) }
   let(:authored_comment) { build(:standup_meeting_comment, user: member) }
