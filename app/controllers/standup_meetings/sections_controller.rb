@@ -4,6 +4,4 @@ class StandupMeetings::SectionsController < ApplicationController
     @section = params[:section]
     @question = @standup_meeting.send(@section)
   end
-
-  def create; end
 end
