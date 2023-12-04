@@ -23,5 +23,25 @@
 require 'rails_helper'
 
 RSpec.describe StandupMeeting do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#comments' do
+    let(:standup_meeting) { create(:standup_meeting) }
+    let(:yesterday_section) { 'yesterday_work_description' }
+    let(:today_section) { 'today_work_description' }
+
+    before do
+      create_list(:standup_meeting_comment, 2, standup_meeting: standup_meeting, name: yesterday_section)
+      create_list(:standup_meeting_comment, 3, standup_meeting: standup_meeting, name: 'today_section')
+    end
+
+    it 'returns the comments for the given section' do
+      comments = standup_meeting.comments(yesterday_section)
+      expect(comments.count).to eq(2)
+      expect(comments.all? { |comment| comment.name == yesterday_section }).to be true
+    end
+
+    it 'does not return comments for other sections' do
+      comments = standup_meeting.comments(yesterday_section)
+      expect(comments.all? { |comment| comment.name == today_section }).to be false
+    end
+  end
 end
