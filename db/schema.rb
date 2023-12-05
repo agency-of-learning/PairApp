@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_01_004804) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_04_183915) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -204,6 +204,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_01_004804) do
     t.index ["user_id"], name: "index_standup_meetings_on_user_id"
   end
 
+  create_table "text_reactions", force: :cascade do |t|
+    t.string "rich_text_id"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_text_reactions_on_user_id"
+  end
+
   create_table "user_mentee_application_cohorts", force: :cascade do |t|
     t.daterange "active_date_range", null: false
     t.boolean "active", default: true, null: false
@@ -286,6 +294,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_01_004804) do
   add_foreign_key "standup_meeting_comments", "users"
   add_foreign_key "standup_meetings", "standup_meeting_groups"
   add_foreign_key "standup_meetings", "users"
+  add_foreign_key "text_reactions", "users"
   add_foreign_key "user_mentee_applications", "user_mentee_application_cohorts"
   add_foreign_key "user_mentee_applications", "users"
 end

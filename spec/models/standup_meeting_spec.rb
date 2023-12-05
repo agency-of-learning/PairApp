@@ -29,8 +29,8 @@ RSpec.describe StandupMeeting do
     let(:today_section) { 'today_work_description' }
 
     before do
-      create_list(:standup_meeting_comment, 2, standup_meeting: standup_meeting, name: yesterday_section)
-      create_list(:standup_meeting_comment, 3, standup_meeting: standup_meeting, name: 'today_section')
+      create_list(:standup_meeting_comment, 2, standup_meeting:, name: yesterday_section)
+      create_list(:standup_meeting_comment, 3, standup_meeting:, name: 'today_section')
     end
 
     it 'returns the comments for the given section' do
