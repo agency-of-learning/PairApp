@@ -46,9 +46,19 @@ RSpec.describe StandupMeeting do
   end
 
   describe '#section_content' do
-    it 'returns the rich text content for the given section' do
+    it 'returns the rich text content for yesterday_work_description' do
       content = standup_meeting.section_content(yesterday_section)
       expect(content).to eq(standup_meeting.yesterday_work_description)
+    end
+
+    it 'returns the rich text content for today_work_description' do
+      content = standup_meeting.section_content(today_section)
+      expect(content).to eq(standup_meeting.today_work_description)
+    end
+
+    it 'returns the rich text content for blockers_description' do
+      content = standup_meeting.section_content('blockers_description')
+      expect(content).to eq(standup_meeting.blockers_description)
     end
 
     it 'does not return content for other sections' do
