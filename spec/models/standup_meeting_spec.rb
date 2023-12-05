@@ -23,11 +23,11 @@
 require 'rails_helper'
 
 RSpec.describe StandupMeeting do
-  describe '#comments' do
-    let(:standup_meeting) { create(:standup_meeting) }
-    let(:yesterday_section) { 'yesterday_work_description' }
-    let(:today_section) { 'today_work_description' }
+  let(:standup_meeting) { create(:standup_meeting) }
+  let(:yesterday_section) { 'yesterday_work_description' }
+  let(:today_section) { 'today_work_description' }
 
+  describe '#comments' do
     before do
       create_list(:standup_meeting_comment, 2, standup_meeting:, name: yesterday_section)
       create_list(:standup_meeting_comment, 3, standup_meeting:, name: 'today_section')
@@ -42,6 +42,18 @@ RSpec.describe StandupMeeting do
     it 'does not return comments for other sections' do
       comments = standup_meeting.comments(yesterday_section)
       expect(comments.all? { |comment| comment.name == today_section }).to be false
+    end
+  end
+
+  describe '#section_content' do
+    it 'returns the rich text content for the given section' do
+      content = standup_meeting.section_content(yesterday_section)
+      expect(content).to eq(standup_meeting.yesterday_work_description)
+    end
+
+    it 'does not return content for other sections' do
+      content = standup_meeting.section_content(yesterday_section)
+      expect(content).not_to eq(standup_meeting.today_work_description)
     end
   end
 end
