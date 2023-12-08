@@ -166,10 +166,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_07_143236) do
   end
 
   create_table "rich_text_reactions", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.bigint "rich_text_id", null: false
+    t.string "emoji", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["rich_text_id"], name: "index_rich_text_reactions_on_rich_text_id"
+    t.index ["user_id"], name: "index_rich_text_reactions_on_user_id"
   end
 
   create_table "standup_meeting_groups", force: :cascade do |t|
@@ -280,6 +283,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_07_143236) do
   add_foreign_key "profiles", "users"
   add_foreign_key "resumes", "users"
   add_foreign_key "rich_text_reactions", "action_text_rich_texts", column: "rich_text_id"
+  add_foreign_key "rich_text_reactions", "users"
   add_foreign_key "standup_meetings", "standup_meeting_groups"
   add_foreign_key "standup_meetings", "users"
   add_foreign_key "user_mentee_applications", "user_mentee_application_cohorts"
