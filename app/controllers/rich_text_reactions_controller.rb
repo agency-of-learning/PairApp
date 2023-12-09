@@ -1,0 +1,38 @@
+class RichTextReactionsController < ApplicationController
+  before_action :build_rich_text_reaction, only: %i[create]
+  before_action :set_rich_text_reaction, only: %i[destroy]
+
+  # POST /rich_text_reactions.turbo_stream
+  def create 
+    if @rich_text_reaction.save
+      render :create, status: 201
+    else
+      flash.now[:alert] = "Reaction could not be created."
+    end
+  end
+
+  # DELETE /rich_text_reactions/:id.turbo_stream
+  def destroy
+    unless @rich_text_reaction.destroy
+      flash.now[:alert] = "Reaction could not be deleted."
+    end
+  end
+
+  private
+
+  def build_rich_text_reaction
+    @rich_text_reaction = current_user.rich_text_reactions.build(
+      rich_text_reaction_params
+    )
+  end
+
+  def set_rich_text_reaction
+    @rich_text_reaction = RichTextReaction.find(params[:id])
+  rescue ActiveRecord::RecordNotFound => e
+    flash.now[:alert] = "Reaction could not be found."
+  end
+  
+  def rich_text_reaction_params
+    params.require(:rich_text_reaction).permit(:emoji, :rich_text_id)
+  end
+end
