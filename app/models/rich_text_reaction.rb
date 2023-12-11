@@ -35,7 +35,7 @@ class RichTextReaction < ApplicationRecord
 
   validates :emoji,
     inclusion: {
-      in: EMOJIS.keys,
+      in: EMOJIS.keys.map(&:to_s),
       message: 'must be present in permissible set'
     }
 
