@@ -28,6 +28,8 @@ RSpec.describe StandupMeeting::MeetingUpdateComponent, type: :component do
       expect(page).to have_content(today_work_description)
     end
 
+    # Perhaps there is a simpler way to confirm that a RichTextReactionComponent
+    # is rendered without actually rendering it.
     it "renders a RichTextReactionComponent" do
       rich_text_reaction_page = render_inline(
         RichTextReactionComponent.new(rich_text_id: standup_meeting.today_work_description.id)
