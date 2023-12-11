@@ -27,6 +27,17 @@ RSpec.describe StandupMeeting::MeetingUpdateComponent, type: :component do
 
       expect(page).to have_content(today_work_description)
     end
+
+    it "renders a RichTextReactionComponent" do
+      rich_text_reaction_page = render_inline(
+        RichTextReactionComponent.new(rich_text_id: standup_meeting.today_work_description.id)
+      )
+      render_inline(
+        described_class.new(standup_meeting:, content_type: :today_work_description)
+      )
+
+      expect(page).to have_content(rich_text_reaction_page)
+    end
   end
 
   context 'with no content to display' do
