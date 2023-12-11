@@ -8,17 +8,17 @@ RSpec.describe RichTextReactionComponent, type: :component do
 
     render_inline described_class.new(rich_text_id:)
 
-    expect(page).to have_field(
+    expect(rendered_content).to have_field(
       "rich_text_reaction[rich_text_id]",
       type: :hidden,
       with: rich_text_id
     )
-    expect(page).to have_selector(
+    expect(rendered_content).to have_selector(
       "form[action=\"#{rich_text_reactions_path}\"][method=\"post\"]",
       visible: :false
     )
     RichTextReaction.emojis.keys.each do |emoji|
-      expect(page).to have_button(
+      expect(rendered_content).to have_button(
         "rich_text_reaction[emoji]",
         value: emoji.to_s,
         visible: false
@@ -29,6 +29,6 @@ RSpec.describe RichTextReactionComponent, type: :component do
   it "does not render if the given rich text id is invalid" do
     render_inline described_class.new(rich_text_id: 1)
 
-    expect(page).to have_no_selector("details#emoji-selector")
+    expect(rendered_content).to have_no_selector("details#emoji-selector")
   end
 end
