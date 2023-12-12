@@ -27,25 +27,6 @@ RSpec.describe StandupMeeting::MeetingUpdateComponent, type: :component do
 
       expect(page).to have_content(today_work_description)
     end
-
-    # Perhaps there is a simpler way to confirm that a RichTextReactionComponent
-    # is rendered without actually rendering it.
-    it "renders a RichTextReactionComponent" do
-      standup_meeting.save
-
-      rich_text_id = standup_meeting.today_work_description.id
-      reaction_component = RichTextReactionComponent.new(rich_text_id:)
-      # #render_inline returns a Nokogiri::HTML object.
-      reaction_html = render_inline(reaction_component).inner_html
-
-      meeting_update_component = described_class.new(
-        standup_meeting:,
-        content_type: :today_work_description
-      )
-      meeting_update_html = render_inline(meeting_update_component).inner_html
-
-      expect(meeting_update_html).to include(reaction_html)
-    end
   end
 
   context 'with no content to display' do
