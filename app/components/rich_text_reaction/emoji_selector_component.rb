@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
-class RichTextReactionComponent < ViewComponent::Base
+class RichTextReaction::EmojiSelectorComponent < ViewComponent::Base
   class InvalidRichTextError < StandardError; end
-
-  attr_reader :rich_text_reaction
 
   def initialize(rich_text_id:)
     @rich_text_reaction = RichTextReaction.new(rich_text_id:)
   end
+
+  private
+
+  attr_reader :rich_text_reaction
 
   # Render only if the +ActionText::RichText+ record exists.
   def render?
