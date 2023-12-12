@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe RichTextReactionComponent, type: :component do
+RSpec.describe RichTextReaction::EmojiSelectorComponent, type: :component do
   it "renders the emoji selector for creating a reaction for the given rich text id" do
     rich_text_id = create(:standup_meeting).yesterday_work_description.id
 
