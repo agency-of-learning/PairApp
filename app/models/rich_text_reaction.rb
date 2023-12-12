@@ -22,12 +22,12 @@
 class RichTextReaction < ApplicationRecord
   # Permissible set of emojis for standup updates and comments.
   EMOJIS = {
-    👍: 'thumbs-up',
-    🤔: 'thinking',
-    🎉: 'hooray',
-    🤷: 'shrug',
-    👎: 'thumbs-down',
-    👀: 'eyes'
+    thumbs_up: '👍,',
+    thinking: '🤔',
+    hooray: '🎉',
+    shrug: '🤷',
+    thumbs_down: '👎',
+    eyes: '👀'
   }.freeze
 
   belongs_to :user
@@ -39,9 +39,9 @@ class RichTextReaction < ApplicationRecord
       message: 'must be present in permissible set'
     }
 
-  # Return the text description of an emoji.
-  # e.g. "thumbs-up" for "👍"
-  def emoji_caption
+  # Return the image of an emoji.
+  # e.g. '👍' for 'thumbs_up'
+  def emoji_image
     EMOJIS[emoji.to_sym]
   end
 

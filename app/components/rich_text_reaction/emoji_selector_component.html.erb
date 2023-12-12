@@ -19,9 +19,9 @@
     <%= form_with model: rich_text_reaction do |form| %>
       <%= form.hidden_field :rich_text_id, value: rich_text_reaction.rich_text_id %>
 
-      <% RichTextReaction.emojis.keys.each do |emoji| %>
-        <%= form.button :emoji, value: emoji do %>
-          <%= emoji %>
+      <% RichTextReaction.emojis.each_value do |emoji_image| %>
+        <%= form.button :emoji, value: emoji_image do %>
+          <%= emoji_image %>
         <% end %>
       <% end %>
     <% end %>
