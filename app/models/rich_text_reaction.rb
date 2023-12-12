@@ -22,16 +22,16 @@
 class RichTextReaction < ApplicationRecord
   # Permissible set of emojis for standup updates and comments.
   EMOJIS = {
-    👍: "thumbs-up",
-    🤔: "thinking",
-    🎉: "hooray",
-    🤷: "shrug",
-    👎: "thumbs-down",
-    👀: "eyes"
+    👍: 'thumbs-up',
+    🤔: 'thinking',
+    🎉: 'hooray',
+    🤷: 'shrug',
+    👎: 'thumbs-down',
+    👀: 'eyes'
   }.freeze
 
   belongs_to :user
-  belongs_to :rich_text, class_name: "ActionText::RichText"
+  belongs_to :rich_text, class_name: 'ActionText::RichText'
 
   validates :emoji,
     inclusion: {
