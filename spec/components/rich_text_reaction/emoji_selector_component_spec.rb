@@ -17,10 +17,10 @@ RSpec.describe RichTextReaction::EmojiSelectorComponent, type: :component do
       "form[action=\"#{rich_text_reactions_path}\"][method=\"post\"]",
       visible: :hidden
     )
-    RichTextReaction.emojis.each_key do |emoji|
+    RichTextReaction.emojis.each_value do |emoji_image|
       expect(rendered_content).to have_button(
         'rich_text_reaction[emoji]',
-        value: emoji.to_s,
+        value: emoji_image,
         visible: :hidden
       )
     end
