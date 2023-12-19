@@ -2,12 +2,12 @@
 #
 # Table name: rich_text_reactions
 #
-#  id           :bigint           not null, primary key
-#  emoji        :string           not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  rich_text_id :bigint           not null
-#  user_id      :bigint           not null
+#  id            :bigint           not null, primary key
+#  emoji_caption :string           not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  rich_text_id  :bigint           not null
+#  user_id       :bigint           not null
 #
 # Indexes
 #
@@ -21,33 +21,34 @@
 #
 class RichTextReaction < ApplicationRecord
   # Permissible set of emojis for standup updates and comments.
-  EMOJIS = {
-    thumbs_up: '👍,',
-    thinking: '🤔',
-    hooray: '🎉',
-    shrug: '🤷',
-    thumbs_down: '👎',
-    eyes: '👀'
+  EMOJI_DICT = {
+    'thumbs_up' => '👍',
+    'thinking' => '🤔',
+    'hooray' => '🎉',
+    'shrug' => '🤷',
+    'thumbs_down' => '👎',
+    'eyes' => '👀'
   }.freeze
 
   belongs_to :user
   belongs_to :rich_text, class_name: 'ActionText::RichText'
 
-  validates :emoji,
+  validates :emoji_caption,
     inclusion: {
-      in: EMOJIS.keys.map(&:to_s),
+      in: EMOJI_DICT.keys,
       message: 'must be present in permissible set'
     }
 
-  # Return the image of an emoji.
+  # Return the emoji for the given caption.
   # e.g. '👍' for 'thumbs_up'
-  def emoji_image
-    EMOJIS[emoji.to_sym]
+  def emoji
+    EMOJI_DICT[emoji_caption]
   end
 
   class << self
-    def emojis
-      EMOJIS
+    # convenience method
+    def emoji_captions
+      EMOJI_DICT.keys
     end
   end
 end
