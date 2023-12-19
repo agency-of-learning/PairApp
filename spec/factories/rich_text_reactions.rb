@@ -2,12 +2,12 @@
 #
 # Table name: rich_text_reactions
 #
-#  id           :bigint           not null, primary key
-#  emoji        :string           not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  rich_text_id :bigint           not null
-#  user_id      :bigint           not null
+#  id            :bigint           not null, primary key
+#  emoji_caption :string           not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  rich_text_id  :bigint           not null
+#  user_id       :bigint           not null
 #
 # Indexes
 #
@@ -23,6 +23,6 @@ FactoryBot.define do
   factory :rich_text_reaction do
     user
     rich_text { create(:standup_meeting).yesterday_work_description }
-    emoji { RichTextReaction::EMOJIS.keys.sample }
+    emoji_caption { RichTextReaction.emoji_captions.sample }
   end
 end

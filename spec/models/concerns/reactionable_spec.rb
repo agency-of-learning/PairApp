@@ -14,10 +14,14 @@ RSpec.describe MockModel, type: :model do
       # the first user's update.
       user = standup_meeting.user
       other_user = create(:user)
-      my_reaction = RichTextReaction.emojis.keys.first.to_s
-      other_reaction = RichTextReaction.emojis.keys.second.to_s
-      RichTextReaction.create(emoji: my_reaction, user:, rich_text:)
-      RichTextReaction.create(emoji: other_reaction, user: other_user, rich_text:)
+      my_reaction = RichTextReaction.emoji_captions.first
+      other_reaction = RichTextReaction.emoji_captions.second
+      RichTextReaction.create(emoji_caption: my_reaction, user:, rich_text:)
+      RichTextReaction.create(
+        emoji_caption: other_reaction, 
+        user: other_user,
+        rich_text:
+      )
 
       reactions = subject.reactions(rich_text)
 

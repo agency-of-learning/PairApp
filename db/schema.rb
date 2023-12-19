@@ -168,7 +168,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_07_143236) do
   create_table "rich_text_reactions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "rich_text_id", null: false
-    t.string "emoji", null: false
+    t.string "emoji_caption", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["rich_text_id"], name: "index_rich_text_reactions_on_rich_text_id"

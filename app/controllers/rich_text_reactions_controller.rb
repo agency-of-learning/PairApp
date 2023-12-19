@@ -32,6 +32,6 @@ class RichTextReactionsController < ApplicationController
   end
 
   def rich_text_reaction_params
-    params.require(:rich_text_reaction).permit(:emoji, :rich_text_id)
+    params.require(:rich_text_reaction).permit(:emoji_caption, :rich_text_id)
   end
 end
