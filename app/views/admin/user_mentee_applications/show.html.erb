@@ -11,12 +11,12 @@
         </span>
     </div>
 
-      <span class="p-4 inline mx-auto">
-        <span class="font-bold">Reviewer Note:</span>
-        <%= turbo_frame_tag "#{dom_id(@user_mentee_application)}--note" do %>
-          <%= @user_mentee_application.current_state.note %>
-        <% end %>
-      </span>
+    <hr>
+    <span class="p-4 inline mx-auto text-center">
+      <%= turbo_frame_tag "#{dom_id(@user_mentee_application)}--note" do %>
+        <%= render UserMenteeApplication::NotesComponent.new(mentee_application: @user_mentee_application) %>
+      <% end %>
+    </span>
 
     <span class="pb-4 inline mx-auto">
   
