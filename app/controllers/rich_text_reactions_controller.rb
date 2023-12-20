@@ -28,7 +28,7 @@ class RichTextReactionsController < ApplicationController
   def set_rich_text_reaction
     @rich_text_reaction = RichTextReaction.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    flash.now[:alert] = 'Reaction could not be found.'
+    flash.now[:alert] = "RichTextReaction with id #{params[:id]} could not be found."
   end
 
   def rich_text_reaction_params

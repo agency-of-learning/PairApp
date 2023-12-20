@@ -39,7 +39,7 @@ class RichTextReaction < ApplicationRecord
       message: 'must be present in permissible set'
     }
 
-  # Return the emoji for the given caption.
+  # Return the emoji icon for the caption.
   # e.g. '👍' for 'thumbs_up'
   def emoji
     EMOJI_DICT[emoji_caption]
