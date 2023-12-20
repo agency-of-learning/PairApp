@@ -4,7 +4,7 @@ class MockModel
   include Reactionable
 end
 
-RSpec.describe MockModel, type: :model do
+RSpec.describe MockModel do
   describe '#reactions' do
     let!(:standup_meeting) { create(:standup_meeting) }
     let!(:rich_text) { standup_meeting.yesterday_work_description }
@@ -18,7 +18,7 @@ RSpec.describe MockModel, type: :model do
       other_reaction = RichTextReaction.emoji_captions.second
       RichTextReaction.create(emoji_caption: my_reaction, user:, rich_text:)
       RichTextReaction.create(
-        emoji_caption: other_reaction, 
+        emoji_caption: other_reaction,
         user: other_user,
         rich_text:
       )
