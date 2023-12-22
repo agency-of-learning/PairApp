@@ -21,7 +21,7 @@ RSpec.describe RichTextReaction do
       rich_text_reaction = described_class.new(emoji_caption:)
 
       expect(rich_text_reaction.emoji)
-        .to eq(RichTextReaction::EMOJI_DICT[emoji_caption])
+        .to eq(Emojis::DICTIONARY[emoji_caption])
     end
   end
 end

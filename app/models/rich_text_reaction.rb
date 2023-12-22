@@ -20,35 +20,27 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class RichTextReaction < ApplicationRecord
-  # Permissible set of emojis for standup updates and comments.
-  EMOJI_DICT = {
-    'thumbs_up' => '👍',
-    'thinking' => '🤔',
-    'hooray' => '🎉',
-    'shrug' => '🤷',
-    'thumbs_down' => '👎',
-    'eyes' => '👀'
-  }.freeze
+  include Emojis
 
   belongs_to :user
   belongs_to :rich_text, class_name: 'ActionText::RichText'
 
   validates :emoji_caption,
     inclusion: {
-      in: EMOJI_DICT.keys,
+      in: Emojis::DICTIONARY.keys,
       message: 'must be present in permissible set'
     }
 
   # Return the emoji icon for the caption.
   # e.g. '👍' for 'thumbs_up'
   def emoji
-    EMOJI_DICT[emoji_caption]
+    caption_to_emoji(emoji_caption)
   end
 
   class << self
     # convenience method
     def emoji_captions
-      EMOJI_DICT.keys
+      Emojis::DICTIONARY.keys
     end
   end
 end
