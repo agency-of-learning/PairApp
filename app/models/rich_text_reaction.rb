@@ -19,28 +19,34 @@
 #  fk_rails_...  (rich_text_id => action_text_rich_texts.id)
 #  fk_rails_...  (user_id => users.id)
 #
-class RichTextReaction < ApplicationRecord
-  include Emojis
+require 'emoji'
 
+class RichTextReaction < ApplicationRecord
   belongs_to :user
   belongs_to :rich_text, class_name: 'ActionText::RichText'
 
   validates :emoji_caption,
     inclusion: {
-      in: Emojis::DICTIONARY.keys,
+      in: Emoji.emoji_captions,
       message: 'must be present in permissible set'
     }
 
   # Return the emoji icon for the caption.
   # e.g. '👍' for 'thumbs_up'
   def emoji
-    caption_to_emoji(emoji_caption)
+    Emoji.caption_to_emoji(emoji_caption)
   end
 
-  class << self
-    # convenience method
-    def emoji_captions
-      Emojis::DICTIONARY.keys
-    end
+  # Return all reactions, along with the IDs of users who made the reaction,
+  # for the given +ActionText::RichText+, +rich_text+.
+  def self.reactions(rich_text)
+    result = RichTextReaction.where(rich_text:).pluck(:emoji_caption, :user_id)
+    # e.g. [["thumbs_up", 3], ["thinking", 1]]
+
+    result = result.group_by(&:shift)
+    # e.g. { "thumbs_up" => [[1], [4], [2]], "thinking" => [[3]] }
+
+    result.transform_values(&:flatten)
+    # e.g. { "thumbs_up" => [1, 4, 2], "thinking" => [3] }
   end
 end
