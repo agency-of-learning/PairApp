@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'emoji'
 
 RSpec.describe 'RichTextReaction requests' do
   let!(:user) { create(:user) }
@@ -9,16 +10,18 @@ RSpec.describe 'RichTextReaction requests' do
 
   describe 'POST /rich_text_reactions' do
     it 'creates a rich text reaction' do
-      expect {
-        post rich_text_reactions_url,
-          params: {
-            rich_text_reaction: {
-              emoji_caption: Emoji.emoji_captions.sample,
-              rich_text_id: create(:standup_meeting).yesterday_work_description.id
-            },
-            format: :turbo_stream
-          }
-      }.to change(RichTextReaction, :count).by 1
+      count = RichTextReaction.count
+      params = {
+        rich_text_reaction: {
+          emoji_caption: Emoji.emoji_captions.sample,
+          rich_text_id: create(:standup_meeting).yesterday_work_description.id
+        },
+        format: :turbo_stream
+      }
+
+      post(rich_text_reactions_url, params:)
+
+      expect(RichTextReaction.count).to eq(count + 1)
       expect(response).to have_http_status :created
     end
 
@@ -40,12 +43,9 @@ RSpec.describe 'RichTextReaction requests' do
     it 'deletes a rich text reaction' do
       id = create(:rich_text_reaction).id
 
-      expect {
-        delete rich_text_reaction_url(id),
-          params: {
-            format: :turbo_stream
-          }
-      }.to change(RichTextReaction, :count).by(-1)
+      delete(rich_text_reaction_url(id), params: { format: :turbo_stream })
+
+      expect(RichTextReaction.count).to be_zero
       expect(response).to have_http_status :no_content
     end
 
