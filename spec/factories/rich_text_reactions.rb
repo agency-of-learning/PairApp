@@ -23,6 +23,6 @@ FactoryBot.define do
   factory :rich_text_reaction do
     user
     rich_text { create(:standup_meeting).yesterday_work_description }
-    emoji_caption { RichTextReaction.emoji_captions.sample }
+    emoji_caption { Emoji.emoji_captions.sample }
   end
 end
