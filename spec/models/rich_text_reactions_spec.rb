@@ -26,8 +26,8 @@ RSpec.describe RichTextReaction do
       other_user = create(:user)
       my_reaction = Emoji.emoji_captions.first
       other_reaction = Emoji.emoji_captions.second
-      RichTextReaction.create(emoji_caption: my_reaction, user:, rich_text:)
-      RichTextReaction.create(
+      described_class.create(emoji_caption: my_reaction, user:, rich_text:)
+      described_class.create(
         emoji_caption: other_reaction,
         user: other_user,
         rich_text:
