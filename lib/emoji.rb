@@ -10,12 +10,18 @@ class Emoji
     'EYES' => '👀'
   }.freeze
 
-  class << self
-    def caption_to_emoji(caption)
-      DICTIONARY[caption]
-    end
+  attr_reader :caption
 
-    def emoji_captions
+  def initialize(caption = DICTIONARY.keys.sample)
+    @caption = caption
+  end
+
+  def emoji
+    DICTIONARY[@caption]
+  end
+
+  class << self
+    def captions
       DICTIONARY.keys
     end
 

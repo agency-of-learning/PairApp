@@ -27,15 +27,9 @@ class RichTextReaction < ApplicationRecord
 
   validates :emoji_caption,
     inclusion: {
-      in: Emoji.emoji_captions,
+      in: Emoji.captions,
       message: 'must be present in permissible set'
     }
-
-  # Return the emoji icon for the caption.
-  # e.g. '👍' for 'thumbs_up'
-  def emoji
-    Emoji.caption_to_emoji(emoji_caption)
-  end
 
   # Return all reactions, along with the IDs of users who made the reaction,
   # for the given +ActionText::RichText+, +rich_text+.
