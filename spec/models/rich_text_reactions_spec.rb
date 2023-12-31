@@ -22,7 +22,7 @@ RSpec.describe RichTextReaction do
         reaction = create(:rich_text_reaction)
         create(:rich_text_reaction,
           user: create(:user),
-          rich_text_id: reaction.rich_text_id)  
+          rich_text_id: reaction.rich_text_id)
 
         reactions = described_class.for_rich_text(reaction.rich_text)
 
@@ -39,7 +39,7 @@ RSpec.describe RichTextReaction do
           reaction = create(:rich_text_reaction)
           create(:rich_text_reaction,
             user: create(:user),
-            rich_text_id: reaction.rich_text_id)  
+            rich_text_id: reaction.rich_text_id)
         end
 
         # The ids of the rich texts to find reactions for.
