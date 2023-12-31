@@ -31,16 +31,13 @@ class RichTextReaction < ApplicationRecord
       message: 'must be present in permissible set'
     }
 
-  # Return all reactions, along with the IDs of users who made the reaction,
-  # for the given +ActionText::RichText+, +rich_text+.
-  def self.reactions(rich_text)
-    result = RichTextReaction.where(rich_text:).pluck(:emoji_caption, :user_id)
-    # e.g. [["thumbs_up", 3], ["thinking", 1]]
+  # +rich_text+ can be an ActionText::RichText object or its id.
+  scope :for_rich_text, ->(rich_text) do
+    RichTextReaction.includes(:user).where(rich_text:)
+  end
 
-    result = result.group_by(&:shift)
-    # e.g. { "thumbs_up" => [[1], [4], [2]], "thinking" => [[3]] }
-
-    result.transform_values(&:flatten)
-    # e.g. { "thumbs_up" => [1, 4, 2], "thinking" => [3] }
+  # +rich_texts+ can be an array of ActionText::RichText objects or their ids.
+  scope :for_rich_texts, ->(rich_texts) do
+    for_rich_text(rich_texts)
   end
 end
