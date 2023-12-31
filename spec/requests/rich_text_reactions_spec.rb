@@ -13,7 +13,7 @@ RSpec.describe 'RichTextReaction requests' do
       count = RichTextReaction.count
       params = {
         rich_text_reaction: {
-          emoji_caption: Emoji.emoji_captions.sample,
+          emoji_caption: Emoji.captions.sample,
           rich_text_id: create(:standup_meeting).yesterday_work_description.id
         },
         format: :turbo_stream
@@ -29,7 +29,7 @@ RSpec.describe 'RichTextReaction requests' do
       post rich_text_reactions_url,
         params: {
           rich_text_reaction: {
-            emoji_caption: Emoji.emoji_captions.sample,
+            emoji_caption: Emoji.captions.sample,
             rich_text_id: 2
           },
           format: :turbo_stream

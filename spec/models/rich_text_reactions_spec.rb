@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe RichTextReaction do
   it 'is valid with an emoji in the permissible set' do
-    emoji_caption = Emoji.emoji_captions.sample
+    emoji_caption = Emoji.captions.sample
     rich_text_reaction = described_class.new(emoji_caption:)
 
     expect(rich_text_reaction.errors[:emoji_caption]).to be_empty
@@ -24,8 +24,8 @@ RSpec.describe RichTextReaction do
       # the first user's update.
       user = standup_meeting.user
       other_user = create(:user)
-      my_reaction = Emoji.emoji_captions.first
-      other_reaction = Emoji.emoji_captions.second
+      my_reaction = Emoji.captions.first
+      other_reaction = Emoji.captions.second
       described_class.create(emoji_caption: my_reaction, user:, rich_text:)
       described_class.create(
         emoji_caption: other_reaction,
