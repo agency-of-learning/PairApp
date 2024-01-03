@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe StandupMeetings::Update, type: :component do
+RSpec.describe StandupMeetings::UpdateComponent, type: :component do
   let(:owner) { build(:user) }
 
   context 'with an update to display' do

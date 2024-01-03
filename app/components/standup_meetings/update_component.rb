@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StandupMeetings::Update < ViewComponent::Base
+class StandupMeetings::UpdateComponent < ViewComponent::Base
   with_collection_parameter :update
 
   # +update+ is a string/text
