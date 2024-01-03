@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe StandupMeeting::CheckInActionComponent, type: :component do
+RSpec.describe StandupMeetings::CheckInActionComponent, type: :component do
   let(:user) { create(:user) }
   let(:standup_meeting_group) { create(:standup_meeting_group) }
   let(:standup_meeting) { create(:standup_meeting, status:, user:) }

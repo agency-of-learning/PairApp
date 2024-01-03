@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StandupMeeting::MeetingColumnComponent < ViewComponent::Base
+class StandupMeetings::MeetingColumnComponent < ViewComponent::Base
   def initialize(title:)
     @title = title
   end

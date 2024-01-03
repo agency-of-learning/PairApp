@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe StandupMeeting::SkipButtonComponent, type: :component do
+RSpec.describe StandupMeetings::SkipButtonComponent, type: :component do
   let(:user) { create(:user) }
   let(:standup_meeting_group) { create(:standup_meeting_group) }
   let(:standup_meeting) { create(:standup_meeting, user:, standup_meeting_group:, status:) }

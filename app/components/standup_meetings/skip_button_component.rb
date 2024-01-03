@@ -1,4 +1,4 @@
-class StandupMeeting::SkipButtonComponent < ViewComponent::Base
+class StandupMeetings::SkipButtonComponent < ViewComponent::Base
   STATUS_POLICIES = {
     skip: StandupMeeting::SkipPolicy
   }.freeze

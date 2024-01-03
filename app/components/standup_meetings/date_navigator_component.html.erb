@@ -17,7 +17,7 @@
       </span>
     </div>
   <% end %>
-  <%= render StandupMeeting::DateJumperComponent.new(standup_meeting_group:, meeting_date:) %>
+  <%= render StandupMeetings::DateJumperComponent.new(standup_meeting_group:, meeting_date:) %>
   <% if next_standup_meeting? %>
     <%= link_to standup_meeting_group_standup_meetings_path(
       standup_meeting_group, 

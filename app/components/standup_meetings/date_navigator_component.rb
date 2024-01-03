@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StandupMeeting::DateNavigatorComponent < ViewComponent::Base
+class StandupMeetings::DateNavigatorComponent < ViewComponent::Base
   def initialize(standup_meeting_group:, meeting_date:)
     @standup_meeting_group = standup_meeting_group
     @meeting_date = meeting_date

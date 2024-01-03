@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe StandupMeeting::DateNavigatorComponent, type: :component do
+RSpec.describe StandupMeetings::DateNavigatorComponent, type: :component do
   let(:standup_meeting_group) { create(:standup_meeting_group) }
   let(:meeting_date) { Date.current }
 

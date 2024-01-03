@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StandupMeeting::CheckInActionComponent < ViewComponent::Base
+class StandupMeetings::CheckInActionComponent < ViewComponent::Base
   def initialize(standup_meeting_group:, standup_meeting:, current_user:)
     @standup_meeting_group = standup_meeting_group
     @standup_meeting = standup_meeting

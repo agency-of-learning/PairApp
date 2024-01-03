@@ -8,7 +8,7 @@
   </div>
   <div class="py-4 flex flex-col md:flex-row justify-between">
     <h1 class="text-3xl font-bold text-center md:text-left">Standup - <%= @meeting_date %></h1>
-    <%= render StandupMeeting::DateNavigatorComponent.new(
+    <%= render StandupMeetings::DateNavigatorComponent.new(
       standup_meeting_group: @standup_meeting_group, 
       meeting_date: @meeting_date
     ) %>
@@ -23,12 +23,12 @@
       ) %>
     </div>
     <div id="cta-actions" class="flex mx-auto sm:mx-0">
-      <%= render StandupMeeting::SkipButtonComponent.new(
+      <%= render StandupMeetings::SkipButtonComponent.new(
         standup_meeting_group: @standup_meeting_group,
         standup_meeting: @current_user_standup_meeting,
         current_user:
       ) %>
-      <%= render StandupMeeting::CheckInActionComponent.new(
+      <%= render StandupMeetings::CheckInActionComponent.new(
         standup_meeting_group:@standup_meeting_group,
         standup_meeting: @current_user_standup_meeting,
         current_user:,
@@ -48,18 +48,23 @@
     <div class="divider my-0"></div>
 
     <div class="flex flex-col lg:flex-row justify-evenly" data-tabs-target="panel">
-      <%= render StandupMeeting::MeetingColumnComponent.new(title: "Previous Work Day") do |component| %>
-        <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@completed_meetings, content_type: :yesterday_work_description) %>
+      <%= render StandupMeetings::MeetingColumnComponent.new(title: "Previous Work Day") do |component| %>
+        <% @yesterday_updates.each do |yesterday_update| %>
+          <%= render StandupMeetings::UpdateComponent.new(yesterday_update.update, yesterday_update.owner) %>
+        <% end %>
       <% end %>
-      <%= render StandupMeeting::MeetingColumnComponent.new(title: "Today's Work Day") do |component| %>
-        <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@completed_meetings, content_type: :today_work_description) %>
+
+      <%= render StandupMeetings::MeetingColumnComponent.new(title: "Today's Work Day") do |component| %>
+        <%= render StandupMeetings::MeetingUpdateComponent.with_collection(@completed_meetings, content_type: :today_work_description) %>
       <% end %>
-      <%= render StandupMeeting::MeetingColumnComponent.new(title: "Blockers") do |component| %>
-        <%= render StandupMeeting::MeetingUpdateComponent.with_collection(@completed_meetings, content_type: :blockers_description) %>
+
+      <%= render StandupMeetings::MeetingColumnComponent.new(title: "Blockers") do |component| %>
+        <%= render StandupMeetings::MeetingUpdateComponent.with_collection(@completed_meetings, content_type: :blockers_description) %>
       <% end %>
     </div>
+
     <div class="hidden" data-tabs-target="panel">
-      <%= render StandupMeeting::MeetingRowComponent.with_collection(@completed_meetings) %>
+      <%= render StandupMeetings::MeetingRowComponent.with_collection(@completed_meetings) %>
     </div>
   </div>
 </div>
