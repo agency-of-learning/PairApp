@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class StandupMeetings::UpdateComponent < ViewComponent::Base
-  with_collection_parameter :rich_text_with_reaction
+  with_collection_parameter :standup_meeting
 
   def initialize(standup_meeting:, content_type:)
     @standup_meeting = standup_meeting
@@ -12,7 +12,7 @@ class StandupMeetings::UpdateComponent < ViewComponent::Base
   private
 
   def standup_content
-    @standup_content ||= standup_meeting.public_send(@content_type)
+    @standup_content ||= @standup_meeting.public_send(@content_type)
   end
 
   def user_full_name

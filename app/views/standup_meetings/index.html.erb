@@ -48,23 +48,30 @@
     <div class="divider my-0"></div>
 
     <div class="flex flex-col lg:flex-row justify-evenly" data-tabs-target="panel">
-      <%= render StandupMeetings::MeetingColumnComponent.new(title: "Previous Work Day") do |component| %>
-        <% @yesterday_updates.each do |yesterday_update| %>
-          <%= render StandupMeetings::UpdateComponent.new(yesterday_update.update, yesterday_update.owner) %>
-        <% end %>
+      <%= render StandupMeetings::ColumnComponent.new(title: "Previous Work Day") do%>
+        <%= render StandupMeetings::UpdateComponent.with_collection(
+              @completed_meetings,
+              content_type: :yesterday_work_description
+            ) %>
       <% end %>
 
-      <%= render StandupMeetings::MeetingColumnComponent.new(title: "Today's Work Day") do |component| %>
-        <%= render StandupMeetings::MeetingUpdateComponent.with_collection(@completed_meetings, content_type: :today_work_description) %>
+      <%= render StandupMeetings::ColumnComponent.new(title: "Today's Work Day") do %>
+        <%= render StandupMeetings::UpdateComponent.with_collection(
+              @completed_meetings,
+              content_type: :today_work_description
+            ) %>
       <% end %>
 
-      <%= render StandupMeetings::MeetingColumnComponent.new(title: "Blockers") do |component| %>
-        <%= render StandupMeetings::MeetingUpdateComponent.with_collection(@completed_meetings, content_type: :blockers_description) %>
+      <%= render StandupMeetings::ColumnComponent.new(title: "Blockers") do %>
+        <%= render StandupMeetings::UpdateComponent.with_collection(
+              @completed_meetings,
+              content_type: :blockers_description
+            ) %>
       <% end %>
     </div>
 
     <div class="hidden" data-tabs-target="panel">
-      <%= render StandupMeetings::MeetingRowComponent.with_collection(@completed_meetings) %>
+      <%= render StandupMeetings::RowComponent.with_collection(@completed_meetings) %>
     </div>
   </div>
 </div>

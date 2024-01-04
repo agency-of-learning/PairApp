@@ -11,12 +11,13 @@ class StandupMeetingsController < ApplicationController
     @standup_meeting_group = StandupMeetingGroup.includes(:users)
                                                 .find(params[:standup_meeting_group_id])
     authorize @standup_meeting_group, policy_class: StandupMeetingPolicy
-    @standup_meetings = @standup_meeting_group.standup_meetings
-                          .includes(:user,
-                            :rich_text_yesterday_work_description,
-                            :rich_text_today_work_description,
-                            :rich_text_blockers_description)
-                          .where(meeting_date: @meeting_date)
+    @standup_meetings = @standup_meeting_group
+                        .standup_meetings
+                        .includes(:user,
+                          :rich_text_yesterday_work_description,
+                          :rich_text_today_work_description,
+                          :rich_text_blockers_description)
+                        .where(meeting_date: @meeting_date)
     @current_user_standup_meeting = @standup_meetings.detect do |meeting|
       meeting.user == current_user
     end || @standup_meeting_group.standup_meetings.new(
