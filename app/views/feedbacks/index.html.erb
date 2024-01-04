@@ -20,13 +20,13 @@
 
     <div class="flex flex-col gap-4 p-4 border border-t-0 rounded-b-md" data-tabs-target="panel">
       <% @given_feedback.each do |item| %>
-        <%= render Feedback::ItemComponent.new(feedback: item, current_user:) %>
+        <%= render Feedbacks::ItemComponent.new(feedback: item, current_user:) %>
       <% end %>
     </div>
 
     <div class="flex flex-col gap-4 p-4 border border-t-0 rounded-b-md" data-tabs-target="panel">
       <% @received_feedback.each do |item| %>
-        <%= render Feedback::ItemComponent.new(feedback: item, current_user:) %>
+        <%= render Feedbacks::ItemComponent.new(feedback: item, current_user:) %>
       <% end %>
     </div>
   </div>

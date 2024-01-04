@@ -1,0 +1,12 @@
+<%= tag.div(id: dom_id(standup_meeting_group), class: "card card-bordered w-80 shadow-md") do %>
+  <div class="card-body flex p-4 ">
+    <div class="flex justify-between items-center">
+      <h4 class="font-bold text-2xl"><%= link_to standup_meeting_group, standup_meeting_group_standup_meetings_path(standup_meeting_group) %></h4>
+      <%= render StandupMeetings::CheckInActionComponent.new(standup_meeting_group:, standup_meeting:, current_user: user) %>
+    </div>
+    <div class="flex items-center">
+      <%= render StandupMeetingGroups::CheckInStatusComponent.new(standup_meeting_group:, current_user: user) %>
+      <%= render StandupMeetings::SkipButtonComponent.new(standup_meeting:, standup_meeting_group:, current_user: user) %>
+    </div>
+  </div>
+<% end %>
