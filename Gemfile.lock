@@ -146,7 +146,7 @@ GEM
       railties (>= 5.0.0)
     faker (3.2.1)
       i18n (>= 1.8.11, < 2)
-    ffi (1.15.5)
+    ffi (1.16.3)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
@@ -363,7 +363,7 @@ GEM
     ruby-graphviz (1.2.5)
       rexml
     ruby-progressbar (1.13.0)
-    ruby-vips (2.1.4)
+    ruby-vips (2.2.0)
       ffi (~> 1.12)
     ruby_http_client (3.5.5)
     rubyzip (2.3.2)
