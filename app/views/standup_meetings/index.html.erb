@@ -16,7 +16,7 @@
 
   <div id="check-in-cta" class="p-4 border-2 border-neutral rounded-md my-4 flex flex-col space-y-4 sm:flex-row sm:space-y-0 justify-between">
     <div class="flex items-center">
-      <%= render StandupMeetingGroup::CheckInStatusComponent.new(
+      <%= render StandupMeetingGroups::CheckInStatusComponent.new(
         standup_meeting_group: @standup_meeting_group,
         current_user:,
         variant: :large
