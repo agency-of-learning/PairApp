@@ -21,8 +21,15 @@
 #
 FactoryBot.define do
   factory :rich_text_reaction do
+    # +rich_text_owner+ can be given by the user of this factory, and it may
+    # be any persisted ActiveRecord model record. By default, a User record is
+    # used.
+    transient do
+      rich_text_owner { user }
+    end
+
     user
-    rich_text { create(:standup_meeting).yesterday_work_description }
     emoji_caption { Emoji.captions.sample }
+    rich_text { association(:action_text_rich_text, rich_text_owner:) }
   end
 end
