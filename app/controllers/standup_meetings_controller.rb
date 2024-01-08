@@ -8,7 +8,8 @@ class StandupMeetingsController < ApplicationController
         date: Date.current.strftime('%m-%d-%Y'))
     end
 
-    @standup_meeting_group = StandupMeetingGroup.find(params[:standup_meeting_group_id])
+    @standup_meeting_group = StandupMeetingGroup.includes(:standup_meetings)
+                                                .find(params[:standup_meeting_group_id])
 
     authorize @standup_meeting_group, policy_class: StandupMeetingPolicy
     @standup_meetings = @standup_meeting_group

@@ -14,7 +14,9 @@ class StandupMeetingGroups::CheckInStatusComponent < ViewComponent::Base
   def initialize(standup_meeting_group:, current_user:, variant: :small)
     @standup_meeting_group = standup_meeting_group
     @user = current_user
-    @standup_meeting = @standup_meeting_group.standup_meetings.find_by(user_id: @user.id, meeting_date: Date.current)
+    @standup_meeting = @standup_meeting_group.standup_meetings.detect do |meeting|
+      meeting.user_id == @user.id && meeting.meeting_date == Date.current
+    end
     @variant = variant
   end
 
