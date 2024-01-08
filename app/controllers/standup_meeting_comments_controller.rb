@@ -1,5 +1,6 @@
 class StandupMeetingCommentsController < ApplicationController
   before_action :set_standup_meeting, only: %i[create]
+
   def edit; end
 
   def create
