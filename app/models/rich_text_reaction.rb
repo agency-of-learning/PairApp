@@ -30,4 +30,14 @@ class RichTextReaction < ApplicationRecord
       in: Emoji.captions,
       message: 'must be present in permissible set'
     }
+
+  # +rich_text+ can be an ActionText::RichText object or its id.
+  scope :for_rich_text, ->(rich_text) do
+    RichTextReaction.includes(:user).where(rich_text:)
+  end
+
+  # +rich_texts+ can be an array of ActionText::RichText objects or their ids.
+  scope :for_rich_texts, ->(rich_texts) do
+    for_rich_text(rich_texts)
+  end
 end
