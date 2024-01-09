@@ -1,3 +1,3 @@
 <% if @feedback.referenceable_type == 'PairRequest' %>
-  <%= render PairRequest::ShowComponent.new(pair_request: @feedback.referenceable, current_user:) %>
+  <%= render PairRequests::ShowComponent.new(pair_request: @feedback.referenceable, current_user:) %>
 <% end %>
