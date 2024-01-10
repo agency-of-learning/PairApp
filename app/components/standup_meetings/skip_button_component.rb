@@ -1,6 +1,6 @@
 class StandupMeetings::SkipButtonComponent < ViewComponent::Base
   STATUS_POLICIES = {
-    skip: StandupMeeting::SkipPolicy
+    skip: StandupMeetings::SkipPolicy
   }.freeze
 
   def initialize(standup_meeting:, standup_meeting_group:, current_user:)
