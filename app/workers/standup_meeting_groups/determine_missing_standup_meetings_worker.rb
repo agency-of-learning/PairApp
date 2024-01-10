@@ -1,4 +1,4 @@
-class StandupMeetingGroup
+module StandupMeetingGroups
   class DetermineMissingStandupMeetingsWorker < ApplicationWorker
     sidekiq_options queue: 'default'
 
