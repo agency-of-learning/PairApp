@@ -1,4 +1,4 @@
-class PairRequest::CompletionNotification < Noticed::Base
+class PairRequests::CompletionNotification < Noticed::Base
   deliver_by :email,
     mailer: 'PairRequestMailer',
     method: :notify_invitee_of_completed_pairing_session

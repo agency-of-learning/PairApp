@@ -1,4 +1,4 @@
-class PairRequest
+module PairRequests
   class AutoExpireWorker < ApplicationWorker
     sidekiq_options queue: 'low'
 

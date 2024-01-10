@@ -1,7 +1,7 @@
 class PairRequests::AcceptancesController < ApplicationController
   def create
     @pair_request = PairRequest.find(params[:pair_request_id])
-    authorize @pair_request, policy_class: PairRequest::AcceptancePolicy
+    authorize @pair_request, policy_class: PairRequests::AcceptancePolicy
     @pair_request.accepted!
     send_notifications
 

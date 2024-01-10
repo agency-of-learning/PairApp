@@ -1,4 +1,4 @@
-class PairRequest::CompletionReminderNotification < Noticed::Base
+class PairRequests::CompletionReminderNotification < Noticed::Base
   deliver_by :database,
     if: :pair_request_accepted?
 

@@ -1,4 +1,4 @@
-class PairRequest::AcceptanceNotification < Noticed::Base
+class PairRequests::AcceptanceNotification < Noticed::Base
   deliver_by :email,
     mailer: 'PairRequestMailer',
     method: :notify_author_of_accepted_request
