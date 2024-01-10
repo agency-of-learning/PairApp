@@ -1,4 +1,4 @@
-class StandupMeeting
+module StandupMeetings
   class AutoMissedMeetingWorker < ApplicationWorker
     sidekiq_options queue: 'low'
 

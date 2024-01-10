@@ -39,7 +39,7 @@ module StandupMeetingGroups
       # Ideally though we would just batch these at that point.
       standup_meeting_groups.each do |standup_meeting_group|
         standup_meeting_group.user_ids.each do |user_id|
-          StandupMeeting::CreateDraftWorker.perform_async(
+          StandupMeetings::CreateDraftWorker.perform_async(
             standup_meeting_group.id,
             user_id,
             current_date.to_s

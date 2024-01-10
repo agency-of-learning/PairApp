@@ -1,4 +1,4 @@
-class StandupMeeting
+module StandupMeetings
   class CreateDraftWorker < ApplicationWorker
     sidekiq_options queue: 'default'
 

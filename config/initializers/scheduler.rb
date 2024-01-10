@@ -19,5 +19,5 @@ s.every '15m' do
 end
 
 s.every '24h' do
-  StandupMeeting::AutoMissedMeetingWorker.perform_async
+  StandupMeetings::AutoMissedMeetingWorker.perform_async
 end

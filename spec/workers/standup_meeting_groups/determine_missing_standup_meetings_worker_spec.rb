@@ -20,7 +20,7 @@ RSpec.describe StandupMeetingGroups::DetermineMissingStandupMeetingsWorker do
       end
 
       it 'does not create any additional jobs (fanout)' do
-        expect(StandupMeeting::CreateDraftWorker).not_to receive(:perform_async)
+        expect(StandupMeetings::CreateDraftWorker).not_to receive(:perform_async)
 
         described_class.new.perform(0, 60)
       end
@@ -34,7 +34,7 @@ RSpec.describe StandupMeetingGroups::DetermineMissingStandupMeetingsWorker do
       end
 
       it 'does not create any additional jobs' do
-        expect(StandupMeeting::CreateDraftWorker).not_to receive(:perform_async)
+        expect(StandupMeetings::CreateDraftWorker).not_to receive(:perform_async)
 
         described_class.new.perform(0, 60)
       end
@@ -46,7 +46,7 @@ RSpec.describe StandupMeetingGroups::DetermineMissingStandupMeetingsWorker do
       end
 
       it 'creates a job for that standup_meeting_group' do
-        expect(StandupMeeting::CreateDraftWorker).to receive(:perform_async).with(
+        expect(StandupMeetings::CreateDraftWorker).to receive(:perform_async).with(
           standup_meeting_group.id, user.id, current_date.to_s
         )
 
@@ -60,11 +60,11 @@ RSpec.describe StandupMeetingGroups::DetermineMissingStandupMeetingsWorker do
         end
 
         it 'creates a job for that standup_meeting_group' do
-          expect(StandupMeeting::CreateDraftWorker).to receive(:perform_async).with(
+          expect(StandupMeetings::CreateDraftWorker).to receive(:perform_async).with(
             standup_meeting_group.id, user.id, current_date.to_s
           )
 
-          expect(StandupMeeting::CreateDraftWorker).to receive(:perform_async).with(
+          expect(StandupMeetings::CreateDraftWorker).to receive(:perform_async).with(
             standup_meeting_group.id, other_user.id, current_date.to_s
           )
 
@@ -76,7 +76,7 @@ RSpec.describe StandupMeetingGroups::DetermineMissingStandupMeetingsWorker do
         let(:active) { false }
 
         it 'does not create any additional jobs' do
-          expect(StandupMeeting::CreateDraftWorker).not_to receive(:perform_async)
+          expect(StandupMeetings::CreateDraftWorker).not_to receive(:perform_async)
 
           described_class.new.perform(0, 60)
         end
