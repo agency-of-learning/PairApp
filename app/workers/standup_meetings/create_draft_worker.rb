@@ -13,7 +13,7 @@ module StandupMeetings
 
       user = standup_meeting.user
 
-      StandupMeeting::DraftCreationNotification.with(standup_meeting:).deliver_later(user)
+      StandupMeetings::DraftCreationNotification.with(standup_meeting:).deliver_later(user)
     end
   end
 end

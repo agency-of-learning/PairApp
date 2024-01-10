@@ -2,14 +2,14 @@
 
 <div class="p-2 sm:p-0">
   <div class="mx-auto max-w-sm">
-    <%= render UserMenteeApplication::ReapplyCtaComponent.new(
+    <%= render UserMenteeApplications::ReapplyCtaComponent.new(
       active_cohort: @active_cohort,
       last_application: @most_recent_application
     ) %>
     <% if @most_recent_application&.active? && @most_recent_application&.in_review? || @most_recent_application&.application_received? %>
       <h2 class="text-xl font-bold mb-2">In Review</h2>
       <ul>
-        <%= render UserMenteeApplication::ListItemComponent.new(mentee_application: @most_recent_application) %>
+        <%= render UserMenteeApplications::ListItemComponent.new(mentee_application: @most_recent_application) %>
       </ul>
     <% end %>
 
@@ -18,7 +18,7 @@
       <h2 class="text-xl font-bold mb-2">Past Applications</h2>
       <ul>
         <% @user_past_applications.each do |mentee_application| %>
-          <%= render UserMenteeApplication::ListItemComponent.new(mentee_application:) %>
+          <%= render UserMenteeApplications::ListItemComponent.new(mentee_application:) %>
         <% end %>
       </ul>
     <% end %>

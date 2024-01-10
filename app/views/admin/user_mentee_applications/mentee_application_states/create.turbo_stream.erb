@@ -10,7 +10,7 @@
 <% end %>
 
 <%= turbo_stream.update "#{dom_id(@user_mentee_application)}--note" do %>
-  <%= render UserMenteeApplication::NotesComponent.new(mentee_application: @user_mentee_application) %>
+  <%= render UserMenteeApplications::NotesComponent.new(mentee_application: @user_mentee_application) %>
 <% end %>
 
 <%= turbo_stream.update "#{dom_id(@user_mentee_application)}--manage" do %>
