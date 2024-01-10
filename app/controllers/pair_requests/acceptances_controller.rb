@@ -12,7 +12,11 @@ class PairRequests::AcceptancesController < ApplicationController
   private
 
   def send_notifications
-    PairRequest::AcceptanceNotification.with(pair_request: @pair_request).deliver(@pair_request.author)
-    PairRequest::CompletionReminderNotification.with(pair_request: @pair_request).deliver(@pair_request.author)
+    PairRequests::AcceptanceNotification
+      .with(pair_request: @pair_request)
+      .deliver(@pair_request.author)
+    PairRequests::CompletionReminderNotification
+      .with(pair_request: @pair_request)
+      .deliver(@pair_request.author)
   end
 end
