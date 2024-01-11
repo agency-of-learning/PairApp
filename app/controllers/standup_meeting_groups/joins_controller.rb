@@ -7,7 +7,8 @@ class StandupMeetingGroups::JoinsController < ApplicationController
     @my_standup_meeting_groups = policy_scope(StandupMeetingGroup).includes(:standup_meeting_groups_users,
       :standup_meetings)
 
-    authorize [:standup_meeting_groups, @standup_meeting_group_user]
+    authorize @standup_meeting_group_user,
+      policy_class: StandupMeetingGroups::JoinPolicy
 
     join_message = "You have joined #{@standup_meeting_group.name}!"
     flash.now[:notice] = join_message if @standup_meeting_group_user.save
@@ -20,7 +21,8 @@ class StandupMeetingGroups::JoinsController < ApplicationController
                                  .includes(:standup_meeting_groups_users,
                                    :standup_meetings)
 
-    authorize [:standup_meeting_groups, @standup_meeting_group_user]
+    authorize @standup_meeting_group_user,
+      policy_class: StandupMeetingGroups::JoinPolicy
 
     @standup_meeting_group_user.destroy
     respond_to do |format|
