@@ -5,17 +5,18 @@ require 'rails_helper'
 RSpec.describe PairRequests::CompletionReminderNotification, type: :notifier do
   include ActiveJob::TestHelper
 
-  let(:pair_request) { create(:pair_request, status: :accepted) }
-
-  subject(:notification) { described_class.with(pair_request:) }
-
-  after do
-    clear_enqueued_jobs
-  end
+  let(:pair_request) { create(:pair_request) }
 
   describe 'deliver notification of accepted pair request' do
+    subject(:notification) { described_class.with(pair_request:) }
+
     before do
+      pair_request.status = :accepted
       notification.deliver(pair_request.author)
+    end
+
+    after do
+      clear_enqueued_jobs
     end
 
     it 'persists the notification in the database' do
@@ -27,4 +28,3 @@ RSpec.describe PairRequests::CompletionReminderNotification, type: :notifier do
     end
   end
 end
-
