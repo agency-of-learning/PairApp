@@ -17,3 +17,5 @@ module StandupMeetings
     end
   end
 end
+
+StandupMeeting::CreateDraftWorker = StandupMeetings::CreateDraftWorker

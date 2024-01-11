@@ -10,3 +10,5 @@ module PairRequests
     # rubocop:enable Rails/SkipsModelValidations
   end
 end
+
+PairRequest::AutoExpireWorker = PairRequests::AutoExpireWorker

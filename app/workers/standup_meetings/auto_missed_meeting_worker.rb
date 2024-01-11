@@ -12,3 +12,5 @@ module StandupMeetings
     # rubocop:enable Rails/SkipsModelValidations
   end
 end
+
+StandupMeeting::AutoMissedMeetingWorker = StandupMeetings::AutoMissedMeetingWorker

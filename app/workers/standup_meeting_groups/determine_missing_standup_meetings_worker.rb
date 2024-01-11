@@ -49,3 +49,5 @@ module StandupMeetingGroups
     end
   end
 end
+
+StandupMeetingGroup::DetermineMissingStandupMeetingsWorker = StandupMeetingGroups::DetermineMissingStandupMeetingsWorker
