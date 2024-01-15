@@ -72,23 +72,25 @@ module MenteeApplicationTransitionService
   private
 
   def code_challenge_sent_side_effects(application)
-    MenteeApplication::CodeChallengeSentNotification.deliver(application.user)
+    UserMenteeApplications::CodeChallengeSentNotification.deliver(application.user)
   end
 
   def coding_challenge_approved_side_effects(application)
-    MenteeApplication::CodeChallengeApprovedNotification.deliver(application.user)
+    UserMenteeApplications::CodeChallengeApprovedNotification.deliver(application.user)
   end
 
   def accepted_side_effects(application)
-    MenteeApplication::AcceptanceNotification.with(application:).deliver(application.user)
+    UserMenteeApplications::AcceptanceNotification
+      .with(application:)
+      .deliver(application.user)
     application.user.update!(role: User.roles[:member])
   end
 
   def rejected_side_effects(application)
-    MenteeApplication::RejectionNotification.deliver(application.user)
+    UserMenteeApplications::RejectionNotification.deliver(application.user)
   end
 
   def withdrawn_side_effects(application)
-    MenteeApplication::WithdrawalNotification.deliver(application.user)
+    UserMenteeApplications::WithdrawalNotification.deliver(application.user)
   end
 end

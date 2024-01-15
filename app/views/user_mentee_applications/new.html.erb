@@ -4,7 +4,7 @@
 
 <%= form_with model: @user_mentee_application, local: true, html: { class: 'max-w-prose mx-auto' } do |form| %>
   <div class='flex flex-col ml-5 mr-5'>
-    <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Tell us about your journey') do %>
+    <%= render UserMenteeApplications::SectionComponent.new(header_text: 'Tell us about your journey') do %>
       <div class="flex flex-col mb-5">
         <%= form.label :learned_to_code, 'How did you learn to code?', class: 'label-text mb-1' %>
         <%= form.text_area :learned_to_code, class: 'textarea textarea-bordered', required: true, data: { controller: 'textarea-autogrow' } %>
@@ -15,7 +15,7 @@
       </div>
     <% end %>
 
-    <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Tell us about your interest in the Agency of Learning') do %>
+    <%= render UserMenteeApplications::SectionComponent.new(header_text: 'Tell us about your interest in the Agency of Learning') do %>
       <div class="flex flex-col mb-5">
         <%= form.label :reason_for_applying, 'Why are you here?', class: 'label-text mb-1' %>
         <%= form.collection_select :reason_for_applying,
@@ -43,7 +43,7 @@
       </div>
     <% end %>
 
-    <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Current Location Information') do %>
+    <%= render UserMenteeApplications::SectionComponent.new(header_text: 'Current Location Information') do %>
       <div class="flex flex-col form-control">
         <%= form.label :city, class: 'label-text mb-1' %>
         <%= form.text_field :city, class: 'input input-bordered mb-2', required: true %>
@@ -60,7 +60,7 @@
       </div>
     <% end %>
 
-    <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Job Hunting Information') do %>
+    <%= render UserMenteeApplications::SectionComponent.new(header_text: 'Job Hunting Information') do %>
       <div class="flex flex-col form-control">
         <%= form.label :linkedin_url, class: 'label-text mb-1' %>
         <%= form.text_field :linkedin_url, class: 'input input-bordered mb-2' %>
@@ -78,7 +78,7 @@
       </div>
     <% end %>
 
-    <%= render UserMenteeApplication::SectionComponent.new(header_text: 'Additional Information') do %>
+    <%= render UserMenteeApplications::SectionComponent.new(header_text: 'Additional Information') do %>
       <div class="flex flex-col form-control">
         <%= form.label :additional_information, 'Anything else we should know?', class: 'label-text mb-1' %>
         <%= form.text_area :additional_information, class: 'textarea textarea-bordered', data: { controller: 'textarea-autogrow' } %>
