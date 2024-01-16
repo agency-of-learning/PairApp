@@ -166,7 +166,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_01_004804) do
   end
 
   create_table "standup_meeting_comments", force: :cascade do |t|
-    t.string "name"
+    t.string "section_name", null: false
     t.bigint "standup_meeting_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

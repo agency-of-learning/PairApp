@@ -3,7 +3,7 @@
 # Table name: standup_meeting_comments
 #
 #  id                 :bigint           not null, primary key
-#  name               :string
+#  section_name       :string           not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  standup_meeting_id :bigint           not null
