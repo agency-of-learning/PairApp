@@ -29,19 +29,19 @@ RSpec.describe StandupMeeting do
 
   describe '#comments' do
     before do
-      create_list(:standup_meeting_comment, 2, standup_meeting:, name: yesterday_section)
-      create_list(:standup_meeting_comment, 3, standup_meeting:, name: 'today_section')
+      create_list(:standup_meeting_comment, 2, standup_meeting:, section_name: yesterday_section)
+      create_list(:standup_meeting_comment, 3, standup_meeting:, section_name: 'today_section')
     end
 
     it 'returns the comments for the given section' do
       comments = standup_meeting.comments(yesterday_section)
       expect(comments.count).to eq(2)
-      expect(comments.all? { |comment| comment.name == yesterday_section }).to be true
+      expect(comments.all? { |comment| comment.section_name == yesterday_section }).to be true
     end
 
     it 'does not return comments for other sections' do
       comments = standup_meeting.comments(yesterday_section)
-      expect(comments.all? { |comment| comment.name == today_section }).to be false
+      expect(comments.all? { |comment| comment.section_name == today_section }).to be false
     end
   end
 
