@@ -10,14 +10,14 @@ require 'rufus-scheduler'
 s = Rufus::Scheduler.singleton
 
 s.every '30m' do
-  PairRequest::AutoExpireWorker.perform_async
+  PairRequests::AutoExpireWorker.perform_async
 end
 
 # This does a longer look ahead to account for failures and ensure nothing is missed.
 s.every '15m' do
-  StandupMeetingGroup::DetermineMissingStandupMeetingsWorker.perform_async(0, 60)
+  StandupMeetingGroups::DetermineMissingStandupMeetingsWorker.perform_async(0, 60)
 end
 
 s.every '24h' do
-  StandupMeeting::AutoMissedMeetingWorker.perform_async
+  StandupMeetings::AutoMissedMeetingWorker.perform_async
 end

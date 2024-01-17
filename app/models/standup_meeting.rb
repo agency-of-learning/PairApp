@@ -26,6 +26,8 @@ class StandupMeeting < ApplicationRecord
   belongs_to :standup_meeting_group, inverse_of: :standup_meetings
   belongs_to :user
 
+  # Under the hood, Rails calls a `has_one :rich_text_yesterday_work_description`,
+  # so we can do `StandupMeeting.includes(:rich_text_yesterday_work_description).
   has_rich_text :yesterday_work_description
   has_rich_text :today_work_description
   has_rich_text :blockers_description

@@ -1,2 +1,3 @@
 ignore:
   - "app/controllers"
+  - "config/initializers/scheduler.rb"

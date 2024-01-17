@@ -12,15 +12,17 @@ export default class extends Controller {
   static targets = ['invitee', 'inviteeTz', 'inviterRequestTime', 'inviteeInfo'];
 
   static values = {
-    input: String,
+    datetime: String,
   };
 
   onClick() {
-    if (this.inviterRequestTimeTarget.value && this.inviteeInfoTarget.value !== '') {
-      const time = this.inputValue;
-      const { timeZoneIdentifier } = this.inviteeInfoTarget.selectedOptions[0].dataset;
-      const { timeZoneDisplayName } = this.inviteeInfoTarget.selectedOptions[0].dataset;
+    if (this.inviterRequestTimeTarget.value && this.inviteeIsSelected) {
+      const { timeZoneIdentifier, timeZoneDisplayName } = this.setTimeZones();
+      let time = this.datetimeValue;
 
+      if (time === '') {
+        time = this.inviterRequestTimeTarget.value;
+      }
       this.setInviteeSchedule(timeZoneIdentifier, time, timeZoneDisplayName);
     } else {
       this.inviteeTzTarget.textContent = '';
@@ -29,18 +31,13 @@ export default class extends Controller {
   }
 
   date(event) {
-    this.inputValue = event.target.value;
+    this.datetimeValue = event.target.value;
 
-    if (this.inviteeInfoTarget.selectedOptions[0].dataset && this.inviteeInfoTarget.value !== '') {
-      const { timeZoneIdentifier } = this.inviteeInfoTarget.selectedOptions[0].dataset;
-      const { timeZoneDisplayName } = this.inviteeInfoTarget.selectedOptions[0].dataset;
-      const inviterTimeZoneIdentifier = this.inviteeInfoTarget
-        .selectedOptions[0]
-        .dataset
-        .userTimeZone;
+    if (this.inviteeInfoTarget.selectedOptions[0].dataset && this.inviteeIsSelected) {
+      const { timeZoneIdentifier, timeZoneDisplayName, userTimeZone } = this.setTimeZones();
 
-      this.setInviteeSchedule(timeZoneIdentifier, this.inputValue, timeZoneDisplayName);
-      this.setUserSchedule(inviterTimeZoneIdentifier, event.target.value);
+      this.setInviteeSchedule(timeZoneIdentifier, this.datetimeValue, timeZoneDisplayName);
+      this.setUserSchedule(userTimeZone, event.target.value);
     } else {
       this.inviteeTzTarget.textContent = '';
       this.inviteeTarget.textContent = '';
@@ -48,8 +45,8 @@ export default class extends Controller {
   }
 
   setInviteeSchedule(timeZoneIdentifier, time, timeZoneDisplayName) {
-    const result = dayjs(time).tz(timeZoneIdentifier).format('MM/DD/YYYY, hh:mm A');
-    this.inviteeTzTarget.textContent = (`(${timeZoneDisplayName})`);
+    const result = dayjs(time).tz(timeZoneIdentifier).format('YYYY-MM-DD, hh:mm a');
+    this.inviteeTzTarget.textContent = (`${timeZoneDisplayName}`);
     this.inviteeTarget.textContent = (`${result}`);
   }
 
@@ -57,5 +54,19 @@ export default class extends Controller {
     const result = dayjs(time).tz(timeZoneIdentifier).format('YYYY-MM-DDTHH:mm');
 
     this.inviterRequestTimeTarget.value = result;
+  }
+
+  setTimeZones() {
+    const {
+      timeZoneIdentifier,
+      timeZoneDisplayName,
+      userTimeZone,
+    } = this.inviteeInfoTarget.selectedOptions[0].dataset;
+
+    return { timeZoneIdentifier, timeZoneDisplayName, userTimeZone };
+  }
+
+  inviteeIsSelected() {
+    return this.inviteeInfoTarget.value !== '';
   }
 }

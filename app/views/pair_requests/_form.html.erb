@@ -1,33 +1,34 @@
 <%= turbo_frame_tag "new_request_form" do %>
   <%= form_with(model: pair_request, class: 'p-4 mx-auto border-2 border-neutral rounded-md flex flex-col') do |form| %>
     <div id="form-container" class='flex flex-col space-y-4 xl:space-y-0 xl:max-w-full xl:inline-flex xl:justify-around xl:space-x-4 xl:flex-row object-contain' data-controller="pair-requests-form">  
-      <div class="flex justify-between space-x-4 align-middle items-center ">
-         <%= form.label :invitee_id, class: "label label-text" %>
-         <%= form.select :invitee_id, nil, { :include_blank => "Please select" }, { class: "select select-primary", data: { action: "change->pair-requests-form#onClick", "pair-requests-form-target" => "inviteeInfo"}} do %>
-          <% User.agents.excluding(current_user).each do |invitee| %>
-            <%= tag.option(invitee.full_name, value: invitee.id, data: { "time-zone-identifier" => invitee.time_zone_identifier, "time-zone-display-name" => invitee.time_zone, "user-time-zone" => current_user.time_zone_identifier}) %>
+      <div class="flex flex-col justify-around gap-4">
+        <div class="flex justify-between space-x-4 align-middle items-center ">
+           <%= form.label :invitee_id, class: "label label-text" %>
+           <%= form.select :invitee_id, nil, { :include_blank => "Please select" }, { class: "select select-primary", data: { action: "change->pair-requests-form#onClick", "pair-requests-form-target" => "inviteeInfo"}} do %>
+            <% User.agents.excluding(current_user).each do |invitee| %>
+              <%= tag.option(invitee.full_name, value: invitee.id, data: { "time-zone-identifier" => invitee.time_zone_identifier, "time-zone-display-name" => invitee.time_zone, "user-time-zone" => current_user.time_zone_identifier}) %>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
+        <div class="flex justify-between space-x-4 align-middle items-center">
+          <%= form.label :duration, 'Duration (minutes)', class: "label label-text"  %>
+          <%= form.number_field :duration, value: 15, in: 15..180, step: 15, required: true, class: 'input input-primary input-md w-36' %>
+        </div>
       </div>
 
-      <div class="w-full flex flex-col justify-between grow" >
-       <div class=" flex space-x-1 align-middle items-center justify-between">
-          <%= form.label :when, class: "inline-block label label-text pr-2.5" %>
-          <p class="label label-text grow break-words"><%= "(#{current_user.time_zone})" %></p>
-          <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date", "pair-requests-form-target" => "inviterRequestTime", "pair-requests-form-input-value" => ""}, class: "input input-primary input-md w-max" %>
-        </div>
+      <fieldset class="border border-neutral rounded-md p-4">
+        <legend>When</legend>
         
-        <div class="space-x-1 align-middle inline-flex justify-center">
-         <p class="label label-text">Invitee</p>
-         <p data-pair-requests-form-target="inviteeTz" class="label label-text break-words w-full"></p>
-         <strong class="label label-text w-full" id="invitee" data-value="" data-pair-requests-form-target="invitee"></strong>
+        <div class="grid grid-cols-4">
+          <%= form.label :when, "My time zone: ", class: "inline-block label label-text pr-2.5" %>
+          <p class="label label-text grow break-words"><%= current_user.time_zone %></p>
+          <%= form.datetime_field :when, required: true, data: {action: "input->pair-requests-form#date", "pair-requests-form-target" => "inviterRequestTime", "pair-requests-form-datetime-value" => ""}, class: "input input-primary input-md w-max col-span-2 justify-self-end" %>
+      
+          <p class="label label-text">Invitee's time zone: </p>
+          <p data-pair-requests-form-target="inviteeTz" class="label label-text break-words w-full"></p>
+          <strong class="label label-text w-full inline-block text-right col-span-2 justify-self-end" id="invitee" data-value="" data-pair-requests-form-target="invitee"></strong>
         </div>
-      </div>
-
-      <div class="flex justify-between space-x-4 align-middle items-center">
-        <%= form.label :duration, 'Duration (minutes)', class: "label label-text"  %>
-        <%= form.number_field :duration, value: 15, in: 15..180, step: 15, required: true, class: 'input input-primary input-md w-36' %>
-      </div>
+      </fieldset>
 
       <div class='ml-auto flex items-center'>
         <%= form.submit "Create Pair Request", class: 'btn btn-primary' %>

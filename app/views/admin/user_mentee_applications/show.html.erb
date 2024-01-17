@@ -11,12 +11,12 @@
         </span>
     </div>
 
-      <span class="p-4 inline mx-auto">
-        <span class="font-bold">Reviewer Note:</span>
-        <%= turbo_frame_tag "#{dom_id(@user_mentee_application)}--note" do %>
-          <%= @user_mentee_application.current_state.note %>
-        <% end %>
-      </span>
+    <hr>
+    <span class="p-4 inline mx-auto text-center">
+      <%= turbo_frame_tag "#{dom_id(@user_mentee_application)}--note" do %>
+        <%= render UserMenteeApplications::NotesComponent.new(mentee_application: @user_mentee_application) %>
+      <% end %>
+    </span>
 
     <span class="pb-4 inline mx-auto">
   
@@ -41,7 +41,7 @@
       </dl>
     </div>
 
-  <%= render UserMenteeApplication::SectionComponent.new(header_text: "Tell us about your journey") do %>
+  <%= render UserMenteeApplications::SectionComponent.new(header_text: "Tell us about your journey") do %>
     <div class="flex flex-col mb-5">
       <label class='label label-text font-semibold'>How did you learn to code?</label>
       <p><%= @user_mentee_application.learned_to_code %></p>
@@ -53,7 +53,7 @@
     </div>
   <% end %>
 
-  <%= render UserMenteeApplication::SectionComponent.new(header_text: "Tell us about your interest in the Agency of Learning") do %>
+  <%= render UserMenteeApplications::SectionComponent.new(header_text: "Tell us about your interest in the Agency of Learning") do %>
     <div class="flex flex-col mb-5">
       <label class='label label-text font-semibold'>Why are you here?</label>
       <p><%= @user_mentee_application.reason_for_applying %></p>
@@ -68,7 +68,7 @@
     </div>
   <% end %>
 
-  <%= render UserMenteeApplication::SectionComponent.new(header_text: "Current Location Information") do %>
+  <%= render UserMenteeApplications::SectionComponent.new(header_text: "Current Location Information") do %>
     <div class="flex flex-col">
       <label class='label label-text font-semibold'>City:</label>
       <p><%= @user_mentee_application.city %></p>
@@ -83,7 +83,7 @@
     </div>
   <% end %>
 
-  <%= render UserMenteeApplication::SectionComponent.new(header_text: "Job Hunting Information") do %>
+  <%= render UserMenteeApplications::SectionComponent.new(header_text: "Job Hunting Information") do %>
     <div class="flex flex-col">
       <label class='label label-text font-semibold'>LinkedIn URL:</label>
       <a href="<%= @user_mentee_application.linkedin_url %>" target="_blank"><%= @user_mentee_application.linkedin_url %></a>
@@ -100,7 +100,7 @@
     <% end %>
   <% end %>
 
-  <%= render UserMenteeApplication::SectionComponent.new(header_text: "Additional Information") do %>
+  <%= render UserMenteeApplications::SectionComponent.new(header_text: "Additional Information") do %>
     <div class="flex flex-col">
       <label class='label label-text font-semibold'>Anything else we should know?</label>
       <p><%= @user_mentee_application.additional_information %></p>

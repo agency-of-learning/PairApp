@@ -73,4 +73,6 @@ Rails.application.routes.draw do
   scope controller: :static do
     get :faq
   end
+
+  resources :rich_text_reactions, only: %i[create destroy]
 end

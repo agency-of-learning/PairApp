@@ -11,18 +11,18 @@
   </div>
   <div id="check-in-cta" class="p-4 border-2 border-neutral rounded-md my-4 flex flex-col space-y-4 sm:flex-row sm:space-y-0 justify-between">
     <div class="flex items-center">
-      <%= render StandupMeetingGroup::CheckInStatusComponent.new(standup_meeting_group:, current_user:, variant: :large) %>
+      <%= render StandupMeetingGroups::CheckInStatusComponent.new(standup_meeting_group:, current_user:, variant: :large) %>
     </div>
     <div id="cta-actions" class="flex mx-auto sm:mx-0">
-      <%= render StandupMeeting::SkipButtonComponent.new(standup_meeting_group:, standup_meeting: current_user_standup_meeting, current_user:) %>
-      <%= render StandupMeeting::CheckInActionComponent.new(standup_meeting_group:, standup_meeting: current_user_standup_meeting, current_user:) %>
+      <%= render StandupMeetings::SkipButtonComponent.new(standup_meeting_group:, standup_meeting: current_user_standup_meeting, current_user:) %>
+      <%= render StandupMeetings::CheckInActionComponent.new(standup_meeting_group:, standup_meeting: current_user_standup_meeting) %>
     </div>
   </div>
   <div class="divider my-4 "></div>
   <div class="flex flex-col">
     <div class="flex flex-col md:flex-row justify-between">
       <h1 class="text-2xl text-center md:text-left">Previous Standups</h1>
-      <%= render StandupMeeting::DateJumperComponent.new(
+      <%= render StandupMeetings::DateJumperComponent.new(
         standup_meeting_group: standup_meeting_group,
         meeting_date: Date.current
       ) %>

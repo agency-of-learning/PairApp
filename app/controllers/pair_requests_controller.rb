@@ -4,7 +4,9 @@ class PairRequestsController < ApplicationController
   # GET /pair_requests or /pair_requests.json
   def index
     @pair_request = PairRequest.new
+    @pair_request.when = Time.current.to_fs(:year_month_day_24h_time)
     filter = params[:filter] == 'past' ? :past : :upcoming
+
     @pair_requests = policy_scope(PairRequest).public_send(filter).order_by_status.order_by_date
   end
 
@@ -21,7 +23,7 @@ class PairRequestsController < ApplicationController
 
     respond_to do |format|
       if @pair_request.save
-        PairRequest::CreationNotification.with(pair_request: @pair_request).deliver(@pair_request.invitee)
+        PairRequests::CreationNotification.with(pair_request: @pair_request).deliver(@pair_request.invitee)
         format.html { redirect_to @pair_request, notice: 'Pair request was successfully created.' }
         format.turbo_stream do
           @persisted_pair_request = @pair_request

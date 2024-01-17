@@ -1,12 +1,12 @@
 <div class="max-w-prose mx-auto">
   <% if policy(@profile).edit? %>
-    <%= render Profile::VisibilityToggleComponent.new(profile: @profile) %>
+    <%= render Profiles::VisibilityToggleComponent.new(profile: @profile) %>
     <div class="flex justify-center mb-4 px-8 sm:justify-end">
       <%= link_to "Edit Profile", edit_profile_path(@profile), class: 'btn btn-outline btn-sm text-right' %>
     </div>
   <% end %>
   <div class="flex flex-col items-center justify-center mb-2 sm:flex-row">
-    <%= render Profile::PictureComponent.new(profile: @profile) %>
+    <%= render Profiles::PictureComponent.new(profile: @profile) %>
     <div class="text-center px-4 sm:text-left">
       <h1 class="text-2xl font-bold"><%= @profile %></h1>
       <p class="text-xl"><%= @profile.job_title %></p>
@@ -19,7 +19,7 @@
         <% end %>
       </div>
       <div class="flex justify-center sm:justify-start gap-3">
-        <%= render Profile::LinkComponent.with_collection(Profile::LINK_TYPES, profile: @profile) %>
+        <%= render Profiles::LinkComponent.with_collection(Profile::LINK_TYPES, profile: @profile) %>
       </div>
     </div>
   </div>
