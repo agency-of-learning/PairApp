@@ -28,7 +28,7 @@ class MenteeApplicationState < ApplicationRecord
 
   enum status: {
     application_received: 0,
-    coding_challenge_sent: 1,
+    coding_challenge: 1,
     coding_challenge_received: 2,
     coding_challenge_approved: 3,
     phone_screen_scheduled: 4,

@@ -29,7 +29,7 @@ RSpec.describe MenteeApplicationState do
   context 'when status is application received' do
     describe 'future_state' do
       it 'returns the future state as coding challenge sent' do
-        expect(mentee_application_state.future_state).to eq(:coding_challenge_sent)
+        expect(mentee_application_state.future_state).to eq(:coding_challenge)
       end
     end
 
@@ -48,7 +48,7 @@ RSpec.describe MenteeApplicationState do
 
   context 'when status is coding challenge sent' do
     let(:mentee_application_state) do
-      create(:mentee_application_state, :coding_challenge_sent, user_mentee_application: mentee_application)
+      create(:mentee_application_state, :coding_challenge, user_mentee_application: mentee_application)
     end
 
     describe 'future_state' do
@@ -65,8 +65,8 @@ RSpec.describe MenteeApplicationState do
       context 'when the user is on application_received state' do
         let(:previous_mentee_application_state) { mentee_application_state.previous_state }
 
-        it 'returns the next state as coding_challenge_sent' do
-          expect(previous_mentee_application_state.next_state.status.to_sym).to eq(:coding_challenge_sent)
+        it 'returns the next state as coding_challenge' do
+          expect(previous_mentee_application_state.next_state.status.to_sym).to eq(:coding_challenge)
         end
       end
     end

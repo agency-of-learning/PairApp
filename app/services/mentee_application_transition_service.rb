@@ -6,9 +6,9 @@ module MenteeApplicationTransitionService
   STATUS_TRANSITION_MAPPING = {
     application_received: {
       valid_transitions: %i[promote reject withdrawn],
-      promote_transition: :coding_challenge_sent
+      promote_transition: :coding_challenge
     },
-    coding_challenge_sent: {
+    coding_challenge: {
       valid_transitions: %i[promote withdrawn],
       promote_transition: :coding_challenge_received
     },
@@ -53,7 +53,7 @@ module MenteeApplicationTransitionService
     application.mentee_application_states.create!(status: transition_status, reviewer:, note:)
     # handle side effects
     case transition_status
-    when :coding_challenge_sent then code_challenge_sent_side_effects(application)
+    when :coding_challenge then code_challenge_sent_side_effects(application)
     when :coding_challenge_approved then coding_challenge_approved_side_effects(application)
     when :accepted then accepted_side_effects(application)
     when :rejected then rejected_side_effects(application)

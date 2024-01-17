@@ -109,7 +109,7 @@ RSpec.describe UserMenteeApplication do
     end
 
     context "when the status is 'in_review" do
-      let(:status) { :coding_challenge_sent }
+      let(:status) { :coding_challenge }
 
       it 'is available' do
         expect(mentee_application.action_available?).to be true
