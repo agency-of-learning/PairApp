@@ -77,4 +77,6 @@ Rails.application.routes.draw do
       resources :sections, only: %i[create show index]
     end
   end
+
+  resources :rich_text_reactions, only: %i[create destroy]
 end

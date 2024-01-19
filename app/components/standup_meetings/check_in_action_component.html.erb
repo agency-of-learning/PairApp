@@ -1,0 +1,5 @@
+<% if standup_meeting_exists? %>
+  <%= link_to action, edit_standup_meeting_path, class: 'btn btn-primary' %>
+<% else %>
+  <%= button_to "Check in", create_standup_meeting_path, class: 'btn btn-primary' %>
+<% end %>

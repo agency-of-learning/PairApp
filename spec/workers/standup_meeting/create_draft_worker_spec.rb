@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe StandupMeeting::CreateDraftWorker do
+RSpec.describe StandupMeetings::CreateDraftWorker do
   let(:current_date) { Date.parse('2020-01-01') }
 
   describe '#perform' do

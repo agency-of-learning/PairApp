@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe StandupMeeting::AutoMissedMeetingWorker do
+RSpec.describe StandupMeetings::AutoMissedMeetingWorker do
   context 'when the meeting is a draft meeting' do
     let!(:new_draft_meeting) { create(:standup_meeting) }
     let!(:old_draft_meeting) { create(:standup_meeting, meeting_date: 8.days.ago) }

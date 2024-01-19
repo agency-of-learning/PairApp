@@ -76,6 +76,8 @@ class User < ApplicationRecord
 
   has_many :mentee_applications, class_name: 'UserMenteeApplication', dependent: :destroy
 
+  has_many :rich_text_reactions, dependent: :destroy
+
   # rubocop:disable Rails/InverseOf
   has_one :current_resume, -> { where(current: true) }, class_name: 'Resume', dependent: nil
   # rubocop:enable Rails/InverseOf

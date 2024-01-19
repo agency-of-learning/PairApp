@@ -1,0 +1,18 @@
+<div class="p-2 border shadow-lg rounded-lg max-w-prose mx-auto flex-1">
+  <%= tag.turbo_frame(id: dom_id(feedback)) do %>
+    <div class="flex justify-between items-center">
+      <%= heading(class: "text-lg") %>
+      <%= render Feedbacks::EditButtonComponent.new(feedback:, current_user: user) %>
+    </div>
+    <div>
+      <% if feedback.completed? %>
+        <div class="p-2">
+          <p><span class="font-bold">Rating:</span> <%= feedback.overall_rating %>/5</p>
+        </div>
+        <%= render Feedbacks::QuestionComponent.with_collection(questions) %>
+      <% else %>
+        <p class="p-4">Awaiting completion of feedback.</p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
