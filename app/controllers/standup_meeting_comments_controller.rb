@@ -34,6 +34,6 @@ class StandupMeetingCommentsController < ApplicationController
   end
 
   def standup_meeting_comment_params
-    params.require(:standup_meeting_comment).permit(:content, :name, :standup_meeting_id)
+    params.require(:standup_meeting_comment).permit(:content, :section_name, :standup_meeting_id)
   end
 end

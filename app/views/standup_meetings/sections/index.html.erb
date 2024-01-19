@@ -30,7 +30,7 @@
   <div class="border-t-4 border-gray-300 mt-4">
     <div>Add a comment</div>
     <%= form_with model:[@standup_meeting, StandupMeetingComment.new], html: { class: 'border rounded-lg mt-4 p-2' } do |f| %>
-      <%= f.hidden_field :name, value: @section %>
+      <%= f.hidden_field :section_name, value: @section %>
 
       <div class="flex flex-col justify-between space-y-2 mb-4">
         <%= f.rich_text_area :content, class:"textarea textarea-bordered" %>
