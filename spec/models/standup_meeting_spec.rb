@@ -66,4 +66,14 @@ RSpec.describe StandupMeeting do
       expect(content).not_to eq(standup_meeting.today_work_description)
     end
   end
+
+  describe '#allowed_section?' do
+    it 'returns true for allowed section' do
+      expect(standup_meeting.allowed_section?(yesterday_section)).to be true
+    end
+
+    it 'returns false for disallowed section' do
+      expect(standup_meeting.allowed_section?('invalid_section')).to be false
+    end
+  end
 end
