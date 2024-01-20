@@ -8,10 +8,4 @@ class StandupMeetingCommentPolicy < ApplicationPolicy
   def edit?
     user == standup_meeting_comment.user
   end
-
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
-  end
 end
