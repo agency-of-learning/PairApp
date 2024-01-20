@@ -175,6 +175,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_07_143236) do
     t.index ["user_id"], name: "index_rich_text_reactions_on_user_id"
   end
 
+  create_table "standup_meeting_comments", force: :cascade do |t|
+    t.string "section_name", null: false
+    t.bigint "standup_meeting_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["standup_meeting_id"], name: "index_standup_meeting_comments_on_standup_meeting_id"
+    t.index ["user_id"], name: "index_standup_meeting_comments_on_user_id"
+  end
+
   create_table "standup_meeting_groups", force: :cascade do |t|
     t.string "name", null: false
     t.boolean "active", default: true, null: false
@@ -284,6 +294,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_07_143236) do
   add_foreign_key "resumes", "users"
   add_foreign_key "rich_text_reactions", "action_text_rich_texts", column: "rich_text_id"
   add_foreign_key "rich_text_reactions", "users"
+  add_foreign_key "standup_meeting_comments", "standup_meetings"
+  add_foreign_key "standup_meeting_comments", "users"
   add_foreign_key "standup_meetings", "standup_meeting_groups"
   add_foreign_key "standup_meetings", "users"
   add_foreign_key "user_mentee_applications", "user_mentee_application_cohorts"

@@ -28,6 +28,7 @@ class StandupMeetingsController < ApplicationController
     )
     @completed_meetings = @standup_meetings.filter(&:completed?)
   end
+
   # rubocop:enable Metrics/AbcSize
 
   def edit

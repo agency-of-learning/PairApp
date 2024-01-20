@@ -23,6 +23,8 @@
 class StandupMeeting < ApplicationRecord
   has_noticed_notifications
 
+  has_many :standup_meeting_comments, dependent: :destroy
+
   belongs_to :standup_meeting_group, inverse_of: :standup_meetings
   belongs_to :user
 
@@ -36,6 +38,8 @@ class StandupMeeting < ApplicationRecord
 
   validates :meeting_date, presence: true
 
+  ALLOWED_SECTIONS = %w[yesterday_work_description today_work_description blockers_description].freeze
+
   enum status: {
     draft: 0,
     completed: 1,
@@ -44,4 +48,23 @@ class StandupMeeting < ApplicationRecord
   }
 
   scope :for_member, ->(user, group) { where(user:, standup_meeting_group: group) }
+
+  def comments(section)
+    standup_meeting_comments.where(section_name: section)
+  end
+
+  def section_content(section)
+    case section
+    when 'yesterday_work_description'
+      yesterday_work_description
+    when 'today_work_description'
+      today_work_description
+    when 'blockers_description'
+      blockers_description
+    end
+  end
+
+  def allowed_section?(secion_name)
+    ALLOWED_SECTIONS.include?(secion_name)
+  end
 end

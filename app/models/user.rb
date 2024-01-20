@@ -82,6 +82,8 @@ class User < ApplicationRecord
   has_one :current_resume, -> { where(current: true) }, class_name: 'Resume', dependent: nil
   # rubocop:enable Rails/InverseOf
 
+  has_many :standup_meeting_comments, dependent: :destroy
+
   validates :first_name, presence: true
   validates :last_name, presence: true
 
