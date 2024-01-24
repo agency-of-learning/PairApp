@@ -1,3 +1,5 @@
+require 'emoji'
+
 class StandupMeetingsController < ApplicationController
   # rubocop:disable Metrics/AbcSize
   def index
