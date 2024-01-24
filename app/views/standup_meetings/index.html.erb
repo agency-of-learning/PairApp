@@ -48,24 +48,24 @@
 
     <div class="flex flex-col lg:flex-row justify-evenly" data-tabs-target="panel">
       <%= render StandupMeetings::ColumnComponent.new(title: "Previous Work Day") do%>
-        <%= render StandupMeetings::UpdateComponent.with_collection(
-              @completed_meetings,
-              content_type: :yesterday_work_description
-            ) %>
+        <% @completed_meetings.each do |standup_meeting| %>
+          <%= render partial: "update",
+                locals: { standup_meeting:, content_type: :yesterday_work_description } %>
+        <% end %>
       <% end %>
 
       <%= render StandupMeetings::ColumnComponent.new(title: "Today's Work Day") do %>
-        <%= render StandupMeetings::UpdateComponent.with_collection(
-              @completed_meetings,
-              content_type: :today_work_description
-            ) %>
+        <% @completed_meetings.each do |standup_meeting| %>
+          <%= render partial: "update",
+                locals: { standup_meeting:, content_type: :today_work_description } %>
+        <% end %>
       <% end %>
 
       <%= render StandupMeetings::ColumnComponent.new(title: "Blockers") do %>
-        <%= render StandupMeetings::UpdateComponent.with_collection(
-              @completed_meetings,
-              content_type: :blockers_description
-            ) %>
+        <% @completed_meetings.each do |standup_meeting| %>
+          <%= render partial: "update",
+                locals: { standup_meeting:, content_type: :blockers_description } %>
+        <% end %>
       <% end %>
     </div>
 

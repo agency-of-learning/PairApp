@@ -1,0 +1,8 @@
+<%# locals required: standup_meeting, content_type %>
+
+<div class="border p-4 flex flex-col  justify-between mt-4">
+  <%= render StandupMeetings::UpdateComponent.new(
+        standup_meeting:,
+        content_type:
+      ) %>
+</div>
