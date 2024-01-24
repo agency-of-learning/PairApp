@@ -1,0 +1,21 @@
+<%#
+Locals required for this partial:
+- rich_text_id: Id of the ActionText::RichText that the new RichTextReaction
+                belongs to
+%>
+
+<details>
+  <%# <summary> is used as the button for the selector %>
+  <summary class="list-marker-none cursor-pointer">
+    <%= render inline: Rails.root.join('app/assets/images/smiley_face.svg').read %>
+  </summary>
+
+  <%= form_with url: rich_text_reactions_path do |form| %>
+    <%= form.hidden_field :rich_text_id, value: rich_text_id %>
+
+    <%# `Emoji` is at lib/emoji.rb %>
+    <% emojis.each do |emoji| %>
+      <%= form.button emoji.emoji, value: emoji.caption %>
+    <% end %>
+  <% end %>
+</details>
