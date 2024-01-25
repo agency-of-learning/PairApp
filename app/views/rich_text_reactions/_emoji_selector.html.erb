@@ -6,19 +6,23 @@ Helpers used:
 - app/helpers/emojis_helper
 %>
 
-<details>
-  <%# <summary> is used as the button for the selector %>
-  <summary class="list-marker-none cursor-pointer">
-    <%= render inline: Rails.root.join('app/assets/images/smiley_face.svg').read %>
-  </summary>
+<div class="relative">
+  <details>
+    <summary class="list-marker-none cursor-pointer">
+      <%= render inline: Rails.root.join('app/assets/images/smiley_face.svg').read %>
+    </summary>
 
-  <%= form_with model: RichTextReaction.new do |form| %>
-    <%= form.hidden_field :rich_text_id, value: rich_text_id %>
- 
-    <% all_emojis.each do |emoji| %>
-      <%= form.button :emoji_caption, value: emoji.caption do %>
-        <%= emoji.emoji %>
+    <div class="absolute bottom-6 z-100
+                bg-gray-100 border border-gray-300 rounded-lg p-1">
+      <%= form_with model: RichTextReaction.new do |form| %>
+        <%= form.hidden_field :rich_text_id, value: rich_text_id %>
+     
+        <% all_emojis.each do |emoji| %>
+          <%= form.button :emoji_caption, value: emoji.caption, class: "mx-1" do %>
+            <%= emoji.emoji %>
+          <% end %>
+        <% end %>
       <% end %>
-    <% end %>
-  <% end %>
-</details>
+    </div>
+  </details>
+</div>

@@ -4,7 +4,7 @@ Locals required:
 - user: the owner User of rich_text
 %>
 
-<div class="border p-4 flex flex-col  justify-between mt-4">
+<div class="border p-4 flex flex-col justify-between mt-4">
   <%= render RichTextComponent.new(rich_text:, user:) %>
   <%= render partial: "rich_text_reactions/emoji_selector", locals: { rich_text_id: rich_text.id } %>
 </div>
