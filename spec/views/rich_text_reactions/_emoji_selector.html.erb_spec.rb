@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'rich_text_reactions/_emoji_selector.html.erb', type: :view do
+RSpec.describe 'rich_text_reactions/_emoji_selector.html.erb' do
   it 'renders a form to create a new rich text reaction' do
     rich_text_id = create(:rich_text_reaction).rich_text_id
 
@@ -18,7 +18,7 @@ RSpec.describe 'rich_text_reactions/_emoji_selector.html.erb', type: :view do
         visible: :hidden)
 
     emojis.each do |emoji|
-      expect(rendered).to have_button("rich_text_reaction[emoji_caption]",
+      expect(rendered).to have_button('rich_text_reaction[emoji_caption]',
         text: emoji.emoji,
         visible: :hidden)
     end

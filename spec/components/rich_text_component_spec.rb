@@ -13,7 +13,7 @@ RSpec.describe RichTextComponent, type: :component do
       .and have_content(user.full_name)
   end
 
-  it "renders nothing with no rich text content" do
+  it 'renders nothing with no rich text content' do
     rich_text.body = ActionText::Content.new('')
 
     render_inline described_class.new(rich_text:, user:)
