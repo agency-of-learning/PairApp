@@ -5,7 +5,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import 'direct_uploads';
-@import 'reaction_selector';
+@import 'emoji_selector';
 
 .field_with_errors {
   @apply flex [&>input]:input-error [&>input]:w-full;
