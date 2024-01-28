@@ -6,8 +6,10 @@ Helpers used:
 - app/helpers/emojis_helper
 %>
 
-<div class="relative">
-  <details class="emoji-selection inline-block align-middle">
+<div data-controller="details-toggle" class="relative">
+  <details data-details-toggle-target="details"
+           data-action="click@document->details-toggle#clickOut"
+           class="emoji-selection inline-block align-middle">
     <summary class="list-marker-none cursor-pointer">
       <%= render inline: Rails.root.join('app/assets/images/smiley_face.svg').read %>
     </summary>

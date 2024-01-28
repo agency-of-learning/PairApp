@@ -2,17 +2,19 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from './application';
+import { application } from "./application"
 
-import LinkBuilderController from './link_builder_controller';
+import DetailsToggleController from "./details_toggle_controller"
+application.register("details-toggle", DetailsToggleController)
 
-import ModalController from './modal_controller';
+import LinkBuilderController from "./link_builder_controller"
+application.register("link-builder", LinkBuilderController)
 
-import PairRequestsFormController from './pair_requests_form_controller';
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
 
-import SelectController from './select_controller';
+import PairRequestsFormController from "./pair_requests_form_controller"
+application.register("pair-requests-form", PairRequestsFormController)
 
-application.register('link-builder', LinkBuilderController);
-application.register('modal', ModalController);
-application.register('pair-requests-form', PairRequestsFormController);
-application.register('select', SelectController);
+import SelectController from "./select_controller"
+application.register("select", SelectController)
