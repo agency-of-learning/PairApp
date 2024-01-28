@@ -49,31 +49,23 @@
     <div class="flex flex-col lg:flex-row justify-evenly" data-tabs-target="panel">
       <%= render StandupMeetings::ColumnComponent.new(title: "Previous Work Day") do%>
         <% @completed_meetings.each do |completed_meeting| %>
-          <%= render partial: "update",
-            locals: {
-              rich_text: completed_meeting.yesterday_work_description,
-              user: completed_meeting.user
-            } %>
+          <%# The keyword `partial` must be used in order to pass `locals`. %>
+          <%= render partial: completed_meeting,
+                locals: { rich_text: completed_meeting.yesterday_work_description, user: completed_meeting.user } %>
         <% end %>
       <% end %>
 
       <%= render StandupMeetings::ColumnComponent.new(title: "Today's Work Day") do %>
         <% @completed_meetings.each do |completed_meeting| %>
-          <%= render partial: "update",
-            locals: {
-              rich_text: completed_meeting.today_work_description,
-              user: completed_meeting.user
-            } %>
+          <%= render partial: completed_meeting,
+                locals: { rich_text: completed_meeting.today_work_description, user: completed_meeting.user } %>
         <% end %>
       <% end %>
 
       <%= render StandupMeetings::ColumnComponent.new(title: "Blockers") do %>
         <% @completed_meetings.each do |completed_meeting| %>
-          <%= render partial: "update",
-            locals: {
-              rich_text: completed_meeting.blockers_description,
-              user: completed_meeting.user
-            } %>
+          <%= render partial: completed_meeting,
+                locals: { rich_text: completed_meeting.blockers_description, user: completed_meeting.user } %>
         <% end %>
       <% end %>
     </div>
