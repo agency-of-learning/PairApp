@@ -30,8 +30,8 @@ FactoryBot.define do
     trait :application_received do
       status { :application_received }
     end
-    trait :coding_challenge_sent do
-      status { :coding_challenge_sent }
+    trait :coding_challenge do
+      status { :coding_challenge }
     end
     trait :coding_challenge_received do
       status { :coding_challenge_received }

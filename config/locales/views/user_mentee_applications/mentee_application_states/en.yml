@@ -6,7 +6,7 @@ en:
       <p> - send an email to the applicant <strong>with a link to the code challenge</strong> </p>
       <br />
       <p>If you choose to promote, please include why you think the applicant is a good fit for AOL in the note.</p>"
-  coding_challenge_sent:
+  coding_challenge:
     status_description: "We sent out the code challenge and are awaiting the applicant's response (the typeform submission)."
     acceptance_criteria: "In the note, please include the link for the applicant's response (i.e. typeform url) to the code challenge."
   coding_challenge_received:

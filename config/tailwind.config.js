@@ -7,6 +7,7 @@ module.exports = {
     "./app/javascript/**/*.js",
     "./app/views/**/*.{erb,haml,html,slim}",
     "./app/components/**/*.{rb,erb,html}",
+    "./config/locales/**/*.yml"
   ],
   theme: {
     extend: {

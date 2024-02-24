@@ -6,7 +6,7 @@ RSpec.describe MenteeApplicationTransitionService do
   let(:reviewer) { create(:user) }
   let(:user) { create(:user, :applicant) }
   let(:application_received) { create(:user_mentee_application, :application_received, user:) }
-  let(:coding_challenge_sent) { create(:user_mentee_application, :coding_challenge_sent, user:) }
+  let(:coding_challenge) { create(:user_mentee_application, :coding_challenge, user:) }
   let(:coding_challenge_received) { create(:user_mentee_application, :coding_challenge_received, user:) }
   let(:coding_challenge_approved) { create(:user_mentee_application, :coding_challenge_approved, user:) }
   let(:phone_screen_scheduled) { create(:user_mentee_application, :phone_screen_scheduled, user:) }
@@ -25,7 +25,7 @@ RSpec.describe MenteeApplicationTransitionService do
             described_class.call(application: application_received, reviewer:, action:)
           }.to change {
             application_received.reload.current_status
-          }.from('application_received').to('coding_challenge_sent')
+          }.from('application_received').to('coding_challenge')
         end
 
         it 'enqueues an accepted mailer' do
@@ -38,10 +38,10 @@ RSpec.describe MenteeApplicationTransitionService do
       context 'when the coding challenge has been sent' do
         it 'promotes the application to the next status' do
           expect {
-            described_class.call(application: coding_challenge_sent, reviewer:, action:)
+            described_class.call(application: coding_challenge, reviewer:, action:)
           }.to change {
-            coding_challenge_sent.reload.current_status
-          }.from('coding_challenge_sent').to('coding_challenge_received')
+            coding_challenge.reload.current_status
+          }.from('coding_challenge').to('coding_challenge_received')
         end
       end
 
@@ -147,7 +147,7 @@ RSpec.describe MenteeApplicationTransitionService do
       context 'when the coding challenge has been sent' do
         it 'raises an invalid transition error' do
           expect {
-            described_class.call(application: coding_challenge_sent, reviewer:, action:)
+            described_class.call(application: coding_challenge, reviewer:, action:)
           }.to raise_error MenteeApplicationTransitionService::InvalidTransitionError
         end
       end
@@ -239,15 +239,15 @@ RSpec.describe MenteeApplicationTransitionService do
       context 'when the coding challenge has been sent' do
         it 'withdraws the application' do
           expect {
-            described_class.call(application: coding_challenge_sent, reviewer:, action:)
+            described_class.call(application: coding_challenge, reviewer:, action:)
           }.to change {
-            coding_challenge_sent.reload.current_status
-          }.from('coding_challenge_sent').to('withdrawn')
+            coding_challenge.reload.current_status
+          }.from('coding_challenge').to('withdrawn')
         end
 
         it 'enqueues a withdrawal mailer' do
           expect {
-            described_class.call(application: coding_challenge_sent, reviewer:, action:)
+            described_class.call(application: coding_challenge, reviewer:, action:)
           }.to have_enqueued_mail(MenteeApplicationMailer, :notify_applicant_of_withdrawal)
         end
       end

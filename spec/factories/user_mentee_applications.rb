@@ -58,9 +58,9 @@ FactoryBot.define do
       end
     end
 
-    trait :coding_challenge_sent do
+    trait :coding_challenge do
       after(:create) do |user_mentee_application|
-        create(:mentee_application_state, :coding_challenge_sent, user_mentee_application:)
+        create(:mentee_application_state, :coding_challenge, user_mentee_application:)
       end
     end
 

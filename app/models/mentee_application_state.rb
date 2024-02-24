@@ -28,7 +28,7 @@ class MenteeApplicationState < ApplicationRecord
 
   enum status: {
     application_received: 0,
-    coding_challenge_sent: 1,
+    coding_challenge: 1,
     coding_challenge_received: 2,
     coding_challenge_approved: 3,
     phone_screen_scheduled: 4,
@@ -40,5 +40,21 @@ class MenteeApplicationState < ApplicationRecord
 
   def valid_transitions
     MenteeApplicationTransitionService.valid_transitions(status:)
+  end
+
+  def future_state
+    MenteeApplicationTransitionService.future_state(status:)
+  end
+
+  def next_state
+    user_mentee_application.mentee_application_states.where('created_at > ?', created_at).order(:created_at).first
+  end
+
+  def previous_state
+    user_mentee_application.mentee_application_states.where('created_at < ?', created_at).order(:created_at).last
+  end
+
+  def to_param
+    status
   end
 end
