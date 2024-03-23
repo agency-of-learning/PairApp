@@ -4,14 +4,13 @@
 
 import { application } from './application';
 
+import DetailsToggleController from './details_toggle_controller';
 import LinkBuilderController from './link_builder_controller';
-
 import ModalController from './modal_controller';
-
 import PairRequestsFormController from './pair_requests_form_controller';
-
 import SelectController from './select_controller';
 
+application.register('details-toggle', DetailsToggleController);
 application.register('link-builder', LinkBuilderController);
 application.register('modal', ModalController);
 application.register('pair-requests-form', PairRequestsFormController);

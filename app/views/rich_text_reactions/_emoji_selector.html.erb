@@ -1,0 +1,34 @@
+<%#
+Locals required:
+- rich_text_id: Id of the ActionText::RichText that the new RichTextReaction belongs to
+
+Helpers used:
+- app/helpers/emojis_helper
+%>
+
+<div data-controller="details-toggle" class="relative">
+  <details data-details-toggle-target="details"
+           data-action="click@document->details-toggle#clickOut"
+           class="emoji-selection inline-block align-middle">
+    <summary class="list-marker-none cursor-pointer">
+      <%= render inline: Rails.root.join('app/assets/images/smiley_face.svg').read %>
+    </summary>
+
+    <div class="absolute bottom-6 z-100
+                bg-gray-100 border border-gray-300 rounded-lg p-1">
+      <%= form_with model: RichTextReaction.new do |form| %>
+        <%= form.hidden_field :rich_text_id, value: rich_text_id %>
+     
+        <% all_emojis.each do |emoji| %>
+          <%= form.button :emoji_caption,
+                value: emoji.caption,
+                class: "p-1 border-transparent border-2
+                        hover:bg-gray-300 hover:rounded-lg
+                        active:border active:border-2 active:border-green-400" do %>
+            <%= emoji.emoji %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </details>
+</div>

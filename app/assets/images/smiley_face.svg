@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="20" height="20">
+  <!-- Face outline -->
+  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="none"/>
+
+  <!-- Left eye (dot) -->
+  <circle cx="35" cy="40" r="3" stroke="black" stroke-width="3" fill="black"/>
+
+  <!-- Right eye (dot) -->
+  <circle cx="65" cy="40" r="3" stroke="black" stroke-width="3" fill="black"/>
+
+  <!-- Mouth (smile) -->
+  <path d="M 30 60 Q 50 80 70 60" stroke="black" stroke-width="3" fill="none"/>
+</svg>
